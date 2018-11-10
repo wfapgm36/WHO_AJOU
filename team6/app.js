@@ -9,12 +9,18 @@ var flash = require("connect-flash");
 var passport = require("passport");
 
 var route = require("./routes");
-var setUpPassport = require("./setuppassport");
+
+var nev = require('email-verification')(mongoose);
+// var setUpPassport = require('./config/passport');
+require('./config/email-verification')(nev);
+require('./config/passport')(passport,nev);
+
+var setupPassport = require('./config/setuppassport');
 
 var app = express();
 
-mongoose.connect("mongodb:\/\/localhost:27017/test", { useNewUrlParser: true });
-setUpPassport();
+setupPassport();
+mongoose.connect("mongodb://localhost:27017/test", { useNewUrlParser: true });
 app.set("port", process.env.PORT || 3000);
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -37,5 +43,5 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use('/', route);
 app.listen(app.get("port"), function () {
-    console.log("Server started on port" + app.get("port"));
+    console.log("Server started on port : " + app.get("port"));
 });
