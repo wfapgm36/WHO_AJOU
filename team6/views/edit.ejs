@@ -1,7 +1,7 @@
 <% include _header %>
 <h1>Edit your profile</h1>
 <form action="/edit" method="post">
-    <input name="displayname" type="text" class="form-control" placeholder="Display name" value="<%= currentUser.displayName || "" %>" />
+    <input name="nickname" type="text" class="form-control" placeholder="nickname" value="<%= currentUser.nickname || "" %>" />
     <input type="submit" value="Update" class="btn btn-primary btn-block" />
 </form>
 <% include _footer %>
