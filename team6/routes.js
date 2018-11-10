@@ -1,8 +1,12 @@
 var express = require("express");
 var passport = require("passport");
 var User = require("./models/user");
+
 var Boards = require("./models/board")
+
 var router = express.Router();
+var mongoose = require("mongoose");
+var nev = require('email-verification')(mongoose);
 
 //템플릿용 변수 설정
 router.use(function (req, res, next) {
@@ -12,7 +16,6 @@ router.use(function (req, res, next) {
     res.locals.infos = req.flash("info");
     next();
 });
-
 router.get("/boards", function(req, res){
     Boards.find({}).sort({date:-1}).exec(function(err, rawContents){
         if(err) throw err;
@@ -33,7 +36,6 @@ router.get("/boards/view", function(req, res){
         });
     })
 });
-
 
 //컬렉션을 쿼리하고 가장 최근 사용자를 먼저 반환(descending)
 router.get("/", function (req, res, next) {
@@ -75,42 +77,11 @@ router.get("/board_write", function(req, res){
     res.render("board_write");
 });
 
-router.post("/signup", (req, res, next) => {
-    let username = req.body.username;
-    let password = req.body.password;
-    let nickname = req.body.nickname;
-    let email = req.body.email;
-    let major = req.body.major;
-    User.findOne({username: username}, (err, user) => {
-        if (err) console.log(err);
-        if (user) {
-            req.flash("error", "사용자가 이미 있습니다.");
-            res.redirect("/signup");
-        } else {
-            User.findOne({email: email},(err, user) =>{
-                if(err) console.log(err);
-                if (user){
-                    req.flash("error", "중복된 이메일 주소입니다.");
-                    res.redirect("/signup");
-                }else{
-                    let newUser = new User({
-                        username: username,
-                        password: password,
-                        nickname: nickname,
-                        email: email,
-                        major: major,
-                        isAdmin: 0
-                    });
-                    newUser.save(next);
-                }
-            });
-        }
-    });
-}, passport.authenticate("login", {
-    successRedirect: "/",
-    failureRedirect: "/signup",
-    failureFlash: true
-}));
+router.post('/signup', passport.authenticate('signup', {
+    successRedirect : '/',
+    failureRedirect : '/signup', //가입 실패시 redirect할 url주소
+    failureFlash : true
+}))
 
 router.get("/users/:username", function (req, res, next) {
     User.findOne({username: req.params.username}, function (err, user) {

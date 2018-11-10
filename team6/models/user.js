@@ -51,19 +51,10 @@ userSchema.methods.checkPassword = function (guess, done) {
     });
 };
 
-userSchema.statics.checkUser = function (username) {
-    let check = false;
-    this.findOne({username: username}, function (err, user) {
-        if (err) {
-            next(err);
-            return check;
-        }
-        if (user) {
-            check = true;
-            return check;
-        }
-    });
-}
+// //password를 암호화
+// userSchema.statics.generateHash = function(password) {
+//     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+// }
 
 // 실제로 사용자 모델 만들고 내보내기
 var User = mongoose.model("User", userSchema, "userlist");
