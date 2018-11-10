@@ -7,12 +7,13 @@ var boardSchema = mongoose.Schema({
     comments: [{
         name: String,
         memo: String,
-        date: { type: Date, default: Date.now }
+        createAt: { type: Date, default: Date.now }
     }],
     count: { type: Number, default: 0 },
-    date: { type: Date, default: Date.now },
+    createAt: { type: Date, default: Date.now },
     updated: [{ contents: String, date: { type: Date, default: Date.now } }],
     deleted: { type: Boolean, default: false }
 });
 
-module.exports = mongoose.model('BoardContents', boardSchema);
+var Boards = mongoose.model('Boards', boardSchema, 'Boardlist');
+module.exports =  Boards;

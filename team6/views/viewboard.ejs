@@ -1,0 +1,25 @@
+<% include _header %>
+
+<div class="content_box">
+    <div class="content-title"><%=content.title%></div>
+    <div class="content-info">
+        <%=dateFormatChange(content.createAt)%> / <%=content.writer%>
+    </div>
+    <div class="content-text">
+        <%=content.contents%>
+    </div>
+    <a href="/boards"><div class="content-Btn">확인</div></a>
+</div>
+
+<% include _footer %>
+
+<%
+function dateFormatChange(date) {
+    var options = {
+        weekday: "short", year: "numeric", month: "short",
+        day: "numeric", hour: "2-digit", minute: "2-digit"
+    };
+    return date.toLocaleTimeString("ko-KR", options);
+}
+%>
+

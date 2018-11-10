@@ -1,0 +1,34 @@
+<% include _header %>
+
+<a href="/board_write" onclick="displayWriteForm();"><div class="write_btn">새 글</div></a>
+<%if(contents.length>0){%>
+    <%var i = 0;%>
+    <%contents.forEach(function(item){%>
+    <%i++;%>
+    <div>
+    <tr>
+        <td class="number"><%=i%></td>
+        <td class="title"><a href="/boards/view?id=<%=item._id%>"><%=item.title%></a></td>
+        <td class="writer"><%=item.writer%></td>
+        <td class="date"><%=dateFormatChange(item.createAt)%></td>
+        <td class="cnt"><%=item.count%></td>
+    </tr>
+</div>
+    <%})%>
+    <%} else {%>
+    <tr>
+        <td colspan="5">게시물이 없습니다.</td>
+    </tr>
+<%}%>
+
+<% include _footer %>
+
+<%
+function dateFormatChange(date) {
+    var options = {
+        weekday: "short", year: "numeric", month: "short",
+        day: "numeric", hour: "2-digit", minute: "2-digit"
+    };
+    return date.toLocaleTimeString("ko-KR", options);
+}
+%>
