@@ -35,12 +35,12 @@ export default new Router({
       component: Main,
       children: [
         {
-          path: '/profile',
+          path: 'profile',
           name: 'profile',
           component: Profile
         },
         {
-          path: '/user-list',
+          path: 'user-list',
           name: 'user-list',
           component: UserList
         }
@@ -52,12 +52,12 @@ export default new Router({
       component: Board,
       children: [
         {
-          path: '/view',
+          path: 'view',
           name: 'view',
           component: BoardView
         },
         {
-          path: '/write',
+          path: 'write',
           name: 'boardWrite',
           component: BoardWrite
         }
