@@ -40,7 +40,10 @@
 
                 <div class="d-flex justify-content-between">
                   <div>
-                    <b-button type="submit" variant="primary">로그인</b-button>&nbsp;
+                    <router-link to= "/main">
+                      <b-button type="submit" variant="primary">로그인</b-button>&nbsp;
+                    </router-link>
+                    
                     <b-button type="reset" variant="danger">초기화</b-button>
                   </div>
                   <div>
@@ -77,7 +80,8 @@ export default {
   methods: { 
     login () {
       let self = this
-      this.$http.get('/login', {
+      /*
+      this.$http.get('/', {
         username: this.form.name, 
         password: this.form.password
       })
@@ -85,15 +89,19 @@ export default {
         const status = res.status
         console.log(status)
         console.log(res)
+  
+        console.log(this.form.name)
+        console.log(this.form.password)
         //redirect logic
         if (status == '200') {
-          onReset()
+          //onReset()
           self.$router.push('/main');
         }
       })
       .catch((err) => {
         console.log(err)
-      })
+      })*/
+ 
     },
     onReset (evt) {
       evt.preventDefault()

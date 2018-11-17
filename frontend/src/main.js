@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import axios from 'axios'
 
+Vue.prototype.$EventBus = new Vue();
 Vue.config.productionTip = false
 Vue.prototype.$http = axios
 

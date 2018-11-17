@@ -1,8 +1,8 @@
 <template>
-  <div id="app">
+  <div class="app">
       <b-navbar toggleable="md" type="dark" class="nav-background">
       <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
-      <b-navbar-brand href="#">WHO AJOU?</b-navbar-brand>
+      <b-navbar-brand href="#">{{isLogin}}::WHO AJOU?</b-navbar-brand>
 
       <b-collapse is-nav id="nav_collapse">
 
@@ -15,39 +15,55 @@
           </b-nav-form>
 
           <b-navbar-nav>
-            <b-nav-item href="/main">메인</b-nav-item>
-            <b-nav-item href="/board">게시판</b-nav-item>
-            <b-nav-item id="signup" href="/signup">회원가입</b-nav-item>
-            <b-nav-item href="/logout">로그아웃</b-nav-item>
+            <b-nav-item><router-link to = "/main">메인</router-link></b-nav-item>
+            <b-nav-item v-if= "isLogin"><router-link to = "/board">게시판</router-link></b-nav-item>
+            <b-nav-item id="signup" v-if= "!isLogin"><router-link to = "/signup">회원가입</router-link></b-nav-item>
+            <b-nav-item v-if= "isLogin"><router-link to = "/logout">로그아웃</router-link></b-nav-item>
           </b-navbar-nav>
 
-          <b-nav-item-dropdown right>
+          <b-nav-item-dropdown right v-if= "isLogin">
             <!-- Using button-content slot -->
             <template slot="button-content">
               <em>마이페이지</em>
             </template>
-            <b-dropdown-item href="/main/profile">프로필</b-dropdown-item>
-            <b-dropdown-item href="/main/user-list">유저 리스트</b-dropdown-item>
+            <b-dropdown-item ><router-link to ="/profile">프로필</router-link></b-dropdown-item>
+            <b-dropdown-item ><router-link to ="/user-list">유저 리스트</router-link></b-dropdown-item>
           </b-nav-item-dropdown>
 
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
-    <router-view/>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  data () {
+    return {
+      isLogin: false
+    }
+  },
+  created() {
+    /**********로그인 전후 네비게이션 바에 보여지는 목록을 다르게 해주기 위해 이벤트 버스 발생 *************/
+    this.$EventBus.$on('removeTab', (message) => {
+        this.isLogin = message;
+    });
+  }
 }
 </script>
 
 <style>
 body {
-  background-color: lightgray
+  background-color: lightgray;
+
+}
+.navbar{
+  position: relative;
+ 
 }
 .nav-background{
-  background-color: black
+  background-color: black;
 }
 </style>
