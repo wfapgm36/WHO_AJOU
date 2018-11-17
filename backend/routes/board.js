@@ -1,5 +1,5 @@
 var express = require("express");
-var Boards = require("../models/board")
+var Board= require("../models/board")
 var router = express.Router();
 
 router.use(function (req, res, next) {
@@ -9,13 +9,7 @@ router.use(function (req, res, next) {
 });
 
 router.get("/", function (req, res) {
-<<<<<<< HEAD
-    Boards.find({}).sort({
-        date: -1
-    }).exec(function (err, rawContents) {
-=======
-    Boards.find({}).sort({date: -1}).exec(function (err, rawContents) {
->>>>>>> master
+    Board.find({}).sort({date: -1}).exec(function (err, rawContents) {
         if (err) {
             console.log(err);
             res.status(401).send(err)
@@ -26,18 +20,9 @@ router.get("/", function (req, res) {
     })
 });
 
-<<<<<<< HEAD
 router.get("/view/:id", function (req, res) {
     var contentId = req.param('id');
-
-    Boards.findOne({
-        _id: contentId
-    }, function (err, rawContent) {
-=======
-router.get("/view", function (req, res) {
-    var contentId = req.param('id');
-    Boards.findOne({_id: contentId}, function (err, rawContent) {
->>>>>>> master
+    Board.findOne({_id: contentId}, function (err, rawContent) {
         if (err) {
             console.log(err);
             res.status(401).send(err)
@@ -56,22 +41,22 @@ router.get("/view", function (req, res) {
     })
 });
 
-<<<<<<< HEAD
-router.post("/write", (req, res, next) => {
-=======
+
 router.post("/", (req, res, next) => {
->>>>>>> master
+    console.log(req.body);
     let title = req.body.title;
     let contents = req.body.contents;
-    Boards.findOne({
+    Board.findOne({
         title: title
     }, (err, board) => {
         if (err) {
             console.log(err);
             res.status(401).send(err);
         } else {
-            let newBoard = new Boards({
-                writer: req.user.username,
+            console.log(title);
+            console.log(contents);
+            let newBoard = new Board({
+                //writer: req.user.username,
                 title: title,
                 contents: contents
             });
