@@ -13,27 +13,30 @@ router.use(function (req, res, next) {
     next();
 });
 
-router.get("/boards", function (req, res) {
-    Boards.find({}).sort({date: -1}).exec(function (err, rawContents) {
+router.get("/", function (req, res) {
+    Boards.find({}).sort({
+        date: -1
+    }).exec(function (err, rawContents) {
         if (err) {
             console.log(err);
             res.status(401).send(err)
-        }else{
+        } else {
             res.json(rawContents);
             res.status(200).send();
         }
     })
-    res.sendFile(path.join(__dirname, '../public', 'index.html'))
 });
 
-router.get("/boards/view", function (req, res) {
+router.get("/view/:id", function (req, res) {
     var contentId = req.param('id');
 
-    Boards.findOne({_id: contentId}, function (err, rawContent) {
+    Boards.findOne({
+        _id: contentId
+    }, function (err, rawContent) {
         if (err) {
             console.log(err);
             res.status(401).send(err)
-        }else {
+        } else {
             rawContent.count += 1; // 조회수를 늘려줍니다.
             rawContent.save(function (err) { // 변화된 조횟수 저장
                 if (err) {
@@ -48,19 +51,16 @@ router.get("/boards/view", function (req, res) {
     })
 });
 
-router.get("/board_write", function(req, res){
-    //res.render("board_write");
-    res.sendFile(path.join(__dirname, '../public', 'index.html'))
-});
-
-router.post("/boards", (req, res, next) => {
+router.post("/write", (req, res, next) => {
     let title = req.body.title;
     let contents = req.body.contents;
-    Boards.findOne({title: title}, (err, board) => {
+    Boards.findOne({
+        title: title
+    }, (err, board) => {
         if (err) {
             console.log(err);
             res.status(401).send(err);
-        }else {
+        } else {
             let newBoard = new Boards({
                 writer: req.user.username,
                 title: title,

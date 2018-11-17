@@ -48,8 +48,8 @@ export default {
   created() {
     /**********로그인 전후 네비게이션 바에 보여지는 목록을 다르게 해주기 위해 이벤트 버스 발생 *************/
     this.$EventBus.$on('removeTab', (message) => {
-        this.isLogin = message;
-    });
+        this.isLogin = message
+    })
   }
 }
 </script>
