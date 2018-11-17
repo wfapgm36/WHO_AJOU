@@ -22,7 +22,6 @@ router.post("/edit", ensureAuthenticated, function (req, res, next) {
             next(err);
             return;
         }
-        req.flash("info", "Profile updated!");
         res.redirect("/edit");
     });
 });
@@ -54,7 +53,6 @@ function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
         next();
     } else {
-        req.flash("info", "먼저 로그인해야 합니다.");
         res.redirect("/");
     }
 };

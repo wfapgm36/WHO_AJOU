@@ -6,8 +6,6 @@ var router = express.Router();
 router.use(function (req, res, next) {
     console.log(req.user)
     res.locals.currentUser = req.user;
-    res.locals.errors = req.flash("error");
-    res.locals.infos = req.flash("info");
     next();
 });
 

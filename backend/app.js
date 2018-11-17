@@ -6,7 +6,6 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var session = require("express-session");
 var passport = require("passport");
-
 var login = require("./routes/login");
 var main = require("./routes/main");
 var board = require("./routes/board");
