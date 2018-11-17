@@ -45,12 +45,17 @@ saveUninitialized: 미들웨어 옵션, 초기화되지 않은 세션 재설정
 
 app.use(passport.initialize());
 app.use(passport.session());
+<<<<<<< HEAD
+app.use('/', login);
+app.use('/main', main);
+=======
 app.use('/', index);
 app.use('/api/signup', signup);
 app.use('/api/email-verification', email_verification);
 app.use('/api/login', login);
 app.use('/api/user', user);
 app.use('/api/main', main);
+>>>>>>> master
 app.use('/api/boards', board);
 
 // catch 404 and forward to error handler

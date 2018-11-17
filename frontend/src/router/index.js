@@ -7,8 +7,8 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import Login from '@/components/Login'
 import SignUp from '@/components/SignUp'
 import Main from '@/components/Main'
-import Profile from '@/components/Profile'
-import UserList from '@/components/UserList'
+// import Profile from '@/components/Profile'
+// import UserList from '@/components/UserList'
 import Board from '@/components/Board'
 import BoardView from '@/components/BoardView'
 import BoardWrite from '@/components/BoardWrite'
@@ -32,36 +32,22 @@ export default new Router({
     {
       path: '/main',
       name: 'main',
-      component: Main,
-      children: [
-        {
-          path: '/profile',
-          name: 'profile',
-          component: Profile
-        },
-        {
-          path: '/user-list',
-          name: 'user-list',
-          component: UserList
-        }
-      ]
+      component: Main
     },
     {
       path: '/board',
       name: 'board',
-      component: Board,
-      children: [
-        {
-          path: '/view',
-          name: 'view',
-          component: BoardView
-        },
-        {
-          path: '/write',
-          name: 'boardWrite',
-          component: BoardWrite
-        }
-      ]
+      component: Board
+    },
+    {
+      path: '/write',
+      name: 'board-write',
+      component: BoardWrite
+    },
+    {
+      path: '/view/:id',
+      name: 'board-view',
+      component: BoardView
     }
   ]
 })
