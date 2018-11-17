@@ -23,16 +23,20 @@ router.get("/boards", function(req, res){
     res.send(Boards)
 });
 
-router.get("/boards/view", function(req, res){
+router.get("/boards/view", function (req, res) {
     var contentId = req.param('id');
 
-    Boards.findOne({_id:contentId}, function(err, rawContent){
-        if(err) throw err;
+    Boards.findOne({_id: contentId}, function (err, rawContent) {
+        if (err) throw err;
         rawContent.count += 1; // 조회수를 늘려줍니다.
-        rawContent.save(function(err){ // 변화된 조횟수 저장
-            if(err) throw err;
-            //res.render('viewboard',{title: "Board", content:rawContent}); // db에서 가져온 내용을 뷰로 렌더링
-            res.sendFile(path.join(__dirname, '../public', 'index.html'))
+        rawContent.save(function (err) { // 변화된 조횟수 저장
+            if (err) {
+                console.log(err);
+                res.status(401).send(err)
+            } else {
+                res.json(rawContent);
+                res.status(200).send();
+            }
         });
     })
 });
@@ -42,23 +46,21 @@ router.get("/board_write", function(req, res){
     res.sendFile(path.join(__dirname, '../public', 'index.html'))
 });
 
-
 router.post("/boards", (req, res, next) => {
     let title = req.body.title;
     let contents = req.body.contents;
-    Boards.findOne({title:title}, (err, board) =>{
-        if(err) console.log(err);
-        if(board){
-            req.flash("error", "이미 있는 게시글.");
-            res.redirect("board_write");
-        }else{
+    Boards.findOne({title: title}, (err, board) => {
+        if (err) {
+            console.log(err);
+            res.status(401).send(err);
+        }else {
             let newBoard = new Boards({
                 writer: req.user.username,
                 title: title,
                 contents: contents
             });
             newBoard.save();
-            res.redirect('/boards');
+            res.status(200).send('게시글 저장 완료');
         }
     })
 });
