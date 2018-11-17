@@ -124,7 +124,7 @@ router.get("/edit", ensureAuthenticated, function (req, res) {
 });
 
 router.post("/edit", ensureAuthenticated, function (req, res, next) {
-    req.user.displayName = req.body.displayname;
+    req.user.nickname = req.body.nickname;
     req.user.save(function (err) {
         if (err) {
             next(err);
