@@ -23,6 +23,7 @@ router.get("/boards", function (req, res) {
             res.status(200).send();
         }
     })
+    res.sendFile(path.join(__dirname, '../public', 'index.html'))
 });
 
 router.get("/boards/view", function (req, res) {
