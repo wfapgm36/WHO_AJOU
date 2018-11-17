@@ -1,6 +1,5 @@
 var express = require("express");
 var Boards = require("../models/board")
-
 var router = express.Router();
 
 router.use(function (req, res, next) {
@@ -9,7 +8,7 @@ router.use(function (req, res, next) {
     next();
 });
 
-router.get("/boards", function (req, res) {
+router.get("/", function (req, res) {
     Boards.find({}).sort({date: -1}).exec(function (err, rawContents) {
         if (err) {
             console.log(err);
@@ -22,9 +21,8 @@ router.get("/boards", function (req, res) {
     res.sendFile(path.join(__dirname, '../public', 'index.html'))
 });
 
-router.get("/boards/view", function (req, res) {
+router.get("/view", function (req, res) {
     var contentId = req.param('id');
-
     Boards.findOne({_id: contentId}, function (err, rawContent) {
         if (err) {
             console.log(err);
@@ -44,11 +42,7 @@ router.get("/boards/view", function (req, res) {
     })
 });
 
-router.get("/board_write", function(req, res){
-    res.sendFile(path.join(__dirname, '../public', 'index.html'))
-});
-
-router.post("/boards", (req, res, next) => {
+router.post("/", (req, res, next) => {
     let title = req.body.title;
     let contents = req.body.contents;
     Boards.findOne({title: title}, (err, board) => {
@@ -65,6 +59,10 @@ router.post("/boards", (req, res, next) => {
             res.status(200).send('게시글 저장 완료');
         }
     })
+});
+
+router.delete("/", function(req, res){
+
 });
 
 module.exports = router;
