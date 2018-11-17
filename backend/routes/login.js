@@ -25,16 +25,22 @@ router.get("/signup", function (req, res) {
 })
 
 router.post('/signup', passport.authenticate('signup', {
-    successRedirect : '/',
-    failureRedirect : '/signup', //가입 실패시 redirect할 url주소
-    failureFlash : true
-}))
+     failWithError: true
+}),function (req, res, next) {
+    res.status(200).send();
+},function(req,res,next){
+    res.status(404).send();
+});
 
 router.post("/login", passport.authenticate("login", {
-    successRedirect: "/main",
-    failureRedirect: "/",
-    failureFlash: true
-}));
+    failWithError: true
+}),function (req, res, next) {
+    console.log("성공");
+    res.status(200).send();
+},function(err,req,res,next){
+    console.log(err);
+    console.log("실패"); // res.status(401) 전송됨
+});
 
 router.get('/email-verification/:URL', function(req, res){
     var url = req.params.URL;
