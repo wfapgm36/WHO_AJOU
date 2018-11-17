@@ -1,54 +1,44 @@
 var express = require("express");
 var passport = require("passport");
-
 var router = express.Router();
 var mongoose = require("mongoose");
 var nev = require('email-verification')(mongoose);
 
-//템플릿용 변수 설정
 router.use(function (req, res, next) {
     console.log(req.user)
     res.locals.currentUser = req.user;
-    res.locals.errors = req.flash("error");
-    res.locals.infos = req.flash("info");
     next();
 });
 
 router.get("/", function (req, res) {
-    //res.render("login");
     res.sendFile(path.join(__dirname, '../public', 'index.html'))
 })
 
-router.get("/signup", function (req, res) {
-    //res.render("signup");
-    //res.sendFile(path.join(__dirname, '../public', 'index.html'))
-})
-
 router.post('/signup', passport.authenticate('signup', {
-     failWithError: true
-}),function (req, res, next) {
+    failWithError: true
+}), function (req, res, next) {
     res.status(200).send();
-},function(req,res,next){
+}, function (req, res, next) {
     res.status(404).send();
 });
 
 router.post("/login", passport.authenticate("login", {
     failWithError: true
-}),function (req, res, next) {
+}), function (req, res, next) {
     console.log("성공");
     res.status(200).send();
-},function(err,req,res,next){
+}, function (err, req, res, next) {
     console.log(err);
     console.log("실패"); // res.status(401) 전송됨
 });
 
-router.get('/email-verification/:URL', function(req, res){
+router.get('/email-verification/:URL', function (req, res) {
     var url = req.params.URL;
-    nev.confirmTempUser(url, function(err, user){
+    nev.confirmTempUser(url, function (err, user) {
         console.log("confirmed user " + user);
-        if(err) console.log(err);
+        if (err) console.log(err);
         if (user) {
-            nev.sendConfirmationEmail(user.email, function(err, info) {
+            nev.sendConfirmationEmail(user.email, function (err, info) {
                 if (err) {
                     return res.status(404).send('ERROR: sending confirmation email FAILED');
                 }

@@ -2,9 +2,7 @@ var express = require("express");
 var Boards = require("../models/board")
 
 var router = express.Router();
-var mongoose = require("mongoose");
 
-//템플릿용 변수 설정
 router.use(function (req, res, next) {
     console.log(req.user)
     res.locals.currentUser = req.user;
@@ -17,7 +15,6 @@ router.get("/boards", function(req, res){
     Boards.find({}).sort({date:-1}).exec(function(err, rawContents){
         if(err) throw err;
 
-        //res.render('boards', {title:"Board", contents: rawContents});
         res.sendFile(path.join(__dirname, '../public', 'index.html'))
     })
     res.send(Boards)
@@ -42,7 +39,6 @@ router.get("/boards/view", function (req, res) {
 });
 
 router.get("/board_write", function(req, res){
-    //res.render("board_write");
     res.sendFile(path.join(__dirname, '../public', 'index.html'))
 });
 
@@ -64,7 +60,5 @@ router.post("/boards", (req, res, next) => {
         }
     })
 });
-
-
 
 module.exports = router;

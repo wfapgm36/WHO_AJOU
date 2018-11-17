@@ -1,24 +1,11 @@
 var express = require("express");
 var router = express.Router();
-var mongoose = require("mongoose");
 
-//템플릿용 변수 설정
 router.use(function (req, res, next) {
     console.log(req.user)
     res.locals.currentUser = req.user;
-    res.locals.errors = req.flash("error");
-    res.locals.infos = req.flash("info");
     next();
 });
-
-function ensureAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) {
-        next();
-    } else {
-        req.flash("info", "먼저 로그인해야 합니다.");
-        res.redirect("/");
-    }
-}
 
 router.get("/", ensureAuthenticated, function (req, res) {
     res.sendFile(path.join(__dirname, '../public', 'index.html'))
@@ -28,8 +15,8 @@ router.get("/profile", ensureAuthenticated, function (req, res) {
     res.sendFile(path.join(__dirname, '../public', 'index.html'))
 });
 
-router.post("/profile", ensureAuthenticated, function (req, res, next) {
-    req.user.displayName = req.body.displayname;
+router.post("/edit", ensureAuthenticated, function (req, res, next) {
+    req.user.nickname = req.body.nickname;
     req.user.save(function (err) {
         if (err) {
             next(err);
@@ -62,5 +49,14 @@ router.get("/main/user_list/:username", function (req, res, next) {
         res.render("profile", {user:user});
     });
 });
+
+function ensureAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        next();
+    } else {
+        req.flash("info", "먼저 로그인해야 합니다.");
+        res.redirect("/");
+    }
+};
 
 module.exports = router;
