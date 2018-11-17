@@ -9,13 +9,6 @@ router.use(function (req, res, next) {
     next();
 });
 
-<<<<<<< HEAD
-router.get("/boards", function(req, res){
-    Boards.find({}).sort({date:-1}).exec(function(err, rawContents){
-        if(err) throw err;
-
-        res.sendFile(path.join(__dirname, '../public', 'index.html'))
-=======
 router.get("/boards", function (req, res) {
     Boards.find({}).sort({date: -1}).exec(function (err, rawContents) {
         if (err) {
@@ -25,7 +18,6 @@ router.get("/boards", function (req, res) {
             res.json(rawContents);
             res.status(200).send();
         }
->>>>>>> c0bf9d74824254961b6a94ac9748670a54e8aa4d
     })
     res.sendFile(path.join(__dirname, '../public', 'index.html'))
 });
