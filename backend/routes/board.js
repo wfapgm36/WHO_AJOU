@@ -1,22 +1,21 @@
 var express = require("express");
 var Boards = require("../models/board")
-
 var router = express.Router();
-var mongoose = require("mongoose");
 
-//템플릿용 변수 설정
 router.use(function (req, res, next) {
     console.log(req.user)
     res.locals.currentUser = req.user;
-    res.locals.errors = req.flash("error");
-    res.locals.infos = req.flash("info");
     next();
 });
 
 router.get("/", function (req, res) {
+<<<<<<< HEAD
     Boards.find({}).sort({
         date: -1
     }).exec(function (err, rawContents) {
+=======
+    Boards.find({}).sort({date: -1}).exec(function (err, rawContents) {
+>>>>>>> master
         if (err) {
             console.log(err);
             res.status(401).send(err)
@@ -27,12 +26,18 @@ router.get("/", function (req, res) {
     })
 });
 
+<<<<<<< HEAD
 router.get("/view/:id", function (req, res) {
     var contentId = req.param('id');
 
     Boards.findOne({
         _id: contentId
     }, function (err, rawContent) {
+=======
+router.get("/view", function (req, res) {
+    var contentId = req.param('id');
+    Boards.findOne({_id: contentId}, function (err, rawContent) {
+>>>>>>> master
         if (err) {
             console.log(err);
             res.status(401).send(err)
@@ -51,7 +56,11 @@ router.get("/view/:id", function (req, res) {
     })
 });
 
+<<<<<<< HEAD
 router.post("/write", (req, res, next) => {
+=======
+router.post("/", (req, res, next) => {
+>>>>>>> master
     let title = req.body.title;
     let contents = req.body.contents;
     Boards.findOne({
@@ -72,6 +81,8 @@ router.post("/write", (req, res, next) => {
     })
 });
 
+router.delete("/", function(req, res){
 
+});
 
 module.exports = router;

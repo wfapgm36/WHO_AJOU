@@ -30,4 +30,5 @@ var classSchema = mongoose.Schema({
     deleted: { type: Boolean, default: false }
 });
 var Classes = mongoose.model('Classes', classSchema, 'Classlist');
+
 module.exports =  Classes;
