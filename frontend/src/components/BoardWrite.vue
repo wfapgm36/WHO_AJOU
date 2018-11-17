@@ -22,7 +22,7 @@
                                 label="내용"
                                 label-for="contentInput">
                   <b-form-textarea id="contentInput"
-                                   v-model="form.content"
+                                   v-model="form.contents"
                                    placeholder="내용"
                                    :rows="15"
                                    :max-rows="25">
@@ -42,7 +42,7 @@ export default {
     return {
       form: {
         title: "",
-        content: ""
+        contents: ""
       },
       show: true
     };
@@ -52,10 +52,7 @@ export default {
       evt.preventDefault();
       alert(JSON.stringify(this.form));
       this.$http
-        .post("/api/boards/write", {
-          title: this.title,
-          contents: this.content
-        })
+        .post("/api/board", this.form)
         .then(res => {
           console.log(res.status);
         })

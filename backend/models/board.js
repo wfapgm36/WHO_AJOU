@@ -15,5 +15,5 @@ var boardSchema = mongoose.Schema({
     deleted: { type: Boolean, default: false }
 });
 
-var Boards = mongoose.model('Boards', boardSchema, 'Boardlist');
-module.exports =  Boards;
+var Board = mongoose.model('Board', boardSchema, 'Boardlist');
+module.exports =  Board;
