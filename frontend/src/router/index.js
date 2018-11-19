@@ -12,7 +12,7 @@ import UserList from '@/components/UserList'
 import Board from '@/components/Board'
 import BoardView from '@/components/BoardView'
 import BoardWrite from '@/components/BoardWrite'
-
+import EmailVerification from '@/components/EmailVerification'
 
 Vue.use(BootstrapVue)
 Vue.use(Router)
@@ -29,6 +29,11 @@ export default new Router({
       path: '/signup',
       name: 'signup',
       component: SignUp
+    },
+    {
+      path: '/email-verification/:URL',
+      name: 'email-verification',
+      component: EmailVerification
     },
     {
       path: '/main',
