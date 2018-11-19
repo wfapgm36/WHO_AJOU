@@ -11,10 +11,7 @@ router.get('/:URL', function (req, res) {
                 if (err) {
                     return res.status(404).send('ERROR: sending confirmation email FAILED');
                 }
-                res.send({
-                    msg: 'CONFIRMED!',
-                    info: info
-                });
+                res.status(200).send();
             });
         } else {
             return res.status(404).send('ERROR: confirming temp user FAILED');
