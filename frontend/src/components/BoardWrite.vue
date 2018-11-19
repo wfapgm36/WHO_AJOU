@@ -44,20 +44,21 @@ export default {
         title: "",
         contents: ""
       },
-      show: true
+      show: true,
+      boards: []
     };
   },
   methods: {
     onSubmit(evt) {
       evt.preventDefault();
-      alert(JSON.stringify(this.form));
       this.$http
         .post("/api/board", this.form)
-        .then(res => {
-          console.log(res.status);
+        .then((res) => {
+          this.boards = res.data;
+          alert(this.boards);
         })
-        .catch(err => {
-          console.log(err);
+        .catch((err) => {
+          alert(err);
         });
     }
   }

@@ -9,13 +9,12 @@ router.use(function (req, res, next) {
 });
 
 router.get("/", function (req, res) {
-    Board.find({}).sort({date: -1}).exec(function (err, rawContents) {
+    Board.find({}).sort({date: -1}).exec(function (err, board) {
         if (err) {
             console.log(err);
             res.status(401).send(err)
         } else {
-            res.json(rawContents);
-            res.status(200).send();
+            res.status(200).json(board);
         }
     })
 });
@@ -61,13 +60,14 @@ router.post("/", (req, res, next) => {
                 contents: contents
             });
             newBoard.save();
-            res.status(200).send('게시글 저장 완료');
+            //res.status(200).send(newBoard);
+            res.send(Board)
         }
     })
 });
 
 router.delete("/", function(req, res){
-
+    
 });
 
 module.exports = router;
