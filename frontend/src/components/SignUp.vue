@@ -1,7 +1,7 @@
 <template>
   <div class="signup">
     <h1 align-h="center">This is Sign Up Page!</h1>
-    <b-form @submit="login" @reset="onReset" v-if="show">
+    <b-form @submit="postUser" @reset="onSubmit" v-if="show">
         
         <b-form-group id="ID-InputGroup" label="ID:" label-for="id-input">
             <b-form-input id="id-input"
@@ -76,6 +76,31 @@ export default {
     onSubmit (evt) {
         evt.preventDefault();
         alert(JSON.stringify(this.form));
+    },
+    postUser (evt) {
+        evt.preventDefault() // 디버깅용
+        this.$http.post('/api/signup', { // 경로확인
+            username: this.form.name,
+            password: this.form.password,
+            email: this.form.email,
+            nickname: this.form.nickname,
+            major: this.form.major
+          })
+          .then((res) => {
+            const status = res.status;
+            console.log(status)
+            // redirect logic
+            if (status == '200') {
+              alert('인증 이메일을 보냈습니다. 이메일 인증 후에 로그인이 가능합니다.')
+              this.$router.push('/');
+            }else if (status == '202'){
+              alert('이미 존재하는 ID 입니다.')
+            } else if (status == '204'){
+              alert('이미 인증된 이메일 주소 입니다.')
+            }
+          }).catch((err)=>{
+          console.log(err)
+        })
     }
   }
 }
