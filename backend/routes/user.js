@@ -1,5 +1,6 @@
 var express = require("express");
 var router = express.Router();
+var User = require("../models/user")
 
 router.use(function (req, res, next) {
     console.log(req.user)
@@ -29,7 +30,7 @@ router.get("/list", function (req, res, next) {
             if (err) {
                 return next(err)
             }
-            res.render("index", {users: users});
+            res.json(users)
         });
 });
 
