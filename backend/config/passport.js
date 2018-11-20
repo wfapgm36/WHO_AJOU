@@ -24,13 +24,15 @@ passport.use("login", new LocalStrategy(function (username, password, done) {
     });
 }));
 
-module.exports = function(passport,nev) {
+module.exports = function (passport, nev) {
     passport.use('signup', new LocalStrategy({
-            email: 'email',
+            username: 'username',
             password: 'password',
             passReqToCallback: true
         },
         function (req, username, password, done) {
+            console.log(username);
+            console.log(req.body);
             let newUser = new User({
                 username: username,
                 nickname: req.body.nickname,
@@ -39,25 +41,42 @@ module.exports = function(passport,nev) {
                 major: req.body.major,
                 isAdmin: 0
             });
-            nev.createTempUser(newUser, function (err, existingPersistentUser, newTempUser) {
-                if (err) console.error(err);
-                if (existingPersistentUser) {
-                    console.log('You have already signed up and confirmed your account. Did you forget your password?');
-                    req.flash("error", "이미 있는 아이디 입니다.");
-                    return done(null);
-                }
-                if (newTempUser) {
-                    var URL = newTempUser[nev.options.URLFieldName];
-                    nev.sendVerificationEmail(req.body.email, URL, function (err, info) {
-                        if (err) console.error(err);
-                        console.log('An email has been sent to you. Please check it to verify your account.');
-                        return done(null);
+            console.log(username);
+            User.findOne({username: username})
+                .then(data => {
+                    if (data) {
+                        return done("id_duplication", false, {message: "이미 있는 아이디 입니다."});
+                    } User.findOne({email: req.body.email})
+                        .then(data=> {
+                            if(data){
+                                return done("email_duplication");
+                            }
+                            nev.createTempUser(newUser, function (err, existingPersistentUser, newTempUser) {
+                                if (err) {
+                                    console.error(err);
+                                    return done(err);
+                                }
+                                if (existingPersistentUser) {
+                                    console.log('You have already signed up and confirmed your account. Did you forget your password?');
+                                    return done("id_duplication", false, {message: "이미 있는 아이디 입니다."});
+                                }
+                                if (newTempUser) {
+                                    var URL = newTempUser[nev.options.URLFieldName];
+                                    nev.sendVerificationEmail(req.body.email, URL, function (err, info) {
+                                        if (err) {
+                                            console.error(err);
+                                            return done(err);
+                                        }
+                                        console.log('An email has been sent to you. Please check it to verify your account.');
+                                        return done("success");
+                                    })
+                                } else {
+                                    console.log('You have already signed up. Please check your email to verify your account.');
+                                    return done("email_duplication");
+                                }
+                        });
                     })
-                } else {
-                    console.log('You have already signed up. Please check your email to verify your account.');
-                    return done(null);
-                }
-            });
+                });
         })
     );
 };
