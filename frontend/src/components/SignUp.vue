@@ -24,7 +24,7 @@
         <b-form-group id="nickname-InputGroup" label="Nickname:" label-for="nickname-input">
             <b-form-input id="nickname-input"
                 type="text"
-                v-model="form.nickanme"
+                v-model="form.nickname"
                 required
                 placeholder="별명">
             </b-form-input>
