@@ -13,6 +13,15 @@ import Board from '@/components/Board'
 import BoardView from '@/components/BoardView'
 import BoardWrite from '@/components/BoardWrite'
 import EmailVerification from '@/components/EmailVerification'
+import store from '../store'
+
+const requireAuth = () => (from, to, next) => {
+  store.dispatch('CHECK').then(isAuthenticated => {
+    if (isAuthenticated) return next()
+    alert('로그인이 필요합니다.')
+    next('/?returnPath=' + from.name)
+  })
+}
 
 Vue.use(BootstrapVue)
 Vue.use(Router)
@@ -38,27 +47,32 @@ export default new Router({
     {
       path: '/main',
       name: 'main',
-      component: Main
+      component: Main,
+      beforeEnter: requireAuth()
     },
     {
       path: '/board',
       name: 'board',
-      component: Board
+      component: Board,
+      beforeEnter: requireAuth()
     },
     {
       path: '/write',
       name: 'board-write',
-      component: BoardWrite
+      component: BoardWrite,
+      beforeEnter: requireAuth()
     },
     {
       path: '/view/:id',
       name: 'board-view',
-      component: BoardView
+      component: BoardView,
+      beforeEnter: requireAuth()
     },
     {
       path: '/userlist',
       name: 'user-list',
-      component: UserList
+      component: UserList,
+      beforeEnter: requireAuth()
     }
   ]
 })
