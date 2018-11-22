@@ -23,6 +23,7 @@ router.post("/", function (req, res, next) {
                 }
                 if (isMatch) {
                     const accessToken = auth.signToken(username);
+                    console.log(accessToken);
                     res.status(200);
                     res.json({accessToken});
                 } else {
