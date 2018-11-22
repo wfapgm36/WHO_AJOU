@@ -3,7 +3,7 @@ var User = require('../models/user');
 
 module.exports = function(nev){
     nev.configure({
-        verificationURL: 'http://localhost:3000/email-verification/${URL}',
+        verificationURL: 'http://127.0.0.1:8080/email-verification/${URL}',
         URLLength: 48,
         // mongo-stuff
         persistentUserModel: User,
@@ -17,7 +17,7 @@ module.exports = function(nev){
             }
         },
         verifyMailOptions: {
-            from: 'Do Not Reply <qwaserdf@ajou.ac.kr>',
+            from: 'WhoAjou <qwaserdf@ajou.ac.kr>',
             subject: '[WhoAjou] 계정 이메일 인증메일',
             html: '<p> 오른쪽 링크를 눌러 이메일 인증을 해주세요! <a href="${URL}">링크</a>. <br> 해당 링크가 접속이 안되는 경우 ' +
                 '오른쪽 주소를 복사하여 접속하여주세요! <br> 주소:</p><p>${URL}</p>',
@@ -25,7 +25,7 @@ module.exports = function(nev){
         },
         shouldSendConfirmation: false,
         confirmMailOptions: {
-            from: 'Do Not Reply <qwaserdf@ajou.ac.kr>',
+            from: 'WhoAjou <qwaserdf@ajou.ac.kr>',
             subject: '[WhoAjou] 이메일 인증 완료',
             html: '<p>계정 인증이 완료되었습니다.</p>',
             text: '계정 인증이 완료되었습니다.'
