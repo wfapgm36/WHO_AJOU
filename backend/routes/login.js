@@ -1,23 +1,36 @@
 var express = require("express");
-var passport = require("passport");
 var router = express.Router();
-var mongoose = require("mongoose");
-var nev = require('email-verification')(mongoose);
+var User = require("../models/user");
+const auth = require("../config/auth");
 
 router.use(function (req, res, next) {
-    console.log(req.user)
-    res.locals.currentUser = req.user;
     next();
 });
 
-router.post("/", passport.authenticate("login", {
-    failWithError: true
-}), function (req, res, next) {
-    console.log("성공");
-    res.status(200).send();
-}, function (err, req, res, next) {
-    console.log(err);
-    console.log("실패"); // res.status(401) 전송됨
+router.post("/", function (req, res, next) {
+    let username = req.body.username;
+    let password = req.body.password;
+    User.findOne({username: username}, function (err, user) {
+        if (err) {
+            res.send(err);
+        }
+        if (!user) {
+            res.status(204).send(); // 해당 id 없음
+        } else {
+            user.checkPassword(password, function (err, isMatch) {
+                if (err) {
+                    res.send(err);
+                }
+                if (isMatch) {
+                    const accessToken = auth.signToken(username);
+                    res.status(200);
+                    res.json({accessToken});
+                } else {
+                    res.status(203).send(); // 비밀번호 틀림
+                }
+            });
+        }
+    });
 });
 
 module.exports = router;

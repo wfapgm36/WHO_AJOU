@@ -3,8 +3,6 @@ var Board= require("../models/board")
 var router = express.Router();
 
 router.use(function (req, res, next) {
-    console.log(req.user)
-    res.locals.currentUser = req.user;
     next();
 });
 

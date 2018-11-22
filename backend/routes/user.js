@@ -1,14 +1,13 @@
 var express = require("express");
 var router = express.Router();
-var User = require("../models/user")
+var User = require("../models/user");
+const auth = require('../config/auth');
 
 router.use(function (req, res, next) {
-    console.log(req.user)
-    res.locals.currentUser = req.user;
     next();
 });
 
-router.put("/", ensureAuthenticated, function (req, res, next) {
+router.put("/",auth.ensureAuth(), function (req, res, next) {
     req.user.nickname = req.body.nickname;
     req.user.save(function (err) {
         if (err) {
@@ -33,25 +32,17 @@ router.get("/list", function (req, res, next) {
             res.json(users)
         });
 });
-
-router.get("/", function (req, res, next) {
-    User.findOne({username: req.params.username}, function (err, user) {
+// token 을 받고 token decoding 후 해당하는 username에 맞는 데이터 전송
+router.get("/",auth.ensureAuth(), function (req, res, next) {
+    User.findOne({username: req.user.username}, function (err, user) {
         if (err) {
-            return next(err);
+            res.send(err);
         }
         if (!user) {
-            return next(404);
+            res.status(401).send();
         }
-        res.render("profile", {user:user});
+        res.json(user);
     });
 });
-
-function ensureAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) {
-        next();
-    } else {
-        res.redirect("/");
-    }
-};
 
 module.exports = router;

@@ -4,10 +4,9 @@ var mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
 var path = require('path');
 var cookieParser = require('cookie-parser');
-var session = require("express-session");
-var passport = require("passport");
+var bodyParser = require('body-parser');
 
-const index = require("./routes/index")
+const index = require("./routes/index");
 const signup = require("./routes/signup");
 const login = require("./routes/login");
 const user = require("./routes/user");
@@ -17,14 +16,11 @@ const email_verification = require("./routes/email-verification");
 
 var nev = require('email-verification')(mongoose);
 require('./config/email-verification')(nev);
-require('./config/passport')(passport,nev);
-
-var setupPassport = require('./config/setuppassport');
 
 var app = express();
 app.use(require('connect-history-api-fallback')())
 
-setupPassport();
+app.use(bodyParser.urlencoded({ extended: true }));
 mongoose.connect("mongodb://localhost:27017/test", { useNewUrlParser: true });
 
 app.use(express.json());
@@ -32,21 +28,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(session({
-    secret: "ASDKPOkdK1OKASDPOK@#!@$",
-    resave: true,
-    saveUninitialized: true
-}));
-/*
-secret: 각 세션이 클라이언트에서 암호화되도록 함. 쿠키해킹방지
-resave: 미들웨어 옵션, true하면 세션이 수정되지 않은 경우에도 세션 업데이트
-saveUninitialized: 미들웨어 옵션, 초기화되지 않은 세션 재설정
-*/
-
-app.use(passport.initialize());
-app.use(passport.session());
-
-app.use('/', index);
 app.use('/api/signup', signup);
 app.use('/api/email-verification', email_verification);
 app.use('/api/login', login);

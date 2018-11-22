@@ -28,6 +28,8 @@ var classSchema = mongoose.Schema({
     createAt: { type: Date, default: Date.now },
     updated: [{ contents: String, date: { type: Date, default: Date.now } }],
     deleted: { type: Boolean, default: false }
+},{
+    versionKey:false
 });
 var Classes = mongoose.model('Classes', classSchema, 'Classlist');
 
