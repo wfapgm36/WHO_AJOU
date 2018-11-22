@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-      <b-navbar toggleable="md" type="dark" class="nav-background">
+    <b-navbar toggleable="md" type="dark" class="nav-background">
       <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
       <b-navbar-brand href="#">{{isLogin}}::WHO AJOU?</b-navbar-brand>
 
@@ -15,19 +15,31 @@
           </b-nav-form>
 
           <b-navbar-nav>
-            <b-nav-item><router-link to = "/main">메인</router-link></b-nav-item>
-            <b-nav-item v-if= "isLogin"><router-link to = "/board">게시판</router-link></b-nav-item>
-            <b-nav-item id="signup" v-if= "!isLogin"><router-link to = "/signup">회원가입</router-link></b-nav-item>
-            <b-nav-item v-if= "isLogin"><router-link to = "/logout">로그아웃</router-link></b-nav-item>
+            <b-nav-item>
+              <router-link to="/main">메인</router-link>
+            </b-nav-item>
+            <b-nav-item v-if="isLogin">
+              <router-link to="/board">게시판</router-link>
+            </b-nav-item>
+            <b-nav-item id="signup" v-if="!isLogin">
+              <router-link to="/signup">회원가입</router-link>
+            </b-nav-item>
+            <b-nav-item v-if="isLogin">
+              <a href="/" @click.prevent="onClickLogout">로그아웃</a>
+            </b-nav-item>
           </b-navbar-nav>
 
-          <b-nav-item-dropdown right v-if= "isLogin">
+          <b-nav-item-dropdown right v-if="isLogin">
             <!-- Using button-content slot -->
             <template slot="button-content">
               <em>마이페이지</em>
             </template>
-            <b-dropdown-item ><router-link to ="/profile">프로필</router-link></b-dropdown-item>
-            <b-dropdown-item ><router-link to ="/user-list">유저 리스트</router-link></b-dropdown-item>
+            <b-dropdown-item>
+              <router-link to="/profile">프로필</router-link>
+            </b-dropdown-item>
+            <b-dropdown-item>
+              <router-link to="/user-list">유저 리스트</router-link>
+            </b-dropdown-item>
           </b-nav-item-dropdown>
 
         </b-navbar-nav>
@@ -38,32 +50,50 @@
 </template>
 
 <script>
-export default {
-  name: 'App',
-  data () {
-    return {
-      isLogin: false
+  import store from './store'
+
+  export default {
+    name: 'App',
+    data() {
+      return {
+        isLogin: false
+      }
+    },
+    methods: {
+      onClickLogout () {
+        store.dispatch('LOGOUT')
+          .then(() => {
+            this.isAuthenticated()
+            this.$router.push('/')
+          })
+      },
+      isAuthenticated () {
+        store.dispatch('CHECK').then(check => {
+          this.isLogin = check
+        })
+      }
+    },
+    created() {
+      /**********로그인 전후 네비게이션 바에 보여지는 목록을 다르게 해주기 위해 이벤트 버스 발생 *************/
+      this.$EventBus.$on('removeTab', (message) => {
+        this.isAuthenticated()
+      })
     }
-  },
-  created() {
-    /**********로그인 전후 네비게이션 바에 보여지는 목록을 다르게 해주기 위해 이벤트 버스 발생 *************/
-    this.$EventBus.$on('removeTab', (message) => {
-        this.isLogin = message
-    })
   }
-}
 </script>
 
 <style>
-body {
-  background-color: lightgray;
+  body {
+    background-color: lightgray;
 
-}
-.navbar{
-  position: relative;
- 
-}
-.nav-background{
-  background-color: black;
-}
+  }
+
+  .navbar {
+    position: relative;
+
+  }
+
+  .nav-background {
+    background-color: black;
+  }
 </style>
