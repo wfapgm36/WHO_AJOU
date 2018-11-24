@@ -18,7 +18,9 @@ router.get("/", function (req, res) {
 });
 
 router.get("/view/:id", function (req, res) {
+    console.log("get detail board");
     var contentId = req.param('id');
+    console.log(contentId)
     Board.findOne({_id: contentId}, function (err, rawContent) {
         if (err) {
             console.log(err);
