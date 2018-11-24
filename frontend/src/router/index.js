@@ -7,7 +7,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import Login from '@/components/Login'
 import SignUp from '@/components/SignUp'
 import Main from '@/components/Main'
-//import Profile from '@/components/Profile'
+import Profile from '@/components/Profile'
 import UserList from '@/components/UserList'
 import Board from '@/components/Board'
 import BoardView from '@/components/BoardView'
@@ -70,8 +70,14 @@ export default new Router({
     },
     {
       path: '/userlist',
-      name: 'user-list',
+      name: 'userlist',
       component: UserList,
+      beforeEnter: requireAuth()
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: Profile,
       beforeEnter: requireAuth()
     }
   ]

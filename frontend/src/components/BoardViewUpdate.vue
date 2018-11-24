@@ -3,7 +3,7 @@
     <b-card-group deck
                   class="mb-3">
         <b-card bg-variant="dark"
-                header="게시판 글쓰기"
+                header="게시판 글수정"
                 text-variant="white"
                 class="text-center">
                 <div>
