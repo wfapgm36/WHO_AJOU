@@ -1,6 +1,6 @@
 <template>
   <div class="profile">
-    <h1 align-h="center">This is Profile Page!</h1>
+    <h1 align-h="center">Profile</h1>
   </div>
 </template>
 
@@ -14,8 +14,3 @@ export default {
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-
-</style>
