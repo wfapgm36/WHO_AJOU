@@ -1,16 +1,15 @@
 <template>
-  <div class="boards-view">
+  <div class="board-view">
     <div>
     <b-card-group deck>
         <b-card header-tag="header"
                 footer-tag="footer">
-            <h6 slot="header" class="mb-0">제목</h6>
+            <h6 slot="header" class="mb-0">제목 {{this.form.title}}</h6>
             <h6 slot="footer">댓글</h6>
-            <p class="card-text">내용</p>
+            <p class="card-text">내용 {{this.form.contents}}</p>
         </b-card>
     </b-card-group>
     </div>
-
     <!--
     <b-card-group deck>
         <b-card header-tag="header"
@@ -24,51 +23,38 @@
         </b-card>
     </b-card-group> 
     -->
-    
   </div>
 </template>
 
 <script>
 export default {
-  name: "BoardsView"
-  //data() {
-  //  return {
-  //    form: {
-  //      id: boardId(),
-  //      title: "",
-  //      content: "",
-  //      date: "",
-  //      cnt: "",
-  //      comments: {
-  //        name: "",
-  //        memo: "",
-  //        date: ""
-  //      }
-  //    }
-  //  };
-  //},
-  //computed: {
-  //  boardId() {
-  //    return this.$route.paramas.id;
-  //  }
-  //},
-  //method: {
-  //  getBoardDetail() {
-  //    this.$http
-  //      .get("/api/boards/view/:id", {
-  //        id: this.form.id
-  //      })
-  //      .then(res => {
-  //        console.log(res.status);
-  //        console.log(res.data);
-  //        this.form = res.data;
-  //      })
-  //      .catch(err => {
-  //        console.log(err);
-  //      });
-  //  }
-  //}
+  name: "boardView",
+  data() {
+   return {
+     form: {
+       _id: this.$route.params.id,
+       title: "",
+       contents: "",
+       date: "",
+       cnt: "",
+       comments: {
+         name: "",
+         memo: "",
+         date: ""
+       }
+     }
+   };
+  },
+  created(){
+      this.getBoardDetail();
+  },
+  methods: {
+   getBoardDetail(){
+    this.$http.get(`/api/board/view/${this.$route.params.id}`)
+       .then(res => {
+         this.form = res.data;
+       });
+   }
+  }
 };
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->

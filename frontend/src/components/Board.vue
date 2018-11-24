@@ -36,14 +36,15 @@
           <b-col >{{item.id}}</b-col>
           <b-col cols="5">
             <b-button id= "title_button" @click="$router.push({
+              path: '/view/:id',
               name: 'board-view',
               params: {
-                id: boards.id
+                id: item._id
               }
               })">{{item.title}}</b-button>
           </b-col>
           <b-col>{{item.writer}}</b-col>
-          <b-col cols="2">{{item.createdAt}}</b-col>
+          <b-col cols="2">{{item.createAt}}</b-col>
           <b-col>{{item.count}}</b-col>
         </b-row>
         <hr>
@@ -80,27 +81,11 @@ export default {
   },
   created() {
     this.fetchData();
-    // this.$EventBus.$emit("removeTab", true);
-    //for (var i = 0; i < 20; i++) {
-    //  this.boards.push({
-    //    id: i + 1,
-    //    title: "this is 제목용" + (i + 1),
-    //    writer: "이아연" + (i + 1),
-    //    date: "2018-11-" + i,
-    //    cnt: 20 + i
-    //  });
-    //}
   },
   methods: {
     fetchData() {
       this.$http.get("/api/board").then((res) => {
         this.items = res.data;
-        // this.board.id = res.Board.id;
-        // this.board.title = res.Board.title;
-        // this.board.writer = res.Board.writer;
-        // this.board.date = res.Board.createdAt;
-        // this.board.cnt = res.Board.count;
-        // alert(res.Board);
       });
     }
   }
