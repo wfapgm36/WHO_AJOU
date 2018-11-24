@@ -18,9 +18,7 @@ router.get("/", function (req, res) {
 });
 
 router.get("/view/:id", function (req, res) {
-    console.log("get detail board");
-    var contentId = req.param('id');
-    console.log(contentId)
+    var contentId = req.params.id;
     Board.findOne({_id: contentId}, function (err, rawContent) {
         if (err) {
             console.log(err);
@@ -40,9 +38,7 @@ router.get("/view/:id", function (req, res) {
     })
 });
 
-
-router.post("/", (req, res, next) => {
-    console.log(req.body);
+router.post("/", (req, res) => {
     let title = req.body.title;
     let contents = req.body.contents;
     Board.findOne({
@@ -52,22 +48,27 @@ router.post("/", (req, res, next) => {
             console.log(err);
             res.status(401).send(err);
         } else {
-            console.log(title);
-            console.log(contents);
             let newBoard = new Board({
                 //writer: req.user.username,
                 title: title,
                 contents: contents
             });
             newBoard.save();
-            //res.status(200).send(newBoard);
-            res.send(Board)
+            res.status(200).send(Board)
         }
     })
 });
 
-router.delete("/", function(req, res){
+router.put("/:id", function(req, res){
     
+})
+
+router.delete("/:id", function(req, res){
+    Board.deleteOne({_id: req.params.id}, function(err){
+        if(err){
+            console.log(err)
+        }
+    })
 });
 
 module.exports = router;
