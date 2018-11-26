@@ -33,7 +33,7 @@
       <hr>   
       <div v-for="item in items" v-bind:key="item.id">
         <b-row class="text-center">
-          <b-col >{{item.id}}</b-col>
+          <b-col >{{item._id}}</b-col>
           <b-col cols="5">
             <b-button id= "title_button" @click="$router.push({
               path: '/view/:id',

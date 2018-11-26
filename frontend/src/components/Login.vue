@@ -9,7 +9,6 @@
             <h3 class="login3">로그인</h3>
             <b-form @submit="login"
                     @reset="onReset" v-if="show">
-
               <b-form-group id="ID-InputGroup"
                             label="ID:"
                             label-for="id-input">

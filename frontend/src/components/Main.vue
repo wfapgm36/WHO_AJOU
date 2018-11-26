@@ -82,7 +82,6 @@ export default {
   name: 'Main',
   data () {
     return {
-      msg: 'This is Main Page!',
       major: '소프트웨어학과' 
     } 
   },

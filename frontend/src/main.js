@@ -5,10 +5,12 @@ import App from './App'
 import router from './router'
 import store from './store'
 import axios from 'axios'
+import VueCookies from 'vue-cookies'
 
 Vue.prototype.$EventBus = new Vue()
 Vue.config.productionTip = false
 Vue.prototype.$http = axios
+Vue.prototype.$cookies = VueCookies
 
 /* eslint-disable no-new */
 new Vue({

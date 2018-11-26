@@ -39,24 +39,19 @@ router.get("/view/:id", function (req, res) {
 });
 
 router.post("/", (req, res) => {
-    let title = req.body.title;
-    let contents = req.body.contents;
-    Board.findOne({
-        title: title
-    }, (err, board) => {
-        if (err) {
-            console.log(err);
-            res.status(401).send(err);
-        } else {
-            let newBoard = new Board({
-                //writer: req.user.username,
-                title: title,
-                contents: contents
-            });
-            newBoard.save();
-            res.status(200).send(Board)
-        }
-    })
+    let newBoard = new Board({
+        title: req.body.title,
+        writer: req.body.nickname,
+        contents: req.body.contents
+    });
+    newBoard.save();
+    res.status(200).send(Board)
+    }
+);
+
+router.post("/comment", (req, res) => {
+    console.log(req.body);
+    
 });
 
 router.put("/:id", function(req, res){
