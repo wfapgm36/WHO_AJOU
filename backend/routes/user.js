@@ -34,6 +34,7 @@ router.get("/list", function (req, res, next) {
 });
 // token 을 받고 token decoding 후 해당하는 username에 맞는 데이터 전송
 router.get("/",auth.ensureAuth(), function (req, res, next) {
+    console.log(req.body)
     User.findOne({username: req.user.username}, function (err, user) {
         if (err) {
             res.send(err);

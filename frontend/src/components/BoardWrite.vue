@@ -42,7 +42,8 @@ export default {
     return {
       form: {
         title: "",
-        contents: ""
+        contents: "",
+        nickname: this.$cookies.get('nickname')
       },
       show: true,
       boards: []

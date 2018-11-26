@@ -2,8 +2,7 @@
   <div class="app">
     <b-navbar toggleable="md" type="dark" class="nav-background">
       <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
-      <b-navbar-brand href="#">{{isLogin}}::WHO AJOU?</b-navbar-brand>
-
+      <b-navbar-brand href="#" v-bind="nickname">WHO AJOU? | {{nickname}}님 반갑습니다.</b-navbar-brand>
       <b-collapse is-nav id="nav_collapse">
 
         <!-- Right aligned nav items -->
@@ -41,7 +40,6 @@
               <router-link to="/userlist">유저 리스트</router-link>
             </b-dropdown-item>
           </b-nav-item-dropdown>
-
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -56,11 +54,14 @@
     name: 'App',
     data() {
       return {
-        isLogin: false
+        isLogin: false,
+        nickname: this.$cookies.get("nickname")
       }
     },
     methods: {
       onClickLogout () {
+        this.$cookies.remove("nickname");
+        this.nickname = this.$cookies.get('nickname');
         store.dispatch('LOGOUT')
           .then(() => {
             this.isAuthenticated()
@@ -70,7 +71,18 @@
       isAuthenticated () {
         store.dispatch('CHECK').then(check => {
           this.isLogin = check
-        })
+        }).then(
+          this.getUserInfo()
+        )
+      },
+      getUserInfo(){
+        this.$http
+          .get("/api/user").then((res) => {
+            this.$cookies.set('nickname', res.data.nickname, 3600 * 24)
+            .then(
+            this.nickname = this.$cookies.get('nickname')
+            )
+          })
       }
     },
     created() {
