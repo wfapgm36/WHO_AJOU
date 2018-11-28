@@ -86,7 +86,6 @@ router.post("/comment", (req, res) => {
         board.save();
         res.status(200).send();
     })
-
 });
 
 router.put("/:id", auth.ensureAuth(), function (req, res) {
