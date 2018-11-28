@@ -1,7 +1,5 @@
 <template>
   <div class="login">
-    <h1 align-h="center">This is Login Page!</h1>
-
     <b-container>
       <b-row align-h="center" class="login1">
         <b-col cols='5'>
@@ -47,7 +45,6 @@
                   <a href="#" v-b-modal.modal1>비밀번호 찾기</a>
                 </div>
               </div>
-
             </b-form>
           </b-card>
         </b-col>

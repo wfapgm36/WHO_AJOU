@@ -2,7 +2,8 @@
   <div class="app">
     <b-navbar toggleable="md" type="dark" class="nav-background">
       <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
-      <b-navbar-brand href="#" v-bind="nickname">WHO AJOU? | {{nickname}}님 반갑습니다.</b-navbar-brand>
+      <b-navbar-brand href="#" v-if="isLogin">WHO AJOU? | {{nickname}}님 안녕하세요!</b-navbar-brand>
+      <b-navbar-brand href="#" v-if="!isLogin">WHO AJOU?</b-navbar-brand>
       <b-collapse is-nav id="nav_collapse">
 
         <!-- Right aligned nav items -->
@@ -49,41 +50,36 @@
 
 <script>
   import store from './store'
-
   export default {
     name: 'App',
     data() {
       return {
         isLogin: false,
-        nickname: this.$cookies.get("nickname")
+        nickname: ''
       }
     },
     methods: {
       onClickLogout () {
-        this.$cookies.remove("nickname");
-        this.nickname = this.$cookies.get('nickname');
         store.dispatch('LOGOUT')
           .then(() => {
             this.isAuthenticated()
+            this.$cookies.remove('nickname')
             this.$router.push('/')
           })
       },
       isAuthenticated () {
         store.dispatch('CHECK').then(check => {
           this.isLogin = check
-        }).then(
           this.getUserInfo()
-        )
+        })
       },
-      getUserInfo(){
-        this.$http
-          .get("/api/user").then((res) => {
-            this.$cookies.set('nickname', res.data.nickname, 3600 * 24)
-            .then(
-            this.nickname = this.$cookies.get('nickname')
-            )
-          })
-      }
+      getUserInfo () {
+      this.$http
+      .get("/api/user").then((res) => {
+        this.$cookies.set('nickname', res.data.nickname, 3600 * 24)
+        this.nickname = this.$cookies.get('nickname')
+      })
+    }
     },
     created() {
       /**********로그인 전후 네비게이션 바에 보여지는 목록을 다르게 해주기 위해 이벤트 버스 발생 *************/
