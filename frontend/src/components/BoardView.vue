@@ -58,16 +58,44 @@ export default {
        });
    },
    deleteBoard(){
+
        this.$http.delete(`/api/board/post/${this.$route.params.id}`)
-       .then( 
+       .then(res => {
+         const status = res.status;
+         if(status == 200){
+           alert('정상적으로 삭제되었습니다.');
            this.$router.push('/board')
-       )
+         }else if(status == 203){
+           alert('해당 권한이 존재하지 않습니다.');
+           this.$router.push('/board')
+         }
+       }).catch(err => {
+         alert(err)
+       })
    },
    toBoard(){
      this.$router.push('/board')
    },
    updateBoard(){
-     // Write랑 같은 포멧에 v-model로 내용 묶기
+     // 권한 확인
+     console.log("누름")
+     this.$http.get(`/api/board/posts/${this.$route.params.id}`)
+       .then((res) => {
+         console.log(res)
+         const status = res.status
+         if(status == 200){
+           this.$router.push({
+             path: '/update/:id',
+             name: 'board-update',
+             params: {
+               id: this.$route.params.id
+             }
+           })
+         } else if (status == 203){
+           alert("해당 권한이 존재하지 않습니다.")
+           this.$router.push('/board')
+         }
+       })
    },
    addComment(){
      let comment = {

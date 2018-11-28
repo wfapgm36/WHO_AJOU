@@ -45,8 +45,7 @@ export default {
         contents: "",
         nickname: this.$cookies.get('nickname')
       },
-      show: true,
-      boards: []
+      show: true
     };
   },
   methods: {
@@ -55,7 +54,6 @@ export default {
       this.$http
         .post("/api/board", this.form)
         .then((res) => {
-          this.boards = res.data;
           this.$router.push("/board");
         })
         .catch((err) => {
