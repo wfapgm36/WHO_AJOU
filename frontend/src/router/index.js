@@ -12,6 +12,7 @@ import UserList from '@/components/UserList'
 import Board from '@/components/Board'
 import BoardView from '@/components/BoardView'
 import BoardWrite from '@/components/BoardWrite'
+import BoardUpdate from '@/components/BoardUpdate'
 import EmailVerification from '@/components/EmailVerification'
 import store from '../store'
 
@@ -66,6 +67,12 @@ export default new Router({
       path: '/view/:id',
       name: 'board-view',
       component: BoardView,
+      beforeEnter: requireAuth()
+    },
+    {
+      path: '/update/:id',
+      name: 'board-update',
+      component: BoardUpdate,
       beforeEnter: requireAuth()
     },
     {
