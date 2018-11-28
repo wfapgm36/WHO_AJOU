@@ -58,8 +58,7 @@ export default {
        });
    },
    deleteBoard(){
-
-       this.$http.delete(`/api/board/post/${this.$route.params.id}`)
+       this.$http.delete(`/api/board/posts/${this.$route.params.id}`)
        .then(res => {
          const status = res.status;
          if(status == 200){
