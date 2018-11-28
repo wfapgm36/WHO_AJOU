@@ -71,10 +71,12 @@ export default {
    addComment(){
      let comment = {
        name: "",
-       memo: ""
+       memo: "",
+       boardId: Number
      }
      comment.name = this.$cookies.get('nickname')
      comment.memo = this.memo;
+     comment.boardId = this.form._id;
      console.log(comment.name)
      console.log(comment.memo)
      this.$http.post(`/api/board/comment`, comment)

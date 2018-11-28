@@ -50,7 +50,18 @@ router.post("/", (req, res) => {
 );
 
 router.post("/comment", (req, res) => {
-    console.log(req.body);
+    let comment = {
+        name: "",
+        memo: "",
+        boardId: Number
+    }
+    comment = req.body
+    console.log(comment)
+    Board.findOne({_id: req.body.boardId}, function(err, board){
+        console.log(board)
+        board.comments.push(comment)
+        board.save();
+    })
     
 });
 
