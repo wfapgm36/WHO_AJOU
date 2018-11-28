@@ -62,14 +62,24 @@ router.post("/comment", (req, res) => {
         board.comments.push(comment)
         board.save();
     })
-    
 });
+
+router.delete("/comment", (req, res) => {
+    Board.findOne({_id: req.body.boardId}, function(err, board){
+        for(i = 0; i<board.comments.length; i++){
+            if(board.comments[i]._id == req.body.commentId){
+                board.comments.remove(board.comments[i])
+            }
+        }
+        board.save()
+    })
+})
 
 router.put("/:id", function(req, res){
     
 })
 
-router.delete("/:id", function(req, res){
+router.delete("/post/:id", function(req, res){
     Board.deleteOne({_id: req.params.id}, function(err){
         if(err){
             console.log(err)

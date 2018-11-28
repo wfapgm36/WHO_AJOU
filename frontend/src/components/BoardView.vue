@@ -6,16 +6,17 @@
                 footer-tag="footer">
             <h6 slot="header" class="mb-0"><b>|작성자: </b> {{this.form.writer}} <b>|작성한 시간: </b> {{this.form.createAt}} <b>|조회수: </b> {{this.form.count}}
             <br><b>|제목: </b> {{this.form.title}}</h6>
-            <h6 slot="footer" v-for="item in form.comments"
-                              v-bind:key="item._id" >
-                              <b>댓글: </b> {{item.memo}}
+            <h6 slot="footer" v-for="(item, index) in form.comments"
+                              v-bind:key="item._id">
+                              <b>#{{index}} {{item.name}}: </b> {{item.memo}}
+                              <button v-on:click="deleteComment(item._id)">x</button>
             </h6>
             <p class="card-text"><b>내용: </b> {{this.form.contents}}</p>
         </b-card>
     </b-card-group>
     <div>
       <h4>댓글</h4>
-      <b-form @submit.prevent="addComment">
+      <b-form @submit.prevent="addComment" v-on:keyup.enter="addComment">
       <b-form-textarea rows="4" cols="50" v-model="memo">
       </b-form-textarea><b-button type="submit">등록</b-button>
       </b-form>
@@ -57,7 +58,7 @@ export default {
        });
    },
    deleteBoard(){
-       this.$http.delete(`/api/board/${this.$route.params.id}`)
+       this.$http.delete(`/api/board/post/${this.$route.params.id}`)
        .then( 
            this.$router.push('/board')
        )
@@ -77,10 +78,18 @@ export default {
      comment.name = this.$cookies.get('nickname')
      comment.memo = this.memo;
      comment.boardId = this.form._id;
-     console.log(comment.name)
-     console.log(comment.memo)
      this.$http.post(`/api/board/comment`, comment)
-   }
+     this.getBoardDetail()
+   },
+   deleteComment(_id){
+     let id = {
+       boardId: this.$route.params.id,
+       commentId: _id
+     }
+      this.$http.delete(`/api/board/comment`, {data: {boardId: this.$route.params.id, commentId: _id }});
+      this.getBoardDetail()
+    }
+    
   }
 };
 </script>
