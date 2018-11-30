@@ -62,8 +62,8 @@
       onClickLogout () {
         store.dispatch('LOGOUT')
           .then(() => {
-            this.isAuthenticated()
             this.$cookies.remove('nickname')
+            this.nickname = ''
             this.$router.push('/')
           })
       },

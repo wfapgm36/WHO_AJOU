@@ -14,6 +14,7 @@ import BoardView from '@/components/BoardView'
 import BoardWrite from '@/components/BoardWrite'
 import BoardUpdate from '@/components/BoardUpdate'
 import EmailVerification from '@/components/EmailVerification'
+import Evaluation from '@/components/Evaluation'
 import store from '../store'
 
 const requireAuth = () => (from, to, next) => {
@@ -85,6 +86,12 @@ export default new Router({
       path: '/profile',
       name: 'profile',
       component: Profile,
+      beforeEnter: requireAuth()
+    },
+    {
+      path: '/evaluation/:id',
+      name: 'evaluation',
+      component: Evaluation,
       beforeEnter: requireAuth()
     }
   ]

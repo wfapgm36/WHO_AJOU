@@ -14,7 +14,7 @@
                               type="text"
                               v-model="form.name"
                               required
-                              placeholder="이메일 주소">
+                              placeholder="아이디">
                 </b-form-input>
               </b-form-group>
 
