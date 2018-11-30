@@ -86,7 +86,7 @@ export default {
     } 
   },
   created() {
-      this.$EventBus.$emit('removeTab' , true)
+      this.$EventBus.$emit('removeTab' , true);
   }
 }
 </script>

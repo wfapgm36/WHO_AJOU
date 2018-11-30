@@ -8,7 +8,6 @@
 
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
-
           <b-nav-form>
             <b-form-input size="sm" class="mr-sm-2" type="text" placeholder="Search"/>
             <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
@@ -58,12 +57,17 @@
         nickname: ''
       }
     },
+    watch:{
+      nickname: function(val){
+        this.nickname = this.$cookies.get('nickname')
+      }
+    },
     methods: {
       onClickLogout () {
         store.dispatch('LOGOUT')
           .then(() => {
-            this.isAuthenticated()
             this.$cookies.remove('nickname')
+            this.nickname = ''
             this.$router.push('/')
           })
       },

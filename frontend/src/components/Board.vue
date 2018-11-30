@@ -1,6 +1,5 @@
 <template>
   <div id="board">
-    <!-- <h1 align-h="center">게시판</h1> -->
     <div class = "searchFunction">
       <b-row class="search">
         <b-col cols = "1.3">
