@@ -8,7 +8,7 @@
           <b-form @submit.prevent="searchPost">
                     <b-form-input v-model="searchText" 
                     type="text" 
-                    placeholder="게시판 검색"
+                    placeholder="게시글 제목이나 내용을 입력하세요."
                     size = "sm"
                     id="searchBar">
           </b-form-input><b-button variant="primary" type="submit" size = "sm" >검색</b-button>

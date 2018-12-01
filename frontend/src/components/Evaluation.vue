@@ -28,7 +28,7 @@
                     <h3>Professor</h3>
                     <h6>{{item.professor}}</h6>
                     <h5 class = "circle">{{item.grade}}</h5>
-                    <h8>{{item.brief}}</h8><br>
+                    <h6>{{item.brief}}</h6><br>
                     <button type="submit" class = "plusView" @click="goToEval(item.name)">Read More</button>
                 </div>
             </b-col>
