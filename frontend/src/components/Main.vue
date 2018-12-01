@@ -2,7 +2,9 @@
   <div class="main" >
         <span class = "tab_context">
                 <p>{{major}}</p>
-
+                <div class="eval_write">
+                  <b-button class="eval_write_btn" @click = "goToEvalWrite">강의평가작성</b-button>
+                </div>
                 <b-container class="curriculum">
                     <b-row>
                         <b-col><p> 1-1 </p></b-col>
@@ -76,7 +78,7 @@
     name: 'Main',
     data () {
       return {
-        major: '' ,
+        major: "소프트웨어학과" ,
         curriData: [],
       }
     },
@@ -109,15 +111,20 @@
           clickToClose : false
         })
       },
+      goToEvalWrite(){
+        this.$router.push({
+          name:'evaluation-write'
+        })
+      },
       showPreRequisite(item, isPre){
         for(var i =0 ; i<this.curriData.length; i ++){
           if(item.prerequisite == this.curriData[i].name){
             this.curriData[i].isPre = isPre;
+            this.showPreRequisite(this.curriData[i], isPre)
           }
         }
       }
     }
-
   }
 </script>
 
@@ -138,15 +145,20 @@
   .col_container{
     border:solid;
   }
-  .btn{
+  .eval_write{
+    text-align: right;
+    margin-right:8rem;
+  }
+
+  .btn.mainBtn.btn-secondary.active{
+    background-color:lightpink;
+  }
+  .btn.mainBtn.btn-secondary{
     background-color:skyblue;
     margin-bottom: 3vh;
     margin-left:1vw;
     margin-right: 1vw;
-
-  }
-  .btn.mainBtn.btn-secondary.active{
-    background-color:lightpink;
+    border:transparent;
   }
   .col{
     text-align: center;

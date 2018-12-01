@@ -15,24 +15,30 @@
                             id="searchBar" >
                   </b-form-input>
                 </b-col>
-                <b-col cols = "2">
-                  <button class="searchButton" type="submit" size = "sm" >검색</button>
+                <b-col cols = "0">
+                  <b-button class="searchButton" type="submit" size = "sm" >검색</b-button>
+                </b-col> 
+            </b-row>
+        </div>
+        <div class = "evalWriteBtn">
+            <b-button  @click="goToWrite()">강의평가작성</b-button>               
+        </div>
+        <hr>
+        <div class = "eval_container">
+            <b-row >
+                <b-col align-v="center" id = "evaluate" v-for="item in subject" v-bind:key="item.id">
+                    <div class ="evalContainer" >
+                        <h3>Course</h3>
+                        <h6>{{item.name}}</h6>
+                        <h3>Professor</h3>
+                        <h6>{{item.professor}}</h6>
+                        <h5 class = "circle">{{item.grade}}</h5>
+                        <h8>{{item.brief}}</h8><br>
+                        <button type="submit" class = "plusView" @click="goToEval()">Read More</button>
+                    </div>
                 </b-col>
             </b-row>
         </div>
-        <b-row >
-            <b-col align-v="center" id = "evaluate" v-for="item in subject" v-bind:key="item.id">
-                <div class ="evalContainer" >
-                    <h3>Course</h3>
-                    <h6>{{item.name}}</h6>
-                    <h3>Professor</h3>
-                    <h6>{{item.professor}}</h6>
-                    <h5 class = "circle">{{item.grade}}</h5>
-                    <h8>{{item.brief}}</h8><br>
-                    <button type="submit" class = "plusView" @click="goToEval()">Read More</button>
-                </div>
-            </b-col>
-        </b-row>
     </div>
 </template>
 <script>
@@ -64,6 +70,11 @@ export default {
           brief: '강의는 전반적으로...'
         })
       }
+    },
+    goToWrite(){
+        this.$router.push({
+          name:'evaluation-write'
+        })
     }
   }
 }
@@ -71,6 +82,17 @@ export default {
 </script>
 
 <style>
+.evalWrite{
+    text-align:right;
+}
+.evalWriteBtn{
+    border:transparent;
+    border-radius:10px;
+    height:35px;
+    font-weight: bold;
+    text-align: right;
+    margin-right: 8rem;
+}
 .searchButton{
     border:transparent;
     background: gray;

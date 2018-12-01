@@ -15,6 +15,7 @@ import BoardWrite from '@/components/BoardWrite'
 import BoardUpdate from '@/components/BoardUpdate'
 import EmailVerification from '@/components/EmailVerification'
 import Evaluation from '@/components/Evaluation'
+import EvaluationWrite from '@/components/EvalWrite'
 import store from '../store'
 
 const requireAuth = () => (from, to, next) => {
@@ -92,6 +93,12 @@ export default new Router({
       path: '/evaluation/:id',
       name: 'evaluation',
       component: Evaluation,
+      beforeEnter: requireAuth()
+    },
+    {
+      path: '/evaluation/write',
+      name: 'evaluation-write',
+      component: EvaluationWrite,
       beforeEnter: requireAuth()
     }
   ]
