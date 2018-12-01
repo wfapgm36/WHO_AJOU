@@ -60,6 +60,9 @@ export default {
           alert(err);
         });
     }
+  },
+  created(){
+    this.$EventBus.$emit('removeTab', true);
   }
 };
 </script>

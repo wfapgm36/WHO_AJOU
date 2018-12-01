@@ -30,16 +30,16 @@
         <b-row class="text-center">
           <b-col >{{item._id}}</b-col>
           <b-col cols="5">
-            <b-button id= "title_button"  @click="$router.push({
+            <b-button id= "title_button" @click="$router.push({
               path: '/view/:id',
               name: 'board-view',
               params: {
                 id: item._id
               }
-              })"><b-btn id="tootipTitle" variant="outline-primary" v-b-tooltip.hover title="상세보기">{{item.title}}</b-btn></b-button>
+              })"><b-btn id="tootipTitle" variant="outline-white" v-b-tooltip.hover title="상세보기">{{item.title}}</b-btn></b-button>
           </b-col>
           <b-col>{{item.writer}}</b-col>
-          <b-col cols="2">{{item.createAt.substr(0,10)}} / {{item.createAt.substr(11,2)}}시 {{item.createAt.substr(14,2)}}분</b-col>
+          <b-col cols="2">{{item.createAt.substr(0,10)}} {{item.createAt.substr(11,2)}}시 {{item.createAt.substr(14,2)}}분</b-col>
           <b-col>{{item.count}}</b-col>
         </b-row>
         <hr>
@@ -72,6 +72,7 @@ export default {
     };
   },
   created() {
+    this.$EventBus.$emit('removeTab', true);
     this.getAllPosts();
   },
   methods: {

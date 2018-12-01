@@ -101,10 +101,10 @@ router.delete("/comment", auth.ensureAuth(), (req, res) => {
             for (i = 0; i < board.comments.length; i++) {
                 if (board.userId == req.user.username) {
                     if (board.comments[i]._id == req.body.commentId) {
-                        console.log(board.comments[i]);
                         board.comments.remove(board.comments[i])
+                        res.status(200).send()
+                        board.save()
                     }
-                    board.save()
                 }
                 else {
                     res.status(203).send() // 사용자 일치 x
