@@ -39,7 +39,7 @@
               <router-link to="/profile">프로필</router-link>
             </b-dropdown-item>
             <b-dropdown-item>
-              <router-link to="/user-list">유저 리스트</router-link>
+              <router-link to="/userlist">유저 리스트</router-link>
             </b-dropdown-item>
           </b-nav-item-dropdown>
 
@@ -48,15 +48,14 @@
     </b-navbar>
     <router-view></router-view>
   </div>
-
-
 </template>
 
 <script>
   export default {
     data() {
       return {
-        isLogin: false
+        isLogin: false,
+        nickname : ''
       }
     },
     methods: {
