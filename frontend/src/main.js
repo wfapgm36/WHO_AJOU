@@ -18,11 +18,8 @@ Vue.prototype.$cookies = VueCookies
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  data: {
-    showModal: false
-  },
   store,
   router,
-  components: { Master, App },
-  template: '<App/>'
+  components: { Master },
+  template: '<Master/>'
 })

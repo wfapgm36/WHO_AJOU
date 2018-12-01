@@ -1,8 +1,9 @@
 <template>
-    <div id="app">
-  <b-navbar toggleable="md" type="dark" class="nav-background">
+  <div id="app">
+    <b-navbar toggleable="md" type="dark" class="nav-background">
       <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
-      <b-navbar-brand href="#">{{isLogin}}::WHO AJOU?</b-navbar-brand>
+      <b-navbar-brand href="#" v-if="isLogin">WHO AJOU? | {{nickname}}님 안녕하세요!</b-navbar-brand>
+      <b-navbar-brand href="#" v-if="!isLogin">WHO AJOU?</b-navbar-brand>
 
       <b-collapse is-nav id="nav_collapse">
 
@@ -15,56 +16,94 @@
           </b-nav-form>
 
           <b-navbar-nav>
-            <b-nav-item><router-link to = "/main">메인</router-link></b-nav-item>
-            <b-nav-item v-if= "isLogin"><router-link to = "/board">게시판</router-link></b-nav-item>
-            <b-nav-item id="signup" v-if= "!isLogin"><router-link to = "/signup">회원가입</router-link></b-nav-item>
-            <b-nav-item v-if= "isLogin"><router-link to = "/logout">로그아웃</router-link></b-nav-item>
+            <b-nav-item>
+              <router-link to="/main">메인</router-link>
+            </b-nav-item>
+            <b-nav-item v-if="isLogin">
+              <router-link to="/board">게시판</router-link>
+            </b-nav-item>
+            <b-nav-item id="signup" v-if="!isLogin">
+              <router-link to="/signup">회원가입</router-link>
+            </b-nav-item>
+            <b-nav-item v-if="isLogin">
+              <a href="/" @click.prevent="onClickLogout">로그아웃</a>
+            </b-nav-item>
           </b-navbar-nav>
 
-          <b-nav-item-dropdown right v-if= "isLogin">
+          <b-nav-item-dropdown right v-if="isLogin">
             <!-- Using button-content slot -->
             <template slot="button-content">
               <em>마이페이지</em>
             </template>
-            <b-dropdown-item ><router-link to ="/profile">프로필</router-link></b-dropdown-item>
-            <b-dropdown-item ><router-link to ="/user-list">유저 리스트</router-link></b-dropdown-item>
+            <b-dropdown-item>
+              <router-link to="/profile">프로필</router-link>
+            </b-dropdown-item>
+            <b-dropdown-item>
+              <router-link to="/user-list">유저 리스트</router-link>
+            </b-dropdown-item>
           </b-nav-item-dropdown>
 
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
     <router-view></router-view>
-    </div>
+  </div>
 
 
 </template>
 
 <script>
-export default {
-    data () {
-        return {
-          isLogin: false
-        }
+  export default {
+    data() {
+      return {
+        isLogin: false
+      }
     },
-created() {
-       /**********로그인 전후 네비게이션 바에 보여지는 목록을 다르게 해주기 위해 이벤트 버스 발생 *************/
-       this.$EventBus.$on('removeTab', (message) => {
-           this.isLogin = message
-       })
-   }
-}
+    methods: {
+      onClickLogout() {
+        this.$store.dispatch('LOGOUT')
+          .then(() => {
+            this.$cookies.remove('nickname')
+            this.nickname = ''
+            this.$router.push('/')
+            this.isLogin = false
+          })
+      },
+      isAuthenticated() {
+        this.$store.dispatch('CHECK').then(check => {
+          this.isLogin = check
+          this.getUserInfo()
+        })
+      },
+      getUserInfo() {
+        this.$http
+          .get("/api/user").then((res) => {
+          this.$cookies.set('nickname', res.data.nickname, 3600 * 24)
+          this.nickname = this.$cookies.get('nickname')
+        })
+      }
+    },
+    created() {
+      /**********로그인 전후 네비게이션 바에 보여지는 목록을 다르게 해주기 위해 이벤트 버스 발생 *************/
+      this.$EventBus.$on('removeTab', (message) => {
+        this.isAuthenticated()
+      })
+    }
+  }
 </script>
 
 <style>
-body {
-  background-color: lightgray;
+  body {
+    background-color: lightgray;
 
-}
-.navbar{
-  position: relative;
- 
-}
-.nav-background{
-  background-color: black;
-}
+  }
+
+  .navbar {
+    position: relative;
+
+  }
+
+  .nav-background {
+    background-color: black;
+  }
 </style>
