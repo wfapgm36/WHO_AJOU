@@ -39,6 +39,19 @@
                 </b-col>
             </b-row>
         </div>
+        <b-row >
+            <b-col align-v="center" id = "evaluate" v-for="item in subject" v-bind:key="item.id">
+                <div class ="evalContainer" >
+                    <h3>Course</h3>
+                    <h6>{{item.name}}</h6>
+                    <h3>Professor</h3>
+                    <h6>{{item.professor}}</h6>
+                    <h5 class = "circle">{{item.grade}}</h5>
+                    <h8>{{item.brief}}</h8><br>
+                    <button type="submit" class = "plusView" @click="goToEval(item.name)">Read More</button>
+                </div>
+            </b-col>
+        </b-row>
     </div>
 </template>
 <script>
@@ -75,10 +88,19 @@ export default {
         this.$router.push({
           name:'evaluation-write'
         })
+    },
+    // 과목 세부 평가 페이지
+    goToEval(id) {
+        console.log(id)
+      this.$router.push({
+          name: 'eval-view',
+          params: {
+            id: id
+          }
+      })
     }
   }
 }
-
 </script>
 
 <style>

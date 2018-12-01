@@ -101,7 +101,6 @@
         })
         this.showPreRequisite(clickedItem, true)
         this.$modal.show(DelPopup,{
-          hot_table : 'data',
           subject : clickedItem,
           modal : this.$modal },{
           name: 'dynamic-modal',
