@@ -86,7 +86,7 @@ export default {
   },
   methods: {
     GetCurriculum () {
-      this.$http.get('/api/class/allclass').then((res) => {
+      this.$http.get('/api/main').then((res) => {
         this.curriData = res.data
       })
     },
@@ -96,9 +96,9 @@ export default {
       })
       this.showPreRequisite(clickedItem, true)
       this.$modal.show(DelPopup, {
-        hot_table: 'data',
         subject: clickedItem,
-        modal: this.$modal }, {
+        modal: this.$modal
+      }, {
         name: 'dynamic-modal',
         width: '600px',
         height: '400px',
@@ -106,40 +106,14 @@ export default {
         clickToClose: false
       })
     },
-    methods : {
-      GetCurriculum(){
-        this.$http.get("/api/main").then((res) => {
-          this.curriData = res.data;
-          console.log(res.data);
-          this.curriData = res.data;
-        });
-
-      },
-      Popup(clickedItem){
-        this.$EventBus.$on('changeColor', (message) => {
-          this.showPreRequisite(clickedItem, message)
-        })
-        this.showPreRequisite(clickedItem, true)
-        this.$modal.show(DelPopup,{
-          subject : clickedItem,
-          modal : this.$modal },{
-          name: 'dynamic-modal',
-          width : '600px',
-          height : '400px',
-          draggable: true,
-          clickToClose : false
-        })
-      },
-      showPreRequisite(item, isPre){
-        for(var i =0 ; i<this.curriData.length; i ++){
-          if(item.prerequisite == this.curriData[i].name){
-            this.curriData[i].isPre = isPre;
-          }
+    showPreRequisite (item, isPre) {
+      for (var i = 0; i < this.curriData.length; i++) {
+        if (item.prerequisite == this.curriData[i].name) {
+          this.curriData[i].isPre = isPre
         }
       }
     }
   }
-
 }
 </script>
 
