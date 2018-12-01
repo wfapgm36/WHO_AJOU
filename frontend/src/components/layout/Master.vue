@@ -1,39 +1,36 @@
 <template>
   <div id="app">
-    <b-navbar toggleable="md" type="dark" class="nav-background">
+    <b-navbar toggleable="md" type="dark" variant="primary" class="nav-background">
       <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
-      <b-navbar-brand href="#" v-if="isLogin">WHO AJOU? | {{nickname}}님 안녕하세요!</b-navbar-brand>
-      <b-navbar-brand href="#" v-if="!isLogin">WHO AJOU?</b-navbar-brand>
+      <b-navbar-brand href="/main" tag="h1" v-if="isLogin"><b-badge pill variant="white">WHO AJOU?</b-badge> | {{nickname}}님 안녕하세요!</b-navbar-brand>
+      <b-navbar-brand href="/main" tag="h1" v-if="!isLogin"><b-badge pill variant="white">WHO AJOU?</b-badge></b-navbar-brand>
 
       <b-collapse is-nav id="nav_collapse">
-
-        <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
-
           <b-nav-form>
             <b-form-input size="sm" class="mr-sm-2" type="text" placeholder="Search"/>
-            <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
+            <b-button size="sm" variant="primary" class="my-2 my-sm-0" type="submit">Search</b-button>
           </b-nav-form>
 
           <b-navbar-nav>
             <b-nav-item>
-              <router-link to="/main">메인</router-link>
+              <router-link to="/main" style="color: white"><b-badge variant="white">메인</b-badge></router-link>
             </b-nav-item>
             <b-nav-item v-if="isLogin">
-              <router-link to="/board">게시판</router-link>
+              <router-link to="/board" style="color: white"><b-badge variant="white">게시판</b-badge></router-link>
             </b-nav-item>
             <b-nav-item id="signup" v-if="!isLogin">
-              <router-link to="/signup">회원가입</router-link>
+              <router-link to="/signup" style="color: white"><b-badge variant="white">회원가입</b-badge></router-link>
             </b-nav-item>
             <b-nav-item v-if="isLogin">
-              <a href="/" @click.prevent="onClickLogout">로그아웃</a>
+              <a href="/" @click.prevent="onClickLogout" style="color: white"><b-badge variant="white">로그아웃</b-badge></a>
             </b-nav-item>
           </b-navbar-nav>
 
           <b-nav-item-dropdown right v-if="isLogin">
             <!-- Using button-content slot -->
             <template slot="button-content">
-              <em>마이페이지</em>
+              <em style="color: white"><b-badge variant="white">마이페이지</b-badge></em>
             </template>
             <b-dropdown-item>
               <router-link to="/profile">프로필</router-link>
@@ -93,7 +90,7 @@
 
 <style>
   body {
-    background-color: lightgray;
+    background-color: white;
 
   }
 

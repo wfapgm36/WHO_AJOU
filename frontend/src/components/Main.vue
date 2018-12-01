@@ -138,7 +138,6 @@
     border:solid;
   }
   .btn{
-    background-color:skyblue;
     margin-bottom: 3vh;
     margin-left:1vw;
     margin-right: 1vw;

@@ -54,7 +54,7 @@
 <style>
 .mainhr{
     border-width: 1.5px;
-    border-color:lightgray;
+    border-color:gray;
     border-style: dotted;
   }
 
@@ -71,7 +71,7 @@
   }
   .v--modal-overlay .v--modal-box {
     border-radius: 50px;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.705);
   }
   .closeBtn{
     float: right;

@@ -48,6 +48,7 @@
       };
     },
     created() {
+      this.$EventBus.$emit('removeTab', true);
       this.fetchData()
     },
     methods: {

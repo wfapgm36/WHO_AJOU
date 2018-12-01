@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const key = "token secret";
-const expiresIn = 30 * 60; // 30 minutes
+const expiresIn = 60 * 60 * 2; // 2 hours
 
 const auth = {
     signToken(username, nickname, isAdmin) {
@@ -19,7 +19,6 @@ const auth = {
                 res.status(401);
                 throw e
             }
-
             next()
         }
     },
