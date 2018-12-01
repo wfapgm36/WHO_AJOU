@@ -4,7 +4,7 @@ var classSchema = mongoose.Schema({
     name: { type: String, required: true },
     professor: { type: String, required: true},
     description: String,
-    priorCourse: String,
+    prerequisite: String,
     semester: { type: String, required: true},
     classId: String,
     type: Number, // 1: 전공필수 2: 전공선택 3: 교양필수 4: 교양선택
