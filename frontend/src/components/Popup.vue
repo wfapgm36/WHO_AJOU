@@ -56,7 +56,6 @@ export default {
 }
 </script>
 <style>
-
 .mainhr{
     border-width: 1.5px;
     border-color:lightgray;

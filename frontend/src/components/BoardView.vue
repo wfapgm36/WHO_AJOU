@@ -8,23 +8,25 @@
             <br><b>|제목: </b> {{this.form.title}}</h6>
             <h6 slot="footer" v-for="(item, index) in form.comments"
                               v-bind:key="item._id">
-                              <b>#{{index}} {{item.name}}: </b> {{item.memo}}
-                              <button v-on:click="deleteComment(item._id)">x</button>
+                              <b>#{{index}} {{item.name}}: </b> {{item.memo}} | {{item.createAt}}
+                              <b-badge pill href="#" v-on:click="deleteComment(item._id)" variant="primary" size="sm">삭제</b-badge>
             </h6>
             <p class="card-text"><b>내용: </b> {{this.form.contents}}</p>
         </b-card>
     </b-card-group>
-    <div>
+    <div style="width:600px;">
       <h4>댓글</h4>
       <b-form @submit.prevent="addComment" v-on:keyup.enter="addComment">
-      <b-form-textarea rows="4" cols="50" v-model="memo">
-      </b-form-textarea><b-button type="submit">등록</b-button>
+      <b-form-textarea placeholder="댓글을 입력하세요." rows="2" max-rows="6" v-model="memo">
+      </b-form-textarea><b-button type="submit" variant="primary" size="sm">댓글 작성</b-button>
       </b-form>
     </div>
     </div>
-    <button v-on:click="toBoard">목록</button>
-    <button v-on:click="updateBoard">수정</button>
-    <button v-on:click="deleteBoard">삭제</button>
+    <b-button-group size="sm">
+    <b-button v-on:click="toBoard" variant="primary">목록</b-button>
+    <b-button v-on:click="updateBoard" variant="primary">수정</b-button>
+    <b-button v-on:click="deleteBoard" variant="primary">삭제</b-button>
+    </b-button-group>  
   </div>
 </template>
 
@@ -106,6 +108,7 @@ export default {
      comment.memo = this.memo;
      comment.boardId = this.form._id;
      this.$http.post(`/api/board/comment`, comment)
+     this.memo = ''
      this.getBoardDetail()
    },
    deleteComment(_id){
