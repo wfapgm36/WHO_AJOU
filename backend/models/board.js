@@ -4,11 +4,12 @@ var autoIncrement = require('mongoose-auto-increment')
 autoIncrement.initialize(mongoose.connection)
 
 var boardSchema = mongoose.Schema({
-    writer: String,
-    title: String,
-    contents: String,
+    userId: {type:String, required:true},
+    writer: {type:String, required:true},
+    title: {type:String, required:true},
+    contents: {type:String, required:true},
     comments: [{
-        name: String,
+        name: {type:String, required:true},
         memo: String,
         createAt: { type: Date, default: Date.now }
     }],

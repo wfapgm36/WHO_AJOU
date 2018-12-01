@@ -57,7 +57,6 @@
         <br>
         <div>currentPage: {{currentPage}}</div>
       </div>
-      
       </b-container>
     </div>
   </div>

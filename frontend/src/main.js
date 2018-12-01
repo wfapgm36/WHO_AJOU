@@ -6,17 +6,22 @@ import router from './router'
 import store from './store'
 import axios from 'axios'
 import VueCookies from 'vue-cookies'
+import Master from './components/layout/Master'
+import VModal from 'vue-js-modal'
+import StarRating from 'vue-star-rating'
 
+Vue.use(VModal, { dynamic: true })
 Vue.prototype.$EventBus = new Vue()
 Vue.config.productionTip = false
 Vue.prototype.$http = axios
 Vue.prototype.$cookies = VueCookies
+Vue.component('star-rating', StarRating);
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   store,
   router,
-  components: { App },
-  template: '<App/>'
+  components: { Master },
+  template: '<Master/>'
 })

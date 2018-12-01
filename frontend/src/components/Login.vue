@@ -1,7 +1,5 @@
 <template>
   <div class="login">
-    <h1 align-h="center">This is Login Page!</h1>
-
     <b-container>
       <b-row align-h="center" class="login1">
         <b-col cols='5'>
@@ -16,7 +14,7 @@
                               type="text"
                               v-model="form.name"
                               required
-                              placeholder="이메일 주소">
+                              placeholder="아이디">
                 </b-form-input>
               </b-form-group>
 
@@ -47,7 +45,6 @@
                   <a href="#" v-b-modal.modal1>비밀번호 찾기</a>
                 </div>
               </div>
-
             </b-form>
           </b-card>
         </b-col>
