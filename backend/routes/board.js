@@ -7,7 +7,7 @@ router.use(function (req, res, next) {
     next();
 });
 
-router.get("/", function(err, res){
+router.get("/", function (err, res) {
     Board.find({}).sort({ _id: -1 }).exec(function (err, board) {
         if (err) {
             console.log(err);
@@ -21,7 +21,6 @@ router.get("/", function(err, res){
 router.get("/posts/:id", auth.ensureAuth(), function (req, res) {
     Board.findOne({ _id: req.params.id })
         .then(board => {
-            console.log(board)
             if (board) {
                 if (board.userId == req.user.username) {
                     res.status(200)
@@ -74,23 +73,46 @@ router.post("/comment", (req, res) => {
         boardId: Number
     }
     comment = req.body
-    console.log(comment)
     Board.findOne({ _id: req.body.boardId }, function (err, board) {
-        console.log(board)
         board.comments.push(comment)
         board.save();
     })
 });
 
-router.delete("/comment", (req, res) => {
-    Board.findOne({ _id: req.body.boardId }, function (err, board) {
-        for (i = 0; i < board.comments.length; i++) {
-            if (board.comments[i]._id == req.body.commentId) {
-                console.log(board.comments[i]);
-                board.comments.remove(board.comments[i])
+router.get("/posts/:id", auth.ensureAuth(), function (req, res) {
+    Board.findOne({ _id: req.params.id })
+        .then(board => {
+            if (board) {
+                if (board.userId == req.user.username) {
+                    res.status(200)
+                    res.json(board)
+                } else {
+                    res.status(203).send(); // writer 와 사용자 일치 x
+                }
+            } else {
+                res.status(405).send(); // data 없음
             }
+        })
+});
+
+router.delete("/comment", auth.ensureAuth(), (req, res) => {
+    Board.findOne({ _id: req.body.boardId }, function (err, board) {
+        if (board) {
+            for (i = 0; i < board.comments.length; i++) {
+                if (board.userId == req.user.username) {
+                    if (board.comments[i]._id == req.body.commentId) {
+                        console.log(board.comments[i]);
+                        board.comments.remove(board.comments[i])
+                    }
+                    board.save()
+                }
+                else {
+                    res.status(203).send() // 사용자 일치 x
+                }
+            }
+        } else {
+            res.status(405).send(); // data 없음
         }
-        board.save()
     })
 })
 

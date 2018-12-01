@@ -78,11 +78,8 @@ export default {
      this.$router.push('/board')
    },
    updateBoard(){
-     // 권한 확인
-     console.log("누름")
      this.$http.get(`/api/board/posts/${this.$route.params.id}`)
        .then((res) => {
-         console.log(res)
          const status = res.status
          if(status == 200){
            this.$router.push({
@@ -112,14 +109,18 @@ export default {
      this.getBoardDetail()
    },
    deleteComment(_id){
-     let id = {
-       boardId: this.$route.params.id,
-       commentId: _id
-     }
-      this.$http.delete(`/api/board/comment`, {data: {boardId: this.$route.params.id, commentId: _id }});
-      this.getBoardDetail()
+      this.$http.delete(`/api/board/comment`, {data: {boardId: this.$route.params.id, commentId: _id }})
+      .then((res) => {
+        const status = res.status
+        if(status == 200){
+          this.getBoardDetail()
+        } else if (status == 203){
+          alert("해당 권한이 존재하지 않습니다.")
+          this.$router.push('/board')
+        }
+      })
+      
     }
-    
   }
 };
 </script>
