@@ -6,18 +6,18 @@
     <form >
       <div class = "leftContents">
         <h5> Course </h5>
-        <h8 v-model = "name">{{subject.name}}</h8>
+        <h6>{{subject.name}}</h6>
         <hr>
         <h5>Details</h5>
-        <h8>{{subject.description}}</h8>
+        <h6>{{subject.description}}</h6>
         <hr class = "verticalHr">
       </div>
       <div class = "rightContents">
         <h5> Course Type </h5>
-        <h8>{{subject.type}}</h8>
+        <h6>{{subject.type}}</h6>
         <hr>
         <h5>Prerequite Subject</h5>
-        <h8>{{subject.prerequisite}}</h8>
+        <h6>{{subject.prerequisite}}</h6>
         <br>
         <button type="submit" class = "evalButton" @click="goToEval(subject)">강의평가</button>
       </div>
@@ -32,7 +32,7 @@
     ],
     data:function(){
       return {
-
+          name: ''
       }
     },
     methods : {
