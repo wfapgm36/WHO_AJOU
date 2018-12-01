@@ -28,14 +28,13 @@
 <script>
   export default {
     props : [
-      'hot_table',
       'subject'
     ],
     data:function(){
       return {
+
       }
     },
-
     methods : {
       close(item){
         item.isPre = false
