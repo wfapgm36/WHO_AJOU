@@ -9,8 +9,8 @@
           </div>
         </b-col>
         <b-col>
-          <b-form-input v-model="searchText" 
-                    type="text" 
+          <b-form-input v-model="searchText"
+                    type="text"
                     placeholder="Search"
                     size = "sm"
                     id="searchBar" >
@@ -29,8 +29,8 @@
         <b-col>작성자</b-col>
         <b-col cols="2">등록일</b-col>
         <b-col>조회수</b-col>
-      </b-row>  
-      <hr>   
+      </b-row>
+      <hr>
       <div v-for="item in items" v-bind:key="item.id">
         <b-row class="text-center">
           <b-col >{{item._id}}</b-col>
@@ -64,31 +64,32 @@
 
 <script>
 export default {
-  name: "board",
-  data() {
+  name: 'board',
+  data () {
     return {
       currentPage: 1,
-      searchText: "",
+      searchText: '',
       items: [],
       options: [
-        { text: "전체" },
-        { text: "제목" },
-        { text: "작성자" },
-        { text: "게시물 번호" }
+        { text: '전체' },
+        { text: '제목' },
+        { text: '작성자' },
+        { text: '게시물 번호' }
       ]
-    };
+    }
   },
-  created() {
-    this.fetchData();
+  created () {
+    this.$EventBus.$emit('removeTab', true)
+    this.fetchData()
   },
   methods: {
-    fetchData() {
-      this.$http.get("/api/board").then((res) => {
-        this.items = res.data;
-      });
+    fetchData () {
+      this.$http.get('/api/board').then((res) => {
+        this.items = res.data
+      })
     }
   }
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

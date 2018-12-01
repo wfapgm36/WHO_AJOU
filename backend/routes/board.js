@@ -21,7 +21,6 @@ router.get("/", function (req, res) {
 router.get("/posts/:id", auth.ensureAuth(), function (req, res) {
     Board.findOne({ _id: req.params.id })
         .then(board => {
-            console.log(board)
             if (board) {
                 if (board.userId == req.user.username) {
                     res.status(200)
@@ -74,9 +73,7 @@ router.post("/comment", (req, res) => {
         boardId: Number
     }
     comment = req.body
-    console.log(comment)
     Board.findOne({ _id: req.body.boardId }, function (err, board) {
-        console.log(board)
         board.comments.push(comment)
         board.save();
     })
@@ -86,7 +83,6 @@ router.delete("/comment", (req, res) => {
     Board.findOne({ _id: req.body.boardId }, function (err, board) {
         for (i = 0; i < board.comments.length; i++) {
             if (board.comments[i]._id == req.body.commentId) {
-                console.log(board.comments[i]);
                 board.comments.remove(board.comments[i])
             }
         }
@@ -97,7 +93,6 @@ router.delete("/comment", (req, res) => {
 router.put("/:id", auth.ensureAuth(), function (req, res) {
     Board.findOne({ _id: req.params.id })
         .then(board => {
-            console.log(board)
             if (board) {
                 if (board.userId == req.user.username) {
                     Board.findOneAndUpdate({ _id: req.params.id },
@@ -123,7 +118,6 @@ router.delete("/posts/:id", auth.ensureAuth(), function (req, res) {
     Board.findOne({ _id: req.params.id })
         .then(board => {
             if (board) {
-                console.log(board)
                 if (board.userId == req.user.username) {
                     Board.deleteOne({ _id: req.params.id }, function (err) {
                         if (err) {

@@ -22,7 +22,7 @@ router.post("/", function (req, res, next) {
                     res.send(err);
                 }
                 if (isMatch) {
-                    const accessToken = auth.signToken(username);
+                    const accessToken = auth.signToken(username,user.nickname,user.isAdmin);
                     console.log(accessToken);
                     res.status(200);
                     res.json({accessToken});

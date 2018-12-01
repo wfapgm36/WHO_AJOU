@@ -70,55 +70,52 @@
 </template>
 
 <script>
-  import DelPopup from './Popup'
+import DelPopup from './Popup'
 
-  export default {
-    name: 'Main',
-    data () {
-      return {
-        major: '' ,
-        curriData: [],
-      }
+export default {
+  name: 'Main',
+  data () {
+    return {
+      major: '',
+      curriData: []
+    }
+  },
+  created () {
+    this.$EventBus.$emit('removeTab', true)
+    this.GetCurriculum()
+  },
+  methods: {
+    GetCurriculum () {
+      this.$http.get('/api/class/allclass').then((res) => {
+        this.curriData = res.data
+      })
     },
-    created() {
-      this.$EventBus.$emit('removeTab', true);
-      this.GetCurriculum()
+    Popup (clickedItem) {
+      this.$EventBus.$on('changeColor', (message) => {
+        this.showPreRequisite(clickedItem, message)
+      })
+      this.showPreRequisite(clickedItem, true)
+      this.$modal.show(DelPopup, {
+        hot_table: 'data',
+        subject: clickedItem,
+        modal: this.$modal }, {
+        name: 'dynamic-modal',
+        width: '600px',
+        height: '400px',
+        draggable: true,
+        clickToClose: false
+      })
     },
-    methods : {
-      GetCurriculum(){
-        this.$http.get("/api/main").then((res) => {
-          this.curriData = res.data;
-          console.log(res.data);
-          this.curriData = res.data;
-        });
-
-      },
-      Popup(clickedItem){
-        this.$EventBus.$on('changeColor', (message) => {
-          this.showPreRequisite(clickedItem, message)
-        })
-        this.showPreRequisite(clickedItem, true)
-        this.$modal.show(DelPopup,{
-          hot_table : 'data',
-          subject : clickedItem,
-          modal : this.$modal },{
-          name: 'dynamic-modal',
-          width : '600px',
-          height : '400px',
-          draggable: true,
-          clickToClose : false
-        })
-      },
-      showPreRequisite(item, isPre){
-        for(var i =0 ; i<this.curriData.length; i ++){
-          if(item.prerequisite == this.curriData[i].name){
-            this.curriData[i].isPre = isPre;
-          }
+    showPreRequisite (item, isPre) {
+      for (var i = 0; i < this.curriData.length; i++) {
+        if (item.prerequisite == this.curriData[i].name) {
+          this.curriData[i].isPre = isPre
         }
       }
     }
-
   }
+
+}
 </script>
 
 <style>
