@@ -29,7 +29,7 @@
                     <h6>{{item.professor}}</h6>
                     <h5 class = "circle">{{item.grade}}</h5>
                     <h8>{{item.brief}}</h8><br>
-                    <button type="submit" class = "plusView" @click="goToEval()">Read More</button>
+                    <button type="submit" class = "plusView" @click="goToEval(item.name)">Read More</button>
                 </div>
             </b-col>
         </b-row>
@@ -64,10 +64,19 @@ export default {
           brief: '강의는 전반적으로...'
         })
       }
+    },
+    // 과목 세부 평가 페이지
+    goToEval(id) {
+        console.log(id)
+      this.$router.push({
+          name: 'eval-view',
+          params: {
+            id: id
+          }
+      })
     }
   }
 }
-
 </script>
 
 <style>
