@@ -55,7 +55,7 @@
     data() {
       return {
         isLogin: false,
-        nickname : ''
+        nickname: ''
       }
     },
     methods: {
