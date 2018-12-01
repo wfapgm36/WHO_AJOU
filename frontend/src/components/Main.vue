@@ -106,10 +106,35 @@ export default {
         clickToClose: false
       })
     },
-    showPreRequisite (item, isPre) {
-      for (var i = 0; i < this.curriData.length; i++) {
-        if (item.prerequisite == this.curriData[i].name) {
-          this.curriData[i].isPre = isPre
+    methods : {
+      GetCurriculum(){
+        this.$http.get("/api/main").then((res) => {
+          this.curriData = res.data;
+          console.log(res.data);
+          this.curriData = res.data;
+        });
+
+      },
+      Popup(clickedItem){
+        this.$EventBus.$on('changeColor', (message) => {
+          this.showPreRequisite(clickedItem, message)
+        })
+        this.showPreRequisite(clickedItem, true)
+        this.$modal.show(DelPopup,{
+          subject : clickedItem,
+          modal : this.$modal },{
+          name: 'dynamic-modal',
+          width : '600px',
+          height : '400px',
+          draggable: true,
+          clickToClose : false
+        })
+      },
+      showPreRequisite(item, isPre){
+        for(var i =0 ; i<this.curriData.length; i ++){
+          if(item.prerequisite == this.curriData[i].name){
+            this.curriData[i].isPre = isPre;
+          }
         }
       }
     }
@@ -136,7 +161,6 @@ export default {
     border:solid;
   }
   .btn{
-    background-color:skyblue;
     margin-bottom: 3vh;
     margin-left:1vw;
     margin-right: 1vw;
