@@ -4,11 +4,11 @@
     <b-card-group deck>
         <b-card header-tag="header"
                 footer-tag="footer">
-            <h6 slot="header" class="mb-0"><b>|작성자: </b> {{this.form.writer}} <b>|작성한 시간: </b> {{this.form.createAt}} <b>|조회수: </b> {{this.form.count}}
+            <h6 slot="header" class="mb-0"><b>|작성자: </b> {{this.form.writer}} <b>|작성한 시간: </b> {{this.form.createAt.substr(0,10)}} / {{this.form.createAt.substr(11,2)}}시 {{this.form.createAt.substr(14,2)}}분 <b>|조회수: </b> {{this.form.count}}
             <br><b>|제목: </b> {{this.form.title}}</h6>
             <h6 slot="footer" v-for="(item, index) in form.comments"
                               v-bind:key="item._id">
-                              <b>#{{index}} {{item.name}}: </b> {{item.memo}} | {{item.createAt}}
+                              <b>#{{index}} {{item.name}}: </b> {{item.memo}} | {{item.createAt.substr(0,10)}} / {{item.createAt.substr(11,2)}}시 {{item.createAt.substr(14,2)}}분
                               <b-badge pill href="#" v-on:click="deleteComment(item._id)" variant="primary" size="sm">삭제</b-badge>
             </h6>
             <p class="card-text"><b>내용: </b> {{this.form.contents}}</p>

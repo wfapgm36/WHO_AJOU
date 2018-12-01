@@ -7,8 +7,8 @@ router.use(function (req, res, next) {
     next();
 });
 
-router.get("/", function (req, res) {
-    Board.find({}).sort({ date: -1 }).exec(function (err, board) {
+router.get("/", function(err, res){
+    Board.find({}).sort({ _id: -1 }).exec(function (err, board) {
         if (err) {
             console.log(err);
             res.status(401).send(err)
@@ -16,7 +16,7 @@ router.get("/", function (req, res) {
             res.status(200).json(board);
         }
     })
-});
+})
 
 router.get("/posts/:id", auth.ensureAuth(), function (req, res) {
     Board.findOne({ _id: req.params.id })
@@ -94,7 +94,7 @@ router.delete("/comment", (req, res) => {
     })
 })
 
-router.put("/:id", auth.ensureAuth(), function (req, res) {
+router.put("/posts/:id", auth.ensureAuth(), function (req, res) {
     Board.findOne({ _id: req.params.id })
         .then(board => {
             console.log(board)
