@@ -20,5 +20,16 @@ router.post('/create',auth.ensureAuth(),function (req,res) {
 });
 
 router.get('/allclass',auth.ensureAuth(),function (req,res) {
-
+    lecture.find({})
+        .then(lec =>{
+            let lec_names = []
+            let lec_semesters = []
+            for(let i=0;i<lec.length();i++){
+                if(!lec_names.includes(lec[i].name)){
+                    lec_names.push(lec[i].name)
+                    lec_semesters.push(lec[i].semester)
+                }
+            }
+            res.json({"name":lec_names,"semester":lec_semesters})
+        })
 });

@@ -1,0 +1,138 @@
+[
+    {
+      "id": 1,
+      "name": "웹시스템설계",
+      "description": "이 과목은 웹시스템 설계이다.",
+      "semester": "3-1",
+      "prerequisite" : "객체지향프로그래밍",
+      "classId":"F001",
+      "type":"1",
+      "isPre": false
+    
+    },
+    {
+        "id": 2,
+        "name": "객체지향프로그래밍",
+        "description": "이 과목은 객체지향프로그래밍이다.",
+        "semester": "3-2",
+        "prerequisite" : "컴퓨터프로그래밍",
+        "classId":"F002",
+        "type":"1",
+        "isPre": false
+    
+    },
+    {
+        "id": 3,
+        "name": "알고리즘",
+        "description": "이 과목은 알고리즘이다.",
+        "semester": "1-1",
+        "prerequisite" : "컴퓨터프로그래밍",
+        "classId":"F003",
+        "type":"1",
+        "isPre": false
+    },
+    {
+        "id": 4,
+        "name": "컴퓨터프로그래밍",
+        "description": "이 과목은 컴퓨터프로그래밍.",
+        "semester": "1-2",
+        "classId":"F003",
+        "type":"1",
+        "isPre": false
+    
+    },
+    {
+        "id": 5,
+        "name": "창의소프트웨어",
+        "description": "이 과목은 창의소프트웨어이다.",
+        "semester": "2-1",
+        "prerequisite" : "컴퓨터프로그래밍",
+        "classId":"F003",
+        "type":"1",
+        "isPre": false
+    
+    },
+    {
+        "id": 6,
+        "name": "시스템프로그래밍",
+        "description": "이 과목은 시스템프로그래밍이다.",
+        "semester": "2-2",
+        "classId":"F001",
+        "prerequisite" : "임베디드시스템",
+        "type":"1",
+        "isPre": false
+    
+    },
+    {
+        "id": 7,
+        "name": "임베디드시스템",
+        "description": "이 과목은 임베디드시스템이다.",
+        "semester": "4-1",
+        "classId":"F001",
+        "prerequisite" : "컴퓨터프로그래밍",
+        "isPre": false
+    },
+    {
+        "id": 8,
+        "name": "사물인터넷",
+        "description": "이 과목은 사물인터넷이다.",
+        "semester": "4-2",
+        "classId":"F001",
+        "type":"1",
+        "prerequisite" : "시스템프로그래밍",
+        "isPre": false
+    },
+    {
+        "id": 9,
+        "name": "웹시스템설계2",
+        "description": "이 과목은 웹시스템설계2이다.",
+        "semester": "3-1",
+        "classId":"F001",
+        "type":"1",
+        "totalGrade":"5",
+        "isPre": false
+      },
+      {
+        "id": 10,
+        "name": "이산수학",
+        "description": "이 과목은 이산수학임ㅇ란어란얼ㄴ알.",
+        "semester": "1-2",
+        "classId":"F001",
+        "type":"1",
+        "totalGrade":"5",
+        "isPre": false
+      },
+      {
+        "id": 11,
+        "name": "이산수학2",
+        "description": "이 과목은 이산수학임ㅇ란어란얼ㄴ알.",
+        "semester": "1-2",
+        "classId":"F001",
+        "type":"1",
+        "totalGrade":"5",
+        "prerequisite":"이산수학",
+        "isPre": false
+      },
+      {
+        "id": 12,
+        "name": "이산수학3",
+        "description": "이 과목은 이산수학임ㅇ란어란얼ㄴ알.",
+        "semester": "2-1",
+        "classId":"F001",
+        "type":"1",
+        "prerequisite":"이산수학2",
+        "totalGrade":"5",
+        "isPre": false
+      },
+      {
+        "id": 13,
+        "name": "이산수학4",
+        "prerequisite":"이산수학3",
+        "description": "이 과목은 이산수학임ㅇ란어란얼ㄴ알.",
+        "semester": "2-2",
+        "classId":"F001",
+        "type":"1",
+        "totalGrade":"5",
+        "isPre": false
+      }
+  ]
