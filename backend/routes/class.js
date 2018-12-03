@@ -6,6 +6,9 @@ const auth = require('../config/auth');
 router.use(function (req,res,next) {
    next();
 });
+
+/*
+//이 스키마 말고 다른 커리큘럼 스키마 필요(나중에 삭제)
 // 관리자 권한 체크
 router.post('/create',function (req,res,next) {
 
@@ -23,6 +26,7 @@ router.post('/create',function (req,res,next) {
     res.status(200).send();
 });
 
+//무슨 역할인지 모르겠음
 router.get('/allclass',auth.ensureAuth(),function (req,res,next) {
     lecture.find({})
         .then(lec =>{
@@ -37,7 +41,10 @@ router.get('/allclass',auth.ensureAuth(),function (req,res,next) {
             res.json(lectures)
         })
 });
-
+*/
+/*
+//강의평가작성
+//수정필요(다른 거 쓰겠음.)
 router.post('/evaluation',auth.ensureAuth(),function (req,res,next) {
     lecture.find({name:req.body.name, professor:req.body.professor})
         .then(lec =>{
@@ -76,9 +83,126 @@ router.post('/evaluation',auth.ensureAuth(),function (req,res,next) {
             }
         })
 });
+*/
 
-router.get('/evaluation/:name',auth.ensureAuth(),function (req,res,next) {
-    lecture.find({name:req.params.name})
+/*
+    api: /api/class/evaluation/create
+*/
+//강의 평가 작성 페이지
+//모든 평가 데이터 받아서 document형태로 create(totalGrade??이해못함..)
+router.post('/evaluation/create', auth.ensureAuth(), function (req, res, next) {
+    console.log('SYSTEM: req')
+    console.log(req.body)
+
+    const {
+        userId,
+        major,
+        name,
+        professor
+    } = req.body
+
+    // create a new user if does not exist
+    const create = (user) => {
+        if (user) {
+            throw new Error('id exists')
+        } else {
+            return lecture.create(
+                id,
+                name,
+                password,
+                email
+            )
+        }
+    }
+
+    // respond to the client
+    const respond = () => {
+        console.log('SYSTEM: Registered successfully')
+        res.json({
+            message: 'registered successfully',
+            //admin: isAdmin ? true : false
+        })
+    }
+
+    // run when there is an error (username exists)
+    const onError = (error) => {
+        console.log('SYSTEM: ' + error)
+        res.status(409).json({
+            message: error.message
+        })
+    }
+
+    // check username duplication
+    User.findOneByUsername(id)
+        .then(create)
+        .then(respond)
+        .catch(onError)
+});
+
+
+/*
+    api: /api/class / evaluation / delete
+*/
+//강의 평가 삭제
+//모든 평가 데이터 받아서 document형태로 create(totalGrade??이해못함..)
+router.post('/evaluation/delete', auth.ensureAuth(), function (req, res, next) {
+    console.log('SYSTEM: req')
+    console.log(req.body)
+
+    const {
+        userId,
+        major,
+        name,
+        professor
+    } = req.body
+
+    // create a new user if does not exist
+    const create = (user) => {
+        if (user) {
+            throw new Error('id exists')
+        } else {
+            return lecture.create(
+                id,
+                name,
+                password,
+                email
+            )
+        }
+    }
+
+    // respond to the client
+    const respond = () => {
+        console.log('SYSTEM: Registered successfully')
+        res.json({
+            message: 'registered successfully',
+            //admin: isAdmin ? true : false
+        })
+    }
+
+    // run when there is an error (username exists)
+    const onError = (error) => {
+        console.log('SYSTEM: ' + error)
+        res.status(409).json({
+            message: error.message
+        })
+    }
+
+    // check username duplication
+    User.findOneByUsername(id)
+        .then(create)
+        .then(respond)
+        .catch(onError)
+});
+
+
+
+/*
+    api: /api/class/evaluation/
+*/
+//강의평가 상세보기 페이지 & 강의평가카드 보기
+//해당 과목 이름 받고 모든 강의평가내용 프론트로 보내주기 
+router.get('/evaluation/',auth.ensureAuth(),function (req,res,next) {
+    lecture.find()
         .then(lec => {
             if(lec) res.json(lec);
             else res.status(203).send() // 해당과목이 존재하지 않음

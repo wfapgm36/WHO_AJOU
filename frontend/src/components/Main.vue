@@ -102,7 +102,6 @@ import Eval from './Evaluation'
           console.log(res.data);
           this.curriData = res.data;
         });
-
       },
       Popup(clickedItem){
         this.$EventBus.$on('changeColor', (message) => {

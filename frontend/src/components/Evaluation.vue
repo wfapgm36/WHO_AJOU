@@ -24,6 +24,7 @@
             <b-button  @click="goToWrite()">강의평가작성</b-button>               
         </div>
         <hr>
+        
         <div class = "eval_container">
             <b-row >
                 

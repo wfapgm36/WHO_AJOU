@@ -1,16 +1,11 @@
 var mongoose = require("mongoose");
 
 var classSchema = mongoose.Schema({
+    userId: { type: String, required: true },
     major: { type: String, required: true }, // 어떤 전공의 과목인지
     name: { type: String, required: true }, // 강의 이름
     professor: { type: String, required: true}, // 교수
-    description: String,
-    prerequisite: String, // 선수과목
-    isPre: Boolean, // 선수과목 유무
     semester: { type: String, required: true},
-    classId: String,
-    type: Number, // 1: 전공필수 2: 전공선택 3: 교양필수 4: 교양선택
-    totalGrade: { type: Number, default: 0 },  // 해당 과목에 해당하는 모든 강의 평가의 평균
     evaluation: [{
         id: String, // autoincrease
         writer: String, // username
