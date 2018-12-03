@@ -19,7 +19,9 @@
         <h5>Prerequite Subject</h5>
          <h6>{{subject.prerequisite}} </h6>
         <br>
-        <button type="submit" class = "evalButton" @click="goToEval(subject)">강의평가</button>
+        <router-link :to ="`/main/${subject.name}`" v-on:click.native="goToEval(subject)">
+          <button class = "evalButton" >강의평가</button>
+        </router-link>
       </div>
     </form>
 
@@ -42,11 +44,7 @@
         this.$emit('close')
       },
       goToEval(item){
-        item.color = 'skyblue',
-          this.$router.push({
-            name:'evaluation',
-            params:{ id: item.name}
-          })
+        this.close(item)
       }
     }
   }

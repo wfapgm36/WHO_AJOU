@@ -66,13 +66,15 @@
                         </b-col>
                     </b-row>
                 </b-container>
-                <modals-container />
+                <modals-container/>
+                <router-view/>
           </span>
   </div>
 </template>
 
 <script>
 import DelPopup from './Popup'
+import Eval from './Evaluation'
 
   export default {
     name: 'Main',
@@ -80,23 +82,18 @@ import DelPopup from './Popup'
       return {
         major: "소프트웨어학과" ,
         curriData: [],
+        searchText: '',
+        subject: [],
+        options: [
+          { text: '전체' },
+          { text: '강의명' },
+          { text: '교수명' }
+        ]
       }
     },
-    Popup (clickedItem) {
-      this.$EventBus.$on('changeColor', (message) => {
-        this.showPreRequisite(clickedItem, message)
-      })
-      this.showPreRequisite(clickedItem, true)
-      this.$modal.show(DelPopup, {
-        subject: clickedItem,
-        modal: this.$modal
-      }, {
-        name: 'dynamic-modal',
-        width: '600px',
-        height: '400px',
-        draggable: true,
-        clickToClose: false
-      })
+    created (){
+      this.$EventBus.$emit('removeTab', true)
+      this.GetCurriculum()
     },
     methods : {
       GetCurriculum(){
@@ -135,9 +132,12 @@ import DelPopup from './Popup'
           }
         }
       }
+    },
+    components:{
+      Eval
     }
   }
-}
+
 </script>
 
 <style>

@@ -7,6 +7,7 @@ import store from './store'
 import axios from 'axios'
 import VueCookies from 'vue-cookies'
 import Master from './components/layout/Master'
+import Evaluation from './components/Evaluation'
 import VModal from 'vue-js-modal'
 import StarRating from 'vue-star-rating'
 

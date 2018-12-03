@@ -49,10 +49,14 @@ export default new Router({
       name: 'email-verification',
       component: EmailVerification
     },
+    
     {
       path: '/main',
       name: 'main',
       component: Main,
+      children: [
+        { path: ':id', component: Evaluation },
+      ]
       // beforeEnter: requireAuth()
     },
     {
@@ -89,12 +93,6 @@ export default new Router({
       path: '/profile',
       name: 'profile',
       component: Profile,
-      // beforeEnter: requireAuth()
-    },
-    {
-      path: '/evaluation/:id',
-      name: 'evaluation',
-      component: Evaluation,
       // beforeEnter: requireAuth()
     },
     {
