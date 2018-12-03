@@ -9,15 +9,15 @@
         <h6>{{subject.name}}</h6>
         <hr>
         <h5>Details</h5>
-        <h6>{{subject.description}}</h6>
+         <h6>{{subject.description}} </h6>
         <hr class = "verticalHr">
       </div>
       <div class = "rightContents">
         <h5> Course Type </h5>
-        <h6>{{subject.type}}</h6>
+         <h6>{{subject.type}} </h6>
         <hr>
         <h5>Prerequite Subject</h5>
-        <h6>{{subject.prerequisite}}</h6>
+         <h6>{{subject.prerequisite}} </h6>
         <br>
         <button type="submit" class = "evalButton" @click="goToEval(subject)">강의평가</button>
       </div>

@@ -17,6 +17,7 @@ import EmailVerification from '@/components/EmailVerification'
 import Evaluation from '@/components/Evaluation'
 import EvalView from '@/components/EvalView'
 import AddLecture from '@/components/AddLecture'
+import EvaluationWrite from '@/components/EvalWrite'
 import store from '../store'
 
 const requireAuth = () => (from, to, next) => {
@@ -107,6 +108,13 @@ export default new Router({
       name: 'add-lecture',
       component: AddLecture,
       // beforeEnter: requireAuth()
+      beforeEnter: requireAuth()
+    },
+    {
+      path: '/evaluation/write',
+      name: 'evaluation-write',
+      component: EvaluationWrite,
+      beforeEnter: requireAuth()
     }
   ]
 })
