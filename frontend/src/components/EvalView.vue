@@ -1,8 +1,7 @@
 <template>
 <div class = "eval-view">
     <b-card-group deck>
-        <b-card header-tag="header" footer-tag="footer">
-            
+        <b-card header-tag="header" footer-tag="footer">   
             <h6 slot="header">
                 <h1>{{id}}</h1>
                 <h2>교수님 이름</h2>

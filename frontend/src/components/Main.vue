@@ -66,13 +66,15 @@
                         </b-col>
                     </b-row>
                 </b-container>
-                <modals-container />
+                <modals-container/>
+                <router-view/>
           </span>
   </div>
 </template>
 
 <script>
 import DelPopup from './Popup'
+import Eval from './Evaluation'
 
   export default {
     name: 'Main',
@@ -80,9 +82,16 @@ import DelPopup from './Popup'
       return {
         major: "소프트웨어학과" ,
         curriData: [],
+        searchText: '',
+        subject: [],
+        options: [
+          { text: '전체' },
+          { text: '강의명' },
+          { text: '교수명' }
+        ]
       }
     },
-    created() {
+    created (){
       this.$EventBus.$emit('removeTab', true)
       this.GetCurriculum()
     },
@@ -122,8 +131,12 @@ import DelPopup from './Popup'
           }
         }
       }
+    },
+    components:{
+      Eval
     }
   }
+
 </script>
 
 <style>

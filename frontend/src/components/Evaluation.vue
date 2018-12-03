@@ -27,6 +27,7 @@
         
         <div class = "eval_container">
             <b-row >
+                
                 <b-col align-v="center" id = "evaluate" v-for="item in subject" v-bind:key="item.id">
                     <div class ="evalContainer" >
                         <h3>Course</h3>
@@ -34,13 +35,13 @@
                         <h3>Professor</h3>
                         <h6>{{item.professor}}</h6>
                         <h5 class = "circle">{{item.grade}}</h5>
-                        <h8>{{item.brief}}</h8><br>
+                        <h6>{{item.brief}}</h6><br>
                         <button type="submit" class = "plusView" @click="goToEval(item.name)">Read More</button>
                     </div>
                 </b-col>
+                 
             </b-row>
         </div>
-
     </div>
 </template>
 <script>
@@ -50,6 +51,7 @@ export default {
     return {
       searchText: '',
       subject: [],
+      name: '',
       options: [
         { text: '전체' },
         { text: '강의명' },
@@ -59,19 +61,35 @@ export default {
   },
   created () {
     this.$EventBus.$emit('removeTab', true)
-    this.getEval()
+    this.getEval(this.$route.params.id)
+  },
+  beforeRouteUpdate(to, from, next){
+    console.log("beforeRouteUpdate들어옴")
+    console.log("toparam:"+ to.params.id)
+    this.name = to.params.id
+    //this.$http.get(`http://localhost:8888/post/${to.params.postId}`)
+    //.then(res => {
+    //    console.log(res.data);
+    //    this.obj = res.data;
+    //})
+    //.catch(err => {
+    //  console.log(err);
+    //});
+    next(this.getEval(this.name))
+
   },
   methods: {
     // 과목명 일치하는 데이터 가져와 저장
-    getEval () {
-      for (var i = 0; i < 8; i++) {
-        this.subject.push({
-          name: this.$route.params.id,
-          professor: '오상윤',
-          grade: 'A+',
-          brief: '강의는 전반적으로...'
-        })
-      }
+    getEval (name) {
+        this.subject = []
+        for (var i = 0; i < 8; i++) {
+          this.subject.push({
+            name: name,
+            professor: '오상윤',
+            grade: 'A+',
+            brief: '강의는 전반적으로...'
+          })
+        }
     },
     goToWrite(){
         this.$router.push({
@@ -80,13 +98,13 @@ export default {
     },
     // 과목 세부 평가 페이지
     goToEval(id) {
-        console.log(id)
-        this.$router.push({
-            name: 'eval-view',
-            params: {
-              id: id
-            }
-        })
+    console.log(id)
+      this.$router.push({
+          name: 'eval-view',
+          params: {
+            id: id
+          }
+      })
     }
   }
 }
