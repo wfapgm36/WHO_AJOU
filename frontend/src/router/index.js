@@ -108,13 +108,12 @@ export default new Router({
       name: 'add-lecture',
       component: AddLecture,
       // beforeEnter: requireAuth()
-      beforeEnter: requireAuth()
     },
     {
       path: '/evaluation/write',
       name: 'evaluation-write',
       component: EvaluationWrite,
-      beforeEnter: requireAuth()
+      // beforeEnter: requireAuth()
     }
   ]
 })

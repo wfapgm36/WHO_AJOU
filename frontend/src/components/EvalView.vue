@@ -56,6 +56,7 @@ export default {
     created() {
         this.$EventBus.$emit('removeTab', true);
         this.count()
+        console.log(this.id)
     },
     methods: {
         count(){
