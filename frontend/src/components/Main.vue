@@ -72,7 +72,7 @@
 </template>
 
 <script>
-  import DelPopup from './Popup'
+import DelPopup from './Popup'
 
   export default {
     name: 'Main',
@@ -82,9 +82,21 @@
         curriData: [],
       }
     },
-    created() {
-      this.$EventBus.$emit('removeTab', true);
-      this.GetCurriculum()
+    Popup (clickedItem) {
+      this.$EventBus.$on('changeColor', (message) => {
+        this.showPreRequisite(clickedItem, message)
+      })
+      this.showPreRequisite(clickedItem, true)
+      this.$modal.show(DelPopup, {
+        subject: clickedItem,
+        modal: this.$modal
+      }, {
+        name: 'dynamic-modal',
+        width: '600px',
+        height: '400px',
+        draggable: true,
+        clickToClose: false
+      })
     },
     methods : {
       GetCurriculum(){
@@ -125,6 +137,7 @@
       }
     }
   }
+}
 </script>
 
 <style>

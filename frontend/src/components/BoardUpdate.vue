@@ -48,12 +48,13 @@
       };
     },
     created() {
+      this.$EventBus.$emit('removeTab', true);
       this.fetchData()
     },
     methods: {
       onSubmit(evt) {
         evt.preventDefault();
-        this.$http.put(`/api/board/${this.$route.params.id}`, this.form)
+        this.$http.put(`/api/board/posts/${this.$route.params.id}`, this.form)
           .then((res) => {
             const status = res.status
             if (status == 200) {
