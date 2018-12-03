@@ -4,7 +4,7 @@ import axios from 'axios'
 
 Vue.use(Vuex)
 
-const resourceHost = 'http://localhost:8080/api'
+const resourceHost = 'http://127.0.0.1:8080/api'
 
 const enhanceAccessToken = () => {
   const {accessToken} = localStorage
