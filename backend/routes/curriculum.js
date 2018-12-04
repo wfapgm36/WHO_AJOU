@@ -35,11 +35,14 @@ router.post('/one', function (req, res, next) {
 /*
     api: /api/curriculum
 */
-//학과이름 받고 해당 학과 커리큘럼에 들어있는 모든 과목 정보 보내줌.
+
+//학과이름 받고 해당 학과 커리큘럼에 들어있는 모든 과목 모두 보내줌.
 router.post('/', function (req, res, next) {
-    var major = req.body.major //학과 이름
-    
-    curriculum.findOne({major: major}, 
+    var name = req.body.major //학과 이름
+
+    curriculum.find({
+        major:name
+    }, 
     (err, data) => {
         if (err) res.status(500).send({
             error: 'database failure'

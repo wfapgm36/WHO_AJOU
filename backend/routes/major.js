@@ -30,6 +30,7 @@ router.get('/all', function (req, res, next) {
 /*
     api: /api/major
 */
+
 //학과이름 받고 학과 데이터 보내줌.
 router.post('/', function (req, res, next) {
     var name = req.body.name //학과이름

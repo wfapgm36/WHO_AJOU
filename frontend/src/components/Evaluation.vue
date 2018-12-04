@@ -1,25 +1,5 @@
 <template>
     <div class = "evaluation">
-        <div class = "searchFunction">
-            <b-row class="justify-content-md-center">
-                <b-col cols = "0.8">
-                  <div>
-                      <b-form-select :options="options" class="mb-3" size = "sm" />
-                  </div>
-                </b-col>
-                <b-col cols = "12" md = "3">
-                  <b-form-input v-model="searchText"
-                            type="text"
-                            placeholder="검색어를 입력해주세용."
-                            size = "sm"
-                            id="searchBar" >
-                  </b-form-input>
-                </b-col>
-                <b-col cols = "0">
-                  <b-button class="searchButton" type="submit" size = "sm" >검색</b-button>
-                </b-col> 
-            </b-row>
-        </div>
         <div class = "evalWriteBtn">
             <b-button  @click="goToWrite()">강의평가작성</b-button>               
         </div>
@@ -49,14 +29,8 @@ export default {
   name: 'Evaluation',
   data () {
     return {
-      searchText: '',
-      subject: [],
+      
       name: '',
-      options: [
-        { text: '전체' },
-        { text: '강의명' },
-        { text: '교수명' }
-      ]
     }
   },
   created () {
@@ -121,20 +95,6 @@ export default {
     font-weight: bold;
     text-align: right;
     margin-right: 8rem;
-}
-.searchButton{
-    border:transparent;
-    background: gray;
-    border-radius:7px;
-    width:4rem;
-    height:2rem;
-    font-weight: bold;
-    color:white;
-}
-.searchFunction{
-  margin-top:70px;
-  padding-left : 8vw;
-  margin-bottom: 30px;
 }
 #evaluate{
     margin-top: 50px;
