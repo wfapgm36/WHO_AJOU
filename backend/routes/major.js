@@ -10,7 +10,25 @@ router.use(function (req, res, next) {
 });
 
 /*
-    api: /api/curriculum
+    api: /api/major/all
+*/
+
+//전체학과 데이터 보내줌.
+router.get('/all', function (req, res, next) {
+    major.find({}, (err, data) => {
+        if(err) res.status(500).send({
+            error: 'database failure'
+        });
+        // 학과가 없으면 error
+        if (!data) return res.status(404).json({
+            error: 'data not found'
+        });
+        res.json(data);
+    })
+});
+
+/*
+    api: /api/major
 */
 
 //학과이름 받고 학과 데이터 보내줌.

@@ -201,7 +201,7 @@ router.post('/evaluation/delete', auth.ensureAuth(), function (req, res, next) {
 */
 //강의평가 상세보기 페이지 & 강의평가카드 보기
 //해당 과목 이름 받고 모든 강의평가내용 프론트로 보내주기 
-router.get('/evaluation/',auth.ensureAuth(),function (req,res,next) {
+router.get('/evaluation',auth.ensureAuth(),function (req,res,next) {
     lecture.find()
         .then(lec => {
             if(lec) res.json(lec);

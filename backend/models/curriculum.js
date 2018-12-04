@@ -21,10 +21,9 @@ var curriculumSchema = mongoose.Schema({
         type: String,
         required: true
     }, // 강의 해당학기
-    prequisite: {
-        type: String,
-        required: true
-    }, // 선수과목
+    prerequisite: [{
+        name: String,
+    }], // 선수과목
     type: {
         type: String,
         required: true
@@ -38,4 +37,4 @@ var curriculumSchema = mongoose.Schema({
 
 var Curriculums = mongoose.model("Curriculum", curriculumSchema, "Curriculumlist");
 
-module.exports = Majors;
+module.exports = Curriculums;

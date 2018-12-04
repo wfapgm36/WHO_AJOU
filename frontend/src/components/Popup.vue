@@ -6,7 +6,7 @@
     <form >
       <div class = "leftContents">
         <h5> Course </h5>
-        <h6>{{subject.name}}</h6>
+        <h6>{{subject.lecture}}</h6>
         <hr>
         <h5>Details</h5>
          <h6>{{subject.description}} </h6>
@@ -17,11 +17,9 @@
          <h6>{{subject.type}} </h6>
         <hr>
         <h5>Prerequite Subject</h5>
-         <h6>{{subject.prerequisite}} </h6>
+         <h6 v-for="pre in subject.prerequisite" v-bind:key = "pre.id">{{pre.name}} </h6>
         <br>
-        <router-link :to ="`/main/${subject.name}`" v-on:click.native="goToEval(subject)">
-          <button class = "evalButton" >강의평가</button>
-        </router-link>
+          <button class = "evalButton" v-on:click.native="goToEval(subject)">강의평가</button>
       </div>
     </form>
 
@@ -44,6 +42,7 @@
         this.$emit('close')
       },
       goToEval(item){
+        this.$EventBus.$emit('clickedPopupLectureName', item.lecture)
         this.close(item)
       }
     }

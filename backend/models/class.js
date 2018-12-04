@@ -3,7 +3,7 @@ var mongoose = require("mongoose");
 var classSchema = mongoose.Schema({
     userId: { type: String, required: true },
     major: { type: String, required: true }, // 어떤 전공의 과목인지
-    name: { type: String, required: true }, // 강의 이름
+    lecture: { type: String, required: true }, // 강의 이름
     professor: { type: String, required: true}, // 교수
     semester: { type: String, required: true},
     evaluation: [{
