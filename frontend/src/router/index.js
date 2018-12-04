@@ -16,8 +16,8 @@ import BoardUpdate from '@/components/BoardUpdate'
 import EmailVerification from '@/components/EmailVerification'
 import Evaluation from '@/components/Evaluation'
 import EvalView from '@/components/EvalView'
+import EvalWrite from '@/components/EvalWrite'
 import AddLecture from '@/components/AddLecture'
-import EvaluationWrite from '@/components/EvalWrite'
 import store from '../store'
 
 const requireAuth = () => (from, to, next) => {
@@ -102,15 +102,15 @@ export default new Router({
       // beforeEnter: requireAuth()
     },
     {
-      path: '/addlecture',
-      name: 'add-lecture',
-      component: AddLecture,
+      path: '/evaluation/write',
+      name: 'evaluation-write',
+      component: EvalWrite,
       // beforeEnter: requireAuth()
     },
     {
-      path: '/evaluation/write',
-      name: 'evaluation-write',
-      component: EvaluationWrite,
+      path: '/addlecture',
+      name: 'add-lecture',
+      component: AddLecture,
       // beforeEnter: requireAuth()
     }
   ]
