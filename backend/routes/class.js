@@ -19,30 +19,21 @@ router.post('/evaluation/create', auth.ensureAuth(), function (req, res, next) {
     
     const userId = req.body.userId
     const major = req.body.major//강의 해당학과
-    const name = req.body.name//강의명
+    const lecture = req.body.lecture//강의명
     const professor = req.body.professor//강의 교수님
     const code = req.body.code//강의 과목코드
     const semester = req.body.semester//강의 수강학기
 
     let eval = {
         writer: req.user.nickname, // username
-        teamProject_grade: { // 팀플
-            grade: req.body.teamProject_grade.grade,
-            count: req.body.teamProject_grade.count
-        },
-        homework_grade: { // 과제
-            grade: req.body.homework_grade.grade,
-            count: req.body.homework_grade.count
-        },
-        test_grade: { // 시험
-            grade: req.body.test_grade.grade,
-            count: req.body.test_grade.count
-        },
-        skill_grade: { // 강의력
-            grade: req.body.skill_grade.grade,
-            count: req.body.skill_grade.count
-        },
-        totalGrade: (req.body.teamProject_grade.grade + req.body.homework_grade.grade + req.body.test_grade.grade + req.body.skill_grade.grade) / 4, // 강의 평가 각 항목의 총 평균 <- 백에서 계산에서 넣기
+        
+        teamProject_grade: req.body.teamProject_grade,
+        homework_grade: req.body.homework_grade,
+        test_grade: req.body.test_grade,
+        skill_grade: req.body.skill_grade,
+         // 강의 평가 각 항목의 총 평균 <- 백에서 계산에서 넣기
+        totalGrade: (req.body.teamProject_grade + req.body.homework_grade + req.body.test_grade + req.body.skill_grade) / 4,
+        
         enrollment_level: req.body.enrollment_level, // 상,중,하
         memo1: req.body.memo1,
         memo2: req.body.memo2,
@@ -56,10 +47,13 @@ router.post('/evaluation/create', auth.ensureAuth(), function (req, res, next) {
             throw new Error('classEval exists')
         } else {
             return lecture.create(
-                id,
-                name,
-                password,
-                email
+                userId,
+                major,
+                lecture,
+                professor,
+                code,
+                semester,
+                eval
             )
         }
     }

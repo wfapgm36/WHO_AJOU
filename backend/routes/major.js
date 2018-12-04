@@ -21,7 +21,7 @@ router.get('/all', function (req, res, next) {
         if (!data) return res.status(404).json({
             error: 'data not found'
         });
-        console.log('Major: ' + data);
+        console.log('All Major Documents: ' + data);
         res.json(data);
     })
 });
@@ -31,7 +31,7 @@ router.get('/all', function (req, res, next) {
     api: /api/major
 */
 //학과이름 받고 학과 데이터 보내줌.
-router.get('/', function (req, res, next) {
+router.post('/', function (req, res, next) {
     var name = req.body.name //학과이름
 
     major.findOne({name: name}, (err, data) => {
@@ -42,7 +42,7 @@ router.get('/', function (req, res, next) {
         if (!data) return res.status(404).json({
             error: 'data not found'
         });
-        console.log('Major: ' + data);
+        console.log('A Major Document: ' + data);
         res.json(data);
     })
 });

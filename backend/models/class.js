@@ -4,33 +4,23 @@ var autoIncrement = require('mongoose-auto-increment')
 autoIncrement.initialize(mongoose.connection)
 
 var classSchema = mongoose.Schema({
-    id: { type: Number, unique: true },
+    id: { type: Number, unique: true },//도큐먼트ID
     userId: { type: String, required: true },
     major: { type: String, required: true }, // 어떤 전공의 과목인지
-    name: { type: String, required: true }, // 강의 이름
+    lecture: { type: String, required: true }, // 강의 이름
     professor: { type: String, required: true}, // 교수
     code: { type: String, required: true }, // 과목코드
     semester: { type: String, required: true},
     evaluation: [{
         id: String, // autoincrease
         writer: String, // username
-        teamProject_grade: { // 팀플
-            grade: Number,
-            count: Number
-        },
-        homework_grade: { // 과제
-            grade: Number,
-            count: Number
-        },
-        test_grade: { // 시험
-            grade: Number,
-            count: Number
-        },
-        skill_grade:{ // 강의력
-            grade: Number,
-            count: Number
-        },
+
+        teamProject_grade: Number, // 팀플
+        homework_grade: Number, //과제
+        test_grade: Number, // 시험
+        skill_grade: Number, // 강의력
         totalGrade: Number, // 강의 평가 각 항목의 총 평균 <- 백에서 계산에서 넣기
+        
         enrollment_level: String, // 상,중,하
         memo1: String,
         memo2: String,
@@ -45,12 +35,12 @@ var classSchema = mongoose.Schema({
 });
 
 // 강의 평가 도큐먼트 생성
-classSchema.statics.create = function (userId, major, name, professor, code, semester, eval) {
+classSchema.statics.create = function (userId, major, lecture, professor, code, semester, eval) {
 
     const classeval = new this({
         userId,
         major,
-        name,
+        lecture,
         professor,
         code,
         semester

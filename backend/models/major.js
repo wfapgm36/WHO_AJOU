@@ -1,7 +1,7 @@
 var mongoose = require("mongoose");
 
 var majorSchema = mongoose.Schema({
-    name: {
+    major: {
         type: String,
         required: true
     }, // 학과이름
