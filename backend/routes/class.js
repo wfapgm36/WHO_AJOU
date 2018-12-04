@@ -100,7 +100,7 @@ router.post('/evaluation/delete', auth.ensureAuth(), function (req, res, next) {
 
     var id = req.body.id;
 
-    lecture.findOneAndDelete({id: id}, function  (err, data) {
+    lecture.findOneAndDelete({id: id}, function (err, data) {
         if (err) return res.status(500).send(err);
         var response = {
             message: "document successfully deleted",

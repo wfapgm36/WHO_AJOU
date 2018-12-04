@@ -129,6 +129,7 @@ export default {
       },
       //나중 majorOption의 데이터에 넣어줄 함수
       getMajor(){
+          this.$http.axios('/api/major/all')
 
       },
       // subjectOptions
@@ -142,7 +143,6 @@ export default {
 
       }
   }
-
 }
 
 

@@ -14,9 +14,7 @@ router.use(function (req, res, next) {
 router.get('/', function (req, res, next) {
     var name = req.body.name //학과 이름
     
-    curriculum.findOne({
-        major: name
-    }, 
+    curriculum.findOne({major: name}, 
     (err, data) => {
         if (err) res.status(500).send({
             error: 'database failure'
