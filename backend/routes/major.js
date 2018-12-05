@@ -8,16 +8,34 @@ var major = require('../models/major');
 router.use(function (req, res, next) {
     next();
 });
+/*
+    api: /api/major/all
+*/
+//전체 학과 데이터 보내줌.
+router.get('/all', function (req, res, next) {
+    major.find({}, (err, data) => {
+        if (err) res.status(500).send({
+            error: 'database failure'
+        });
+        // 학과가 없으면 error
+        if (!data) return res.status(404).json({
+            error: 'data not found'
+        });
+        console.log('All Major Documents: ' + data);
+        res.json(data);
+    })
+});
+
 
 /*
-    api: /api/curriculum
+    api: /api/major
 */
 
 //학과이름 받고 학과 데이터 보내줌.
-router.get('/', function (req, res, next) {
-    var name = req.body.name //학과이름
+router.post('/', function (req, res, next) {
+    var major = req.body.name //학과이름
 
-    major.find({}, (err, data) => {
+    major.findOne({major: major}, (err, data) => {
         if(err) res.status(500).send({
             error: 'database failure'
         });
@@ -25,7 +43,7 @@ router.get('/', function (req, res, next) {
         if (!data) return res.status(404).json({
             error: 'data not found'
         });
-        console.log('Major: ' + data);
+        console.log('A Major Document: ' + data);
         res.json(data);
     })
 });

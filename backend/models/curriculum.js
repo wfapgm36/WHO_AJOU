@@ -9,10 +9,6 @@ var curriculumSchema = mongoose.Schema({
         type: String,
         required: true
     }, // 강의명
-    code: {
-        type: String,
-        required: true
-    }, // 과목코드
     description: {
         type: String,
         required: true
@@ -21,21 +17,19 @@ var curriculumSchema = mongoose.Schema({
         type: String,
         required: true
     }, // 강의 해당학기
-    prequisite: {
-        type: String,
-        required: true
-    }, // 선수과목
+    prequisite: [{
+        name: String
+    }], // 선수과목
     type: {
         type: String,
         required: true
     }, // 전공, 교양 인지
     isPre: {
         type: Boolean,
-    }, // 강의 해당학기
+    },
 }, {
     versionKey: false
 });
 
-var Curriculums = mongoose.model("Curriculum", curriculumSchema, "Curriculumlist");
-
-module.exports = Majors;
+var Curriculum = mongoose.model("Curriculum", curriculumSchema, "Curriculumlist");
+module.exports = Curriculum;
