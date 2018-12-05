@@ -1,31 +1,39 @@
 <template>
-  <div class="main" >
+  <div id="main" style="overflow-y: auto;" >
     <div class = "searchFunction">
+       <b-form @submit.prevent="searchPost">
       <b-row class="justify-content-md-center">
           <b-col cols = "0.8">
-            <div>
-                <b-form-select :options="options" class="mb-3" size = "sm" />
-            </div>
+ 
+                <b-form-select  v-model="searchKind" class="mb-3" size="sm">
+                  <option :value="null">학과</option>
+                  <option v-for="item in options" v-bind:key ="item.id">{{item.value}}</option>
+                </b-form-select>
+           
           </b-col>
           <b-col cols = "12" md = "3">
-            <b-form-input v-model="searchText"
-                      type="text"
-                      placeholder="검색어를 입력해주세용."
-                      size = "sm"
-                      id="searchBar" >
-            </b-form-input>
+                <b-form-input v-model="searchText"
+                          type="text"
+                          placeholder="검색어를 입력해주세용."
+                          size = "sm"
+                          id="searchBar" >
+                </b-form-input>
+            
           </b-col>
           <b-col cols = "0">
-            <b-button class="searchButton" type="submit" size = "sm" >검색</b-button>
+           <b-button class="searchButton" type="submit" size = "sm" >검색</b-button>
           </b-col> 
       </b-row>
+       </b-form>
     </div>
-    <p>{{clickedMajor.name}}</p>
+    <p>{{clickedMajor}}</p>
       <div class="eval_write">
         <div class = "choice_major">
-          <b-button class="eval_write_btn" @click = "goToEvalWrite">강의평가작성</b-button>
+          <router-link :to ="`/evaluation/write`">
+            <b-button class="eval_write_btn">강의평가작성</b-button>
+          </router-link>
            <b-dropdown id="ddown-buttons" text="학과를 선택하세요" class="m-2">
-            <b-dropdown-item-button v-model = "clickedMajor.major" v-for= "item in majors" v-bind:key="item.id" @click = "setMajor(item)">{{item.major}}</b-dropdown-item-button>
+            <b-dropdown-item-button v-model = "clickedMajor" v-for= "item in majors" v-bind:key="item.id" @click = "setMajor(item)">{{item.major}}</b-dropdown-item-button>
           </b-dropdown>
         </div>
           
@@ -91,79 +99,122 @@
                 </b-col>
             </b-row>
         </b-container>
-        <modals-container/>
-     
-        <div class = "evaluation">
+        <div id = "evaluation">
           <div class = "eval_container">
               <b-row >
-                  <b-col align-v="center" id = "evaluate" v-for="item in eval_subject" v-bind:key="item.id" v-if="showEval(item)">
+                  <b-col align-v="center" id = "evaluate" v-for="item in filteredItems" v-bind:key="item.id" >
                       <div class ="evalContainer" >
                           <h3>Course</h3>
-                          <h6>{{item.name}}</h6>
+                          <h6>{{item.lecture}}</h6>
                           <h3>Professor</h3>
                           <h6>{{item.professor}}</h6>
-                          <h5 class = "circle">{{item.grade}}</h5>
-                          <h6>{{item.brief}}</h6><br>
-                          <button type="submit" class = "plusView" @click="goToEval(item.name)">Read More</button>
+                          <h5 class = "circle">{{item.evaluation[0].totalGrade}}</h5>
+                          <h6>{{item.semester}}</h6><br>
+                          <router-link :to ="{name:'eval-view',params:{id: item.id}}">
+                            <button type="submit" class = "plusView">Read More</button>
+                          </router-link>
                       </div>
                   </b-col>
               </b-row>
           </div>
-    </div>
+        </div>
+        <modals-container/>
   </div>
 </template>
 
 <script>
 import DelPopup from './Popup'
-import Eval from './Evaluation'
 
   export default {
     name: 'Main',
     data () {
       return {
-        searchText:'',
-        majors: [] ,
-        clickedMajor : {major:'소프트웨어학과'},
-        curriData: [],
-        searchText: '',
-        subject: [],
+        searchKind : null, //검색할 종류 전체/강의명/교수명
+        filteredItems:[], //필터링 된 검색 결과
+        searchText:'', 
+        majors: [] , //드롭다운에 뿌려줄 학과
+        clickedMajor : '', //드롭다운에서 선택한 학과
+        curriData: [], // 모든 커리큘럼 데이터
+        subject: [], //팝업창의 props:subject 데이터 전달
         options: [
-          { text: '전체' },
-          { text: '강의명' },
-          { text: '교수명' }
+          { value: '강의명' },
+          { value: '교수명' }
         ],
-        eval_subject: [],
-        popupData : ''
+        alphaGrade : '',  //알파벳 점수 ..고려중
+        eval_subject: [], //강의평가 모든 데이터
       }
     },
     created (){
       this.$EventBus.$emit('removeTab', true)
-      this.GetMajor()
-      this.GetCurriculum();
-      this.getEval(this.$route.params.id)
+      this.getUserInfo(),
+      this.GetMajor(),
+      this.getEval()
     },
     methods : {
-      showEval(item){
-        if(item.name == this.searchText || item.name == popupData){
-          return true
+      //전체/학과/강의명 검색
+      searchPost () {
+          this.filteredItems = []
+        if(this.searchKind == null ){
+            for (let i = 0; i < this.eval_subject.length; i++) {
+                if (this.eval_subject[i].lecture.indexOf(this.searchText) == -1 && this.eval_subject[i].professor.indexOf(this.searchText) == -1) {
+                } else {
+                this.filteredItems.push(this.eval_subject[i])
+                }
+                this.filteredItems = this.filteredItems.slice(0, 10)
+            } 
         }
-        else{
-          return false
+        else if(this.searchKind == '강의명'){
+           for (let i = 0; i < this.eval_subject.length; i++) {
+                if (this.eval_subject[i].lecture.indexOf(this.searchText) == -1) {
+                } else {
+                this.filteredItems.push(this.eval_subject[i])
+                }
+                this.filteredItems = this.filteredItems.slice(0, 10)
+            } 
+        }else if(this.searchKind == '교수명'){
+            for (let i = 0; i < this.eval_subject.length; i++) {
+               if (this.eval_subject[i].professor.indexOf(this.searchText) == -1) {
+               } else {
+               this.filteredItems.push(this.eval_subject[i])
+               }
+               this.filteredItems = this.filteredItems.slice(0, 10)
+            } 
+        }
+       this.scrollTop()
+      },
+      //자동 위로 스크롤..잘 안됨 추후 수정 예정
+      scrollTop(){
+        try{
+          var container = this.$el.querySelector("#main");
+          container.scrollTop = container.scrollHeight;
+        }catch(e){
+          console.log(e)
         }
       },
-      setMajor(item){
-      //  this.clickedMajor = item.major
+      //사용자의 기본설정된 학과로 처음 메인화면 표시하기 위함.
+      getUserInfo(){
+        this.$http.get('/api/profile/user')
+          .then(res => {
+        this.clickedMajor = res.data.major
         this.GetCurriculum();
+        })
       },
+      //드롭다운버튼에서 클릭한 학과의 커리큘럼 가져오기
+      setMajor(item){
+          this.clickedMajor.major = item.major
+          this.GetCurriculum();
+      }, 
+      //모든 학과이름과 정보 받아오기
       GetMajor(){
         this.$http.get("/api/major/all").then((res) => {
           this.majors = res.data;
         });
       },
+      //커리큘럼 가져오기
       GetCurriculum(){
         console.log("GetCurriculum 들어옴")
         console.log("this.clickedMajor:"+this.clickedMajor)
-        this.$http.post("/api/curriculum", this.clickedMajor)
+        this.$http.post("/api/curriculum", {major: this.clickedMajor})
         .then((res) => {
           this.curriData = res.data;
         })
@@ -171,12 +222,15 @@ import Eval from './Evaluation'
           alert(err);
         });
       },
+      //팝업 
       Popup(clickedItem){
+        //팝업에서 클릭 연동하기 위해 이벤트 버스 실행
         this.$EventBus.$on('changeColor', (message) => {
           this.showPreRequisite(clickedItem, message)
         })
         this.$EventBus.$on('clickedPopupLectureName', (message) => {
-          this.popupData = message;
+          this.searchText = message.lecture
+          this.searchPost()
         })
         this.showPreRequisite(clickedItem, true)
         this.$modal.show(DelPopup,{
@@ -189,36 +243,85 @@ import Eval from './Evaluation'
           clickToClose : false
         })
       },
-      goToEvalWrite(){
-        this.$router.push({
-          name:'evaluation-write'
-        })
-      },
+      //선수과목 서로서로 연결. 마지막 선수과목이 없을 때, undefined의 길이를 읽기 때문에 TypeError 발생으로 try...catch 사용
       showPreRequisite(item, isPre){
         for(var i =0 ; i<this.curriData.length; i ++){
-          for(var j =0 ; j<item.prerequisite.length; j++){
-            if(item.prerequisite[j].name == this.curriData[i].lecture){
-              this.curriData[i].isPre = isPre;           
-              this.showPreRequisite(this.curriData[i], isPre)
+          try{
+            for(var j =0 ; j<item.prerequisite.length; j++){
+              if(item.prerequisite[j].name == this.curriData[i].lecture){
+                this.curriData[i].isPre = isPre;
+                this.showPreRequisite(this.curriData[i], isPre)
+              }
             }
-          }
+          }catch (e) {}
         }
       },
-      getEval (name) {
+      //강의평가 모든 정보 가져오기
+      getEval() {
         this.$http.get("/api/class/evaluation")
           .then((res) => {
           this.eval_subject = res.data;
-        }); 
+          console.log(res.data)
+        });
       },
-    },
-    components:{
-     
-    }
-  }
+  }  
+}  
 
 </script>
 
+
+
+
+
+<!--**********************css****************************-->
 <style>
+.evalWrite{
+    text-align:right;
+}
+.evalWriteBtn{
+    border:transparent;
+    border-radius:10px;
+    height:35px;
+    font-weight: bold;
+    text-align: right;
+    margin-right: 8rem;
+}
+#evaluate{
+    margin-top: 50px;
+}
+
+.evalContainer{
+    border:3px solid yellow;
+    border-radius: 50px;
+    width:330px;
+    height: 450px;
+    background:white;
+    text-align: center;
+}
+
+.circle{
+    border:thick solid yellow;
+    border-radius: 100%;
+    padding-top:5px;
+    padding-bottom: 5px;
+    width:80px;
+    font-size:45px;
+    margin-left:38%;
+    margin-right:38%;
+    margin-top:25px;
+    margin-bottom:30px;
+}
+
+.plusView{
+    margin-top:30px;
+    color:white;
+    height:40px;
+    font-weight: bold;
+    background: lightblue;
+    text-align: center;
+    border:transparent;
+    border-radius: 10px;
+}
   .choice_major{
     margin-left: 10px;
   }

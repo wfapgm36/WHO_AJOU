@@ -19,10 +19,9 @@
         <h5>Prerequite Subject</h5>
          <h6 v-for="pre in subject.prerequisite" v-bind:key = "pre.id">{{pre.name}} </h6>
         <br>
-          <button class = "evalButton" v-on:click.native="goToEval(subject)">강의평가</button>
+          <button class = "evalButton" @click.prevent="goToEval(subject)">강의평가</button>
       </div>
     </form>
-
   </div>
 </template>
 <script>
@@ -35,6 +34,7 @@
           name: ''
       }
     },
+
     methods : {
       close(item){
         item.isPre = false
@@ -42,7 +42,7 @@
         this.$emit('close')
       },
       goToEval(item){
-        this.$EventBus.$emit('clickedPopupLectureName', item.lecture)
+        this.$EventBus.$emit('clickedPopupLectureName', item)
         this.close(item)
       }
     }
