@@ -138,45 +138,44 @@ export default {
   name: "evaluation-write",
   data() {
     return {
-      userId: "syl1709",
-      //강의 정보
-      majorSelected: '미디어',
-      subjectSelected: '컴프설',
-      professorSelected: '신현준',
-      semesterSelected: '1-1',
-      diffiSelected: '상',
-      //강의 평점
-      assignRating: "3",
-      teamRating: "4",
-      lectureRating: "2",
-      examRating: "5",
-      //강의 메모
-      text1: "시험",
-      text2: "팀플",
-      text3: "추천",
-      text4: "비추천",
-      
-
+      //test
+      //userId: "syl1709",
+      ////강의 정보
+      //majorSelected: "미디어",
+      //subjectSelected: "컴프설",
+      //professorSelected: "신현준",
+      //semesterSelected: "1-1",
+      //diffiSelected: "상",
+      ////강의 평점
+      //assignRating: "3",
+      //teamRating: "4",
+      //lectureRating: "2",
+      //examRating: "5",
+      ////강의 메모
+      //text1: "시험",
+      //text2: "팀플",
+      //text3: "추천",
+      //text4: "비추천",
 
       allMajorData: [],
 
-      //userId: "",
-      ////강의 정보
-      //majorSelected: null,
-      //subjectSelected: null,
-      //professorSelected: null,
-      //semesterSelected: null,
-      //diffiSelected: null,
-      ////강의 평점
-      //assignRating: "",
-      //teamRating: "",
-      //lectureRating: "",
-      //examRating: "",
-      ////강의 메모
-      //text1: "",
-      //text2: "",
-      //text3: "",
-      //text4: "",
+      userId: "",
+      //강의 정보
+      majorSelected: null,
+      subjectSelected: null,
+      professorSelected: null,
+      semesterSelected: null,
+      diffiSelected: null,
+      //강의 평점
+      assignRating: "",
+      teamRating: "",
+      lectureRating: "",
+      examRating: "",
+      //강의 메모
+      text1: "",
+      text2: "",
+      text3: "",
+      text4: "",
       //선택 옵션
       majorOptions: [],
       subjectOptions: [],
@@ -215,9 +214,9 @@ export default {
     },
     //유저아이디 가져오기 (수정할지 말지 논의!)
     getUserId() {
-      this.$http.get("/api/profile/user").then(res => {
-        this.userId = res.data.username;
-      });
+      //this.$http.get("/api/profile/user").then(res => {
+      //  this.userId = res.data.username;
+      //});
     },
     //majorOption의 데이터에 넣어줄 함수
     //학과 선택 함수
@@ -267,14 +266,14 @@ export default {
       }
     },
     async onSubmit() {
-       await this.$http
+      this.$http
         .post("/api/class/evaluation/create", {
-          userId: 'syl1709',//this.userId,
+          userId: this.userId,
           major: this.majorSelected,
           lecture: this.subjectSelected,
           professor: this.professorSelected,
           semester: this.semesterSelected,
-          nickname: '소연',//this.$cookies.get("nickname"),
+          nickname: this.$cookies.get("nickname"),
           teamProject_grade: this.assignRating,
           homework_grade: this.teamRating,
           test_grade: this.lectureRating,
@@ -286,13 +285,13 @@ export default {
           memo4: this.text4
         })
         .then(res => {
-          console.log('리스폰스')
+          console.log("리스폰스");
           console.log(res.data);
         })
         .catch(err => {
           console.log(err);
         });
-      await this.$router.push("/main");
+      //this.$router.push("/main");
     }
   }
 };

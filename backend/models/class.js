@@ -11,7 +11,6 @@ var classSchema = mongoose.Schema({
     professor: { type: String, required: true}, // 교수
     semester: { type: String, required: true},
     evaluation: [{
-        id: String, // autoincrease
         writer: String, // username
 
         teamProject_grade: Number, // 팀플
@@ -34,19 +33,18 @@ var classSchema = mongoose.Schema({
 });
 
 // 강의 평가 도큐먼트 생성
-classSchema.statics.create = function (userId, major, lecture, professor, code, semester, eval) {
+classSchema.statics.create = function (userId, major, lecture, professor, semester, eval) {
     
     const classeval = new this({
         userId,
         major,
         lecture,
         professor,
-        code,
         semester
     });
     
     console.log('생성 받았다.')
-    console.log(userId, major, lecture, professor, code, semester, eval)
+    console.log(userId, major, lecture, professor, semester)
 
     classeval.evaluation.push(eval);
     
@@ -57,14 +55,14 @@ classSchema.statics.create = function (userId, major, lecture, professor, code, 
     });
 };
 
-// 유저가 이전에 쓴 중복되는 강의평가 찾기.
-classSchema.statics.findDuplicate = function(userId, semester, lecture) {
+// 유저가 쓴 강의평가 찾기
+classSchema.statics.findDuplicate = function (userId, semester, lecture) {
     console.log("SYSTEM: 중복검사")
     return this.findOne({
-        userId: userId, 
-        semester: semester, 
+        userId: userId,
+        semester: semester,
         lecture: lecture
-    }).exec(console.log("SYSTEM: 통과"));
+    }).exec();
 
 };
 
@@ -81,10 +79,10 @@ classSchema.statics.findId = function(id) {
 
 // 강의평가id를 Auto Increment 필드로 지정
 classSchema.plugin(autoIncrement.plugin, {
-    model: 'Class',
+    model: 'Classes',
     field: 'id',
     startAt: 1
 })
 
-var Class = mongoose.model('Class', classSchema, 'Classlist');
+var Class = mongoose.model('Classes', classSchema, 'Classlist');
 module.exports =  Class;

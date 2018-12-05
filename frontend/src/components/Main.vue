@@ -146,7 +146,7 @@ import DelPopup from './Popup'
     },
     created (){
       this.$EventBus.$emit('removeTab', true)
-      this.getUserInfo(),
+      //this.getUserInfo(),
       this.GetMajor(),
       this.getEval()
     },
@@ -180,17 +180,17 @@ import DelPopup from './Popup'
                this.filteredItems = this.filteredItems.slice(0, 10)
             } 
         }
-       this.scrollTop()
+       //this.scrollTop()
       },
       //자동 위로 스크롤..잘 안됨 추후 수정 예정
-      scrollTop(){
-        try{
-          var container = this.$el.querySelector("#main");
-          container.scrollTop = container.scrollHeight;
-        }catch(e){
-          console.log(e)
-        }
-      },
+      //scrollTop(){
+      //  try{
+      //    var container = this.$el.querySelector("#main");
+      //    container.scrollTop = container.scrollHeight;
+      //  }catch(e){
+      //    console.log(e)
+      //  }
+      //},
       //사용자의 기본설정된 학과로 처음 메인화면 표시하기 위함.
       getUserInfo(){
         this.$http.get('/api/profile/user')
@@ -262,6 +262,7 @@ import DelPopup from './Popup'
         this.$http.get("/api/class/evaluation")
           .then((res) => {
           this.eval_subject = res.data;
+          console.log('강의평가모든정보')
           console.log(res.data)
         });
       },
