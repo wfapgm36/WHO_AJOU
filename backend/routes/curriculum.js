@@ -6,6 +6,32 @@ router.use(function (req, res, next) {
     next();
 });
 
+
+/*
+    api: /api/curriculum/create
+*/
+//커리큘럼에 과목 추가.
+router.post('/create', function (req, res, next) {
+    var major = req.body.major //학과명
+    var lecture = req.body.lecture //과목명
+
+    curriculum.findOne({
+            major: major,
+            lecture: lecture
+        },
+        (err, data) => {
+            if (err) res.status(500).send({
+                error: 'database failure'
+            });
+            // 해당학과가 커리큘럼에 없으면 error
+            if (!data) return res.status(404).json({
+                error: 'data not found'
+            });
+            console.log('A lecture datum of Curriculum:' + data);
+            res.json(data);
+        })
+});
+
 /*
     api: /api/curriculum/one
 */
@@ -30,7 +56,6 @@ router.post('/one', function (req, res, next) {
             res.json(data);
         })
 });
-
 
 /*
     api: /api/curriculum

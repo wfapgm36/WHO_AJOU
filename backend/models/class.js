@@ -9,7 +9,6 @@ var classSchema = mongoose.Schema({
     major: { type: String, required: true }, // 어떤 전공의 과목인지
     lecture: { type: String, required: true }, // 강의 이름
     professor: { type: String, required: true}, // 교수
-    code: { type: String, required: true }, // 과목코드
     semester: { type: String, required: true},
     evaluation: [{
         id: String, // autoincrease
@@ -55,9 +54,7 @@ classSchema.statics.create = function (userId, major, lecture, professor, code, 
     });
 };
 
-// 유저가 쓴 강의평가 찾기
-//find => findDuplicate으로 이름 변경
-//return this.find => this.findOne으로 변경. find로 하면 무한으로 찾아버림
+// 유저가 이전에 쓴 중복되는 강의평가 찾기 있으면 제출안됨.
 classSchema.statics.findDuplicate = function(userId, semester, lecture) {
     console.log("SYSTEM: 중복검사")
     return this.findOne({

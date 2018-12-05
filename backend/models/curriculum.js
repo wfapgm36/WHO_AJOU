@@ -9,10 +9,6 @@ var curriculumSchema = mongoose.Schema({
         type: String,
         required: true
     }, // 강의명
-    code: {
-        type: String,
-        required: true
-    }, // 과목코드
     description: {
         type: String,
         required: true

@@ -21,7 +21,6 @@ router.post('/evaluation/create',  auth.ensureAuth(),function (req, res, next) {
     const major = req.body.major//강의 해당학과
     const lecture = req.body.lecture//강의명
     const professor = req.body.professor//강의 교수님
-    const code = req.body.code//강의 과목코드
     const semester = req.body.semester//강의 수강학기
 
     let eval = {
@@ -111,6 +110,7 @@ router.post('/evaluation/delete', auth.ensureAuth(), function (req, res, next) {
 //모든 강의평가내용 프론트로 보내주기 
  
 router.get('/evaluation',auth.ensureAuth(),function (req,res,next) {
+    console.log('SYSTEM: 강의평가 카드보기')
     Class.find()
         .then(lec => {
             if(lec) res.json(lec);
@@ -124,7 +124,7 @@ router.get('/evaluation',auth.ensureAuth(),function (req,res,next) {
 */
 //ReadMore 버튼 눌렀을 때, 강의평가 디테일 보기
 router.get('/evaluation/:id', auth.ensureAuth(),function(req,res,next){
-    console.log("여긴?")
+    console.log('SYSTEM: 강의평가디테일(read more)')
     Class.findId(req.params.id)
     .then(eval => {
         if (eval) {

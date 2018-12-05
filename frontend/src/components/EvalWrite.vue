@@ -140,8 +140,7 @@ export default {
       semesterSelected:null,
       diffiSelected:null,
       //강의 정보
-      userId:'',
-      code: "F001", 
+      userId:'', 
       professor: "",
       difficult: "",
       //강의 평점
@@ -176,7 +175,8 @@ export default {
   },
   //select 시, 학과명이 바뀔때마다 과목명과 교수명을 다시 받기 위함
   watch: { 'majorSelected': function() {
-     this.getSubject()
+      this.getSubject()
+      this.getProfessor()
     }
   },
   methods: {
@@ -192,7 +192,7 @@ export default {
     setExamRating(rating) {
       this.examRating = rating;
     },
-    //유저아이디 가져오기
+    //유저아이디 가져오기 (수정할지 말지 논의!)
     getUserId(){
      this.$http.get('/api/profile/user')
       .then(res => {
@@ -227,7 +227,6 @@ export default {
           for (var i = 0; i < res.data.length; i++) {
             this.subjectOptions.push({ value: res.data[i].lecture });
           }
-          this.getProfessor(this.majorSelected)
         })
         .catch(err => {
           console.log(err);
@@ -235,33 +234,16 @@ export default {
     },
     //professorOptions
     //선택한 학과에 따라 교수명 데이터 넣기
-    getProfessor(clickedMajor) {
+    getProfessor() {
       this.professorOptions = []
       for(var i =0 ; i<this.allMajorData.length; i++){
-       if(this.allMajorData[i].major == clickedMajor){
+       if(this.allMajorData[i].major == this.majorSelected){
         for (var j = 0; j < this.allMajorData[i].professor.length; j++) {
             this.professorOptions.push({ value: this.allMajorData[i].professor[j].name });
         }
        }
       }
     },
-    // 과목코드 
-    //getCode() {
-    //  this.code = "";
-    //  this.$http
-    //    .post("/api/curriculum/one", {
-    //      major: this.majorSelected,
-    //      lecture: this.subjectSelected
-    //    })
-    //    .then(res => {
-    //      console.log("커리큘럼 내 한 과목");
-    //      console.log(res.data);
-    //      this.code = res.data.code;
-    //    })
-    //    .catch(err => {
-    //      console.log(err);
-    //    });
-    //},
     onSubmit() {
       this.$http
         .post("/api/class/evaluation/create", {
@@ -269,7 +251,6 @@ export default {
           major: this.majorSelected,
           lecture: this.subjectSelected,
           professor: this.professorSelected,
-          code: this.code,
           semester: this.semesterSelected,
           nickname: this.$cookies.get("nickname"),
           teamProject_grade: this.assignRating,
