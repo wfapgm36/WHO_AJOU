@@ -33,9 +33,9 @@ router.get('/all', function (req, res, next) {
 
 //학과이름 받고 학과 데이터 보내줌.
 router.post('/', function (req, res, next) {
-    var name = req.body.name //학과이름
+    var major = req.body.name //학과이름
 
-    major.findOne({name: name}, (err, data) => {
+    major.findOne({major: major}, (err, data) => {
         if(err) res.status(500).send({
             error: 'database failure'
         });

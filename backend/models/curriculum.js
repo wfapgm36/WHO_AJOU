@@ -1,6 +1,13 @@
 var mongoose = require("mongoose");
+var autoIncrement = require('mongoose-auto-increment')
+
+autoIncrement.initialize(mongoose.connection)
 
 var curriculumSchema = mongoose.Schema({
+    id: {
+        type: Number,
+        unique: true
+    }, //도큐먼트ID
     major: {
         type: String,
         required: true
@@ -9,10 +16,6 @@ var curriculumSchema = mongoose.Schema({
         type: String,
         required: true
     }, // 강의명
-    code: {
-        type: String,
-        required: true
-    }, // 과목코드
     description: {
         type: String,
         required: true
@@ -20,7 +23,7 @@ var curriculumSchema = mongoose.Schema({
     semester: {
         type: String,
         required: true
-    }, // 강의 해당학기
+    }, // 강의 추천 학기
     prequisite: [{
         name: String
     }], // 선수과목
@@ -34,6 +37,47 @@ var curriculumSchema = mongoose.Schema({
 }, {
     versionKey: false
 });
+
+// 강의 평가 도큐먼트 생성
+curriculumSchema.statics.create = function (major, type, lecture, prequisite, semester, description) {
+
+    const curriculum = new this({
+        major,
+        type,
+        lecture,
+        semester,
+        description
+    });
+    console.log('생성 받았다')
+    console.log(major, type, lecture, prequisite, semester)
+
+    for (var i = 0; i < prequisite.length; i++) {
+        curriculum.prequisite.push({name: prequisite[i]});
+    }
+
+    // return the Promise
+    return curriculum.save(err => {
+        console.log('하이' + err);
+        if (err) return handledError(err);
+    });
+};
+
+// 중복되는 커리큘럼 찾기.
+curriculumSchema.statics.findDuplicate = function (major, lecture) {
+    console.log("SYSTEM: 중복검사")
+    return this.findOne({
+        major: major,
+        lecture: lecture
+    }).exec();
+};
+
+// 강의평가id를 Auto Increment 필드로 지정
+curriculumSchema.plugin(autoIncrement.plugin, {
+    model: 'Curriculum',
+    field: 'id',
+    startAt: 1
+})
+
 
 var Curriculum = mongoose.model("Curriculum", curriculumSchema, "Curriculumlist");
 module.exports = Curriculum;
