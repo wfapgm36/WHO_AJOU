@@ -7,13 +7,12 @@ router.use(function (req,res,next) {
    next();
 });
 
-
 /*
     api: /api/class/evaluation/create
 */
 //강의 평가 작성
 //모든 평가 데이터 받아서 document형태로 create
-router.post('/evaluation/create',  auth.ensureAuth(),function (req, res, next) {
+router.post('/evaluation/create',function (req, res, next) {
     console.log('SYSTEM: 강의평가생성')
     console.log(req.body)
     
@@ -40,11 +39,11 @@ router.post('/evaluation/create',  auth.ensureAuth(),function (req, res, next) {
         memo4: req.body.memo4,
     }
     
-    // create a new user if does not exist
     const create = (classEval) => {
         if (classEval) {
             throw new Error('classEval exists')
         } else {
+            console.log('생성 넘긴다')
             return Class.create(
                 userId,
                 major,
@@ -56,17 +55,12 @@ router.post('/evaluation/create',  auth.ensureAuth(),function (req, res, next) {
             )
         }
     }
-
-
-    // respond to the client
     const respond = () => {
         console.log('SYSTEM: created successfully')
         res.json({
             message: 'created successfully',
         })
     }
-
-    // run when there is an error (username exists)
     const onError = (error) => {
         console.log('SYSTEM: ' + error)
         res.status(409).json({
@@ -75,7 +69,6 @@ router.post('/evaluation/create',  auth.ensureAuth(),function (req, res, next) {
     }
 
     // 강의평가 도큐먼트 생성 로직
-    //name => lecture로 바꿈 오타수정
     Class.findDuplicate(userId, semester, lecture)
         .then(create)
         .then(respond)
@@ -117,7 +110,6 @@ router.get('/evaluation',auth.ensureAuth(),function (req,res,next) {
             else res.status(203).send() // 해당과목이 존재하지 않음
         })
 });
-
 
 /*
     api: /api/class/evaluation/:id

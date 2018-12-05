@@ -35,7 +35,7 @@ var classSchema = mongoose.Schema({
 
 // 강의 평가 도큐먼트 생성
 classSchema.statics.create = function (userId, major, lecture, professor, code, semester, eval) {
-
+    
     const classeval = new this({
         userId,
         major,
@@ -44,6 +44,9 @@ classSchema.statics.create = function (userId, major, lecture, professor, code, 
         code,
         semester
     });
+    
+    console.log('생성 받았다.')
+    console.log(userId, major, lecture, professor, code, semester, eval)
 
     classeval.evaluation.push(eval);
     
@@ -54,14 +57,14 @@ classSchema.statics.create = function (userId, major, lecture, professor, code, 
     });
 };
 
-// 유저가 이전에 쓴 중복되는 강의평가 찾기 있으면 제출안됨.
+// 유저가 이전에 쓴 중복되는 강의평가 찾기.
 classSchema.statics.findDuplicate = function(userId, semester, lecture) {
     console.log("SYSTEM: 중복검사")
     return this.findOne({
         userId: userId, 
         semester: semester, 
         lecture: lecture
-    }).exec();
+    }).exec(console.log("SYSTEM: 통과"));
 
 };
 
