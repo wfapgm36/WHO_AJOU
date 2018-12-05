@@ -38,10 +38,10 @@ router.post('/one', function (req, res, next) {
 
 //학과이름 받고 해당 학과 커리큘럼에 들어있는 모든 과목 모두 보내줌.
 router.post('/', function (req, res, next) {
-    var name = req.body.major //학과 이름
+    var major = req.body.major //학과 이름
 
     curriculum.find({
-        major:name
+        major: major
     }, 
     (err, data) => {
         if (err) res.status(500).send({
