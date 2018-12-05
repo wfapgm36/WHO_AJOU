@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const lecture = require('../models/class');
+const Class = require('../models/class');
 const auth = require('../config/auth');
 
 router.use(function (req,res,next) {
@@ -13,7 +13,7 @@ router.use(function (req,res,next) {
 */
 //강의 평가 작성
 //모든 평가 데이터 받아서 document형태로 create
-router.post('/evaluation/create', auth.ensureAuth(), function (req, res, next) {
+router.post('/evaluation/create',  auth.ensureAuth(),function (req, res, next) {
     console.log('SYSTEM: 강의평가생성')
     console.log(req.body)
     
@@ -46,7 +46,7 @@ router.post('/evaluation/create', auth.ensureAuth(), function (req, res, next) {
         if (classEval) {
             throw new Error('classEval exists')
         } else {
-            return lecture.create(
+            return Class.create(
                 userId,
                 major,
                 lecture,
@@ -76,7 +76,8 @@ router.post('/evaluation/create', auth.ensureAuth(), function (req, res, next) {
     }
 
     // 강의평가 도큐먼트 생성 로직
-    lecture.find(userId, semester, name)
+    //name => lecture로 바꿈 오타수정
+    Class.findDuplicate(userId, semester, lecture)
         .then(create)
         .then(respond)
         .catch(onError)
@@ -91,10 +92,8 @@ router.post('/evaluation/create', auth.ensureAuth(), function (req, res, next) {
 router.post('/evaluation/delete', auth.ensureAuth(), function (req, res, next) {
     console.log('SYSTEM: 강의평가삭제')
     console.log(req.body)
-
     var id = req.body.id;
-
-    lecture.findOneAndDelete({id: id}, function (err, data) {
+    Class.findOneAndDelete({id: id}, function (err, data) {
         if (err) return res.status(500).send(err);
         var response = {
             message: "document successfully deleted",
@@ -108,14 +107,33 @@ router.post('/evaluation/delete', auth.ensureAuth(), function (req, res, next) {
 /*
     api: /api/class/evaluation/
 */
-//강의평가 상세보기 페이지 & 강의평가카드 보기
+//강의평가카드 보기
 //모든 강의평가내용 프론트로 보내주기 
-router.get('/evaluation/',auth.ensureAuth(),function (req,res,next) {
-    lecture.find()
+ 
+router.get('/evaluation',auth.ensureAuth(),function (req,res,next) {
+    Class.find()
         .then(lec => {
             if(lec) res.json(lec);
             else res.status(203).send() // 해당과목이 존재하지 않음
         })
 });
+
+
+/*
+    api: /api/class/evaluation/:id
+*/
+//ReadMore 버튼 눌렀을 때, 강의평가 디테일 보기
+router.get('/evaluation/:id', auth.ensureAuth(),function(req,res,next){
+    console.log("여긴?")
+    Class.findId(req.params.id)
+    .then(eval => {
+        if (eval) {
+                res.status(200)
+                res.json(eval) //디테일 평가 보내줌
+        } else {
+            res.status(405).send(); // data 없음
+        }
+    })
+})
 
 module.exports = router;

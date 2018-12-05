@@ -56,14 +56,28 @@ classSchema.statics.create = function (userId, major, lecture, professor, code, 
 };
 
 // 유저가 쓴 강의평가 찾기
-classSchema.statics.find = function(userId, semester, name) {
+//find => findDuplicate으로 이름 변경
+//return this.find => this.findOne으로 변경. find로 하면 무한으로 찾아버림
+classSchema.statics.findDuplicate = function(userId, semester, lecture) {
     console.log("SYSTEM: 중복검사")
-    return this.find({
+    return this.findOne({
         userId: userId, 
         semester: semester, 
-        name: name
+        lecture: lecture
     }).exec();
+
 };
+
+//강의평가id로 document 찾기
+classSchema.statics.findId = function(id) {
+    console.log("SYSTEM: id 찾기")
+    console.log("id" +id)
+    return this.findOne({
+        id: id
+    }).exec();
+
+};
+
 
 // 강의평가id를 Auto Increment 필드로 지정
 classSchema.plugin(autoIncrement.plugin, {
