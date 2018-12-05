@@ -33,7 +33,7 @@
             <b-button class="eval_write_btn">강의평가작성</b-button>
           </router-link>
            <b-dropdown id="ddown-buttons" text="학과를 선택하세요" class="m-2">
-            <b-dropdown-item-button v-model = "clickedMajor" v-for= "item in majors" v-bind:key="item.id" @click = "setMajor(item)">{{item.major}}</b-dropdown-item-button>
+            <b-dropdown-item-button v-model="clickedMajor" v-for="item in majors" v-bind:key="item.id" @click = "setMajor(item)">{{item.major}}</b-dropdown-item-button>
           </b-dropdown>
         </div>
           
@@ -146,7 +146,7 @@ import DelPopup from './Popup'
     },
     created (){
       this.$EventBus.$emit('removeTab', true)
-      this.getUserInfo(),
+      //this.getUserInfo(),
       this.GetMajor(),
       this.getEval()
     },
@@ -180,17 +180,17 @@ import DelPopup from './Popup'
                this.filteredItems = this.filteredItems.slice(0, 10)
             } 
         }
-       this.scrollTop()
+       //this.scrollTop()
       },
       //자동 위로 스크롤..잘 안됨 추후 수정 예정
-      scrollTop(){
-        try{
-          var container = this.$el.querySelector("#main");
-          container.scrollTop = container.scrollHeight;
-        }catch(e){
-          console.log(e)
-        }
-      },
+      //scrollTop(){
+      //  try{
+      //    var container = this.$el.querySelector("#main");
+      //    container.scrollTop = container.scrollHeight;
+      //  }catch(e){
+      //    console.log(e)
+      //  }
+      //},
       //사용자의 기본설정된 학과로 처음 메인화면 표시하기 위함.
       getUserInfo(){
         this.$http.get('/api/profile/user')
@@ -201,7 +201,8 @@ import DelPopup from './Popup'
       },
       //드롭다운버튼에서 클릭한 학과의 커리큘럼 가져오기
       setMajor(item){
-          this.clickedMajor.major = item.major
+          console.log(item.major)
+          this.clickedMajor = item.major
           this.GetCurriculum();
       }, 
       //모든 학과이름과 정보 받아오기
@@ -261,6 +262,7 @@ import DelPopup from './Popup'
         this.$http.get("/api/class/evaluation")
           .then((res) => {
           this.eval_subject = res.data;
+          console.log('강의평가모든정보')
           console.log(res.data)
         });
       },
