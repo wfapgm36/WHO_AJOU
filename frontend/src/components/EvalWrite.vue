@@ -159,7 +159,7 @@ export default {
 
       allMajorData: [],
 
-      userId: "",
+      userId: "syl",
       //강의 정보
       majorSelected: null,
       subjectSelected: null,

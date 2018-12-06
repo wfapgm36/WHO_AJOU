@@ -22,7 +22,7 @@ router.post('/evaluation/create', function (req, res, next) {
     const professor = req.body.professor //강의 교수님
     const semester = req.body.semester //강의 수강학기
     let eval = {
-        writer: req.body.nickname, // username
+        writer: '소연',//req.body.nickname, // username
         teamProject_grade: req.body.teamProject_grade,
         homework_grade: req.body.homework_grade,
         test_grade: req.body.test_grade,
