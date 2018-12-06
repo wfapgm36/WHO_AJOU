@@ -10,23 +10,21 @@ var classSchema = mongoose.Schema({
     lecture: { type: String, required: true }, // 강의 이름
     professor: { type: String, required: true}, // 교수
     semester: { type: String, required: true},
-    evaluation: [{
+    evaluation: {
         id: String, // autoincrease
         writer: String, // username
-
         teamProject_grade: Number, // 팀플
         homework_grade: Number, //과제
         test_grade: Number, // 시험
         skill_grade: Number, // 강의력
         totalGrade: Number, // 강의 평가 각 항목의 총 평균 <- 백에서 계산에서 넣기
-        
         enrollment_level: String, // 상,중,하
         memo1: String,
         memo2: String,
         memo3: String,
         memo4: String,
         createAt: { type: Date, default: Date.now }
-    }],
+    },
     createAt: { type: Date, default: Date.now },
     updated: [{ contents: String, date: { type: Date, default: Date.now } }]
 },{
@@ -34,18 +32,18 @@ var classSchema = mongoose.Schema({
 });
 
 // 강의 평가 도큐먼트 생성
-classSchema.statics.create = function (userId, major, lecture, professor, semester, eval) {
+classSchema.statics.create = function (userId, major, lecture, professor, semester, evaluation) {
 
     const classeval = new this({
         userId,
         major,
         lecture,
         professor,
-        semester
+        semester,
+        evaluation
     });
 
-    classeval.evaluation.push(eval);
-    
+
     // return the Promise
     return classeval.save(err => {
       console.log(err);

@@ -1,7 +1,10 @@
 <template>
   <div class="container">
     <b-button id = "closeBtn" @click="close(subject)" ><v-icon v-text="$vuetify.icons.cancel"></v-icon></b-button>
+    <b-button class = "delBtn" @click="deleteCurriculum(subject)">삭제</b-button>
+    <b-button class = "uptBtn" @click="updateCurriculum(subject)">수정</b-button>
     <h3>COURSE INFORMATION</h3>
+    
     <hr  class = "mainhr">
     <form >
       <div class = "leftContents">
@@ -35,6 +38,22 @@
       }
     },
     methods : {
+      updateCurriculum(item){
+        console.log(item)
+        this.$router.push(`/curriculum/update/${item.id}`)
+      },
+      deleteCurriculum(item){
+        console.log(item)
+        this.$http.post('/api/curriculum/delete', {id: item.id})
+        .then(res => {
+          console.log(res.data)
+          this.$emit('close')
+          this.$EventBus.$emit('del');
+        })
+        .catch(err => {
+          console.log(err)
+        })
+      },
       close(item){
         item.isPre = false
         this.$EventBus.$emit('changeColor', false);
@@ -73,6 +92,18 @@
     float: right;
     margin-top:5px;
     background-color: transparent;
+    border: transparent;
+  }
+  .delBtn{
+    float: right;
+    width: 40;
+    height: 34px;
+    border: transparent;
+  }
+  .uptBtn{
+    float: right;
+    width: 40;
+    height: 34px;
     border: transparent;
   }
   h3{
