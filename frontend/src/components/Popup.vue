@@ -1,7 +1,9 @@
 <template>
   <div class="container">
     <b-button class = "closeBtn" @click="close(subject)" ></b-button>
+    <b-button class = "delBtn" @click="deleteCurriculum(subject)">삭제</b-button>
     <h3>COURSE INFORMATION</h3>
+    
     <hr  class = "mainhr">
     <form >
       <div class = "leftContents">
@@ -34,8 +36,19 @@
           name: ''
       }
     },
-
     methods : {
+      deleteCurriculum(item){
+        console.log(item)
+        this.$http.post('/api/curriculum/delete', {id: item.id})
+        .then(res => {
+          console.log(res.data)
+          this.$emit('close')
+          this.$EventBus.$emit('del');
+        })
+        .catch(err => {
+          console.log(err)
+        })
+      },
       close(item){
         item.isPre = false
         this.$EventBus.$emit('changeColor', false);
@@ -76,6 +89,12 @@
     height: 34px;
     border: transparent;
     background-image : url("./../assets/close.png");
+  }
+  .delBtn{
+    float: right;
+    width: 40;
+    height: 34px;
+    border: transparent;
   }
   h3{
     margin-top:25px;

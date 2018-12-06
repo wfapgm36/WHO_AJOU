@@ -229,6 +229,9 @@ import DelPopup from './Popup'
         this.$EventBus.$on('changeColor', (message) => {
           this.showPreRequisite(clickedItem, message)
         })
+        this.$EventBus.$on('del', (message) => {
+          this.GetCurriculum()
+        })
         this.$EventBus.$on('clickedPopupLectureName', (message) => {
           this.searchText = message.lecture
           this.searchPost()

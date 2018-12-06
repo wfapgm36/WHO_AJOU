@@ -93,12 +93,14 @@ router.post('/evaluation/delete', auth.ensureAuth(), function (req, res, next) {
     console.log('SYSTEM: 강의평가삭제')
     console.log(req.body)
     var id = req.body.id;
+    console.log(id)
     Class.findOneAndDelete({id: id}, function (err, data) {
         if (err) return res.status(500).send(err);
         var response = {
             message: "document successfully deleted",
             id: data.id
         };
+        console.log(data)
         return res.status(200).send(response);
     })
 });

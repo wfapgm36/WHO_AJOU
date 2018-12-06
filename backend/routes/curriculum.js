@@ -100,14 +100,13 @@ router.post('/delete', auth.ensureAuth(), function (req, res, next) {
     console.log('SYSTEM: 커리큘럼 삭제')
     console.log(req.body)
     var id = req.body.id;
-    Curriculum.findOneAndDelete({
-        id: id
-    }, function (err, data) {
+    Curriculum.findOneAndDelete({id: id}, function (err, data) {
         if (err) return res.status(500).send(err);
         var response = {
-            message: "document successfully deleted",
+            message: "document successfully deleted", 
             id: data.id
         };
+        console.log(data)
         return res.status(200).send(response);
     })
 });
