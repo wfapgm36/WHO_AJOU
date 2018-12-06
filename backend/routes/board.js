@@ -114,12 +114,11 @@ router.delete("/comment", auth.ensureAuth(), (req, res) => {
             res.status(405).send(); // data 없음
         }
     })
-})
+});
 
 router.put("/posts/:id", auth.ensureAuth(), function (req, res) {
     Board.findOne({ _id: req.params.id })
         .then(board => {
-            console.log(board)
             if (board) {
                 if (board.userId == req.user.username) {
                     Board.findOneAndUpdate({ _id: req.params.id },
@@ -145,13 +144,12 @@ router.delete("/posts/:id", auth.ensureAuth(), function (req, res) {
     Board.findOne({ _id: req.params.id })
         .then(board => {
             if (board) {
-                console.log(board)
                 if (board.userId == req.user.username) {
                     Board.deleteOne({ _id: req.params.id }, function (err) {
                         if (err) {
                             console.log(err)
                         } else {
-                            res.status(200).send();
+                            resatus(200).send();
                         }
                     })
                 } else {

@@ -6,8 +6,8 @@
         </b-col>
         <b-col>
           <b-form @submit.prevent="searchPost">
-                    <b-form-input v-model="searchText" 
-                    type="text" 
+                    <b-form-input v-model="searchText"
+                    type="text"
                     placeholder="게시글 제목이나 내용을 입력하세요."
                     size = "sm"
                     id="searchBar">
@@ -24,8 +24,8 @@
         <b-col>작성자</b-col>
         <b-col cols="2">등록일</b-col>
         <b-col>조회수</b-col>
-      </b-row>  
-      <hr>   
+      </b-row>
+      <hr>
       <div v-for="item in filteredItems" v-bind:key="item.id">
         <b-row class="text-center">
           <b-col >{{item._id}}</b-col>
@@ -45,7 +45,7 @@
         <hr>
       </div>
       <div id = "paging">
-        <b-pagination-nav base-url="#" align = "center" :number-of-pages="this.numberOfPosts" v-model="currentPage" 
+        <b-pagination-nav base-url="#" align = "center" :number-of-pages="this.numberOfPosts" v-model="currentPage"
         hide-goto-end-buttons/>
         <router-link to = "/write">
           <b-button id = "write_board" size = "sm" variant="primary">글쓰기</b-button>
@@ -60,57 +60,56 @@
 
 <script>
 export default {
-  name: "board",
-  data() {
+  name: 'board',
+  data () {
     return {
       currentPage: 1,
       result: '',
-      searchText: "",
+      searchText: '',
       items: [],
-      filteredItems:[],
-      numberOfPosts: 0,
-    };
+      filteredItems: [],
+      numberOfPosts: 0
+    }
   },
-  created() {
-    this.$EventBus.$emit('removeTab', true);
-    this.getAllPosts();
+  created () {
+    this.$EventBus.$emit('removeTab', true)
+    this.getAllPosts()
   },
   methods: {
-    fetchData() {
-        let hash = location.hash.substr(1, location.hash.length)
-        if(hash){
-          this.filteredItems = this.items.slice((hash-1)*5, (hash)*5)
-        } 
-      else{
+    fetchData () {
+      let hash = location.hash.substr(1, location.hash.length)
+      if (hash) {
+        this.filteredItems = this.items.slice((hash - 1) * 5, (hash) * 5)
+      } else {
         this.filteredItems = this.items.slice(0, 5)
       }
     },
-    getAllPosts(){
+    getAllPosts () {
       this.$http.get('/api/board').then((res) => {
         this.items = res.data
         this.numberOfPosts = Math.ceil(res.data.length / 5)
       })
     },
-    searchPost(){
+    searchPost () {
       this.filteredItems = []
-      for(let i = 0; i < this.items.length; i++){
-        if(this.items[i].title.indexOf(this.searchText) == -1 && this.items[i].contents.indexOf(this.searchText) == -1){
-      }else{
-        this.filteredItems.push(this.items[i])
+      for (let i = 0; i < this.items.length; i++) {
+        if (this.items[i].title.indexOf(this.searchText) == -1 && this.items[i].contents.indexOf(this.searchText) == -1) {
+        } else {
+          this.filteredItems.push(this.items[i])
+        }
       }
-    }
-    this.filteredItems = this.filteredItems.slice(0, 5)
+      this.filteredItems = this.filteredItems.slice(0, 5)
     }
   },
-  watch:{
-    currentPage: function(){
-      this.fetchData();
+  watch: {
+    currentPage: function () {
+      this.fetchData()
     },
-    searchText: function(){
-      this.searchPost();
+    searchText: function () {
+      this.searchPost()
     }
   }
-};
+}
 </script>
 
 <style scoped>

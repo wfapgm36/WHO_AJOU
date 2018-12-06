@@ -14,8 +14,8 @@ import BoardView from '@/components/BoardView'
 import BoardWrite from '@/components/BoardWrite'
 import BoardUpdate from '@/components/BoardUpdate'
 import EmailVerification from '@/components/EmailVerification'
-import Evaluation from '@/components/Evaluation'
 import EvalView from '@/components/EvalView'
+import EvalWrite from '@/components/EvalWrite'
 import AddLecture from '@/components/AddLecture'
 import store from '../store'
 
@@ -48,6 +48,7 @@ export default new Router({
       name: 'email-verification',
       component: EmailVerification
     },
+    
     {
       path: '/main',
       name: 'main',
@@ -91,15 +92,15 @@ export default new Router({
       // beforeEnter: requireAuth()
     },
     {
-      path: '/evaluation/:id',
-      name: 'evaluation',
-      component: Evaluation,
-      // beforeEnter: requireAuth()
-    },
-    {
       path: '/evalview/:id',
       name: 'eval-view',
       component: EvalView,
+      // beforeEnter: requireAuth()
+    },
+    {
+      path: '/evaluation/write',
+      name: 'evaluation-write',
+      component: EvalWrite,
       // beforeEnter: requireAuth()
     },
     {

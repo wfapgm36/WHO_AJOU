@@ -43,62 +43,65 @@
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
+
+    
+
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        isLogin: false,
-        nickname: ''
-      }
-    },
-    methods: {
-      onClickLogout() {
-        this.$store.dispatch('LOGOUT')
-          .then(() => {
-            this.$cookies.remove('nickname')
-            this.nickname = ''
-            this.$router.push('/')
-            this.isLogin = false
-          })
-      },
-      isAuthenticated() {
-        this.$store.dispatch('CHECK').then(check => {
-          this.isLogin = check
-          this.getUserInfo()
+export default {
+  data () {
+    return {
+      isLogin: false,
+      nickname: ''
+    }
+  },
+  methods: {
+    onClickLogout () {
+      this.$store.dispatch('LOGOUT')
+        .then(() => {
+          this.$cookies.remove('nickname')
+          this.nickname = ''
+          this.$router.push('/')
+          this.isLogin = false
         })
-      },
-      getUserInfo() {
-        this.$http
-          .get("/api/user").then((res) => {
+    },
+    isAuthenticated () {
+      this.$store.dispatch('CHECK').then(check => {
+        this.isLogin = check
+        this.getUserInfo()
+      })
+    },
+    getUserInfo () {
+      this.$http
+        .get('/api/user').then((res) => {
           this.$cookies.set('nickname', res.data.nickname, 3600 * 24)
           this.nickname = this.$cookies.get('nickname')
         })
-      }
-    },
-    created() {
-      /**********로그인 전후 네비게이션 바에 보여지는 목록을 다르게 해주기 위해 이벤트 버스 발생 *************/
-      this.$EventBus.$on('removeTab', (message) => {
-        this.isAuthenticated()
-      })
     }
+  },
+  beforeRouteUpdate (to, from, next) {
+    this.isAuthenticated()
+    next()
+  },
+  created () {
+    /** ********로그인 전후 네비게이션 바에 보여지는 목록을 다르게 해주기 위해 이벤트 버스 발생 *************/
+    this.$EventBus.$on('removeTab', (message) => {
+      this.isAuthenticated()
+    })
   }
+}
 </script>
 
 <style>
   body {
     background-color: white;
-
   }
-
   .navbar {
     position: relative;
-
   }
-
   .nav-background {
     background-color: black;
   }

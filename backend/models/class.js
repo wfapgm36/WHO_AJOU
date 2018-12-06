@@ -1,19 +1,28 @@
 var mongoose = require("mongoose");
+var autoIncrement = require('mongoose-auto-increment')
+
+autoIncrement.initialize(mongoose.connection)
 
 var classSchema = mongoose.Schema({
+<<<<<<< HEAD
     major: { type: String, required: true }, // 어떤 전공의 과목인지
     name: { type: String, required: true }, // 강의 이름
     professor: { type: String, required: true}, // 교수
     description: String,
     prerequisite: String, // 선수과목
     isPre: Boolean, // 선수과목 유무
+=======
+    id: { type: Number, unique: true },//도큐먼트ID
+    userId: { type: String, required: true },
+    major: { type: String, required: true }, // 어떤 전공의 과목인지
+    lecture: { type: String, required: true }, // 강의 이름
+    professor: { type: String, required: true}, // 교수
+>>>>>>> f855d9ad4181eea5132e2aa5e6f7c3abb804c001
     semester: { type: String, required: true},
-    classId: String,
-    type: Number, // 1: 전공필수 2: 전공선택 3: 교양필수 4: 교양선택
-    totalGrade: { type: Number, default: 0 },  // 해당 과목에 해당하는 모든 강의 평가의 평균
     evaluation: [{
         id: String, // autoincrease
         writer: String, // username
+<<<<<<< HEAD
         teamProject_grade: { // 팀플
             grade: Number,
             count: Number
@@ -31,6 +40,15 @@ var classSchema = mongoose.Schema({
             count: Number
         },
         totalGrade: Number, // 강의 평가 각 항목의 총 평균 <- 백에서 계산에서 넣기
+=======
+
+        teamProject_grade: Number, // 팀플
+        homework_grade: Number, //과제
+        test_grade: Number, // 시험
+        skill_grade: Number, // 강의력
+        totalGrade: Number, // 강의 평가 각 항목의 총 평균 <- 백에서 계산에서 넣기
+        
+>>>>>>> f855d9ad4181eea5132e2aa5e6f7c3abb804c001
         enrollment_level: String, // 상,중,하
         memo1: String,
         memo2: String,
@@ -43,6 +61,58 @@ var classSchema = mongoose.Schema({
 },{
     versionKey:false
 });
-var Classes = mongoose.model('Classes', classSchema, 'Classlist');
 
-module.exports =  Classes;
+// 강의 평가 도큐먼트 생성
+classSchema.statics.create = function (userId, major, lecture, professor, semester, eval) {
+    
+    const classeval = new this({
+        userId,
+        major,
+        lecture,
+        professor,
+        semester
+    });
+    
+    console.log('생성 받았다.')
+    console.log(userId, major, lecture, professor, semester)
+
+    classeval.evaluation.push(eval);
+    
+    // return the Promise
+    return classeval.save(err => {
+      console.log(err);
+      if (err) return handledError(err);
+    });
+};
+
+// 유저가 쓴 강의평가 찾기
+classSchema.statics.findDuplicate = function (userId, semester, lecture) {
+    console.log("SYSTEM: 중복검사")
+    return this.findOne({
+        userId: userId,
+        semester: semester,
+        lecture: lecture
+    }).exec();
+
+};
+
+//강의평가id로 document 찾기
+classSchema.statics.findId = function(id) {
+    console.log("SYSTEM: id 찾기")
+    console.log("id" +id)
+    return this.findOne({
+        id: id
+    }).exec();
+
+};
+
+
+// 강의평가id를 Auto Increment 필드로 지정
+classSchema.plugin(autoIncrement.plugin, {
+    model: 'Classes',
+    field: 'id',
+    startAt: 1
+})
+
+var Class = mongoose.model('Classes', classSchema, 'Classlist');
+module.exports =  Class;
