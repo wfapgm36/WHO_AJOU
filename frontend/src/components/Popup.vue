@@ -2,6 +2,7 @@
   <div class="container">
     <b-button class = "closeBtn" @click="close(subject)" ></b-button>
     <b-button class = "delBtn" @click="deleteCurriculum(subject)">삭제</b-button>
+    <b-button class = "uptBtn" @click="updateCurriculum(subject)">수정</b-button>
     <h3>COURSE INFORMATION</h3>
     
     <hr  class = "mainhr">
@@ -37,6 +38,10 @@
       }
     },
     methods : {
+      updateCurriculum(item){
+        console.log(item)
+        this.$router.push(`/curriculum/update/${item.id}`)
+      },
       deleteCurriculum(item){
         console.log(item)
         this.$http.post('/api/curriculum/delete', {id: item.id})
@@ -91,6 +96,12 @@
     background-image : url("./../assets/close.png");
   }
   .delBtn{
+    float: right;
+    width: 40;
+    height: 34px;
+    border: transparent;
+  }
+  .uptBtn{
     float: right;
     width: 40;
     height: 34px;

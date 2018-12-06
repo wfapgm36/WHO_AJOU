@@ -6,7 +6,7 @@
           <h2>과목 : {{content.lecture}}</h2>
           <h2>교수 : {{content.professor}}</h2>
           <h2>수강학기 : {{content.semester}}</h2>
-          <h2>수강신청 난이도 : {{content.evaluation[0].enrollment_level}}</h2>
+          <h2>수강신청 난이도 : {{content.evaluation.enrollment_level}}</h2>
           <div>
             <b-progress :value="counter" :max="max" show-progress animated></b-progress>
             <b-progress :max="max" class="mb-3">
@@ -21,19 +21,20 @@
         <h6 slot="footer">
           <b-button class="backBtn" @click="back()">이전</b-button>
           <b-button class="delBtn" v-if="userId === content.userId" @click="del()">삭제</b-button>
+          <b-button class="delBtn" v-if="userId === content.userId" @click="update()">수정</b-button>
         </h6>
 
         <div>
-          <h2>팀플 / 과제: {{content.evaluation[0].memo1}}</h2>
+          <h2>팀플 / 과제: {{content.evaluation.memo1}}</h2>
         </div>
         <div>
-          <h2>수업 / 시험: {{content.evaluation[0].memo2}}</h2>
+          <h2>수업 / 시험: {{content.evaluation.memo2}}</h2>
         </div>
         <div>
-          <h2>이런 사람에게 추천! {{content.evaluation[0].memo3}}</h2>
+          <h2>이런 사람에게 추천! {{content.evaluation.memo3}}</h2>
         </div>
         <div>
-          <h2>이런 사람에게 비추천! {{content.evaluation[0].memo4}}</h2>
+          <h2>이런 사람에게 비추천! {{content.evaluation.memo4}}</h2>
         </div>
       </b-card>
     </b-card-group>
@@ -68,6 +69,9 @@ export default {
     back() {
       this.$router.go(-1);
     },
+    update() {
+      this.$router.push(`/evaluation/update/${this.id}`);
+    },
     del() {
       this.$http
         .post("/api/class/evaluation/delete", { id: this.id })
@@ -99,10 +103,10 @@ export default {
     },
     //100점 만점 // 항목당 별5점이 최대이기 때문에 5 곱해줌
     makeScore() {
-      this.values.push(this.content.evaluation[0].teamProject_grade * 5);
-      this.values.push(this.content.evaluation[0].homework_grade * 5);
-      this.values.push(this.content.evaluation[0].test_grade * 5);
-      this.values.push(this.content.evaluation[0].skill_grade * 5);
+      this.values.push(this.content.evaluation.teamProject_grade * 5);
+      this.values.push(this.content.evaluation.homework_grade * 5);
+      this.values.push(this.content.evaluation.test_grade * 5);
+      this.values.push(this.content.evaluation.skill_grade * 5);
       this.count();
     }
   }

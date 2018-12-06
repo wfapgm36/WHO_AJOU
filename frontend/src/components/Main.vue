@@ -107,7 +107,7 @@
                           <h6>{{item.lecture}}</h6>
                           <h3>Professor</h3>
                           <h6>{{item.professor}}</h6>
-                          <h5 class = "circle">{{item.evaluation[0].totalGrade}}</h5>
+                          <h5 class = "circle">{{item.evaluation.totalGrade}}</h5>
                           <h6>{{item.semester}}</h6><br>
                           <router-link :to ="{name:'eval-view',params:{id: item.id}}">
                             <button type="submit" class = "plusView">Read More</button>

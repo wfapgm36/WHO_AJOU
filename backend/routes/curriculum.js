@@ -58,7 +58,7 @@ router.post('/create',  function (req, res, next) {
     api: /api/curriculum/update
     커리큘럼 수정
 */
-router.post('/update', auth.ensureAuth(), function (req, res, next) {
+router.put('/update', auth.ensureAuth(), function (req, res, next) {
     console.log('SYSTEM: 커리큘럼 업데이트')
     console.log(req.body)
     const {
@@ -70,8 +70,9 @@ router.post('/update', auth.ensureAuth(), function (req, res, next) {
         semester,
         description
     } = req.body
+    console.log('id ' + id)
 
-    Curriculum.update({
+    Curriculum.findOneAndUpdate({
         id: id
     }, 
     {
@@ -88,6 +89,7 @@ router.post('/update', auth.ensureAuth(), function (req, res, next) {
             message: "document successfully updated",
             id: data.id
         };
+        console.log(data)
         return res.status(200).send(response);
     })
 });
@@ -112,23 +114,16 @@ router.post('/delete', auth.ensureAuth(), function (req, res, next) {
 });
 
 /*
-    api: /api/curriculum/one
-    과목코드 받아올려고 만듦. 현재 필요없음.
-    학과이름 받고 해당 학과의 한과목 정보 보내줌.
+    api: /api/curriculum/:id
+    학과이름 받고 해당 학과의 한과목 정보 보내줌.(수정시 필요)
 */
-router.post('/one', function (req, res, next) {
-    var major = req.body.major //학과명
-    var lecture = req.body.lecture //과목명
-
-    Curriculum.findOne({
-            major: major,
-            lecture: lecture
-        },
-        (err, data) => {
+router.get('/:id', function (req, res, next) {
+    
+    Curriculum.findOne({id: req.params.id}, (err, data) => {
             if (err) res.status(500).send({
                 error: 'database failure'
             });
-            // 해당학과가 커리큘럼에 없으면 error
+            // 해당 커리큘럼이 없으면 error
             if (!data) return res.status(404).json({
                 error: 'data not found'
             });
