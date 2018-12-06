@@ -105,8 +105,47 @@
           </b-row>
         </b-card>
       </b-tab>
-      <b-tab title="내가 쓴 글">
-        <br>I'm the second tab content
+      <b-tab title="내가 쓴 글" @click = "getMyEval()">
+         <div class = "myEvaluation" >
+          <div id = "myEval_container">
+              <v-flex xs12 >
+                 <v-container fluid>
+                   <v-layout row wrap>
+                     <v-flex
+                       id = "evaluate" v-for="item in my_eval_subject" v-bind:key="item.id"
+                       xs3
+                     >
+                     <v-hover>
+                       <v-card
+                           slot-scope="{ hover }"
+                           :class="`elevation-${hover ? 12 : 2}`"
+                           class="mx-auto"
+                           width="345"
+                           flat tile>
+                          <div class ="evalContainer" >
+                             <h3 style="padding-top:20px">Course</h3>
+                             <h5>{{item.lecture}}</h5>
+                             <h3>Professor</h3>
+                             <h5>{{item.professor}}</h5>
+                             <v-rating v-model="item.evaluation[0].totalGrade"
+                                        color="yellow darken-3"
+                                        background-color="grey darken-1"
+                                        readonly=true>
+                            </v-rating>
+                            <h5 class = "circle">{{parseFloat(item.evaluation[0].totalGrade).toFixed(1)}}</h5>
+                            <h5>{{item.semester}}</h5><br>
+                            <router-link :to ="{name:'eval-view',params:{id: item.id}}">
+                              <button type="submit" class = "plusView">Read More</button>
+                            </router-link>
+                          </div>
+                       </v-card>
+                     </v-hover>
+                     </v-flex>
+                   </v-layout>
+                 </v-container>
+               </v-flex>
+          </div>
+        </div>
       </b-tab>
     </b-tabs>
   </b-card>
@@ -130,11 +169,20 @@ export default {
         {text: '선택', value: null},
         '경영학과', '디지털미디어학과', '소프트웨어학과', '응용화학생명공학과'
       ],
+      my_eval_subject: [],
       show: true,
       status: true
     }
   },
   methods: {
+    getMyEval() {
+        this.$http.get("/api/class/evaluation")
+          .then((res) => {
+          this.my_eval_subject = res.data;
+          console.log('강의평가모든정보')
+          console.log(res.data)
+        });
+    },
     onSubmit (evt) {
       evt.preventDefault()
       alert(JSON.stringify(this.form))
@@ -210,5 +258,52 @@ export default {
 }
 </script>
 <style>
+#myEval_container{
+    margin-top: 50px;
+}
 
+.myEvalContainer{
+    border:3px solid yellow;
+    border-radius: 50px;
+    width:330px;
+    height: 450px;
+    background:white;
+    text-align: center;
+}
+
+.circle{
+    border:thick solid yellow;
+    border-radius: 100%;
+    padding-top:5px;
+    padding-bottom: 5px;
+    width:80px;
+    font-size:45px;
+    margin-left:38%;
+    margin-right:38%;
+    margin-top:25px;
+    margin-bottom:30px;
+}
+
+.plusView{
+    margin-top:30px;
+    color:white;
+    height:40px;
+    font-weight: bold;
+    background: lightblue;
+    text-align: center;
+    border:transparent;
+    border-radius: 10px;
+}
+  .card-header{
+    padding-top : 2vh;
+    font-size:18px;
+    font-weight: bold;
+  }
+    .nav-tabs .nav-link{
+    height: 7vh;
+    padding-left:20vw;
+    padding-right:20vw;
+    margin-top:3vh;
+    margin-left:5px;
+  }
 </style>

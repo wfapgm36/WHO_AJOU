@@ -3,6 +3,7 @@
     <b-card-group deck>
         <b-card header-tag="header" footer-tag="footer">   
             <h6 slot="header">
+                 <h2>과목 : {{content.lecture}}</h2>
                 <h2>교수님 이름 : {{content.professor}}</h2>
                 <h2>수강학기 : {{content.semester}}</h2>
                 <h2>수강신청 난이도 : {{content.evaluation[0].enrollment_level}}</h2>

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <b-button class = "closeBtn" @click="close(subject)" ></b-button>
+    <b-button id = "closeBtn" @click="close(subject)" ><v-icon v-text="$vuetify.icons.cancel"></v-icon></b-button>
     <h3>COURSE INFORMATION</h3>
     <hr  class = "mainhr">
     <form >
@@ -19,7 +19,7 @@
         <h5>Prerequite Subject</h5>
          <h6 v-for="pre in subject.prerequisite" v-bind:key = "pre.id">{{pre.name}} </h6>
         <br>
-          <button class = "evalButton" @click.prevent="goToEval(subject)">강의평가</button>
+          <button class = "evalButton" @click.prevent="goToEval(subject)" v-scroll-to="'#eval_container'">강의평가</button>
       </div>
     </form>
   </div>
@@ -34,7 +34,6 @@
           name: ''
       }
     },
-
     methods : {
       close(item){
         item.isPre = false
@@ -70,27 +69,29 @@
     border-radius: 50px;
     background-color: rgba(255, 255, 255, 0.705);
   }
-  .closeBtn{
+  #closeBtn{
     float: right;
-    width: 33px;
-    height: 34px;
+    margin-top:5px;
+    background-color: transparent;
     border: transparent;
-    background-image : url("./../assets/close.png");
   }
   h3{
     margin-top:25px;
   }
+
   .evalButton{
     margin-top:5vh;
     margin-left:5vh;
     height: 40px;
+    width:70px;
     border:transparent;
     border-radius: 10px;
     color:white;
     font-weight: bold;
-    background: skyblue;
+    background: #C6D6F7;
     text-align: center;
   }
+  
 
 </style>
 

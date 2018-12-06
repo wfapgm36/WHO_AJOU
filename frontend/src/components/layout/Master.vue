@@ -1,36 +1,30 @@
 <template>
   <div id="app">
-    <b-navbar toggleable="md" type="dark" variant="primary" class="nav-background">
+    <b-navbar toggleable="md" type="dark" class="nav-background">
       <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
-      <b-navbar-brand href="/main" tag="h1" v-if="isLogin"><b-badge pill variant="white">WHO AJOU?</b-badge> | {{nickname}}님 안녕하세요!</b-navbar-brand>
-      <b-navbar-brand href="/main" tag="h1" v-if="!isLogin"><b-badge pill variant="white">WHO AJOU?</b-badge></b-navbar-brand>
-
+      <b-navbar-brand id = "navbar-brand" href="/main" tag="h1" v-if="isLogin"><b-badge pill variant="white"><h1>WHO AJOU?</h1></b-badge>  </b-navbar-brand>
+     <h5 id = "nickname">{{nickname}}님 안녕하세요!</h5>
       <b-collapse is-nav id="nav_collapse">
         <b-navbar-nav class="ml-auto">
-          <b-nav-form>
-            <b-form-input size="sm" class="mr-sm-2" type="text" placeholder="Search"/>
-            <b-button size="sm" variant="primary" class="my-2 my-sm-0" type="submit">Search</b-button>
-          </b-nav-form>
-
           <b-navbar-nav>
             <b-nav-item>
-              <router-link to="/main" style="color: white"><b-badge variant="white">메인</b-badge></router-link>
+              <router-link to="/main" style="color: white"><b-badge class = "menu" variant="white">메인</b-badge></router-link>
             </b-nav-item>
             <b-nav-item v-if="isLogin">
-              <router-link to="/board" style="color: white"><b-badge variant="white">게시판</b-badge></router-link>
+              <router-link to="/board" style="color: white"><b-badge  class = "menu" variant="white">게시판</b-badge></router-link>
             </b-nav-item>
             <b-nav-item id="signup" v-if="!isLogin">
-              <router-link to="/signup" style="color: white"><b-badge variant="white">회원가입</b-badge></router-link>
+              <router-link to="/signup" style="color: white"><b-badge  class = "menu" variant="white">회원가입</b-badge></router-link>
             </b-nav-item>
             <b-nav-item v-if="isLogin">
-              <a href="/" @click.prevent="onClickLogout" style="color: white"><b-badge variant="white">로그아웃</b-badge></a>
+              <a href="/" @click.prevent="onClickLogout" style="color: white"><b-badge  class = "menu" variant="white">로그아웃</b-badge></a>
             </b-nav-item>
           </b-navbar-nav>
 
           <b-nav-item-dropdown right v-if="isLogin">
             <!-- Using button-content slot -->
             <template slot="button-content">
-              <em style="color: white"><b-badge variant="white">마이페이지</b-badge></em>
+              <em style="color: white"><b-badge class = "menu" variant="white">마이페이지</b-badge></em>
             </template>
             <b-dropdown-item>
               <router-link to="/profile">프로필</router-link>
@@ -96,6 +90,20 @@ export default {
 </script>
 
 <style>
+.menu{
+  font-size: 15px;
+}
+#nickname{
+  color:white;
+}
+#navbar-brand {
+  padding-top:10px;
+  transform: translateX(-50%);
+  left: 50%;
+  font-weight: bold;
+  position: absolute;
+}
+
   body {
     background-color: white;
   }
@@ -103,6 +111,6 @@ export default {
     position: relative;
   }
   .nav-background {
-    background-color: black;
+    background-color: #9197B5;
   }
 </style>
