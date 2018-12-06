@@ -81,8 +81,8 @@
     margin-top:25px;
   }
   .evalButton{
-    margin-top:5rem;
-    margin-left:5rem;
+    margin-top:5vh;
+    margin-left:5vh;
     height: 40px;
     border:transparent;
     border-radius: 10px;

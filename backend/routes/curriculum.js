@@ -19,7 +19,7 @@ router.post('/create',  function (req, res, next) {
         major,
         type,
         lecture,
-        prequisite,
+        prerequisite,
         semester,
         description
     } = req.body
@@ -29,7 +29,7 @@ router.post('/create',  function (req, res, next) {
             throw new Error('curriculum exists')
         } else {
             console.log('생성 넘긴다')
-            return Curriculum.create(major, type, lecture, prequisite, semester, description)
+            return Curriculum.create(major, type, lecture, prerequisite, semester, description)
         }
     }
     const respond = () => {

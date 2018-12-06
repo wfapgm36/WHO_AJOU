@@ -1,15 +1,12 @@
 <template>
   <div id="main" style="overflow-y: auto;" >
     <div class = "searchFunction">
-       <b-form @submit.prevent="searchPost">
       <b-row class="justify-content-md-center">
           <b-col cols = "0.8">
- 
                 <b-form-select  v-model="searchKind" class="mb-3" size="sm">
-                  <option :value="null">학과</option>
+                  <option :value="null">전체</option>
                   <option v-for="item in options" v-bind:key ="item.id">{{item.value}}</option>
                 </b-form-select>
-           
           </b-col>
           <b-col cols = "12" md = "3">
                 <b-form-input v-model="searchText"
@@ -18,13 +15,12 @@
                           size = "sm"
                           id="searchBar" >
                 </b-form-input>
-            
           </b-col>
           <b-col cols = "0">
-           <b-button class="searchButton" type="submit" size = "sm" >검색</b-button>
+           <b-button class="searchButton" @click = "searchPost()" size = "sm" >검색</b-button>
           </b-col> 
       </b-row>
-       </b-form>
+       
     </div>
     <p>{{clickedMajor}}</p>
       <div class="eval_write">
@@ -32,8 +28,11 @@
           <router-link :to ="`/evaluation/write`">
             <b-button class="eval_write_btn">강의평가작성</b-button>
           </router-link>
-           <b-dropdown id="ddown-buttons" text="학과를 선택하세요" class="m-2">
-            <b-dropdown-item-button v-model="clickedMajor" v-for="item in majors" v-bind:key="item.id" @click = "setMajor(item)">{{item.major}}</b-dropdown-item-button>
+          <router-link :to ="`/addlecture`">
+            <b-button class="eval_write_btn"> 강의추가 </b-button>
+          </router-link>
+          <b-dropdown id="ddown-buttons" text="학과를 선택하세요" class="m-2">
+           <b-dropdown-item-button v-model="clickedMajor" v-for="item in majors" v-bind:key="item.id" @click = "setMajor(item)">{{item.major}}</b-dropdown-item-button>
           </b-dropdown>
         </div>
           
@@ -146,24 +145,16 @@ import DelPopup from './Popup'
     },
     created (){
       this.$EventBus.$emit('removeTab', true)
-      //this.getUserInfo(),
+      this.getUserInfo(),
       this.GetMajor(),
       this.getEval()
     },
     methods : {
       //전체/학과/강의명 검색
       searchPost () {
-          this.filteredItems = []
-        if(this.searchKind == null ){
-            for (let i = 0; i < this.eval_subject.length; i++) {
-                if (this.eval_subject[i].lecture.indexOf(this.searchText) == -1 && this.eval_subject[i].professor.indexOf(this.searchText) == -1) {
-                } else {
-                this.filteredItems.push(this.eval_subject[i])
-                }
-                this.filteredItems = this.filteredItems.slice(0, 10)
-            } 
-        }
-        else if(this.searchKind == '강의명'){
+        this.filteredItems = []
+      
+        if(this.searchKind == '강의명'){
            for (let i = 0; i < this.eval_subject.length; i++) {
                 if (this.eval_subject[i].lecture.indexOf(this.searchText) == -1) {
                 } else {
@@ -178,6 +169,15 @@ import DelPopup from './Popup'
                this.filteredItems.push(this.eval_subject[i])
                }
                this.filteredItems = this.filteredItems.slice(0, 10)
+            } 
+        }
+        else{
+            for (let i = 0; i < this.eval_subject.length; i++) {
+                if (this.eval_subject[i].lecture.indexOf(this.searchText) == -1 && this.eval_subject[i].professor.indexOf(this.searchText) == -1) {
+                } else {
+                this.filteredItems.push(this.eval_subject[i])
+                }
+                this.filteredItems = this.filteredItems.slice(0, 10)
             } 
         }
        //this.scrollTop()
