@@ -2,35 +2,29 @@
   <div class="evalwrite">
     <form @submit="onSubmit">
       <div class="evalWrite">
-        <b-row class="justify-content-md-center" id="choice">
+       <b-row class="justify-content-md-center" id="choice">
           <b-col col lg="1">
-            <b-form-select v-model="majorSelected" class="mb-3" size="sm">
+            <b-form-select  v-model="majorSelected" class="mb-3" size="sm">
               <option :value="null">학과</option>
-              <option v-for="major in majorOptions" v-bind:key="major.id">{{major.value}}</option>
+              <option v-for="major in majorOptions" v-bind:key ="major.id">{{major.value}}</option>
             </b-form-select>
           </b-col>
           <b-col cols="10" md="auto">
-            <b-form-select v-model="subjectSelected" class="mb-3" size="sm">
+            <b-form-select  v-model="subjectSelected" class="mb-3" size="sm">
               <option :value="null">과목명</option>
-              <option v-for="subject in subjectOptions" v-bind:key="subject.id">{{subject.value}}</option>
+              <option v-for="subject in subjectOptions" v-bind:key ="subject.id">{{subject.value}}</option>
             </b-form-select>
           </b-col>
           <b-col col lg="1">
-            <b-form-select v-model="professorSelected" class="mb-3" size="sm">
+            <b-form-select  v-model="professorSelected" class="mb-3" size="sm">
               <option :value="null">교수명</option>
-              <option
-                v-for="professor in professorOptions"
-                v-bind:key="professor.id"
-              >{{professor.value}}</option>
+              <option v-for="professor in professorOptions" v-bind:key ="professor.id">{{professor.value}}</option>
             </b-form-select>
           </b-col>
           <b-col col lg="1">
-            <b-form-select v-model="semesterSelected" class="mb-3" size="sm">
+            <b-form-select  v-model="semesterSelected" class="mb-3" size="sm">
               <option :value="null">수강학기</option>
-              <option
-                v-for="semester in semesterOptions"
-                v-bind:key="semester.id"
-              >{{semester.value}}</option>
+              <option v-for="semester in semesterOptions" v-bind:key ="semester.id">{{semester.value}}</option>
             </b-form-select>
           </b-col>
         </b-row>
@@ -84,10 +78,10 @@
       </div>
 
       <div class="diffi">
-        <b-form-select v-model="diffiSelected" class="mb-3" size="sm">
-          <option :value="null">수강신청 난이도</option>
-          <option v-for="diffi in diffiOptions" v-bind:key="diffi.id">{{diffi.value}}</option>
-        </b-form-select>
+        <b-form-select  v-model="diffiSelected" class="mb-3" size="sm">
+              <option :value="null">수강신청 난이도</option>
+              <option v-for="diffi in diffiOptions" v-bind:key ="diffi.id">{{diffi.value}}</option>
+            </b-form-select>
       </div>
 
       <div id="evalText">
@@ -138,34 +132,18 @@ export default {
   name: "evaluation-write",
   data() {
     return {
-      //test
-      //userId: "syl1709",
-      ////강의 정보
-      //majorSelected: "미디어",
-      //subjectSelected: "컴프설",
-      //professorSelected: "신현준",
-      //semesterSelected: "1-1",
-      //diffiSelected: "상",
-      ////강의 평점
-      //assignRating: "3",
-      //teamRating: "4",
-      //lectureRating: "2",
-      //examRating: "5",
-      ////강의 메모
-      //text1: "시험",
-      //text2: "팀플",
-      //text3: "추천",
-      //text4: "비추천",
-
-      allMajorData: [],
-
-      userId: "",
+      allMajorData:[],
+      
+      majorSelected:null,
+      subjectSelected:null,
+      professorSelected:null,
+      semesterSelected:null,
+      diffiSelected:null,
       //강의 정보
-      majorSelected: null,
-      subjectSelected: null,
-      professorSelected: null,
-      semesterSelected: null,
-      diffiSelected: null,
+      userId:'',
+     // code: "F001", 
+      professor: "",
+      difficult: "",
       //강의 평점
       assignRating: "",
       teamRating: "",
@@ -180,23 +158,25 @@ export default {
       majorOptions: [],
       subjectOptions: [],
       professorOptions: [],
-      semesterOptions: [
-        { value: "2018-1 학기" },
-        { value: "2017-2 학기" },
-        { value: "2017-1 학기" }
+      semesterOptions:[
+        {value: '2018-1 학기'},
+        {value: '2017-2 학기'},
+        {value: '2017-1 학기'}
       ],
-      diffiOptions: [{ value: "상" }, { value: "중" }, { value: "하" }]
+      diffiOptions: [
+        { value: "상" },
+        { value: "중" },
+        { value: "하" }
+      ]
     };
   },
-  created() {
-    this.getMajor();
-    this.getUserId();
+  created(){
+    this.getMajor()
+    this.getUserId()
   },
   //select 시, 학과명이 바뀔때마다 과목명과 교수명을 다시 받기 위함
-  watch: {
-    majorSelected: function() {
-      this.getSubject();
-      this.getProfessor();
+  watch: { 'majorSelected': function() {
+     this.getSubject()
     }
   },
   methods: {
@@ -212,11 +192,12 @@ export default {
     setExamRating(rating) {
       this.examRating = rating;
     },
-    //유저아이디 가져오기 (수정할지 말지 논의!)
-    getUserId() {
-      //this.$http.get("/api/profile/user").then(res => {
-      //  this.userId = res.data.username;
-      //});
+    //유저아이디 가져오기
+    getUserId(){
+     this.$http.get('/api/profile/user')
+      .then(res => {
+        this.userId = res.data.username
+      })
     },
     //majorOption의 데이터에 넣어줄 함수
     //학과 선택 함수
@@ -224,9 +205,9 @@ export default {
       this.$http
         .get("/api/major/all")
         .then(res => {
-          this.allMajorData = res.data; //미리 저장해 두어, 학과 선택 후 교수명 불러올때 디비에 또 가지 않기 위함.
+          this.allMajorData = res.data  //미리 저장해 두어, 학과 선택 후 교수명 불러올때 디비에 또 가지 않기 위함.
           for (var i = 0; i < res.data.length; i++) {
-            this.majorOptions.push({ value: res.data[i].major });
+            this.majorOptions.push({value: res.data[i].major});
           }
         })
         .catch(err => {
@@ -234,8 +215,8 @@ export default {
         });
     },
     // subjectOptions
-    //선택한 학과에 따라 강의명 넣기
-    getSubject() {
+    //선택한 학과에 따라 강의명 넣기 
+   getSubject() {
       this.$http
         .post("/api/curriculum", {
           major: this.majorSelected
@@ -246,6 +227,7 @@ export default {
           for (var i = 0; i < res.data.length; i++) {
             this.subjectOptions.push({ value: res.data[i].lecture });
           }
+          this.getProfessor(this.majorSelected)
         })
         .catch(err => {
           console.log(err);
@@ -253,25 +235,41 @@ export default {
     },
     //professorOptions
     //선택한 학과에 따라 교수명 데이터 넣기
-    getProfessor() {
-      this.professorOptions = [];
-      for (var i = 0; i < this.allMajorData.length; i++) {
-        if (this.allMajorData[i].major == this.majorSelected) {
-          for (var j = 0; j < this.allMajorData[i].professor.length; j++) {
-            this.professorOptions.push({
-              value: this.allMajorData[i].professor[j].name
-            });
-          }
+    getProfessor(clickedMajor) {
+      this.professorOptions = []
+      for(var i =0 ; i<this.allMajorData.length; i++){
+       if(this.allMajorData[i].major == clickedMajor){
+        for (var j = 0; j < this.allMajorData[i].professor.length; j++) {
+            this.professorOptions.push({ value: this.allMajorData[i].professor[j].name });
         }
+       }
       }
     },
-    async onSubmit() {
+    // 과목코드 
+    //getCode() {
+    //  this.code = "";
+    //  this.$http
+    //    .post("/api/curriculum/one", {
+    //      major: this.majorSelected,
+    //      lecture: this.subjectSelected
+    //    })
+    //    .then(res => {
+    //      console.log("커리큘럼 내 한 과목");
+    //      console.log(res.data);
+    //      this.code = res.data.code;
+    //    })
+    //    .catch(err => {
+    //      console.log(err);
+    //    });
+    //},
+    onSubmit() {
       this.$http
         .post("/api/class/evaluation/create", {
           userId: this.userId,
           major: this.majorSelected,
           lecture: this.subjectSelected,
           professor: this.professorSelected,
+      //    code: this.code,
           semester: this.semesterSelected,
           nickname: this.$cookies.get("nickname"),
           teamProject_grade: this.assignRating,
@@ -285,13 +283,13 @@ export default {
           memo4: this.text4
         })
         .then(res => {
-          console.log("리스폰스");
           console.log(res.data);
+         
         })
         .catch(err => {
           console.log(err);
         });
-      //this.$router.push("/main");
+         this.$router.push("/main");
     }
   }
 };

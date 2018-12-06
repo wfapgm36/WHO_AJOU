@@ -20,38 +20,12 @@
             
             강의명
             <div>
-              <b-form-select  v-model="selected.lecture" class="mb-3" size="sm">
-                <option v-for="lecture in lectureOptions" v-bind:key ="lecture.id">{{lecture.value}}</option>
-              </b-form-select>  
+              <b-form-input v-model="selected.lecture"
+                          type="text"
+                          size = "sm"
+                          id="lectureBar" >
+                </b-form-input>
             </div>
-            
-            선수과목
-            <b-row class="justify-content-md-center" id="choice">
-              <b-col col lg="4">
-                <div>
-                  <b-form-select  v-model="selected.prequisite[0]" class="mb-3" size="sm">
-                    <option :value="null">없음</option>
-                    <option v-for="prequisite in prequisiteOptions" v-bind:key ="prequisite.id">{{prequisite.value}}</option>
-                  </b-form-select> 
-                </div>
-              </b-col>
-              <b-col col lg="4">
-                <div>
-                  <b-form-select  v-model="selected.prequisite[1]" class="mb-3" size="sm">
-                    <option :value="null">없음</option>
-                    <option v-for="prequisite in prequisiteOptions" v-bind:key ="prequisite.id">{{prequisite.value}}</option>
-                  </b-form-select> 
-                </div>
-              </b-col>
-              <b-col col lg="4">
-                <div>
-                  <b-form-select  v-model="selected.prequisite[2]" class="mb-3" size="sm">
-                    <option :value="null">없음</option>
-                    <option v-for="prequisite in prequisiteOptions" v-bind:key ="prequisite.id">{{prequisite.value}}</option>
-                  </b-form-select> 
-                </div>
-              </b-col>
-            </b-row>
 
             학기
             <div>
@@ -59,8 +33,36 @@
                 <option v-for="semester in semesterOptions" v-bind:key ="semester.id">{{semester.value}}</option>
               </b-form-select> 
             </div>
+
+            선수과목
+            <b-row class="justify-content-md-center" id="choice">
+              <b-col col lg="4">
+                  <b-form-input v-model="selected.prerequisite[0]"
+                          type="text"
+                          size = "sm"
+                          id="preone" >
+                </b-form-input>
+              </b-col>
+              <b-col col lg="4">
+                 <b-form-input v-model="selected.prerequisite[1]"
+                          type="text"
+                          size = "sm"
+                          id="pretwo" >
+                </b-form-input>
+
+              </b-col>
+              <b-col col lg="4">
+                <b-form-input v-model="selected.prerequisite[2]"
+                          type="text"
+                          size = "sm"
+                          id="prethree" >
+                </b-form-input>
+              </b-col>
+            </b-row>
+
           </h6>
 
+        
           <h6 slot="footer">
             <b-button type="submit" variant="primary">제출</b-button>
           </h6>
@@ -89,10 +91,10 @@ export default {
     return {
       allMajorData:[],
 
+     
       majorOptions: [],
-      typeOptions: [],
+      typeOptions: [{value: '전공필수'},{value: '전공선택'},{value:'교양필수'},{value:'교양선택'}],
       lectureOptions: [],
-      prequisiteOptions: [],
       semesterOptions: [
         {value: '1-1'},
         {value: '1-2'},
@@ -115,24 +117,16 @@ export default {
         
         major: null,
         type: null,
-        lecture:null,
-        prequisite:[],
+        lecture:'',
+        prerequisite:[],
         semester:null,
-        description: "",
-        isPre: false
+        description: ""
       }
     };
   },created(){
     this.getMajor()
   },
-  //select 시, 학과명이 바뀔때마다 과목명과 교수명을 다시 받기 위함
-  watch: { 'majorSelected': function() {
-      this.getLecture()
-      this.getProfessor()
-    }
-  },
   methods: {
-    //majorOptions
     //학과 선택 함수
     getMajor() {
       this.$http
@@ -147,37 +141,8 @@ export default {
           console.log(err);
         });
     },
-    // lectureOptions
-    //선택한 학과에 따라 강의명 넣기 
-    getLecture() {
-      this.$http
-        .post("/api/curriculum", {
-          major: this.selected.major
-        })
-        .then(res => {
-          console.log("커리큘럼 내 모든 과목");
-          console.log(res.data);
-          for (var i = 0; i < res.data.length; i++) {
-            this.lectureOptions.push({ value: res.data[i].lecture });
-          }
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    },
-    //professorOptions
-    //선택한 학과에 따라 교수명 데이터 넣기
-    getProfessor() {
-      this.professorOptions = []
-      for(var i =0 ; i<this.allMajorData.length; i++){
-       if(this.allMajorData[i].major == this.selected.major){
-        for (var j = 0; j < this.allMajorData[i].professor.length; j++) {
-            this.professorOptions.push({ value: this.allMajorData[i].professor[j].name });
-        }
-       }
-      }
-    },
     onSubmit() {
+   
       this.$http
         .post("/api/curriculum/create", this.selected)
         .then(res => {

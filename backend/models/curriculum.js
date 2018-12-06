@@ -24,7 +24,7 @@ var curriculumSchema = mongoose.Schema({
         type: String,
         required: true
     }, // 강의 추천 학기
-    prequisite: [{
+    prerequisite: [{
         name: String
     }], // 선수과목
     type: {
@@ -39,20 +39,25 @@ var curriculumSchema = mongoose.Schema({
 });
 
 // 강의 평가 도큐먼트 생성
-curriculumSchema.statics.create = function (major, type, lecture, prequisite, semester, description) {
+curriculumSchema.statics.create = function (major, type, lecture, prerequisite, semester, description) {
 
+    var lenght =0 ; 
+
+
+    console.log("pre lenth: "+prerequisite.length)
     const curriculum = new this({
         major,
         type,
         lecture,
         semester,
-        description
+        description,
+        isPre: false
     });
     console.log('생성 받았다')
-    console.log(major, type, lecture, prequisite, semester)
+    console.log(major, type, lecture, prerequisite, semester)
 
-    for (var i = 0; i < prequisite.length; i++) {
-        curriculum.prequisite.push({name: prequisite[i]});
+    for (var i = 0; i < 1; i++) {
+        curriculum.prerequisite.push({name: prerequisite[i]});
     }
 
     // return the Promise
