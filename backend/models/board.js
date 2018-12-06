@@ -15,8 +15,6 @@ var boardSchema = mongoose.Schema({
     }],
     count: { type: Number, default: 0 },
     createAt: { type: Date, default: Date.now },
-    updated: [{ contents: String, date: { type: Date, default: Date.now } }],
-    deleted: { type: Boolean, default: false },
     _id: {
         type: Number,
         unique: true

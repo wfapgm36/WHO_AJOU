@@ -13,7 +13,7 @@ const user = require("./routes/user");
 const main = require("./routes/main");
 const board = require("./routes/board");
 const email_verification = require("./routes/email-verification");
-
+const profile = require("./routes/profile")
 var nev = require('email-verification')(mongoose);
 require('./config/email-verification')(nev);
 
@@ -34,7 +34,7 @@ app.use('/api/login', login);
 app.use('/api/user', user);
 app.use('/api/main', main);
 app.use('/api/board', board);
-
+app.use('/api/profile', profile);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
