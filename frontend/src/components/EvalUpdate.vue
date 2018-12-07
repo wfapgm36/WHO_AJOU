@@ -30,9 +30,10 @@
         </b-row>
 
         <b-row class="justify-content-md-center">
-          <b-col col lg="2" class="star" align="center">
+          <b-col col lg="2" class="star">
             <h5>과제평가</h5>
             <star-rating
+                v-model="assignRating"
               :inline="true"
               border-color="transparent"
               :show-rating="false"
@@ -41,9 +42,10 @@
               :star-size="30"
             ></star-rating>
           </b-col>
-          <b-col col lg="2" md="auto" class="star" align="center">
+          <b-col col lg="2" md="auto" class="star">
             <h5>팀플평가</h5>
             <star-rating
+              v-model="teamRating"
               :inline="true"
               :show-rating="false"
               :increment="0.5"
@@ -54,9 +56,10 @@
         </b-row>
 
         <b-row class="justify-content-md-center">
-          <b-col col lg="2" class="star" align="center">
+          <b-col col lg="2" class="star">
             <h5>강의력 평가</h5>
             <star-rating
+               v-model="lectureRating"
               :inline="true"
               :show-rating="false"
               :increment="0.5"
@@ -64,9 +67,11 @@
               :star-size="30"
             ></star-rating>
           </b-col>
-          <b-col col lg="2" class="star" md="auto" align="center">
+          <b-col col lg="2" class="star" md="auto">
             <h5>시험평가</h5>
+           
             <star-rating
+              v-model="examRating"
               :inline="true"
               :show-rating="false"
               :increment="0.5"
@@ -121,7 +126,7 @@
           :max-rows="6"
         ></b-form-textarea>
 
-        <b-button class="submitBtn" type="submit">제출</b-button>
+        <b-button class="submitBtn" type="submit">수정</b-button>
       </div>
     </form>
   </div>
@@ -129,7 +134,7 @@
 
 <script>
 export default {
-  name: "evaluation-write",
+  name: "evaluation-update",
   data() {
     return {
       allMajorData:[],
@@ -141,7 +146,6 @@ export default {
       diffiSelected:null,
       //강의 정보
       userId:'',
-     // code: "F001", 
       professor: "",
       difficult: "",
       //강의 평점
@@ -173,10 +177,12 @@ export default {
   created(){
     this.getMajor()
     this.getUserId()
+    this.getContent()
   },
   //select 시, 학과명이 바뀔때마다 과목명과 교수명을 다시 받기 위함
   watch: { 'majorSelected': function() {
-     this.getSubject()
+      this.getSubject()
+      this.getProfessor()
     }
   },
   methods: {
@@ -227,7 +233,6 @@ export default {
           for (var i = 0; i < res.data.length; i++) {
             this.subjectOptions.push({ value: res.data[i].lecture });
           }
-          this.getProfessor(this.majorSelected)
         })
         .catch(err => {
           console.log(err);
@@ -235,29 +240,54 @@ export default {
     },
     //professorOptions
     //선택한 학과에 따라 교수명 데이터 넣기
-    getProfessor(clickedMajor) {
+    getProfessor() {
       this.professorOptions = []
       for(var i =0 ; i<this.allMajorData.length; i++){
-       if(this.allMajorData[i].major == clickedMajor){
+       if(this.allMajorData[i].major == this.majorSelected){
         for (var j = 0; j < this.allMajorData[i].professor.length; j++) {
             this.professorOptions.push({ value: this.allMajorData[i].professor[j].name });
         }
        }
       }
     },
+    getContent() {
+      this.$http
+        .get(`/api/class/evaluation/update/${this.$route.params.id}`)
+        .then(res => {
+          console.log(res.data);
+          this.majorSelected = res.data.major
+          this.subjectSelected = res.data.lecture
+          this.professorSelected = res.data.professor
+          this.semesterSelected = res.data.semester
+          this.assignRating = res.data.evaluation.homework_grade 
+          this.teamRating = res.data.evaluation.teamProject_grade
+          this.lectureRating = res.data.evaluation.skill_grade
+          this.examRating = res.data.evaluation.test_grade
+          this.diffiSelected = res.data.evaluation.enrollment_level
+          this.text1 = res.data.evaluation.memo1
+          this.text2 = res.data.evaluation.memo2
+          this.text3 = res.data.evaluation.memo3
+          this.text4 = res.data.evaluation.memo4
+          console.log(this.assignRating, this.teamRating, this.lectureRating, this.examRating)
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
     onSubmit() {
       this.$http
-        .post("/api/class/evaluation/create", {
+        .put("/api/class/evaluation/update", {
+          evalId: this.$route.params.id,
           userId: this.userId,
           major: this.majorSelected,
           lecture: this.subjectSelected,
           professor: this.professorSelected,
           semester: this.semesterSelected,
           nickname: this.$cookies.get("nickname"),
-          teamProject_grade: this.assignRating,
-          homework_grade: this.teamRating,
-          test_grade: this.lectureRating,
-          skill_grade: this.examRating,
+          homework_grade: this.assignRating,
+          teamProject_grade: this.teamRating,
+          skill_grade: this.lectureRating,
+          test_grade: this.examRating,
           enrollment_level: this.diffiSelected,
           memo1: this.text1,
           memo2: this.text2,
@@ -271,7 +301,8 @@ export default {
         .catch(err => {
           console.log(err);
         });
-         this.$router.push("/main");
+        //this.$router.push("/main");
+        this.$router.push(`/evalview/${this.$route.params.id}`);
     }
   }
 };
