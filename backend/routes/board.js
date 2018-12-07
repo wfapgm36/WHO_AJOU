@@ -79,22 +79,6 @@ router.post("/comment", (req, res) => {
     })
 });
 
-router.get("/posts/:id", auth.ensureAuth(), function (req, res) {
-    Board.findOne({ _id: req.params.id })
-        .then(board => {
-            if (board) {
-                if (board.userId == req.user.username) {
-                    res.status(200)
-                    res.json(board)
-                } else {
-                    res.status(203).send(); // writer 와 사용자 일치 x
-                }
-            } else {
-                res.status(405).send(); // data 없음
-            }
-        })
-});
-
 router.delete("/comment", auth.ensureAuth(), (req, res) => {
     Board.findOne({ _id: req.body.boardId }, function (err, board) {
         if (board) {

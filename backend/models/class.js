@@ -32,21 +32,18 @@ var classSchema = mongoose.Schema({
 });
 
 // 강의 평가 도큐먼트 생성
-classSchema.statics.create = function (userId, major, lecture, professor, semester, eval) {
-    
+classSchema.statics.create = function (userId, major, lecture, professor, semester, evaluation) {
+
     const classeval = new this({
         userId,
         major,
         lecture,
         professor,
-        semester
+        semester,
+        evaluation
     });
-    
-    console.log('생성 받았다.')
-    console.log(userId, major, lecture, professor, semester)
 
-    classeval.evaluation.push(eval);
-    
+
     // return the Promise
     return classeval.save(err => {
       console.log(err);
@@ -55,11 +52,11 @@ classSchema.statics.create = function (userId, major, lecture, professor, semest
 };
 
 // 유저가 쓴 강의평가 찾기
-classSchema.statics.findDuplicate = function (userId, semester, lecture) {
+classSchema.statics.findDuplicate = function(userId, semester, lecture) {
     console.log("SYSTEM: 중복검사")
     return this.findOne({
-        userId: userId,
-        semester: semester,
+        userId: userId, 
+        semester: semester, 
         lecture: lecture
     }).exec();
 
@@ -78,10 +75,10 @@ classSchema.statics.findId = function(id) {
 
 // 강의평가id를 Auto Increment 필드로 지정
 classSchema.plugin(autoIncrement.plugin, {
-    model: 'Classes',
+    model: 'Class',
     field: 'id',
     startAt: 1
 })
 
-var Class = mongoose.model('Classes', classSchema, 'Classlist');
+var Class = mongoose.model('Class', classSchema, 'Classlist');
 module.exports =  Class;
