@@ -25,8 +25,9 @@
             <td class="text-xs-center">{{ props.item.count }}</td>
           </template>
       </v-data-table>
+
       <div id = "paging">
-          <b-pagination size="md" hide-goto-end-buttons :total-rows="this.items.length" v-model="currentPage" :per-page="5" align="center">
+        <b-pagination size="md" hide-goto-end-buttons :total-rows="this.items.length" v-model="currentPage" :per-page="5" align="center">
     </b-pagination>
           <router-link to = "/write">
             <b-button id = "write_board" size = "sm" variant="primary">글쓰기</b-button>
@@ -67,6 +68,7 @@ export default {
   created () {
     this.$EventBus.$emit('removeTab', true)
     this.getAllPosts()
+    this.fetchData()
   },
   methods: {
     fetchData () {
