@@ -36,7 +36,7 @@
               params: {
                 id: item._id
               }
-              })"><b-btn id="tootipTitle" variant="outline-white" v-b-tooltip.hover title="상세보기">{{item.title}}</b-btn></b-button>
+              })">{{item.title}}</b-button>
           </b-col>
           <b-col>{{item.writer}}</b-col>
           <b-col cols="2">{{item.createAt.substr(0,10)}} {{item.createAt.substr(11,2)}}시 {{item.createAt.substr(14,2)}}분</b-col>
@@ -45,8 +45,8 @@
         <hr>
       </div>
       <div id = "paging">
-        <b-pagination-nav base-url="#" align = "center" :number-of-pages="this.numberOfPosts" v-model="currentPage"
-        hide-goto-end-buttons/>
+        <b-pagination size="md" hide-goto-end-buttons :total-rows="this.items.length" v-model="currentPage" :per-page="5" align="center">
+    </b-pagination>
         <router-link to = "/write">
           <b-button id = "write_board" size = "sm" variant="primary">글쓰기</b-button>
         </router-link>
@@ -77,17 +77,13 @@ export default {
   },
   methods: {
     fetchData () {
-      let hash = location.hash.substr(1, location.hash.length)
-      if (hash) {
-        this.filteredItems = this.items.slice((hash - 1) * 5, (hash) * 5)
-      } else {
-        this.filteredItems = this.items.slice(0, 5)
-      }
+      this.filteredItems = this.items.slice((this.currentPage - 1) * 5, (this.currentPage) * 5)
     },
     getAllPosts () {
       this.$http.get('/api/board').then((res) => {
         this.items = res.data
         this.numberOfPosts = Math.ceil(res.data.length / 5)
+        this.filteredItems = this.items.slice((this.currentPage - 1) * 5, (this.currentPage) * 5)
       })
     },
     searchPost () {

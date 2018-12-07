@@ -123,6 +123,7 @@ export default {
       }
     };
   },created(){
+    this.$EventBus.$emit('removeTab', true)
     this.getMajor()
   },
   //select 시, 학과명이 바뀔때마다 과목명과 교수명을 다시 받기 위함
