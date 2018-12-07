@@ -108,6 +108,7 @@
       <b-tab title="내가 쓴 글" @click = "getMyEval()">
          <div class = "myEvaluation" >
           <div id = "myEval_container">
+              <h5 id = "mynoresult" v-if="my_eval_subject.length == 0">작성한 강의평가가 없습니다.</h5>
               <v-flex xs12 >
                  <v-container fluid>
                    <v-layout row wrap>
@@ -122,7 +123,7 @@
                            class="mx-auto"
                            width="345"
                            flat tile>
-                          <div class ="evalContainer" >
+                          <div class ="myEvalContainer" >
                              <h3 style="padding-top:20px">Course</h3>
                              <h5>{{item.lecture}}</h5>
                              <h3>Professor</h3>
@@ -135,7 +136,7 @@
                             <h5 class = "circle">{{parseFloat(item.evaluation.totalGrade).toFixed(1)}}</h5>
                             <h5>{{item.semester}}</h5><br>
                             <router-link :to ="{name:'eval-view',params:{id: item.id}}">
-                              <button type="submit" class = "plusView">Read More</button>
+                              <button type="submit" class = "plusView" style="margin-bottom:15px;">Read More</button>
                             </router-link>
                           </div>
                        </v-card>
@@ -258,69 +259,40 @@ export default {
 }
 </script>
 <style>
-#myEval_container{
-    margin-top: 50px;
+#mynoresult{
+  margin-top:120px;
+  text-align: center;
 }
 
-.myEvalContainer{
-    border:3px solid yellow;
-    border-radius: 50px;
-    width:330px;
-    height: 450px;
-    background:white;
-    text-align: center;
+.card-header{
+  padding-top : 2vh;
+  font-size:18px;
+  font-weight: bold;
+}
+  .nav-tabs .nav-link{
+  height: 7vh;
+  padding-left:3vw;
+  padding-right:3vw;
+  margin-top:3vh;
+  margin-left:5px;
 }
 
-.circle{
-    border:thick solid yellow;
-    border-radius: 100%;
-    padding-top:5px;
-    padding-bottom: 5px;
-    width:80px;
-    font-size:45px;
-    margin-left:38%;
-    margin-right:38%;
-    margin-top:25px;
-    margin-bottom:30px;
-}
 
-.plusView{
-    margin-top:30px;
-    color:white;
-    height:40px;
-    font-weight: bold;
-    background: lightblue;
-    text-align: center;
-    border:transparent;
-    border-radius: 10px;
-}
-  .card-header{
-    padding-top : 2vh;
-    font-size:18px;
-    font-weight: bold;
-  }
-    .nav-tabs .nav-link{
-    height: 7vh;
-    padding-left:20vw;
-    padding-right:20vw;
-    margin-top:3vh;
-    margin-left:5px;
-  }
-
-.myEvaluation{
-  margin-top:200px;
-  margin-bottom: 100vh;
-}
-.myEvalContainer{
+.myEevalContainer{
     background-color : lightgray;
     margin-top: 60px;
+    padding-bottom: 20px;
     width:330px;
     height: 450px;
     background:white;
     text-align: center;
 }
-.evalContainer h3{
+.myEvalContainer h3{
   font-weight: bold;
+}
+#myEval_container{
+  margin-top:40px;
+  text-align:center;
 }
 .circle{
     border:thick solid #FFCCCC;
