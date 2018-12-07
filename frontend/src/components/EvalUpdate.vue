@@ -134,7 +134,7 @@
 
 <script>
 export default {
-  name: "evaluation-write",
+  name: "evaluation-update",
   data() {
     return {
       allMajorData:[],
@@ -146,7 +146,6 @@ export default {
       diffiSelected:null,
       //강의 정보
       userId:'',
-     // code: "F001", 
       professor: "",
       difficult: "",
       //강의 평점

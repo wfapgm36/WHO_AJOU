@@ -113,7 +113,8 @@
                  <v-container fluid>
                    <v-layout row wrap>
                      <v-flex
-                       id = "myevaluate" v-for="item in my_eval_subject" v-bind:key="item.id" v-if="item.userId == form.name"
+                       id = "evaluate" v-for="item in my_eval_subject" v-bind:key="item.id"
+                       v-if="item.userId === form.name"
                        xs3
                      >
                      <v-hover>

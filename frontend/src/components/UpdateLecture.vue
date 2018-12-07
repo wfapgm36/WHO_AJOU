@@ -66,7 +66,7 @@
 
 <script>
 export default {
-  name: "add-lecture",
+  name: "update-lecture",
   data() {
     return {
       id: this.$route.params.id,
