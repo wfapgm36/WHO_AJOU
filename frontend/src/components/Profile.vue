@@ -307,4 +307,44 @@ export default {
     margin-top:3vh;
     margin-left:5px;
   }
+
+.myEvaluation{
+  margin-top:200px;
+  margin-bottom: 100vh;
+}
+.myEvalContainer{
+    background-color : lightgray;
+    margin-top: 60px;
+    width:330px;
+    height: 450px;
+    background:white;
+    text-align: center;
+}
+.evalContainer h3{
+  font-weight: bold;
+}
+.circle{
+    border:thick solid #FFCCCC;
+    border-radius: 100%;
+    padding-top:5px;
+    padding-bottom: 5px;
+    width:80px;
+    font-size:45px;
+    margin-left:38%;
+    margin-right:38%;
+    margin-top:25px;
+    margin-bottom:30px;
+}
+.plusView{
+  font-size: 15px;
+    margin-top:10px;
+    color:white;
+    height:40px;
+    width: 90px;
+    font-weight: bold;
+    background: #C6D6F7;
+    text-align: center;
+    border:transparent;
+    border-radius: 10px;
+}
 </style>

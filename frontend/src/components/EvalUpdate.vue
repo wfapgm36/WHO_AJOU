@@ -33,6 +33,7 @@
           <b-col col lg="2" class="star">
             <h5>과제평가</h5>
             <star-rating
+                v-model="assignRating"
               :inline="true"
               border-color="transparent"
               :show-rating="false"
@@ -44,6 +45,7 @@
           <b-col col lg="2" md="auto" class="star">
             <h5>팀플평가</h5>
             <star-rating
+              v-model="teamRating"
               :inline="true"
               :show-rating="false"
               :increment="0.5"
@@ -57,6 +59,7 @@
           <b-col col lg="2" class="star">
             <h5>강의력 평가</h5>
             <star-rating
+               v-model="lectureRating"
               :inline="true"
               :show-rating="false"
               :increment="0.5"
@@ -66,7 +69,9 @@
           </b-col>
           <b-col col lg="2" class="star" md="auto">
             <h5>시험평가</h5>
+           
             <star-rating
+              v-model="examRating"
               :inline="true"
               :show-rating="false"
               :increment="0.5"
