@@ -1,8 +1,8 @@
 <template>
   <div class="container">
-    <b-button id = "closeBtn" @click="close(subject)" ><v-icon v-text="$vuetify.icons.cancel"></v-icon></b-button>
-    <b-button class = "delBtn" @click="deleteCurriculum(subject)">삭제</b-button>
-    <b-button class = "uptBtn" @click="updateCurriculum(subject)">수정</b-button>
+    <b-button class = "popupBtn" @click="close(subject)" ><v-icon v-text="$vuetify.icons.cancel"></v-icon></b-button>
+    <b-button class = "del_modify_Btn" @click="deleteCurriculum(subject)">삭제</b-button>
+    <b-button class = "del_modify_Btn" @click="updateCurriculum(subject)">수정</b-button>
     <h3>COURSE INFORMATION</h3>
     
     <hr  class = "mainhr">
@@ -88,7 +88,7 @@
     border-radius: 50px;
     background-color: rgba(255, 255, 255, 0.705);
   }
-  #closeBtn{
+  .popupBtn{
     float: right;
     margin-top:5px;
     background-color: transparent;
@@ -109,7 +109,12 @@
   h3{
     margin-top:25px;
   }
-
+  .del_modify_btn{
+    float: right;
+    margin-top:5px;
+    border: #C6D6F7;
+    background-color :#C6D6F7;
+  }
   .evalButton{
     margin-top:5vh;
     margin-left:5vh;

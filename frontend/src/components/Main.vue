@@ -28,7 +28,7 @@
           <router-link :to ="`/evaluation/write`">
             <b-button class="eval_write_btn">강의평가작성</b-button>
           </router-link>
-          <router-link :to ="`/addlecture`">
+          <router-link :to ="`/curriculum/create`">
             <b-button class="eval_write_btn"> 강의추가 </b-button>
           </router-link>
           <b-dropdown  id="ddown-buttons" text="학과를 선택하세요" class="m-2">
@@ -142,12 +142,12 @@
                              <h5>{{item.lecture}}</h5>
                              <h3>Professor</h3>
                              <h5>{{item.professor}}</h5>
-                             <v-rating v-model="item.evaluation[0].totalGrade"
+                             <v-rating v-model="item.evaluation.totalGrade"
                                         color="yellow darken-3"
                                         background-color="grey darken-1"
                                         readonly=true>
                             </v-rating>
-                            <h5 class = "circle">{{parseFloat(item.evaluation[0].totalGrade).toFixed(1)}}</h5>
+                            <h5 class = "circle">{{parseFloat(item.evaluation.totalGrade).toFixed(1)}}</h5>
                             <h5>{{item.semester}}</h5><br>
                               <router-link :to ="{name:'eval-view',params:{id: item.id}}">
                               <button type="submit" class = "plusView">Read More</button>

@@ -55,73 +55,73 @@ export default new Router({
       path: '/main',
       name: 'main',
       component: Main,
-      // beforeEnter: requireAuth()
+       beforeEnter: requireAuth()
     },
     {
       path: '/board',
       name: 'board',
       component: Board,
-      // beforeEnter: requireAuth()
+       beforeEnter: requireAuth()
     },
     {
       path: '/write',
       name: 'board-write',
       component: BoardWrite,
-      // beforeEnter: requireAuth()
+       beforeEnter: requireAuth()
     },
     {
       path: '/view/:id',
       name: 'board-view',
       component: BoardView,
-      // beforeEnter: requireAuth()
+      beforeEnter: requireAuth()
     },
     {
       path: '/update/:id',
       name: 'board-update',
       component: BoardUpdate,
-      // beforeEnter: requireAuth()
+       beforeEnter: requireAuth()
     },
     {
       path: '/userlist',
       name: 'userlist',
       component: UserList,
-      // beforeEnter: requireAuth()
+       beforeEnter: requireAuth()
     },
     {
       path: '/profile',
       name: 'profile',
       component: Profile,
-      // beforeEnter: requireAuth()
+       beforeEnter: requireAuth()
     },
     {
       path: '/evalview/:id',
       name: 'eval-view',
       component: EvalView,
-      // beforeEnter: requireAuth()
+       beforeEnter: requireAuth()
     },
     {
       path: '/evaluation/write',
       name: 'evaluation-write',
       component: EvalWrite,
-      // beforeEnter: requireAuth()
+       beforeEnter: requireAuth()
     }, 
     {
       path: '/evaluation/update/:id',
       name: 'evaluation-update',
       component: EvalUpdate,
-      // beforeEnter: requireAuth()
+       beforeEnter: requireAuth()
     },
     {
       path: '/curriculum/create',
       name: 'add-lecture',
       component: AddLecture,
-      // beforeEnter: requireAuth()
+      beforeEnter: requireAuth()
     },
     {
       path: '/curriculum/update/:id',
       name: 'update-lecture',
       component: UpdateLecture,
-      // beforeEnter: requireAuth()
+       beforeEnter: requireAuth()
     }
   ]
 })

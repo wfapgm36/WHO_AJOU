@@ -112,7 +112,7 @@
                  <v-container fluid>
                    <v-layout row wrap>
                      <v-flex
-                       id = "evaluate" v-for="item in my_eval_subject" v-bind:key="item.id"
+                       id = "myevaluate" v-for="item in my_eval_subject" v-bind:key="item.id" v-if="item.userId == form.name"
                        xs3
                      >
                      <v-hover>
@@ -127,12 +127,12 @@
                              <h5>{{item.lecture}}</h5>
                              <h3>Professor</h3>
                              <h5>{{item.professor}}</h5>
-                             <v-rating v-model="item.evaluation[0].totalGrade"
+                             <v-rating v-model="item.evaluation.totalGrade"
                                         color="yellow darken-3"
                                         background-color="grey darken-1"
                                         readonly=true>
                             </v-rating>
-                            <h5 class = "circle">{{parseFloat(item.evaluation[0].totalGrade).toFixed(1)}}</h5>
+                            <h5 class = "circle">{{parseFloat(item.evaluation.totalGrade).toFixed(1)}}</h5>
                             <h5>{{item.semester}}</h5><br>
                             <router-link :to ="{name:'eval-view',params:{id: item.id}}">
                               <button type="submit" class = "plusView">Read More</button>
@@ -306,4 +306,44 @@ export default {
     margin-top:3vh;
     margin-left:5px;
   }
+
+.myEvaluation{
+  margin-top:200px;
+  margin-bottom: 100vh;
+}
+.myEvalContainer{
+    background-color : lightgray;
+    margin-top: 60px;
+    width:330px;
+    height: 450px;
+    background:white;
+    text-align: center;
+}
+.evalContainer h3{
+  font-weight: bold;
+}
+.circle{
+    border:thick solid #FFCCCC;
+    border-radius: 100%;
+    padding-top:5px;
+    padding-bottom: 5px;
+    width:80px;
+    font-size:45px;
+    margin-left:38%;
+    margin-right:38%;
+    margin-top:25px;
+    margin-bottom:30px;
+}
+.plusView{
+  font-size: 15px;
+    margin-top:10px;
+    color:white;
+    height:40px;
+    width: 90px;
+    font-weight: bold;
+    background: #C6D6F7;
+    text-align: center;
+    border:transparent;
+    border-radius: 10px;
+}
 </style>
