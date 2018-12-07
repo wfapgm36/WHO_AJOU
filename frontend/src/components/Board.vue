@@ -2,6 +2,10 @@
   <div id="board">
     <div id = "board_main">
       <b-container class="content_row">
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1c7f027d9a5fc6a1fbdd43c0b388fc2bc3c2cf63
   <v-text-field
         v-model="searchText"
         append-icon="search"
