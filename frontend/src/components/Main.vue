@@ -11,7 +11,7 @@
           <b-col cols = "12" md = "3">
                 <b-form-input v-model="searchText"
                           type="text"
-                          placeholder="검색어를 입력해주세용."
+                          placeholder="검색어를 입력해주세요."
                           size = "sm"
                           id="searchBar" >
                 </b-form-input>
@@ -327,7 +327,6 @@ export default {
 
 <!--**********************css****************************-->
 <style>
-
 #noresult{
   margin-top:120px;
   text-align: center;
@@ -452,5 +451,4 @@ hr.vertical{
   background-color:#C6D6F7;
   border:#C6D6F7;
 }
-
 </style>

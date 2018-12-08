@@ -2,7 +2,8 @@
   <div id="app">
     <b-navbar toggleable="md" type="dark" class="nav-background">
       <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
-      <b-navbar-brand id = "navbar-brand" href="/main" tag="h1" v-if="isLogin"><b-badge pill variant="white"><h1>WHO AJOU?</h1></b-badge>  </b-navbar-brand>
+      <b-navbar-brand id = "navbar-brand" href="/main" tag="h1">
+        <h1><img src="../../assets/logo.png" height="48" width="48" alt="BV"><b-badge pill variant="white">WHO AJOU?</b-badge></h1></b-navbar-brand>
      <h5 id = "nickname" v-if="isLogin">{{nickname}}님 안녕하세요!</h5>
       <b-collapse is-nav id="nav_collapse">
         <b-navbar-nav class="ml-auto">
