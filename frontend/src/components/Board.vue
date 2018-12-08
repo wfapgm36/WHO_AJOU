@@ -42,7 +42,6 @@
           <router-link to = "/write">
             <!--<b-button id = "write_board" size = "sm" variant="primary">글쓰기</b-button>-->
             <v-btn
-              absolute
               dark
               fab
               right
@@ -169,6 +168,6 @@ hr {
   background-color:#9197B5 !important;
 }
   #board_write{
-    /*padding-right: 300px;*/
+    margin-right: 400px;
   }
 </style>
