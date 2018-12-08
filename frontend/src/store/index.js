@@ -4,7 +4,7 @@ import axios from 'axios'
 
 Vue.use(Vuex)
 
-const resourceHost = 'http://localhost:8080/api'
+const resourceHost = 'http://localhost:3000/api'
 
 const enhanceAccessToken = () => {
   const {accessToken} = localStorage
@@ -31,7 +31,7 @@ export default new Vuex.Store({
   },
   actions: {
     LOGIN ({commit}, {username, password}) {
-      return axios.post(`${resourceHost}/login`, {username: username, password: password})
+      return axios.post(`/api/login`, {username: username, password: password})
         .then((res) => {
           let data = res.data
           if (res.status == '200') {
