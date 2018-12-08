@@ -43,7 +43,7 @@
         </b-form>
       </div>
     <b-button-group size="sm">
-      <b-button v-on:click="toBoard" variant="primary">목록</b-button>
+      <b-button v-on:click="toBoard" class = "view_button" variant="primary">목록</b-button>
       <b-button v-if="userId == form.userId || admin === 1" v-on:click="updateBoard" variant="primary">수정</b-button>
       <b-button v-if="userId == form.userId || admin === 1" v-on:click="deleteBoard" variant="danger">삭제</b-button>
     </b-button-group>

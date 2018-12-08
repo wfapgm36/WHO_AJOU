@@ -22,11 +22,7 @@
         <template slot="items" slot-scope="props">
           <td>{{ props.item._id }}</td>
           <td class="text-xs-center">
-            <router-link :to="{path: '/view/:id',
-              name: 'board-view',
-              params: {
-                id: props.item._id
-              }}"
+            <router-link :to="`/view/${props.item._id}`"
             >{{props.item.title}}
             </router-link>
           </td>
