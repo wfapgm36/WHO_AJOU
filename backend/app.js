@@ -12,18 +12,15 @@ const login = require("./routes/login");
 const user = require("./routes/user");
 const main = require("./routes/main");
 const board = require("./routes/board");
-const lecture = require("./routes/class");
-const profile = require("./routes/profile");
-const curriculum = require("./routes/curriculum");
-const major = require("./routes/major");
 const email_verification = require("./routes/email-verification");
-
+const profile = require("./routes/profile")
+const major = require("./routes/major")
+const lecture = require("./routes/class")
+const curriculum = require("./routes/curriculum")
 var nev = require('email-verification')(mongoose);
 require('./config/email-verification')(nev);
 
 var app = express();
-
-
 app.use(require('connect-history-api-fallback')())
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -40,11 +37,10 @@ app.use('/api/login', login);
 app.use('/api/user', user);
 app.use('/api/main', main);
 app.use('/api/board', board);
-app.use('/api/class', lecture);
 app.use('/api/profile', profile);
+app.use('/api/class', lecture);
+app.use('/api/major', major)
 app.use('/api/curriculum', curriculum);
-app.use('/api/major', major);
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

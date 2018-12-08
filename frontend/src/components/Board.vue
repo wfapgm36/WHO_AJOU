@@ -13,6 +13,7 @@
       <br>
 
       <v-data-table
+      :disable-initial-sort="true"
           :headers="headers"
           :items="filteredItems"
           class="elevation-1"
@@ -36,8 +37,8 @@
       </v-data-table>
 
       <div id = "paging">
-          <b-pagination-nav base-url="#" align = "center" :number-of-pages="this.numberOfPosts" v-model="currentPage"
-          hide-goto-end-buttons/>
+        <b-pagination size="md" hide-goto-end-buttons :total-rows="this.items.length" v-model="currentPage" :per-page="5" align="center">
+    </b-pagination>
           <router-link to = "/write">
             <!--<b-button id = "write_board" size = "sm" variant="primary">글쓰기</b-button>-->
             <v-btn
@@ -87,21 +88,18 @@ export default {
   created () {
     this.$EventBus.$emit('removeTab', true)
     this.getAllPosts()
+    this.fetchData()
   },
   methods: {
     fetchData () {
-      let hash = location.hash.substr(1, location.hash.length)
-      if (hash) {
-        this.filteredItems = this.items.slice((hash - 1) * 5, (hash) * 5)
-      } else {
-        this.filteredItems = this.items.slice(0, 5)
-      }
+      this.filteredItems = this.items.slice((this.currentPage - 1) * 5, (this.currentPage) * 5)
     },
     getAllPosts () {
       this.$http.get('/api/board').then((res) => {
         this.filteredItems = res.data;
         this.items = res.data
         this.numberOfPosts = Math.ceil(res.data.length / 5)
+        this.filteredItems = this.items.slice((this.currentPage - 1) * 5, (this.currentPage) * 5)
       })
     },
     searchPost () {
