@@ -44,7 +44,7 @@
                     <b-col><p class = "majorText"> 1-1 </p></b-col>
                   </b-row>
                     <div v-for="item in curriData" v-bind:subject = "item" v-bind:key="item.id" v-if="item.semester == '1-1'">
-                            <b-button v-bind:style="depth" :pressed.sync = "item.isPre" class = "mainBtn" @click = "Popup(item)" >{{item.lecture}}</b-button>
+                            <b-button :pressed.sync = "item.isPre" class = "mainBtn" @click = "Popup(item)" >{{item.lecture}}</b-button>
                     </div>
                 </b-col>
                 <hr class = "vertical">
