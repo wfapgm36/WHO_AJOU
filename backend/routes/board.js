@@ -22,7 +22,7 @@ router.get("/posts/:id", auth.ensureAuth(), function (req, res) {
     Board.findOne({_id: req.params.id})
         .then(board => {
             if (board) {
-                if (board.userId == req.user.username) {
+                if (board.userId == req.user.username  || req.user.isAdmin == 1 ) {
                     res.status(200)
                     res.json(board)
                 } else {
@@ -88,7 +88,7 @@ router.delete("/comment", auth.ensureAuth(), (req, res) => {
         if (board) {
             for (let i = 0; i < board.comments.length; i++) {
                 if (board.comments[i]._id == req.body.commentId) {
-                    if(board.comments[i].id == req.user.username){
+                    if(board.comments[i].id == req.user.username  || req.user.isAdmin == 1 ){
                         board.comments.remove(board.comments[i]);
                         res.status(200).send();
                         board.save();
@@ -109,7 +109,7 @@ router.put("/posts/:id", auth.ensureAuth(), function (req, res) {
     Board.findOne({_id: req.params.id})
         .then(board => {
             if (board) {
-                if (board.userId == req.user.username) {
+                if (board.userId == req.user.username || req.user.isAdmin == 1) {
                     Board.findOneAndUpdate({_id: req.params.id},
                         {
                             title: req.body.title,
@@ -134,7 +134,7 @@ router.delete("/posts/:id", auth.ensureAuth(), function (req, res) {
     Board.findOne({_id: req.params.id})
         .then(board => {
             if (board) {
-                if (board.userId == req.user.username) {
+                if (board.userId == req.user.username  || req.user.isAdmin == 1) {
                     Board.deleteOne({_id: req.params.id}, function (err) {
                         if (err) {
                             console.log(err)

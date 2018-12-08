@@ -1,11 +1,17 @@
 <template>
-  <div class="board-update">
-    <b-card-group deck
-                  class="mb-3">
-      <b-card bg-variant="dark"
+  <v-jumbotron
+    id = "jumbo"
+    height="1000px"
+    :gradient="gradient"
+    src="https://images.unsplash.com/photo-1500189001820-d65835a662d4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1189&q=80"
+  >
+    <div class="out_boardupdate">
+      <div class="in_boardupdate">
+      <b-card bg-variant="white"
               header="게시글 수정"
-              text-variant="white"
-              class="text-center">
+              text-variant="black"
+              class="text-center"
+              id="card_boardupdate">
         <div>
           <b-form @submit="onSubmit" v-if="show">
             <b-form-group id="titleInput"
@@ -32,8 +38,9 @@
           </b-form>
         </div>
       </b-card>
-    </b-card-group>
-  </div>
+      </div>
+    </div>
+  </v-jumbotron>
 </template>
 
 <script>
@@ -44,7 +51,8 @@
           title: "",
           contents: ""
         },
-        show: true
+        show: true,
+        gradient: 'to top right, rgba(255,255,255, .7), rgba(200,200,200, .7)'
       };
     },
     created() {
@@ -80,3 +88,17 @@
     }
   };
 </script>
+<style>
+  div.out_boardupdate{
+    text-align: center;
+  }
+
+  div.in_boardupdate{
+    display: inline-block;
+  }
+
+  #card_boardupdate{
+    margin-top: 60px;
+    width: 800px;
+  }
+</style>

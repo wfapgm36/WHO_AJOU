@@ -55,7 +55,7 @@
         <b-form v-if="show">
           <b-form-group horizontal
                         breakpoint="lg"
-                        label="비밀번호 찾기"
+                        label="비밀번호찾기"
                         label-size="lg"
                         label-class="font-weight-bold pt-0"
                         class="mb-0">

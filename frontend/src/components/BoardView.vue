@@ -22,7 +22,7 @@
             <p class="comment_date">{{item.createAt.substr(0,10)}} {{item.createAt.substr(11,2)}}시
               {{item.createAt.substr(14,2)}}분</p>
             <div class="comment"><p class="comment">{{item.memo}}</p>
-              <b-badge v-if="userId===item.id" pill href="#" v-on:click="deleteComment(item._id)" variant="danger" size="sm">삭제</b-badge>
+              <b-badge v-if="userId===item.id || admin === 1" pill href="#" v-on:click="deleteComment(item._id)" variant="danger" size="sm">삭제</b-badge>
             </div>
             <hr class="horizontal">
           </h6>
@@ -43,8 +43,8 @@
       </div>
     <b-button-group size="sm">
       <b-button v-on:click="toBoard" variant="primary">목록</b-button>
-      <b-button v-on:click="updateBoard" variant="primary">수정</b-button>
-      <b-button v-on:click="deleteBoard" variant="danger">삭제</b-button>
+      <b-button v-if="userId == form.userId || admin === 1" v-on:click="updateBoard" variant="primary">수정</b-button>
+      <b-button v-if="userId == form.userId || admin === 1" v-on:click="deleteBoard" variant="danger">삭제</b-button>
     </b-button-group>
     </div>
   </div>
@@ -57,6 +57,7 @@ export default {
     return {
       form: {
         _id: this.$route.params.id,
+        userId: '',
         title: '',
         contents: '',
         createAt: '',
@@ -67,7 +68,8 @@ export default {
         }]
       },
       memo: '',
-      userId: ''
+      userId: '',
+      admin:''
     }
   },
   created () {
@@ -80,6 +82,7 @@ export default {
       this.$http.get('/api/profile/user')
         .then(res => {
           this.userId = res.data.username
+          this.admin = res.data.isAdmin
         })
     },
     getBoardDetail () {
