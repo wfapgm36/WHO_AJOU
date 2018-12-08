@@ -34,6 +34,9 @@
             <b-dropdown-item>
               <router-link to="/profile">프로필</router-link>
             </b-dropdown-item>
+              <b-dropdown-item v-if="admin === 1">
+              <router-link to="/managemajor">전공 관리</router-link>
+            </b-dropdown-item>
             <b-dropdown-item v-if="admin === 1">
               <router-link to="/userlist">유저 리스트</router-link>
             </b-dropdown-item>

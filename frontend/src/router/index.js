@@ -18,6 +18,7 @@ import EvalWrite from '@/components/EvalWrite'
 import EvalUpdate from '@/components/EvalUpdate'
 import AddLecture from '@/components/AddLecture'
 import UpdateLecture from '@/components/UpdateLecture'
+import manageMajor from '@/components/manageMajor'
 import store from '../store'
 
 const requireAuth = () => (from, to, next) => {
@@ -115,6 +116,12 @@ export default new Router({
       path: '/curriculum/update/:id',
       name: 'update-lecture',
       component: UpdateLecture,
+      beforeEnter: requireAuth()
+    },
+    {
+      path: '/manageMajor',
+      name: 'manage-major',
+      component: manageMajor,
       beforeEnter: requireAuth()
     }
   ]
