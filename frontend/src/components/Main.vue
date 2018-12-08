@@ -38,7 +38,7 @@
           
       </div>
         <b-container class="curriculum">
-            <b-row align-v="top" class="height">
+            <b-row align-v="start" class="height">
                 <b-col>
                   <b-row align-v="center">
                     <b-col><p class = "majorText"> 1-1 </p></b-col>
@@ -159,7 +159,7 @@
                              <v-rating v-model="item.evaluation.totalGrade"
                                         color="yellow darken-3"
                                         background-color="grey darken-1"
-                                        readonly=true>
+                                        readonly>
                             </v-rating>
                             <h5 class = "circle">{{parseFloat(item.evaluation.totalGrade).toFixed(1)}}</h5>
                             <h5>{{item.semester}}</h5><br>
