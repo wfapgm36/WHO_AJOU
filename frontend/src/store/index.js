@@ -4,8 +4,6 @@ import axios from 'axios'
 
 Vue.use(Vuex)
 
-const resourceHost = 'http://localhost:3000/api'
-
 const enhanceAccessToken = () => {
   const {accessToken} = localStorage
   if (!accessToken) return

@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <b-navbar toggleable="md" type="dark" class="nav-background">
-      <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
+    <!--<v-toolbar dark color="teal lighten-3">-->
+    <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
       <b-navbar-brand id = "navbar-brand" href="/main" tag="h1">
         <h1><img src="../../assets/logo.png" height="48" width="48" alt="BV"><b-badge pill variant="white">WHO AJOU?</b-badge></h1></b-navbar-brand>
      <h5 id = "nickname" v-if="isLogin">{{nickname}}님 안녕하세요!</h5>
@@ -33,6 +34,9 @@
             <b-dropdown-item>
               <router-link to="/profile">프로필</router-link>
             </b-dropdown-item>
+              <b-dropdown-item v-if="admin === 1">
+              <router-link to="/managemajor">전공 관리</router-link>
+            </b-dropdown-item>
             <b-dropdown-item v-if="admin === 1">
               <router-link to="/userlist">유저 리스트</router-link>
             </b-dropdown-item>
@@ -41,7 +45,6 @@
       </b-collapse>
     </b-navbar>
 
-    
   <modals-container/>
     <router-view></router-view>
   </div>
@@ -60,23 +63,25 @@ export default {
     }
   },
   methods: {
-    loginPopup(){
-        this.$modal.show(DelPopup,{
-          modal : this.$modal },{
-          name: 'dynamic-modal',
-          width : '600px',
-          height : '400px',
-          draggable: true,
-        })
+    loginPopup () {
+      console.log('누름')
+      console.log(this.$modal)
+      this.$modal.show(DelPopup, {
+        modal: this.$modal }, {
+        name: 'dynamic-modal',
+        width: '600px',
+        height: '400px',
+        draggable: true
+      })
     },
-      signupPopup(){
-        this.$modal.show(SignPopup,{
-          modal : this.$modal },{
-          name: 'dynamic-signup-modal',
-          width : '700px',
-          height : '700px',
-          draggable: true,
-        })
+    signupPopup () {
+      this.$modal.show(SignPopup, {
+        modal: this.$modal }, {
+        name: 'dynamic-signup-modal',
+        width: '700px',
+        height: '700px',
+        draggable: true
+      })
     },
     onClickLogout () {
       this.$store.dispatch('LOGOUT')
@@ -136,6 +141,6 @@ export default {
     position: relative;
   }
   .nav-background {
-    background-color: #9197B5;
+    background-color: #165833;
   }
 </style>
