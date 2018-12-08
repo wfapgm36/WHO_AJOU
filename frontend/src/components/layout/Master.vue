@@ -3,7 +3,7 @@
     <b-navbar toggleable="md" type="dark" class="nav-background">
       <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
       <b-navbar-brand id = "navbar-brand" href="/main" tag="h1" v-if="isLogin"><b-badge pill variant="white"><h1>WHO AJOU?</h1></b-badge>  </b-navbar-brand>
-     <h5 id = "nickname">{{nickname}}님 안녕하세요!</h5>
+     <h5 id = "nickname" v-if="isLogin">{{nickname}}님 안녕하세요!</h5>
       <b-collapse is-nav id="nav_collapse">
         <b-navbar-nav class="ml-auto">
           <b-navbar-nav>
@@ -29,7 +29,7 @@
             <b-dropdown-item>
               <router-link to="/profile">프로필</router-link>
             </b-dropdown-item>
-            <b-dropdown-item>
+            <b-dropdown-item v-if="admin === 1">
               <router-link to="/userlist">유저 리스트</router-link>
             </b-dropdown-item>
           </b-nav-item-dropdown>
@@ -49,7 +49,8 @@ export default {
   data () {
     return {
       isLogin: false,
-      nickname: ''
+      nickname: '',
+      admin: ''
     }
   },
   methods: {
@@ -71,6 +72,7 @@ export default {
     getUserInfo () {
       this.$http
         .get('/api/user').then((res) => {
+          this.admin = res.data.isAdmin
           this.$cookies.set('nickname', res.data.nickname, 3600 * 24)
           this.nickname = this.$cookies.get('nickname')
         })

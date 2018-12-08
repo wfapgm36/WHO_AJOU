@@ -13,6 +13,7 @@
       <br>
 
       <v-data-table
+          :disable-initial-sort="true"
           :headers="headers"
           :items="filteredItems"
           class="elevation-1"

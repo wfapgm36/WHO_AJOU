@@ -1,8 +1,15 @@
 <template>
-  <div class="signup">
-    <h1 align-h="center">This is Sign Up Page!</h1>
+  <div class="out_signup">
+    <div class="in_signup">
+    <b-card id="signup_card" bg-variant="light">
     <b-form @submit="postUser" @reset="onSubmit" v-if="show">
-
+      <b-form-group horizontal
+                    breakpoint="lg"
+                    label="회원가입"
+                    label-size="lg"
+                    label-class="font-weight-bold pt-0"
+                    class="mb-0">
+      </b-form-group>
         <b-form-group id="ID-InputGroup" label="ID:" label-for="id-input">
             <b-form-input id="id-input"
                 type="text"
@@ -59,6 +66,8 @@
             <b-button type="submit" variant="primary" align-h="center">회원가입</b-button>
         </b-row>
     </b-form>
+    </b-card>
+    </div>
   </div>
 </template>
 
@@ -119,3 +128,16 @@ export default {
   }
 }
 </script>
+<style>
+  div.out_signup{
+    text-align: center;
+  }
+  div.in_signup{
+    text-align: left;
+    display: inline-block;
+  }
+  #signup_card {
+    margin-top: 50px;
+    width: 600px;
+  }
+</style>
