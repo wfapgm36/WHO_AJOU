@@ -64,6 +64,8 @@ export default {
   },
   methods: {
     loginPopup () {
+      console.log('누름')
+      console.log(this.$modal)
       this.$modal.show(DelPopup, {
         modal: this.$modal }, {
         name: 'dynamic-modal',
@@ -139,6 +141,6 @@ export default {
     position: relative;
   }
   .nav-background {
-    background-color: #9197B5;
+    background-color: #165833;
   }
 </style>

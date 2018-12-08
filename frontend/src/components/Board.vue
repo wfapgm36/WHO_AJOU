@@ -124,11 +124,16 @@ export default {
 </script>
 
 <style scoped>
+  #board{
+    background-color: rgba(220,220,220,0.3);
+    height: 850px;
+  }
 #boardSearchFunction{
   margin-top:70px;
   margin-bottom: 30px;
 }
 #board_main {
+  padding-top: 60px;
   margin-left: 400px;
   margin-right: 400px;
 }
@@ -156,6 +161,7 @@ export default {
   margin-top:30px;
 }
 .content_row {
+  background-color: #ffffff;
   width: 70rem;
 }
 #searchBar {
