@@ -63,6 +63,8 @@
         </b-row>
         </b-form-group>
     </b-form>
+    </b-card>
+    </div>
   </div>
 </template>
 

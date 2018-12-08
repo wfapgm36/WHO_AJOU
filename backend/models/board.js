@@ -9,6 +9,7 @@ var boardSchema = mongoose.Schema({
     title: {type:String, required:true},
     contents: {type:String, required:true},
     comments: [{
+        id: {type:String, required:true},
         name: {type:String, required:true},
         memo: String,
         createAt: { type: Date, default: Date.now }
