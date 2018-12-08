@@ -13,6 +13,7 @@
       <br>
 
       <v-data-table
+      :disable-initial-sort="true"
           :headers="headers"
           :items="filteredItems"
           class="elevation-1"
@@ -20,7 +21,13 @@
         >
           <template slot="items" slot-scope="props">
             <td>{{ props.item._id }}</td>
-            <td class="text-xs-center">{{ props.item.title }}</td>
+            <td class="text-xs-center"><router-link :to="{
+
+              name: 'board-view',
+              params:{
+                id: props.item._id
+                }
+                }">{{ props.item.title }}</router-link></td>
             <td class="text-xs-center">{{ props.item.writer }}</td>
             <td class="text-xs-center">{{ props.item.createAt.substr(0,10)}} {{props.item.createAt.substr(11,2)}}시{{props.item.createAt.substr(14,2)}}분</td>
             <td class="text-xs-center">{{ props.item.count }}</td>
@@ -28,8 +35,8 @@
       </v-data-table>
 
       <div id = "paging">
-          <b-pagination-nav base-url="#" align = "center" :number-of-pages="this.numberOfPosts" v-model="currentPage"
-          hide-goto-end-buttons/>
+        <b-pagination size="md" hide-goto-end-buttons :total-rows="this.items.length" v-model="currentPage" :per-page="5" align="center">
+    </b-pagination>
           <router-link to = "/write">
             <b-button id = "write_board" size = "sm" variant="primary">글쓰기</b-button>
           </router-link>
@@ -69,6 +76,7 @@ export default {
   created () {
     this.$EventBus.$emit('removeTab', true)
     this.getAllPosts()
+    this.fetchData()
   },
   methods: {
     fetchData () {

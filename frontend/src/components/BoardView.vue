@@ -10,7 +10,7 @@
             <br><b-badge variant="dark">제목</b-badge> {{this.form.title}}</h6>
             <h6 slot="footer" v-for="(item, index) in form.comments"
                               v-bind:key="item._id">
-                              <b-badge variant="dark">{{index}}</b-badge>
+                              <b-badge variant="dark">{{index+1}}</b-badge>
                               <b-badge variant="dark">{{item.name}}</b-badge> 
                               {{item.memo}} {{item.createAt.substr(0,10)}} {{item.createAt.substr(11,2)}}시 {{item.createAt.substr(14,2)}}분
                               <b-badge pill href="#" v-on:click="deleteComment(item._id)" variant="danger" size="sm">삭제</b-badge>
