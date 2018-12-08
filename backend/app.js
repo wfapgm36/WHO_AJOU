@@ -15,6 +15,7 @@ const board = require("./routes/board");
 const email_verification = require("./routes/email-verification");
 const profile = require("./routes/profile")
 const major = require("./routes/major")
+const lecture = require("./routes/class")
 const curriculum = require("./routes/curriculum")
 var nev = require('email-verification')(mongoose);
 require('./config/email-verification')(nev);
@@ -37,6 +38,7 @@ app.use('/api/user', user);
 app.use('/api/main', main);
 app.use('/api/board', board);
 app.use('/api/profile', profile);
+app.use('/api/class', lecture);
 app.use('/api/major', major)
 app.use('/api/curriculum', curriculum);
 

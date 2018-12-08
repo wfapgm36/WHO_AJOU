@@ -2,10 +2,7 @@
   <div id="board">
     <div id = "board_main">
       <b-container class="content_row">
-<<<<<<< HEAD
-=======
 
->>>>>>> 1c7f027d9a5fc6a1fbdd43c0b388fc2bc3c2cf63
   <v-text-field
         v-model="searchText"
         append-icon="search"
@@ -16,6 +13,7 @@
       <br>
 
       <v-data-table
+      :disable-initial-sort="true"
           :headers="headers"
           :items="filteredItems"
           class="elevation-1"
@@ -23,7 +21,13 @@
         >
           <template slot="items" slot-scope="props">
             <td>{{ props.item._id }}</td>
-            <td class="text-xs-center">{{ props.item.title }}</td>
+            <td class="text-xs-center"><router-link :to="{
+
+              name: 'board-view',
+              params:{
+                id: props.item._id
+                }
+                }">{{ props.item.title }}</router-link></td>
             <td class="text-xs-center">{{ props.item.writer }}</td>
             <td class="text-xs-center">{{ props.item.createAt.substr(0,10)}} {{props.item.createAt.substr(11,2)}}시{{props.item.createAt.substr(14,2)}}분</td>
             <td class="text-xs-center">{{ props.item.count }}</td>
