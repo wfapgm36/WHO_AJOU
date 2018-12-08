@@ -30,7 +30,7 @@
         </b-row>
 
         <b-row class="justify-content-md-center">
-          <b-col col lg="2" class="star">
+          <b-col col lg="2" class="star" align="center">
             <h5>과제평가</h5>
             <star-rating
               :inline="true"
@@ -41,7 +41,7 @@
               :star-size="30"
             ></star-rating>
           </b-col>
-          <b-col col lg="2" md="auto" class="star">
+          <b-col col lg="2" md="auto" class="star" align="center">
             <h5>팀플평가</h5>
             <star-rating
               :inline="true"
@@ -54,7 +54,7 @@
         </b-row>
 
         <b-row class="justify-content-md-center">
-          <b-col col lg="2" class="star">
+          <b-col col lg="2" class="star" align="center">
             <h5>강의력 평가</h5>
             <star-rating
               :inline="true"
@@ -64,7 +64,7 @@
               :star-size="30"
             ></star-rating>
           </b-col>
-          <b-col col lg="2" class="star" md="auto">
+          <b-col col lg="2" class="star" md="auto" align="center">
             <h5>시험평가</h5>
             <star-rating
               :inline="true"

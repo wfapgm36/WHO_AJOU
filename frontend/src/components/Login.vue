@@ -37,9 +37,8 @@
 
               <div class="d-flex justify-content-between">
                 <div>
-                    <b-button type="submit" variant="primary">로그인</b-button>&nbsp;
-
-                  <b-button type="reset" variant="danger">초기화</b-button>
+                  <b-button type="submit" class = "login_btn">로그인</b-button>&nbsp;
+                  <b-button type="reset" class = "login_btn">초기화</b-button>
                 </div>
                 <div>
                   <a href="#" v-b-modal.modal1>비밀번호 찾기</a>
@@ -116,3 +115,11 @@ export default {
   }
 }
 </script>
+<style>
+.login_btn {
+  background-color:#C6D6F7;
+  border:transparent;
+  font-weight: bold;
+}
+
+</style>

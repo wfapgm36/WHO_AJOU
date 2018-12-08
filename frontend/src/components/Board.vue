@@ -72,18 +72,14 @@ export default {
   },
   methods: {
     fetchData () {
-      let hash = location.hash.substr(1, location.hash.length)
-      if (hash) {
-        this.filteredItems = this.items.slice((hash - 1) * 5, (hash) * 5)
-      } else {
-        this.filteredItems = this.items.slice(0, 5)
-      }
+      this.filteredItems = this.items.slice((this.currentPage - 1) * 5, (this.currentPage) * 5)
     },
     getAllPosts () {
       this.$http.get('/api/board').then((res) => {
         this.filteredItems = res.data;
         this.items = res.data
         this.numberOfPosts = Math.ceil(res.data.length / 5)
+        this.filteredItems = this.items.slice((this.currentPage - 1) * 5, (this.currentPage) * 5)
       })
     },
     searchPost () {
