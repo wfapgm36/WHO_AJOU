@@ -134,14 +134,16 @@
                   </v-btn>
                   </router-link>
               </v-toolbar>
-              <h5 id = "noresult" v-if="filteredItems.length == 0">등록된 강의평가가 없습니다.</h5>
               <v-flex xs12 >
-                 <v-container fluid>
+                 <v-container fluid >
                    <v-layout row wrap>
+                     
                      <v-flex
-                       id = "evaluate" v-for="item in filteredItems" v-bind:key="item.id"
-                       xs3
-                     >
+                        v-if="filteredItems.length == 0"
+                       id = "evaluate" v-for="item in eval_subject" v-bind:key="item.id" 
+                        :current-page="currentPage"
+                        :per-page="perPage"
+                       xs3>
                      <v-hover>
 
                        <v-card
@@ -171,9 +173,58 @@
                        </v-card>
                      </v-hover>
                      </v-flex>
+
                    </v-layout>
                  </v-container>
-               </v-flex>
+              </v-flex>      
+              
+              <v-flex xs12 >
+                 <v-container fluid >
+                   <v-layout row wrap>
+                     
+                     <v-flex
+                       id = "evaluate" v-for="item in calData" v-bind:key="item.id" 
+                        :current-page="currentPage"
+                        :per-page="perPage"
+                       xs3>
+                     <v-hover>
+                       <v-card
+                           slot-scope="{ hover }"
+                           :class="`elevation-${hover ? 12 : 2}`"
+                           class="mx-auto"
+                           width="345"
+                           flat tile>
+                          
+                          <div class ="evalContainer" >
+                             <h3 style="padding-top:20px">Course</h3>
+                             <h5>{{item.lecture}}</h5>
+                             <h3>Professor</h3>
+                             <h5>{{item.professor}}</h5>
+                             <v-rating v-model="item.evaluation.totalGrade"
+                                        color="yellow darken-3"
+                                        background-color="grey darken-1"
+                                        readonly>
+                            </v-rating>
+                            <h5 class = "circle">{{parseFloat(item.evaluation.totalGrade).toFixed(1)}}</h5>
+                            <h5>{{item.semester}}</h5><br>
+                              <router-link :to ="{name:'eval-view',params:{id: item.id}}">
+                              <button type="submit" class = "plusView">Read More</button>
+                           </router-link>
+                          </div>                             
+                       </v-card>                  
+                     </v-hover>
+                     </v-flex>
+
+                   </v-layout>
+                 </v-container>
+              </v-flex>
+              
+              <b-pagination align="center" size="md" 
+                :per-page="perPage" 
+                :total-rows="totalRows" 
+                v-model="currentPage">
+              </b-pagination>
+
           </div>
         </div>
         <modals-container/>
@@ -214,21 +265,80 @@ export default {
     searchPost () {
       this.filteredItems = []
 
-      if (this.searchKind == '강의명') {
-        for (let i = 0; i < this.eval_subject.length; i++) {
-          if (this.eval_subject[i].lecture.indexOf(this.searchText) == -1) {
-          } else {
-            this.filteredItems.push(this.eval_subject[i])
-          }
-          this.filteredItems = this.filteredItems.slice(0, 10)
+  export default {
+    name: 'Main',
+    data () {
+      return {
+        totalRows: 0,
+        currentPage: 1,
+        perPage: 16,
+
+        searchKind : null, //검색할 종류 전체/강의명/교수명
+        filteredItems:[], //필터링 된 검색 결과
+        searchText:'', 
+        majors: [] , //드롭다운에 뿌려줄 학과
+        clickedMajor : '', //드롭다운에서 선택한 학과
+        curriData: [], // 모든 커리큘럼 데이터
+        subject: [], //팝업창의 props:subject 데이터 전달
+        options: [
+          { value: '강의명' },
+          { value: '교수명' }
+        ],
+        alphaGrade : '',  //알파벳 점수 ..고려중
+        eval_subject: [], //강의평가 모든 데이터
+      }
+    },
+    created (){
+      this.$EventBus.$emit('removeTab', true)
+      this.getUserInfo(),
+      this.GetMajor(),
+      this.getEval()
+    },
+    computed: {
+      startOffset() {
+        return ((this.currentPage - 1) * this.perPage);
+      },
+      endOffset() {
+        return (this.startOffset + this.perPage);
+      },
+      calData() {
+        return this.filteredItems.slice(this.startOffset, this.endOffset)
+      }
+    },
+    methods : {
+      //전체/학과/강의명 검색
+      searchPost () {
+        this.filteredItems = []
+      
+        if(this.searchKind == '강의명'){
+
+           for (let i = 0; i < this.eval_subject.length; i++) {
+                if (this.eval_subject[i].lecture.indexOf(this.searchText) == -1) {
+                } else {
+                this.filteredItems.push(this.eval_subject[i])
+                }
+                this.filteredItems = this.filteredItems.slice(0, 10)
+            } 
+            this.totalRows = this.filteredItems.length
+        }else if(this.searchKind == '교수명'){
+            for (let i = 0; i < this.eval_subject.length; i++) {
+               if (this.eval_subject[i].professor.indexOf(this.searchText) == -1) {
+               } else {
+               this.filteredItems.push(this.eval_subject[i])
+               }
+               this.filteredItems = this.filteredItems.slice(0, 10)
+            }
+            this.totalRows = this.filteredItems.length
         }
-      } else if (this.searchKind == '교수명') {
-        for (let i = 0; i < this.eval_subject.length; i++) {
-          if (this.eval_subject[i].professor.indexOf(this.searchText) == -1) {
-          } else {
-            this.filteredItems.push(this.eval_subject[i])
-          }
-          this.filteredItems = this.filteredItems.slice(0, 10)
+        else{
+            for (let i = 0; i < this.eval_subject.length; i++) {
+                if (this.eval_subject[i].lecture.indexOf(this.searchText) == -1 && this.eval_subject[i].professor.indexOf(this.searchText) == -1) {
+                } else {
+                this.filteredItems.push(this.eval_subject[i])
+                }
+                this.filteredItems = this.filteredItems.slice(0, 10)
+            } 
+            this.totalRows = this.filteredItems.length
         }
       } else {
         for (let i = 0; i < this.eval_subject.length; i++) {

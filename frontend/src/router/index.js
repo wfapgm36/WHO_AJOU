@@ -18,6 +18,7 @@ import EvalWrite from '@/components/EvalWrite'
 import EvalUpdate from '@/components/EvalUpdate'
 import AddLecture from '@/components/AddLecture'
 import UpdateLecture from '@/components/UpdateLecture'
+import BeforeLogin from '@/components/BeforeLogin'
 import store from '../store'
 
 const requireAuth = () => (from, to, next) => {
