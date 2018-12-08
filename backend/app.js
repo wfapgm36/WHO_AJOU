@@ -6,13 +6,13 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-const index = require("./routes/index");
 const signup = require("./routes/signup");
 const login = require("./routes/login");
 const user = require("./routes/user");
 const main = require("./routes/main");
 const board = require("./routes/board");
 const email_verification = require("./routes/email-verification");
+
 const profile = require("./routes/profile")
 const major = require("./routes/major")
 const lecture = require("./routes/class")
@@ -41,6 +41,7 @@ app.use('/api/profile', profile);
 app.use('/api/class', lecture);
 app.use('/api/major', major)
 app.use('/api/curriculum', curriculum);
+app.use('/api/major', major);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

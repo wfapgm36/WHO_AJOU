@@ -30,7 +30,7 @@
             <b-dropdown-item>
               <router-link to="/profile">프로필</router-link>
             </b-dropdown-item>
-            <b-dropdown-item>
+            <b-dropdown-item v-if="admin === 1">
               <router-link to="/userlist">유저 리스트</router-link>
             </b-dropdown-item>
           </b-nav-item-dropdown>
@@ -50,7 +50,8 @@ export default {
   data () {
     return {
       isLogin: false,
-      nickname: ''
+      nickname: '',
+      admin: ''
     }
   },
   methods: {
@@ -72,6 +73,7 @@ export default {
     getUserInfo () {
       this.$http
         .get('/api/user').then((res) => {
+          this.admin = res.data.isAdmin
           this.$cookies.set('nickname', res.data.nickname, 3600 * 24)
           this.nickname = this.$cookies.get('nickname')
         })

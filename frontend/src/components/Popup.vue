@@ -1,10 +1,10 @@
 <template>
   <div class="container">
     <b-button class = "popupBtn" @click="close(subject)" ><v-icon v-text="$vuetify.icons.cancel"></v-icon></b-button>
-    <b-button class = "del_modify_Btn" @click="deleteCurriculum(subject)">삭제</b-button>
-    <b-button class = "del_modify_Btn" @click="updateCurriculum(subject)">수정</b-button>
+    <b-button v-if="isAdmin === 1" class = "del_modify_Btn" @click="deleteCurriculum(subject)">삭제</b-button>
+    <b-button v-if="isAdmin === 1" class = "del_modify_Btn" @click="updateCurriculum(subject)">수정</b-button>
     <h3>COURSE INFORMATION</h3>
-    
+
     <hr  class = "mainhr">
     <form >
       <div class = "leftContents">
@@ -28,43 +28,48 @@
   </div>
 </template>
 <script>
-  export default {
-    props : [
-      'subject'
-    ],
-    data:function(){
-      return {
-          name: ''
-      }
+export default {
+  props: [
+    'subject',
+    'isAdmin'
+  ],
+  data: function () {
+    return {
+      name: '',
+      admin: ''
+    }
+  },
+  created () {
+    this.getUserInfo()
+  },
+  methods: {
+    updateCurriculum (item) {
+      console.log(item)
+      this.$router.push(`/curriculum/update/${item.id}`)
     },
-    methods : {
-      updateCurriculum(item){
-        console.log(item)
-        this.$router.push(`/curriculum/update/${item.id}`)
-      },
-      deleteCurriculum(item){
-        console.log(item)
-        this.$http.post('/api/curriculum/delete', {id: item.id})
+    deleteCurriculum (item) {
+      console.log(item)
+      this.$http.post('/api/curriculum/delete', {id: item.id})
         .then(res => {
           console.log(res.data)
           this.$emit('close')
-          this.$EventBus.$emit('del');
+          this.$EventBus.$emit('del')
         })
         .catch(err => {
           console.log(err)
         })
-      },
-      close(item){
-        item.isPre = false
-        this.$EventBus.$emit('changeColor', false);
-        this.$emit('close')
-      },
-      goToEval(item){
-        this.$EventBus.$emit('clickedPopupLectureName', item)
-        this.close(item)
-      }
+    },
+    close (item) {
+      item.isPre = false
+      this.$EventBus.$emit('changeColor', false)
+      this.$emit('close')
+    },
+    goToEval (item) {
+      this.$EventBus.$emit('clickedPopupLectureName', item)
+      this.close(item)
     }
   }
+}
 </script>
 <style>
 .mainhr{
@@ -127,7 +132,5 @@
     background: #C6D6F7;
     text-align: center;
   }
-  
 
 </style>
-
