@@ -17,10 +17,18 @@
           :items="filteredItems"
           class="elevation-1"
           hide-actions
-        >
-          <template slot="items" slot-scope="props">
-            <td>{{ props.item._id }}</td>
-            <td class="text-xs-center">{{ props.item.title }}</td>
+      >
+        <template slot="items" slot-scope="props">
+          <td>{{ props.item._id }}</td>
+          <td class="text-xs-center">
+            <router-link :to="{path: '/view/:id',
+              name: 'board-view',
+              params: {
+                id: props.item._id
+              }}"
+            >{{props.item.title}}
+            </router-link>
+          </td>
             <td class="text-xs-center">{{ props.item.writer }}</td>
             <td class="text-xs-center">{{ props.item.createAt.substr(0,10)}} {{props.item.createAt.substr(11,2)}}시{{props.item.createAt.substr(14,2)}}분</td>
             <td class="text-xs-center">{{ props.item.count }}</td>
@@ -31,7 +39,17 @@
           <b-pagination-nav base-url="#" align = "center" :number-of-pages="this.numberOfPosts" v-model="currentPage"
           hide-goto-end-buttons/>
           <router-link to = "/write">
-            <b-button id = "write_board" size = "sm" variant="primary">글쓰기</b-button>
+            <!--<b-button id = "write_board" size = "sm" variant="primary">글쓰기</b-button>-->
+            <v-btn
+              absolute
+              dark
+              fab
+              right
+              color="indigo"
+              id = "board_write"
+            >
+              <v-icon>add</v-icon>
+            </v-btn>
           </router-link>
           <br>
       </div>
@@ -152,4 +170,7 @@ hr {
 .page-item .active .page-link{
   background-color:#9197B5 !important;
 }
+  #board_write{
+    /*padding-right: 300px;*/
+  }
 </style>
