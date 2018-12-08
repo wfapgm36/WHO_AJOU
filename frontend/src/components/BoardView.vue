@@ -1,6 +1,7 @@
 <template>
   <div class="out_board-view">
-    <div class="in_board-view">
+    <div class="board_back_color">
+      <div class="in_board-view">
       <b-card-group deck>
         <b-card header-tag="header"
                 footer-tag="footer">
@@ -46,6 +47,7 @@
       <b-button v-if="userId == form.userId || admin === 1" v-on:click="updateBoard" variant="primary">수정</b-button>
       <b-button v-if="userId == form.userId || admin === 1" v-on:click="deleteBoard" variant="danger">삭제</b-button>
     </b-button-group>
+      </div>
     </div>
   </div>
 </template>
@@ -161,12 +163,20 @@ export default {
 
   div.out_board-view{
     text-align: center;
+    background-color: rgba(220,220,220,0.3);
+    height: 850px;
   }
-
+  div.board_back_color{
+    display: inline-block;
+    background-color: white;
+    width:850px;
+    margin-top: 50px;
+    padding: 20px 20px 50px;
+  }
   div.in_board-view{
-    padding-top: 50px;
     text-align: left;
     display: inline-block;
+    margin-top: 50px;
     width: 800px;
   }
 

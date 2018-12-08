@@ -126,7 +126,7 @@ export default {
     border-radius: 10px;
     color:white;
     font-weight: bold;
-    background: #C6D6F7;
+    background: #165833;
     text-align: center;
   }
 

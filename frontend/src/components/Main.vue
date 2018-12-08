@@ -1,5 +1,6 @@
 <template>
   <div id="main" >
+    <div id="in_main">
     <div id = "mainSearchFunction">
       <b-row class="justify-content-md-center">
           <b-col cols = "0.8">
@@ -29,7 +30,7 @@
             <b-button class="eval_write_btn">강의평가작성</b-button>
           </router-link>
           <router-link :to ="`/curriculum/create`">
-            <b-button class="eval_write_btn"> 강의추가 </b-button>
+            <b-button v-if="admin === 1" class="eval_write_btn"> 강의추가 </b-button>
           </router-link>
           <b-dropdown  id="ddown-buttons" text="학과를 선택하세요" class="m-2">
            <b-dropdown-item-button v-model="clickedMajor" v-for="item in majors" v-bind:key="item.id" @click = "setMajor(item)">{{item.major}}</b-dropdown-item-button>
@@ -118,17 +119,17 @@
               fab
               bottom
               right
-              color="#9197B5"
+              color="#BB252B"
             > <i class="material-icons">keyboard_arrow_up</i>
             </v-btn>
 
         <div class = "evaluation" >
           <div id = "eval_container">
-               <v-toolbar color="#9197B5" dark >
+               <v-toolbar color="#165833" dark >
                   <v-toolbar-title >강의평가</v-toolbar-title>
                   <v-spacer></v-spacer>
                    <router-link :to ="`/evaluation/write`"  v-scroll-to="'#app'">
-                   <v-btn  style="margin-left : 50px; background:#57585a; border-radius:10px ">
+                   <v-btn  style="margin-left : 50px; background:#BB252B; border-radius:10px ">
                      강의평가작성
                     <i class="material-icons" >add_circle</i>
                   </v-btn>
@@ -227,6 +228,7 @@
           </div>
         </div>
         <modals-container/>
+    </div>
   </div>
 </template>
 
@@ -254,14 +256,19 @@ export default {
         { value: '교수명' }
       ],
       alphaGrade: '', // 알파벳 점수 ..고려중
-      eval_subject: [] // 강의평가 모든 데이터
+      eval_subject: [], // 강의평가 모든 데이터
+      admin: ''
     }
+  },
+  beforeRouteUpdate (to, from, next) {
+    this.getEval()
+    next()
   },
   created () {
     this.isExist = false
     this.$EventBus.$emit('removeTab', true)
-    this.getUserInfo(),
-    this.GetMajor(),
+    this.getUserInfo()
+    this.GetMajor()
     this.getEval()
   },
   computed: {
@@ -315,6 +322,7 @@ export default {
     getUserInfo () {
       this.$http.get('/api/profile/user')
         .then(res => {
+          this.admin = res.data.isAdmin
           this.clickedMajor = res.data.major
           this.GetCurriculum()
         })
@@ -359,6 +367,7 @@ export default {
       this.showPreRequisite(clickedItem, true)
       this.$modal.show(DelPopup, {
         subject: clickedItem,
+        isAdmin: this.admin,
         modal: this.$modal }, {
         name: 'dynamic-modal',
         width: '600px',
@@ -407,7 +416,7 @@ export default {
 }
 .evaluation{
   margin-top:200px;
-  margin-bottom: 100vh;
+  padding-bottom: 100vh;
 }
 .evalContainer{
     background-color : lightgray;
@@ -439,7 +448,7 @@ export default {
     height:40px;
     width: 90px;
     font-weight: bold;
-    background: #C6D6F7;
+    background: #165833;
     text-align: center;
     border:transparent;
     border-radius: 10px;
@@ -456,6 +465,17 @@ hr.vertical{
 .main .card .tabs{
   height: 100vh;
 }
+div#main{
+  background: url("https://images.unsplash.com/photo-1451772741724-d20990422508?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  /*opacity: 0.5;*/
+}
+div#in_main{
+  background-color: rgba(255,255,255,0.8);
+}
 .curriculum{
   margin-top:5vh;
   max-width: fit-content;
@@ -469,7 +489,7 @@ hr.vertical{
 }
 #searchButton{
   border:transparent;
-  background-color: #C6D6F7;
+  background-color: #bb252b;
   border-radius:7px;
   width:4rem;
   height:2rem;
@@ -477,7 +497,7 @@ hr.vertical{
   color:white;
 }
 #mainSearchFunction{
-  margin-top:70px;
+  padding-top:70px;
   margin-bottom: 30px;
 }
 .btn.mainBtn.btn-secondary.active{
@@ -485,7 +505,7 @@ hr.vertical{
   color:#57585a;
 }
 .btn.mainBtn.btn-secondary{
-  background-color:#eeefef;
+  background-color:#165833;
   margin-bottom: 3vh;
   margin-left:1vw;
   margin-right: 1vw;
@@ -495,7 +515,7 @@ hr.vertical{
   position:relative;
   border:transparent;
   border-radius:10px;
-  color : #57585a;
+  color : #FFFFFF;
   font-weight: bold;
   width: 8vw;
   height:50px;
@@ -505,8 +525,8 @@ hr.vertical{
 .eval_write_btn{
   font-size:18px;
   font-weight: bold;
-  background-color:#C6D6F7;
-  border:#C6D6F7;
+  background-color:#165833;
+  border:#165833;
 }
 .majorText{
   margin-top:2vh;
@@ -518,7 +538,7 @@ hr.vertical{
 #ddown-buttons__BV_toggle_{
    font-size:18px;
   font-weight: bold;
-  background-color:#C6D6F7;
+  background-color:#165833;
   border:#C6D6F7;
 }
 </style>
