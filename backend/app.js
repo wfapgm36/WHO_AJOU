@@ -6,14 +6,16 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-const index = require("./routes/index");
 const signup = require("./routes/signup");
 const login = require("./routes/login");
 const user = require("./routes/user");
 const main = require("./routes/main");
 const board = require("./routes/board");
+const lecture = require("./routes/class");
+const profile = require("./routes/profile");
+const curriculum = require("./routes/curriculum");
+const major = require("./routes/major");
 const email_verification = require("./routes/email-verification");
-const profile = require("./routes/profile")
 var nev = require('email-verification')(mongoose);
 require('./config/email-verification')(nev);
 
@@ -34,7 +36,10 @@ app.use('/api/login', login);
 app.use('/api/user', user);
 app.use('/api/main', main);
 app.use('/api/board', board);
+app.use('/api/class', lecture);
 app.use('/api/profile', profile);
+app.use('/api/curriculum', curriculum);
+app.use('/api/major', major);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
