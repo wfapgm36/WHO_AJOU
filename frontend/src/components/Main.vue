@@ -430,7 +430,7 @@ export default {
   font-weight: bold;
 }
 .circle{
-    border:thick solid #FFCCCC;
+    border:thick solid #bb252b;
     border-radius: 100%;
     padding-top:5px;
     padding-bottom: 5px;
@@ -501,8 +501,8 @@ div#in_main{
   margin-bottom: 30px;
 }
 .btn.mainBtn.btn-secondary.active{
-  background-color:#FFBDBD;
-  color:#57585a;
+  background-color:#bb252b;
+  color:white;
 }
 .btn.mainBtn.btn-secondary{
   background-color:#165833;

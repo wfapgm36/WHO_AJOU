@@ -322,7 +322,7 @@ export default {
   }
 
   .circle {
-    border: thick solid #FFCCCC;
+    border: thick solid #bb252b;
     border-radius: 100%;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -341,7 +341,7 @@ export default {
     height: 40px;
     width: 90px;
     font-weight: bold;
-    background: #C6D6F7;
+    background: #165833;
     text-align: center;
     border: transparent;
     border-radius: 10px;
