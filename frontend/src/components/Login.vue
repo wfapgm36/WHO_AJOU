@@ -1,12 +1,12 @@
 <template>
   <div class="login">
-    <b-container>
-      <b-row align-h="center" class="login1">
-        <b-col cols='5'>
-          <b-card class="login2">
+    <b-container >
+      <b-row align-h="center" align-v = "center" >
+        <b-col cols='7'>
             <h3 class="login3">로그인</h3>
             <b-form @submit="login"
-                    @reset="onReset" v-if="show">
+                    @reset="onReset" v-if="show"
+                    class = "input">
               <b-form-group id="ID-InputGroup"
                             label="ID:"
                             label-for="id-input">
@@ -37,7 +37,7 @@
 
               <div class="d-flex justify-content-between">
                 <div>
-                  <b-button type="submit" class = "login_btn">로그인</b-button>&nbsp;
+                  <b-button type="submit" class = "login_btn" @click="$emit('close')">로그인</b-button>&nbsp;
                   <b-button type="reset" class = "login_btn">초기화</b-button>
                 </div>
                 <div>
@@ -45,15 +45,10 @@
                 </div>
               </div>
             </b-form>
-          </b-card>
+   
         </b-col>
       </b-row>
     </b-container>
-
-    <b-modal id="modal1" title="Forgot Password">
-      Nothing yet.
-    </b-modal>
-
   </div>
 </template>
 
@@ -120,6 +115,17 @@ export default {
   background-color:#C6D6F7;
   border:transparent;
   font-weight: bold;
+}
+.v--modal-overlay .v--modal-box {
+  border-radius: 50px;
+  background-color: rgba(255, 255, 255, 0.705);
+}
+.input{
+  margin-top:30px;
+}
+.login3{
+  padding-top:30px;
+  text-align:center;
 }
 
 </style>

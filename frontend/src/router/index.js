@@ -4,8 +4,7 @@ import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
-import Login from '@/components/Login'
-import SignUp from '@/components/SignUp'
+import BeforeLogin from '@/components/BeforeLogin'
 import Main from '@/components/Main'
 import Profile from '@/components/Profile'
 import UserList from '@/components/UserList'
@@ -37,13 +36,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'login',
-      component: Login
-    },
-    {
-      path: '/signup',
-      name: 'signup',
-      component: SignUp
+      name: 'beforeLogin',
+      component: BeforeLogin
     },
     {
       path: '/email-verification/:URL',

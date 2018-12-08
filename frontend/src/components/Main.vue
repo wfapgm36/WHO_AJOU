@@ -159,7 +159,8 @@
                              <v-rating v-model="item.evaluation.totalGrade"
                                         color="yellow darken-3"
                                         background-color="grey darken-1"
-                                        readonly>
+                                        readonly
+                                        half-increments>
                             </v-rating>
                             <h5 class = "circle">{{parseFloat(item.evaluation.totalGrade).toFixed(1)}}</h5>
                             <h5>{{item.semester}}</h5><br>
@@ -340,7 +341,7 @@ import DelPopup from './Popup'
   margin-right:25px;
 }
 .evaluation{
-  margin-top:200px;
+  margin-top:400px;
   margin-bottom: 100vh;
 }
 .evalContainer{
