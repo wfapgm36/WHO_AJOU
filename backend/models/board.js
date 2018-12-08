@@ -15,7 +15,7 @@ var boardSchema = mongoose.Schema({
         createAt: { type: Date, default: Date.now() + 3600000 * 9 }
     }],
     count: { type: Number, default: 0 },
-    createAt: { type: Date, default: Date.now() + 3600000 * 9  },
+    createAt: { type: Date, default: Date.now() + 3600000 * 9 },
     _id: {
         type: Number,
         unique: true
