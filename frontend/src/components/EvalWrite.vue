@@ -94,7 +94,7 @@
           :max-rows="6"
         ></b-form-textarea>
 
-        <h3>팀플과 시험은 어떤가요?</h3>
+        <h3>팀플과 과제는 어떤가요?</h3>
         <b-form-textarea
           class="evaltext"
           v-model="text2"

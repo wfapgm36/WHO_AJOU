@@ -15,11 +15,14 @@
             <b-nav-item v-if="isLogin">
               <router-link to="/board" style="color: white"><b-badge  class = "menu" variant="white">게시판</b-badge></router-link>
             </b-nav-item>
+            <b-nav-item id="login" v-if="!isLogin">
+              <router-link to="/" style="color: white" @click.native = "loginPopup"><b-badge class = "menu" variant="white">로그인</b-badge></router-link>
+            </b-nav-item>
             <b-nav-item id="signup" v-if="!isLogin">
-              <router-link to="/signup" style="color: white"><b-badge  class = "menu" variant="white">회원가입</b-badge></router-link>
+              <router-link to="/" style="color: white" @click.native = "signupPopup"><b-badge class = "menu" variant="white">회원가입</b-badge></router-link>
             </b-nav-item>
             <b-nav-item v-if="isLogin">
-              <a href="/" @click.prevent="onClickLogout" style="color: white"><b-badge  class = "menu" variant="white">로그아웃</b-badge></a>
+              <router-link to="/" @click.native = "onClickLogout" style="color: white"><b-badge  class = "menu" variant="white">로그아웃</b-badge></router-link>
             </b-nav-item>
           </b-navbar-nav>
 
@@ -35,16 +38,19 @@
               <router-link to="/userlist">유저 리스트</router-link>
             </b-dropdown-item>
           </b-nav-item-dropdown>
-
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
 
+  <modals-container/>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
+import DelPopup from './../Login'
+import SignPopup from './../SignUp'
+
 export default {
   data () {
     return {
@@ -54,12 +60,29 @@ export default {
     }
   },
   methods: {
+    loginPopup () {
+      this.$modal.show(DelPopup, {
+        modal: this.$modal }, {
+        name: 'dynamic-modal',
+        width: '600px',
+        height: '400px',
+        draggable: true
+      })
+    },
+    signupPopup () {
+      this.$modal.show(SignPopup, {
+        modal: this.$modal }, {
+        name: 'dynamic-signup-modal',
+        width: '700px',
+        height: '700px',
+        draggable: true
+      })
+    },
     onClickLogout () {
       this.$store.dispatch('LOGOUT')
         .then(() => {
           this.$cookies.remove('nickname')
           this.nickname = ''
-          this.$router.push('/')
           this.isLogin = false
         })
     },

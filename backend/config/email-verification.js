@@ -3,7 +3,7 @@ var User = require('../models/user');
 
 module.exports = function(nev){
     nev.configure({
-        verificationURL: 'http://127.0.0.1:8080/email-verification/${URL}',
+        verificationURL: 'http://127.0.0.1:3000/email-verification/${URL}',
         URLLength: 48,
         // mongo-stuff
         persistentUserModel: User,

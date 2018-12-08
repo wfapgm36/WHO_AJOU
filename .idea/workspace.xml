@@ -2,15 +2,213 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9fa6aa8a-d421-4f4a-b7c8-2755fec36a2b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/backend/public/static/css/app.0fbf0245a5d20e2cd5d257a2162c104c.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/public/static/css/app.0fbf0245a5d20e2cd5d257a2162c104c.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/public/static/css/app.8194794a11cdaab4be383cdea56d7f13.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/public/static/css/app.8194794a11cdaab4be383cdea56d7f13.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/public/static/fonts/MaterialIcons-Regular.016c14a.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/public/static/fonts/MaterialIcons-Regular.55242ea.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/public/static/fonts/MaterialIcons-Regular.8a9a261.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/public/static/fonts/MaterialIcons-Regular.c38ebd3.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/public/static/fonts/materialdesignicons-webfont.187554e.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/public/static/fonts/materialdesignicons-webfont.a5a63c0.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/public/static/fonts/materialdesignicons-webfont.af695ae.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/public/static/fonts/materialdesignicons-webfont.d1bdfb3.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/public/static/img/logo.b86e0fd.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/public/static/img/materialdesignicons-webfont.b65a7ff.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/public/static/js/app.4cf9e5f1b7ac9d411ad6.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/public/static/js/app.4cf9e5f1b7ac9d411ad6.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/public/static/js/app.e5b6cf9ebcbffe7f782c.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/public/static/js/app.e5b6cf9ebcbffe7f782c.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/public/static/js/manifest.2ae2e69a05c33dfc65f8.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/public/static/js/vendor.06b78909352575618502.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/public/static/js/vendor.06b78909352575618502.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/public/static/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/A+.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/rate.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/BeforeLogin.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/routes/board.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/board.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Board.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Board.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/BoardUpdate.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/BoardUpdate.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/BoardView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/BoardView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/BoardWrite.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/BoardWrite.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/config/email-verification.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/config/email-verification.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/public/static/css/app.84aabbf37f1332be3f7f003a22a4d708.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/public/static/css/app.84aabbf37f1332be3f7f003a22a4d708.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/public/static/js/app.9f4a1cd76332ff6fdea7.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/public/static/js/app.9f4a1cd76332ff6fdea7.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/public/static/js/manifest.2ae2e69a05c33dfc65f8.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/backend/public/static/js/manifest.2ae2e69a05c33dfc65f8.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/public/static/js/vendor.d1c958f2351d64c73c18.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/public/static/js/vendor.d1c958f2351d64c73c18.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/.bin/webpack-cli" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/.bin/webpack-cli" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack-cli/node_modules/.bin/import-local-fixture" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack-cli/node_modules/.bin/import-local-fixture" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack-cli/node_modules/import-local/fixtures/cli.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack-cli/node_modules/import-local/fixtures/cli.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/buildin/system.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/buildin/system.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/lib/ErrorHelpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/lib/ErrorHelpers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/lib/NamedChunksPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/lib/NamedChunksPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/lib/WebpackError.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/lib/WebpackError.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/lib/dependencies/HarmonyCompatibilityDependency.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/lib/dependencies/HarmonyCompatibilityDependency.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/lib/dependencies/ImportEagerContextDependency.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/lib/dependencies/ImportEagerContextDependency.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/lib/dependencies/ImportEagerDependency.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/lib/dependencies/ImportEagerDependency.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/lib/dependencies/ImportLazyContextDependency.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/lib/dependencies/ImportLazyContextDependency.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/lib/dependencies/ImportLazyOnceContextDependency.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/lib/dependencies/ImportLazyOnceContextDependency.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/lib/util/identifier.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/lib/util/identifier.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv-keywords/keywords/if.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv-keywords/keywords/propertyNames.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/.tonic_example.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/dist/ajv.bundle.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/dist/ajv.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/dist/ajv.min.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/dist/nodent.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/dist/regenerator.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/ajv.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/ajv.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/async.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/cache.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/compile/_rules.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/compile/equal.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/compile/formats.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/compile/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/compile/resolve.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/compile/rules.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/compile/schema_obj.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/compile/ucs2length.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/compile/util.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/compile/validation_error.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dot/_limit.jst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dot/_limitItems.jst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dot/_limitLength.jst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dot/_limitProperties.jst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dot/allOf.jst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dot/anyOf.jst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dot/coerce.def" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dot/custom.jst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dot/defaults.def" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dot/definitions.def" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dot/dependencies.jst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dot/enum.jst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dot/errors.def" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dot/format.jst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dot/items.jst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dot/missing.def" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dot/multipleOf.jst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dot/not.jst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dot/oneOf.jst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dot/pattern.jst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dot/properties.jst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dot/ref.jst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dot/required.jst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dot/uniqueItems.jst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dot/v5/_formatLimit.jst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dot/v5/constant.jst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dot/v5/patternRequired.jst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dot/v5/switch.jst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dot/validate.jst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dotjs/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dotjs/_formatLimit.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dotjs/_limit.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dotjs/_limitItems.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dotjs/_limitLength.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dotjs/_limitProperties.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dotjs/allOf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dotjs/anyOf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dotjs/constant.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dotjs/custom.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dotjs/dependencies.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dotjs/enum.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dotjs/format.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dotjs/items.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dotjs/multipleOf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dotjs/not.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dotjs/oneOf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dotjs/pattern.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dotjs/patternRequired.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dotjs/properties.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dotjs/ref.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dotjs/required.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dotjs/switch.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dotjs/uniqueItems.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/dotjs/validate.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/keyword.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/refs/json-schema-draft-04.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/refs/json-schema-v5.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/lib/v5.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/scripts/.eslintrc.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/scripts/bundle.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/scripts/compile-dots.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/scripts/info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/scripts/prepare-tests" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/ajv/scripts/travis-gh-pages" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/AliasFieldPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/AliasFieldPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/AliasPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/AliasPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/AppendPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/AppendPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/CachedInputFileSystem.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/CachedInputFileSystem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/CloneBasenamePlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/CloneBasenamePlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/ConcordExtensionsPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/ConcordExtensionsPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/ConcordMainPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/ConcordMainPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/ConcordModulesPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/ConcordModulesPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/DescriptionFilePlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/DescriptionFilePlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/DescriptionFileUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/DescriptionFileUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/DirectoryExistsPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/DirectoryExistsPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/FileExistsPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/FileExistsPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/FileKindPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/FileKindPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/JoinRequestPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/JoinRequestPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/LogInfoPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/LogInfoPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/MainFieldPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/MainFieldPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/ModuleAppendPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/ModuleAppendPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/ModuleKindPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/ModuleKindPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/ModulesInHierachicDirectoriesPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/ModulesInHierachicDirectoriesPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/ModulesInRootPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/ModulesInRootPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/NextPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/NextPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/NodeJsInputFileSystem.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/NodeJsInputFileSystem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/ParsePlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/ParsePlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/Resolver.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/Resolver.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/ResolverFactory.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/ResolverFactory.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/ResultPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/ResultPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/SymlinkPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/SymlinkPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/SyncAsyncFileSystemDecorator.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/SyncAsyncFileSystemDecorator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/TryNextPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/TryNextPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/UnsafeCachePlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/UnsafeCachePlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/UseFilePlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/UseFilePlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/concord.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/concord.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/createInnerCallback.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/createInnerCallback.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/forEachBail.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/forEachBail.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/getInnerRequest.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/getInnerRequest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/getPaths.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/getPaths.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/globToRegExp.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/globToRegExp.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/node.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/lib/node.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/enhanced-resolve/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/loader-utils/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/loader-utils/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/loader-utils/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/loader-utils/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/os-locale/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/os-locale/license" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/os-locale/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/os-locale/readme.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/string-width/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/string-width/license" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/string-width/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/string-width/readme.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/tapable/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/tapable/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/which-module/CHANGELOG.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/which-module/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/which-module/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/which-module/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/node_modules/which-module/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/node_modules/webpack/schemas/ajv.absolutePath.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/node_modules/webpack/schemas/ajv.absolutePath.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/EvalView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/EvalView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/EvalWrite.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/EvalWrite.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Login.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/Main.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Main.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Popup.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Popup.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/SignUp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/SignUp.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/layout/Master.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/layout/Master.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store/index.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -103,30 +301,31 @@
         <counts>
           <entry key="gitignore" value="2" />
           <entry key="html" value="1" />
-          <entry key="js" value="34" />
-          <entry key="png" value="1" />
-          <entry key="vue" value="34" />
+          <entry key="jpg" value="1" />
+          <entry key="js" value="37" />
+          <entry key="png" value="2" />
+          <entry key="vue" value="36" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="HTML" value="1" />
-          <entry key="Image" value="1" />
-          <entry key="JavaScript" value="34" />
+          <entry key="Image" value="3" />
+          <entry key="JavaScript" value="37" />
           <entry key="PLAIN_TEXT" value="2" />
-          <entry key="Vue.js" value="34" />
+          <entry key="Vue.js" value="36" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="js" value="813" />
-          <entry key="vue" value="3433" />
+          <entry key="vue" value="3435" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JavaScript" value="813" />
-          <entry key="Vue.js" value="3433" />
+          <entry key="Vue.js" value="3435" />
         </counts>
       </usages-collector>
     </session>
@@ -136,11 +335,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/frontend/src/components/Main.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2090">
+              <caret line="290" column="9" lean-forward="true" selection-start-line="290" selection-start-column="9" selection-end-line="290" selection-end-column="9" />
+              <folding>
+                <element signature="n#style#0;n#v-btn#0;n#router-link#0;n#v-toolbar#0;n#div#0;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h3#0;n#div#0;n#v-card#0;n#v-hover#0;n#v-flex#0;n#v-layout#0;n#v-container#0;n#v-flex#0;n#div#0;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h3#0;n#div#0;n#v-card#0;n#v-hover#0;n#v-flex#0;n#v-layout#0;n#v-container#0;n#v-flex#1;n#div#0;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/src/components/Board.vue">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="304">
-              <caret line="52" column="24" lean-forward="true" selection-start-line="52" selection-start-column="24" selection-end-line="52" selection-end-column="24" />
+              <caret line="52" column="24" selection-start-line="52" selection-start-column="24" selection-end-line="52" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -149,16 +362,58 @@
         <entry file="file://$PROJECT_DIR$/frontend/src/components/BoardWrite.vue">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="304">
-              <caret line="55" column="4" lean-forward="true" selection-start-line="53" selection-start-column="16" selection-end-line="55" selection-end-column="4" />
+              <caret line="55" column="4" selection-start-line="53" selection-start-column="16" selection-end-line="55" selection-end-column="4" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/frontend/src/store/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-11">
+              <caret line="31" column="12" lean-forward="true" selection-start-line="31" selection-start-column="12" selection-end-line="31" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/src/components/BoardUpdate.vue">
           <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="266">
+              <caret line="53" column="19" selection-start-line="53" selection-start-column="19" selection-end-line="53" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/config/email-verification.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="228">
+              <caret line="12" column="28" lean-forward="true" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/frontend/src/router/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-95">
+              <caret line="37" column="16" lean-forward="true" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="16" />
+              <folding>
+                <element signature="e#0#21#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/frontend/src/components/BeforeLogin.vue">
+          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="285">
-              <caret line="54" column="78" selection-start-line="54" selection-start-column="78" selection-end-line="54" selection-end-column="78" />
+              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
             </state>
           </provider>
         </entry>
@@ -166,44 +421,15 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/src/components/layout/Master.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="10" column="24" lean-forward="true" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/src/components/Evaluation.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="632">
-              <caret line="49" column="25" lean-forward="true" selection-start-line="49" selection-start-column="25" selection-end-line="49" selection-end-column="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/src/components/EmailVerification.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="404">
-              <caret line="52" column="4" selection-start-line="51" selection-start-column="6" selection-end-line="52" selection-end-column="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/src/components/EvalWrite.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="10" lean-forward="true" selection-start-column="10" selection-end-column="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/src/components/Profile.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="273" column="2" selection-start-line="273" selection-start-column="2" selection-end-line="279" selection-end-column="3" />
+            <state relative-caret-position="1102">
+              <caret line="58" column="15" lean-forward="true" selection-start-line="58" selection-start-column="15" selection-end-line="58" selection-end-column="15" />
+              <folding>
+                <element signature="n#style#0;n#router-link#0;n#b-nav-item#2;n#b-navbar-nav#0;n#b-navbar-nav#0;n#b-collapse#0;n#b-navbar#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#router-link#0;n#b-nav-item#3;n#b-navbar-nav#0;n#b-navbar-nav#0;n#b-collapse#0;n#b-navbar#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#router-link#0;n#b-nav-item#4;n#b-navbar-nav#0;n#b-navbar-nav#0;n#b-collapse#0;n#b-navbar#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#em#0;n#template#0;n#b-nav-item-dropdown#0;n#b-navbar-nav#0;n#b-collapse#0;n#b-navbar#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="e#2391#2424#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -212,19 +438,10 @@
         <entry file="file://$PROJECT_DIR$/frontend/src/components/BoardView.vue">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="38">
-              <caret line="41" column="17" lean-forward="true" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="17" />
+              <caret line="41" column="17" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="17" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/routes/board.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="136" column="79" selection-start-line="136" selection-start-column="79" selection-end-line="136" selection-end-column="79" />
             </state>
           </provider>
         </entry>
@@ -248,6 +465,7 @@
       <find>substr</find>
       <find>강의추가</find>
       <find>popup</find>
+      <find>methods</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -287,16 +505,16 @@
         <option value="$PROJECT_DIR$/frontend/src/components/SignUp.vue" />
         <option value="$PROJECT_DIR$/backend/routes/user.js" />
         <option value="$PROJECT_DIR$/frontend/src/components/EmailVerification.vue" />
-        <option value="$PROJECT_DIR$/frontend/src/store/index.js" />
         <option value="$PROJECT_DIR$/frontend/src/components/Login.vue" />
         <option value="$PROJECT_DIR$/backend/config/email-verification.js" />
         <option value="$PROJECT_DIR$/frontend/src/components/BoardView.vue" />
-        <option value="$PROJECT_DIR$/frontend/src/components/Main.vue" />
         <option value="$PROJECT_DIR$/backend/routes/board.js" />
         <option value="$PROJECT_DIR$/frontend/src/components/Board.vue" />
-        <option value="$PROJECT_DIR$/frontend/src/components/layout/Master.vue" />
         <option value="$PROJECT_DIR$/frontend/src/components/BoardWrite.vue" />
         <option value="$PROJECT_DIR$/frontend/src/components/BoardUpdate.vue" />
+        <option value="$PROJECT_DIR$/frontend/src/components/layout/Master.vue" />
+        <option value="$PROJECT_DIR$/frontend/src/components/Main.vue" />
+        <option value="$PROJECT_DIR$/frontend/src/store/index.js" />
       </list>
     </option>
   </component>
@@ -316,7 +534,7 @@
       <path value="$PROJECT_DIR$/frontend/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="952" />
     <option name="width" value="977" />
     <option name="height" value="1038" />
@@ -412,13 +630,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="router" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="WHO_AJOU" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WHO_AJOU" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="store" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -480,18 +691,18 @@
       <workItem from="1543548287520" duration="5967000" />
       <workItem from="1543579820775" duration="36861000" />
       <workItem from="1543678136553" duration="1177000" />
-      <workItem from="1544171650545" duration="29777000" />
+      <workItem from="1544171650545" duration="30616000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="152927000" />
+    <option name="totallyTimeSpent" value="153766000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="762" y="0" width="781" height="830" extended-state="1" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4989035" visible="true" weight="0.30376345" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4989035" visible="true" weight="0.14937212" />
       <window_info id="Favorites" order="1" sideWeight="0.5010965" side_tool="true" weight="0.24972253" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -510,7 +721,7 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4989035" visible="true" weight="0.23521505" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4989035" visible="true" weight="0.14937212" />
       <window_info id="Favorites" order="1" sideWeight="0.5010965" side_tool="true" weight="0.24972253" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -536,13 +747,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/frontend/Main.vue" />
-    <entry file="file://$PROJECT_DIR$/frontend/config/dev.env.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/config/prod.env.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/config/test.env.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
@@ -701,16 +905,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/router/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="608">
-          <caret line="53" column="5" selection-start-line="53" selection-start-column="5" selection-end-line="53" selection-end-column="5" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/App.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
@@ -753,13 +947,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/store/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="6" column="38" selection-start-line="6" selection-start-column="38" selection-end-line="6" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/models/user.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
@@ -774,31 +961,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/config/email-verification.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="15" column="36" lean-forward="true" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/components/Login.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1311">
           <caret line="69" column="37" selection-start-line="69" selection-start-column="37" selection-end-line="69" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/components/Main.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="24" column="33" lean-forward="true" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
-          <folding>
-            <element signature="n#style#0;n#v-btn#0;n#router-link#0;n#v-toolbar#0;n#div#0;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h3#0;n#div#0;n#v-card#0;n#v-hover#0;n#v-flex#0;n#v-layout#0;n#v-container#0;n#v-flex#0;n#div#0;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -819,14 +985,14 @@
     <entry file="file://$PROJECT_DIR$/frontend/src/components/EvalWrite.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="10" lean-forward="true" selection-start-column="10" selection-end-column="10" />
+          <caret column="10" selection-start-column="10" selection-end-column="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/components/Evaluation.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="632">
-          <caret line="49" column="25" lean-forward="true" selection-start-line="49" selection-start-column="25" selection-end-line="49" selection-end-column="25" />
+          <caret line="49" column="25" selection-start-line="49" selection-start-column="25" selection-end-line="49" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -840,38 +1006,97 @@
     <entry file="file://$PROJECT_DIR$/frontend/src/components/Board.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
-          <caret line="52" column="24" lean-forward="true" selection-start-line="52" selection-start-column="24" selection-end-line="52" selection-end-column="24" />
+          <caret line="52" column="24" selection-start-line="52" selection-start-column="24" selection-end-line="52" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/components/BoardView.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
-          <caret line="41" column="17" lean-forward="true" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="17" />
+          <caret line="41" column="17" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="17" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/components/layout/Master.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="24" lean-forward="true" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/components/BoardWrite.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
-          <caret line="55" column="4" lean-forward="true" selection-start-line="53" selection-start-column="16" selection-end-line="55" selection-end-column="4" />
+          <caret line="55" column="4" selection-start-line="53" selection-start-column="16" selection-end-line="55" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/components/BoardUpdate.vue">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="53" column="19" selection-start-line="53" selection-start-column="19" selection-end-line="53" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/config/email-verification.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="12" column="28" lean-forward="true" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/store/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-11">
+          <caret line="31" column="12" lean-forward="true" selection-start-line="31" selection-start-column="12" selection-end-line="31" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/assets/A+.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/assets/rate.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/components/BeforeLogin.vue">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
-          <caret line="54" column="78" selection-start-line="54" selection-start-column="78" selection-end-line="54" selection-end-column="78" />
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/router/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-95">
+          <caret line="37" column="16" lean-forward="true" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/components/layout/Master.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1102">
+          <caret line="58" column="15" lean-forward="true" selection-start-line="58" selection-start-column="15" selection-end-line="58" selection-end-column="15" />
+          <folding>
+            <element signature="n#style#0;n#router-link#0;n#b-nav-item#2;n#b-navbar-nav#0;n#b-navbar-nav#0;n#b-collapse#0;n#b-navbar#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#router-link#0;n#b-nav-item#3;n#b-navbar-nav#0;n#b-navbar-nav#0;n#b-collapse#0;n#b-navbar#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#router-link#0;n#b-nav-item#4;n#b-navbar-nav#0;n#b-navbar-nav#0;n#b-collapse#0;n#b-navbar#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#em#0;n#template#0;n#b-nav-item-dropdown#0;n#b-navbar-nav#0;n#b-collapse#0;n#b-navbar#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="e#2391#2424#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/components/Main.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2090">
+          <caret line="290" column="9" lean-forward="true" selection-start-line="290" selection-start-column="9" selection-end-line="290" selection-end-column="9" />
+          <folding>
+            <element signature="n#style#0;n#v-btn#0;n#router-link#0;n#v-toolbar#0;n#div#0;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h3#0;n#div#0;n#v-card#0;n#v-hover#0;n#v-flex#0;n#v-layout#0;n#v-container#0;n#v-flex#0;n#div#0;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h3#0;n#div#0;n#v-card#0;n#v-hover#0;n#v-flex#0;n#v-layout#0;n#v-container#0;n#v-flex#1;n#div#0;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
