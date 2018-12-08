@@ -1,6 +1,6 @@
 <template>
   <div class="signup" style = "width:80%; margin:auto; padding-top:30px;">
-    <h1 style = "text-align : center; ">회원가입</h1>
+    <h2 style = "text-align : center; ">회원가입</h2>
     <b-form @submit="postUser" @reset="onSubmit" v-if="show">
         <b-form-group id="ID-InputGroup" label="ID:" label-for="id-input">
            <v-text-field

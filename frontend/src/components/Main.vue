@@ -11,16 +11,16 @@
           <b-col cols = "12" md = "3">
                 <b-form-input v-model="searchText"
                           type="text"
-                          placeholder="검색어를 입력해주세요."
+                          placeholder="검색어를 입력해주세용."
                           size = "sm"
                           id="searchBar" >
                 </b-form-input>
           </b-col>
           <b-col cols = "0">
            <b-button id="searchButton" @click = "searchPost()" v-scroll-to="'#eval_container'" size = "sm" >검색</b-button>
-          </b-col>
+          </b-col> 
       </b-row>
-
+       
     </div>
     <p class = "majorText">{{clickedMajor}}</p>
       <div class="eval_write">
@@ -29,13 +29,13 @@
             <b-button class="eval_write_btn">강의평가작성</b-button>
           </router-link>
           <router-link :to ="`/curriculum/create`">
-            <b-button v-if="admin === 1" class="eval_write_btn"> 강의추가 </b-button>
+            <b-button class="eval_write_btn"> 강의추가 </b-button>
           </router-link>
           <b-dropdown  id="ddown-buttons" text="학과를 선택하세요" class="m-2">
            <b-dropdown-item-button v-model="clickedMajor" v-for="item in majors" v-bind:key="item.id" @click = "setMajor(item)">{{item.major}}</b-dropdown-item-button>
           </b-dropdown>
         </div>
-
+          
       </div>
         <b-container class="curriculum">
             <b-row align-v="start" class="height">
@@ -121,7 +121,7 @@
               color="#9197B5"
             > <i class="material-icons">keyboard_arrow_up</i>
             </v-btn>
-
+          
         <div class = "evaluation" >
           <div id = "eval_container">
                <v-toolbar color="#9197B5" dark >
@@ -129,30 +129,30 @@
                   <v-spacer></v-spacer>
                    <router-link :to ="`/evaluation/write`"  v-scroll-to="'#app'">
                    <v-btn  style="margin-left : 50px; background:#57585a; border-radius:10px ">
-                     강의평가작성
+                     강의평가작성  
                     <i class="material-icons" >add_circle</i>
                   </v-btn>
                   </router-link>
               </v-toolbar>
+              <h5 id= "noresult" v-if="filteredItems.length == 0 && isExist==true">등록된 강의평가가 없습니다. </h5>
               <v-flex xs12 >
                  <v-container fluid >
                    <v-layout row wrap>
                      
                      <v-flex
-                        v-if="filteredItems.length == 0"
+                        v-if="filteredItems.length == 0 && isExist==false"
                        id = "evaluate" v-for="item in eval_subject" v-bind:key="item.id" 
                         :current-page="currentPage"
                         :per-page="perPage"
                        xs3>
                      <v-hover>
-
                        <v-card
                            slot-scope="{ hover }"
                            :class="`elevation-${hover ? 12 : 2}`"
                            class="mx-auto"
                            width="345"
                            flat tile>
-
+                          
                           <div class ="evalContainer" >
                              <h3 style="padding-top:20px">Course</h3>
                              <h5>{{item.lecture}}</h5>
@@ -161,16 +161,15 @@
                              <v-rating v-model="item.evaluation.totalGrade"
                                         color="yellow darken-3"
                                         background-color="grey darken-1"
-                                        readonly
-                                        half-increments>
+                                        readonly>
                             </v-rating>
                             <h5 class = "circle">{{parseFloat(item.evaluation.totalGrade).toFixed(1)}}</h5>
                             <h5>{{item.semester}}</h5><br>
                               <router-link :to ="{name:'eval-view',params:{id: item.id}}">
                               <button type="submit" class = "plusView">Read More</button>
                            </router-link>
-                          </div>
-                       </v-card>
+                          </div>                             
+                       </v-card>                  
                      </v-hover>
                      </v-flex>
 
@@ -234,36 +233,6 @@
 <script>
 import DelPopup from './Popup'
 
-export default {
-  name: 'Main',
-  data () {
-    return {
-      searchKind: null, // 검색할 종류 전체/강의명/교수명
-      filteredItems: [], // 필터링 된 검색 결과
-      searchText: '',
-      majors: [], // 드롭다운에 뿌려줄 학과
-      clickedMajor: '', // 드롭다운에서 선택한 학과
-      curriData: [], // 모든 커리큘럼 데이터
-      subject: [], // 팝업창의 props:subject 데이터 전달
-      options: [
-        { value: '강의명' },
-        { value: '교수명' }
-      ],
-      alphaGrade: '', // 알파벳 점수 ..고려중
-      eval_subject: [], // 강의평가 모든 데이터
-      admin: '' // Login한 User의 관리자 여부
-    }
-  },
-  created () {
-    this.$EventBus.$emit('removeTab', true)
-    this.getUserInfo(),
-    this.GetMajor(),
-    this.getEval()
-  },
-  methods: {
-    // 전체/학과/강의명 검색
-    searchPost () {
-      this.filteredItems = []
 
   export default {
     name: 'Main',
@@ -272,6 +241,7 @@ export default {
         totalRows: 0,
         currentPage: 1,
         perPage: 16,
+        isExist : false,
 
         searchKind : null, //검색할 종류 전체/강의명/교수명
         filteredItems:[], //필터링 된 검색 결과
@@ -289,6 +259,7 @@ export default {
       }
     },
     created (){
+      this.isExist = false
       this.$EventBus.$emit('removeTab', true)
       this.getUserInfo(),
       this.GetMajor(),
@@ -302,14 +273,16 @@ export default {
         return (this.startOffset + this.perPage);
       },
       calData() {
+      
         return this.filteredItems.slice(this.startOffset, this.endOffset)
       }
     },
+    
     methods : {
       //전체/학과/강의명 검색
       searchPost () {
+        this.isExist = true
         this.filteredItems = []
-      
         if(this.searchKind == '강의명'){
 
            for (let i = 0; i < this.eval_subject.length; i++) {
@@ -340,104 +313,98 @@ export default {
             } 
             this.totalRows = this.filteredItems.length
         }
-      } else {
-        for (let i = 0; i < this.eval_subject.length; i++) {
-          if (this.eval_subject[i].lecture.indexOf(this.searchText) == -1 && this.eval_subject[i].professor.indexOf(this.searchText) == -1) {
-          } else {
-            this.filteredItems.push(this.eval_subject[i])
-          }
-          this.filteredItems = this.filteredItems.slice(0, 10)
-        }
-      }
-      this.searchText = ''
-    },
-    // 사용자의 기본설정된 학과로 처음 메인화면 표시하기 위함. // 사용자의 관리자 여부 체크
-    getUserInfo () {
-      this.$http.get('/api/profile/user')
-        .then(res => {
-          this.admin = res.data.isAdmin
-          this.clickedMajor = res.data.major
-          this.GetCurriculum()
+        this.searchText = ''
+      },
+      //사용자의 기본설정된 학과로 처음 메인화면 표시하기 위함.
+      getUserInfo(){
+        this.$http.get('/api/profile/user')
+          .then(res => {
+        this.clickedMajor = res.data.major
+        this.GetCurriculum();
         })
-    },
-    // 드롭다운버튼에서 클릭한 학과의 커리큘럼 가져오기
-    setMajor (item) {
-      console.log(item.major)
-      this.clickedMajor = item.major
-      this.GetCurriculum()
-    },
-    // 모든 학과이름과 정보 받아오기
-    GetMajor () {
-      this.$http.get('/api/major/all').then((res) => {
-        this.majors = res.data
-      })
-    },
-    // 커리큘럼 가져오기
-    GetCurriculum () {
-      console.log('GetCurriculum 들어옴')
-      console.log('this.clickedMajor:' + this.clickedMajor)
-      this.$http.post('/api/curriculum', {major: this.clickedMajor})
+      },
+      //드롭다운버튼에서 클릭한 학과의 커리큘럼 가져오기
+      setMajor(item){
+          console.log(item.major)
+          this.clickedMajor = item.major
+          this.GetCurriculum();
+      }, 
+      //모든 학과이름과 정보 받아오기
+      GetMajor(){
+        this.$http.get("/api/major/all").then((res) => {
+          this.majors = res.data;
+        });
+      },
+      //커리큘럼 가져오기
+      GetCurriculum(){
+        console.log("GetCurriculum 들어옴")
+        console.log("this.clickedMajor:"+this.clickedMajor)
+        this.$http.post("/api/curriculum", {major: this.clickedMajor})
         .then((res) => {
-          this.curriData = res.data
+          this.curriData = res.data;
         })
         .catch((err) => {
-          alert(err)
+          alert(err);
+        });
+      },
+      //팝업 
+      Popup(clickedItem){
+        //팝업에서 클릭 연동하기 위해 이벤트 버스 실행
+        this.$EventBus.$on('changeColor', (message) => {
+          this.showPreRequisite(clickedItem, message)
         })
-    },
-    // 팝업
-    Popup (clickedItem) {
-      // 팝업에서 클릭 연동하기 위해 이벤트 버스 실행
-      this.$EventBus.$on('changeColor', (message) => {
-        this.showPreRequisite(clickedItem, message)
-      })
-      this.$EventBus.$on('del', (message) => {
-        this.GetCurriculum()
-      })
-      this.$EventBus.$on('clickedPopupLectureName', (message) => {
-        this.searchText = message.lecture
-        this.searchPost()
-      })
-      this.showPreRequisite(clickedItem, true)
-      this.$modal.show(DelPopup, {
-        subject: clickedItem,
-        isAdmin: this.admin,
-        modal: this.$modal }, {
-        name: 'dynamic-modal',
-        width: '600px',
-        height: '400px',
-        draggable: true,
-        clickToClose: false
-      })
-    },
-    // 선수과목 서로서로 연결. 마지막 선수과목이 없을 때, undefined의 길이를 읽기 때문에 TypeError 발생으로 try...catch 사용
-    showPreRequisite (item, isPre) {
-      for (var i = 0; i < this.curriData.length; i++) {
-        try {
-          for (var j = 0; j < item.prerequisite.length; j++) {
-            if (item.prerequisite[j].name == this.curriData[i].lecture) {
-              this.curriData[i].isPre = isPre
-              this.showPreRequisite(this.curriData[i], isPre)
+        this.$EventBus.$on('del', (message) => {
+          this.GetCurriculum()
+        })
+        this.$EventBus.$on('clickedPopupLectureName', (message) => {
+          this.searchText = message.lecture
+          this.searchPost()
+        })
+        this.showPreRequisite(clickedItem, true)
+        this.$modal.show(DelPopup,{
+          subject : clickedItem,
+          modal : this.$modal },{
+          name: 'dynamic-modal',
+          width : '600px',
+          height : '400px',
+          draggable: true,
+          clickToClose : false
+        })
+      },
+      //선수과목 서로서로 연결. 마지막 선수과목이 없을 때, undefined의 길이를 읽기 때문에 TypeError 발생으로 try...catch 사용
+      showPreRequisite(item, isPre){
+        for(var i =0 ; i<this.curriData.length; i ++){
+          try{
+            for(var j =0 ; j<item.prerequisite.length; j++){
+              if(item.prerequisite[j].name == this.curriData[i].lecture){
+                this.curriData[i].isPre = isPre;
+                this.showPreRequisite(this.curriData[i], isPre)
+              }
             }
-          }
-        } catch (e) {}
-      }
-    },
-    // 강의평가 모든 정보 가져오기
-    getEval () {
-      this.$http.get('/api/class/evaluation')
-        .then((res) => {
-          this.eval_subject = res.data
+          }catch (e) {}
+        }
+      },
+      //강의평가 모든 정보 가져오기
+      getEval() {
+        this.$http.get("/api/class/evaluation")
+          .then((res) => {
+          this.eval_subject = res.data;
           console.log('강의평가모든정보')
           console.log(res.data)
-        })
-    }
-  }
-}
+        });
+      },
+  }  
+}  
 
 </script>
 
+
+
+
+
 <!--**********************css****************************-->
 <style>
+
 #noresult{
   margin-top:120px;
   text-align: center;
@@ -447,7 +414,7 @@ export default {
   margin-right:25px;
 }
 .evaluation{
-  margin-top:400px;
+  margin-top:200px;
   margin-bottom: 100vh;
 }
 .evalContainer{
@@ -562,4 +529,5 @@ hr.vertical{
   background-color:#C6D6F7;
   border:#C6D6F7;
 }
+
 </style>
