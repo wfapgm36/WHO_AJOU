@@ -38,13 +38,13 @@
           
       </div>
         <b-container class="curriculum">
-            <b-row align-v="top" class="height">
+            <b-row align-v="start" class="height">
                 <b-col>
                   <b-row align-v="center">
                     <b-col><p class = "majorText"> 1-1 </p></b-col>
                   </b-row>
                     <div v-for="item in curriData" v-bind:subject = "item" v-bind:key="item.id" v-if="item.semester == '1-1'">
-                            <b-button v-bind:style="depth" :pressed.sync = "item.isPre" class = "mainBtn" @click = "Popup(item)" >{{item.lecture}}</b-button>
+                            <b-button :pressed.sync = "item.isPre" class = "mainBtn" @click = "Popup(item)" >{{item.lecture}}</b-button>
                     </div>
                 </b-col>
                 <hr class = "vertical">
@@ -159,7 +159,7 @@
                              <v-rating v-model="item.evaluation.totalGrade"
                                         color="yellow darken-3"
                                         background-color="grey darken-1"
-                                        readonly=true>
+                                        readonly>
                             </v-rating>
                             <h5 class = "circle">{{parseFloat(item.evaluation.totalGrade).toFixed(1)}}</h5>
                             <h5>{{item.semester}}</h5><br>
