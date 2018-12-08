@@ -39,9 +39,6 @@ export default {
       admin: ''
     }
   },
-  created () {
-    this.getUserInfo()
-  },
   methods: {
     updateCurriculum (item) {
       console.log(item)
