@@ -12,7 +12,7 @@
           <b-col cols = "12" md = "3">
                 <b-form-input v-model="searchText"
                           type="text"
-                          placeholder="검색어를 입력해주세용."
+                          placeholder="강의평가를 검색합니다."
                           size = "sm"
                           id="searchBar" >
                 </b-form-input>

@@ -1,44 +1,47 @@
 <template>
   <div id="app">
+             <let-it-snow
+      v-bind="snowConf"
+      :show="show"    
+    ></let-it-snow>
     <b-navbar toggleable="md" type="dark" class="nav-background">
-    <!--<v-toolbar dark color="teal lighten-3">-->
     <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
-      <b-navbar-brand id = "navbar-brand" href="/main" tag="h1">
-        <h1><img src="../../assets/logo.png" height="48" width="48" alt="BV"><b-badge pill variant="white">WHO AJOU?</b-badge></h1></b-navbar-brand>
-     <h5 id = "nickname" v-if="isLogin">{{nickname}}님 안녕하세요!</h5>
+      <b-navbar-brand id = "navbar-brand" variant="faded" href="/main" tag="h1">
+        <h1 class="font-weight-black headline"><img src="../../assets/logo.png" height="48" width="48" alt="BV">WHO AJOU?</h1></b-navbar-brand>
+     <h5 id = "nickname" class="font-weight-bold title" v-if="isLogin">{{nickname}}님 안녕하세요!</h5>
       <b-collapse is-nav id="nav_collapse">
         <b-navbar-nav class="ml-auto">
           <b-navbar-nav>
             <b-nav-item>
-              <router-link to="/main" style="color: white"><b-badge class = "menu" variant="white">메인</b-badge></router-link>
+              <router-link to="/main" style="color: white" class="font-weight-black title">메인 |</router-link>
             </b-nav-item>
             <b-nav-item v-if="isLogin">
-              <router-link to="/board" style="color: white"><b-badge  class = "menu" variant="white">게시판</b-badge></router-link>
+              <router-link to="/board" style="color: white" class="font-weight-black title">게시판 |</router-link>
             </b-nav-item>
             <b-nav-item id="login" v-if="!isLogin">
-              <router-link to="/" style="color: white" @click.native = "loginPopup"><b-badge class = "menu" variant="white">로그인</b-badge></router-link>
+              <router-link to="/" class="font-weight-black title" style="color: white" @click.native = "loginPopup">로그인 |</router-link>
             </b-nav-item>
             <b-nav-item id="signup" v-if="!isLogin">
-              <router-link to="/" style="color: white" @click.native = "signupPopup"><b-badge class = "menu" variant="white">회원가입</b-badge></router-link>
+              <router-link to="/" class="font-weight-black title" style="color: white" @click.native = "signupPopup" >회원가입</router-link>
             </b-nav-item>
             <b-nav-item v-if="isLogin">
-              <router-link to="/" @click.native = "onClickLogout" style="color: white"><b-badge  class = "menu" variant="white">로그아웃</b-badge></router-link>
+              <router-link to="/" @click.native = "onClickLogout"  class="font-weight-black title" style="color: white">로그아웃 |</router-link>
             </b-nav-item>
           </b-navbar-nav>
 
           <b-nav-item-dropdown right v-if="isLogin">
             <!-- Using button-content slot -->
             <template slot="button-content">
-              <em style="color: white"><b-badge class = "menu" variant="white">마이페이지</b-badge></em>
+              <em style="color: white" class="font-weight-black title">마이페이지</em>
             </template>
-            <b-dropdown-item>
-              <router-link to="/profile">프로필</router-link>
+            <b-dropdown-item href="/profile">
+              프로필
             </b-dropdown-item>
-              <b-dropdown-item v-if="admin === 1">
-              <router-link to="/managemajor">전공 관리</router-link>
+              <b-dropdown-item href="managemajor" v-if="admin === 1">
+              전공 관리
             </b-dropdown-item>
-            <b-dropdown-item v-if="admin === 1">
-              <router-link to="/userlist">유저 리스트</router-link>
+            <b-dropdown-item href="userlist" v-if="admin === 1">
+              유저 리스트
             </b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
@@ -59,9 +62,24 @@ export default {
     return {
       isLogin: false,
       nickname: '',
-      admin: ''
+      admin: '',
+      snowConf: {
+            windPower : 1,  
+            speed : 3,
+            count : 15,
+            size : 10,
+            opacity : 1,
+            images: ['https://raw.githubusercontent.com/bob-chen/let_it_snow/master/demo/snow.png']
+        },
+        show: false      
     }
   },
+   mounted () {
+      this.show = true
+      setTimeout( () => {
+          this.show = false
+      }, 30000) 
+  } ,
   methods: {
     loginPopup () {
       console.log('누름')
@@ -141,6 +159,7 @@ export default {
     position: relative;
   }
   .nav-background {
-    background-color: #165833;
+    background: linear-gradient(to top, rgb(188, 238, 201) 1%, #4CAF50 20%,#1B5E20 65%);
+    
   }
 </style>

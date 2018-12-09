@@ -1,4 +1,5 @@
 <template>
+<div>
   <v-carousel height="850">
     <v-carousel-item
       v-for="(item,i) in items"
@@ -7,6 +8,7 @@
       class="carousel"
     ></v-carousel-item>
   </v-carousel>
+</div>
 </template>
 
 <script>
