@@ -23,10 +23,10 @@ var classSchema = mongoose.Schema({
         memo2: String,
         memo3: String,
         memo4: String,
-        createAt: { type: Date, default: Date.now() + 3600000 * 9  }
+        createAt: { type: Date, default: Date.now }
     },
-    createAt: { type: Date, default: Date.now() + 3600000 * 9  },
-    updated: [{ contents: String, date: { type: Date, default: Date.now() + 3600000 * 9  } }]
+    createAt: { type: Date, default: Date.now  },
+    updated: [{ contents: String, date: { type: Date, default: Date.now } }]
 },{
     versionKey:false
 });
