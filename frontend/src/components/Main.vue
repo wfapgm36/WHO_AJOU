@@ -42,7 +42,7 @@
             <b-row align-v="start" class="height">
                 <b-col class ="curriculum_btn">
                   <b-row align-v="center">
-                    <b-col><p class = "majorText"> 1-1 </p></b-col>
+                    <b-col><p class = "majorText"> <b-badge variant="dark">1-1</b-badge> </p></b-col>
                   </b-row>
                     <div v-for="item in curriData" v-bind:subject = "item" v-bind:key="item.id" v-if="item.semester == '1-1'">
                             <b-button :pressed.sync = "item.isPre" class = "mainBtn" @click = "Popup(item)" >{{item.lecture}}</b-button>
@@ -51,7 +51,7 @@
                 <hr class = "vertical">
                 <b-col class ="curriculum_btn">
                     <b-row align-v="center">
-                      <b-col><p class = "majorText"> 1-2 </p></b-col>
+                      <b-col><p class = "majorText"><b-badge variant="dark">1-2</b-badge></p></b-col>
                     </b-row>
                     <div v-for="item in curriData" v-bind:subject = "item" v-bind:key="item.id" v-if="item.semester == '1-2'">
                        <b-button :pressed.sync = "item.isPre" class = "mainBtn" @click = "Popup(item)" >{{item.lecture}}</b-button>
@@ -60,7 +60,7 @@
                  <hr class = "vertical">
                  <b-col class ="curriculum_btn">
                     <b-row align-v="center">
-                      <b-col><p class = "majorText"> 2-1 </p></b-col>
+                      <b-col><p class = "majorText"> <b-badge variant="dark">2-1</b-badge> </p></b-col>
                     </b-row>
                     <div v-for="item in curriData" v-bind:subject = "item" v-bind:key="item.id" v-if="item.semester == '2-1'">
                        <b-button :pressed.sync = "item.isPre" class = "mainBtn" @click = "Popup(item)" >{{item.lecture}}</b-button>
@@ -69,7 +69,7 @@
                 <hr class = "vertical">
                 <b-col class ="curriculum_btn">
                     <b-row align-v="center">
-                      <b-col><p class = "majorText"> 2-2 </p></b-col>
+                      <b-col><p class = "majorText"> <b-badge variant="dark">2-2</b-badge> </p></b-col>
                     </b-row>
                     <div v-for="item in curriData" v-bind:subject = "item" v-bind:key="item.id" v-if="item.semester == '2-2'">
                         <b-button :pressed.sync = "item.isPre" class = "mainBtn" @click = "Popup(item)" >{{item.lecture}}</b-button>
@@ -78,7 +78,7 @@
                 <hr class = "vertical">
                 <b-col class ="curriculum_btn">
                     <b-row align-v="center">
-                      <b-col><p class = "majorText"> 3-1 </p></b-col>
+                      <b-col><p class = "majorText"> <b-badge variant="dark">3-1</b-badge> </p></b-col>
                     </b-row>
                     <div v-for="item in curriData" v-bind:subject = "item" v-bind:key="item.id" v-if="item.semester == '3-1'">
                         <b-button :pressed.sync = "item.isPre" class = "mainBtn" @click = "Popup(item)" >{{item.lecture}}</b-button>
@@ -87,7 +87,7 @@
                  <hr class = "vertical">
                  <b-col class ="curriculum_btn">
                    <b-row align-v="center">
-                      <b-col><p class = "majorText"> 3-2 </p></b-col>
+                      <b-col><p class = "majorText"> <b-badge variant="dark">3-2</b-badge> </p></b-col>
                     </b-row>
                     <div v-for="item in curriData" v-bind:subject = "item" v-bind:key="item.id" v-if="item.semester == '3-2'">
                         <b-button :pressed.sync = "item.isPre" class = "mainBtn" @click = "Popup(item)" >{{item.lecture}}</b-button>
@@ -96,7 +96,7 @@
                  <hr class = "vertical">
                 <b-col class ="curriculum_btn">
                     <b-row align-v="center">
-                      <b-col><p class = "majorText"> 4-1 </p></b-col>
+                      <b-col><p class = "majorText"> <b-badge variant="dark">4-1</b-badge> </p></b-col>
                     </b-row>
                     <div v-for="item in curriData" v-bind:subject = "item" v-bind:key="item.id" v-if="item.semester == '4-1'">
                         <b-button :pressed.sync = "item.isPre" class = "mainBtn" @click = "Popup(item)" >{{item.lecture}}</b-button>
@@ -105,7 +105,7 @@
                 <hr class = "vertical">
                 <b-col class ="curriculum_btn">
                     <b-row align-v="center">
-                      <b-col><p class = "majorText"> 4-2 </p></b-col>
+                      <b-col><p class = "majorText"> <b-badge variant="dark">4-2</b-badge> </p></b-col>
                     </b-row>
                     <div v-for="item in curriData" v-bind:subject = "item" v-bind:key="item.id" v-if="item.semester == '4-2'">
                         <b-button :pressed.sync = "item.isPre" class = "mainBtn" @click = "Popup(item)" >{{item.lecture}}</b-button>

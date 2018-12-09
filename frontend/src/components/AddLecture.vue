@@ -6,21 +6,21 @@
           <h6 slot="header">
             학과
             <div>
-              <b-form-select  v-model="selected.major" class="mb-3" size="sm">
+              <b-form-select required="true" v-model="selected.major" class="mb-3" size="sm">
                 <option v-for="major in majorOptions" v-bind:key ="major.id">{{major.value}}</option>
               </b-form-select>  
             </div>
             
             강의타입
             <div>
-              <b-form-select  v-model="selected.type" class="mb-3" size="sm">
+              <b-form-select required="true"  v-model="selected.type" class="mb-3" size="sm">
                 <option v-for="type in typeOptions" v-bind:key ="type.id">{{type.value}}</option>
               </b-form-select>  
             </div>
             
             강의명
             <div>
-              <b-form-input v-model="selected.lecture"
+              <b-form-input required="true" v-model="selected.lecture"
                           type="text"
                           size = "sm"
                           id="lectureBar" >
@@ -29,7 +29,7 @@
 
             학기
             <div>
-              <b-form-select  v-model="selected.semester" class="mb-3" size="sm">
+              <b-form-select required="true" v-model="selected.semester" class="mb-3" size="sm">
                 <option v-for="semester in semesterOptions" v-bind:key ="semester.id">{{semester.value}}</option>
               </b-form-select> 
             </div>
@@ -64,12 +64,13 @@
 
         
           <h6 slot="footer">
-            <b-button type="submit" variant="primary">제출</b-button>
+            <b-button type="submit" variant="primary">추가</b-button>
           </h6>
 
           <div>
             <b-form-group id="contentInput">
               <b-form-textarea
+              required="true"
                 id="contentInput"
                 v-model="selected.description"
                 placeholder="상세정보"
@@ -107,14 +108,6 @@ export default {
       ],
 
       selected: {
-        //테스트용
-        //major: '미디어',
-        //type: '전공',
-        //lecture: '객프',
-        //prequisite: ['컴설','자구'],
-        //semester: '1-1',
-        //description: "안녕",
-        
         major: null,
         type: null,
         lecture:'',
