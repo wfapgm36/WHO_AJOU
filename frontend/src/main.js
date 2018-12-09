@@ -14,7 +14,9 @@ import 'vuetify/dist/vuetify.min.css'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import '@mdi/font/css/materialdesignicons.css'
 import LetItSnow from 'vue-let-it-snow'
-
+import moment from 'moment'
+import VueMomentJS from 'vue-momentjs'
+Vue.use(VueMomentJS, moment)
 Vue.use(Vuetify)
 Vue.use(VueScrollTo)
 Vue.use(VModal, { dynamic: true })
