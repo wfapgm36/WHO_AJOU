@@ -6,6 +6,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+const index = require("./routes/index")
 const signup = require("./routes/signup");
 const login = require("./routes/login");
 const user = require("./routes/user");
@@ -30,7 +31,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use('/', index);
 app.use('/api/signup', signup);
 app.use('/api/email-verification', email_verification);
 app.use('/api/login', login);

@@ -27,7 +27,7 @@
             </router-link>
           </td>
             <td class="text-xs-center">{{ props.item.writer }}</td>
-            <td class="text-xs-center">{{ props.item.createAt.substr(0,10)}} {{props.item.createAt.substr(11,2)}}시{{props.item.createAt.substr(14,2)}}분</td>
+            <td class="text-xs-center">{{ $moment(props.item.createAt).format('LLLL') }}</td>
             <td class="text-xs-center">{{ props.item.count }}</td>
           </template>
       </v-data-table>

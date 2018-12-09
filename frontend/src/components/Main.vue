@@ -12,7 +12,7 @@
           <b-col cols = "12" md = "3">
                 <b-form-input v-model="searchText"
                           type="text"
-                          placeholder="검색어를 입력해주세용."
+                          placeholder="강의평가를 검색합니다."
                           size = "sm"
                           id="searchBar" >
                 </b-form-input>
@@ -229,6 +229,20 @@
         </div>
         <modals-container/>
     </div>
+      <v-footer
+    dark
+    height="auto"
+  >
+    <v-card
+      class="flex"
+      flat
+      title
+    >
+      <v-card-actions class="grey darken-3 justify-center">
+        &copy;2018 김치헌 | 박찬영 | 이소연 | 이아연 — <strong> Ajou Univ.</strong>
+      </v-card-actions>
+    </v-card>
+  </v-footer>
   </div>
 </template>
 

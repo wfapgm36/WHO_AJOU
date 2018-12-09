@@ -142,6 +142,7 @@ export default {
     onReset (evt) {
       evt.preventDefault()
       /* Reset our form values */
+      this.form.name = ''
       this.form.email = ''
       this.form.password = ''
       this.form.checked = []

@@ -9,8 +9,7 @@
             <b-badge variant="dark">작성자</b-badge>
             {{this.form.writer}}
             <b-badge variant="dark">작성일</b-badge>
-            {{this.form.createAt.substr(0,10)}} {{this.form.createAt.substr(11,2)}}시
-            {{this.form.createAt.substr(14,2)}}분
+            {{this.form.createAt}}
             <b-badge variant="dark">조회수</b-badge>
             {{this.form.count}}
             <br>
@@ -20,8 +19,7 @@
           <h6 slot="footer" v-for="item in form.comments"
               v-bind:key="item._id">
             <p class="comment_name">{{item.name}}</p>&emsp;
-            <p class="comment_date">{{item.createAt.substr(0,10)}} {{item.createAt.substr(11,2)}}시
-              {{item.createAt.substr(14,2)}}분</p>
+            <p class="comment_date">{{item.createAt}}</p>
             <div class="comment"><p class="comment">{{item.memo}}</p>
               <b-badge v-if="userId===item.id || admin === 1" pill href="#" v-on:click="deleteComment(item._id)" variant="danger" size="sm">삭제</b-badge>
             </div>
@@ -66,12 +64,14 @@ export default {
         count: '',
         comments: [{
           name: '',
-          memo: ''
+          memo: '',
+          createAt: new Date()
         }]
       },
       memo: '',
       userId: '',
-      admin:''
+      admin:'',
+      date: new Date()
     }
   },
   created () {
@@ -91,6 +91,10 @@ export default {
       this.$http.get(`/api/board/view/${this.$route.params.id}`)
         .then(res => {
           this.form = res.data
+          this.form.createAt =  this.$moment(this.form.createAt).format('LLLL')
+          for(var i = 0; i < this.form.comments.length; i++){
+            this.form.comments[i].createAt = this.$moment(this.form.comments[i].createAt).format('LLLL')
+          }
         })
     },
     deleteBoard () {
