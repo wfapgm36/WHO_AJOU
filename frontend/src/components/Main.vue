@@ -229,6 +229,20 @@
         </div>
         <modals-container/>
     </div>
+      <v-footer
+    dark
+    height="auto"
+  >
+    <v-card
+      class="flex"
+      flat
+      title
+    >
+      <v-card-actions class="grey darken-3 justify-center">
+        &copy;2018 김치헌 | 박찬영 | 이소연 | 이아연 — <strong> Ajou Univ.</strong>
+      </v-card-actions>
+    </v-card>
+  </v-footer>
   </div>
 </template>
 

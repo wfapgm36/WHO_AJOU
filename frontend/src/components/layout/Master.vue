@@ -7,25 +7,25 @@
     <b-navbar toggleable="md" type="dark" class="nav-background">
     <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
       <b-navbar-brand id = "navbar-brand" variant="faded" href="/main" tag="h1">
-        <h1 class="font-weight-black headline"><img src="../../assets/logo.png" height="48" width="48" alt="BV">WHO AJOU?</h1></b-navbar-brand>
-     <h5 id = "nickname" class="font-weight-bold title" v-if="isLogin">{{nickname}}님 안녕하세요!</h5>
+        <img src="../../assets/main.png" height="60" width="200" alt="BV"></b-navbar-brand>
+     <h5 id = "nickname" class="font-weight-medium title" v-if="isLogin">{{nickname}}님 안녕하세요!</h5>
       <b-collapse is-nav id="nav_collapse">
         <b-navbar-nav class="ml-auto">
           <b-navbar-nav>
             <b-nav-item>
-              <router-link to="/main" style="color: white" class="font-weight-black title">메인 |</router-link>
+              <router-link to="/main" style="color: white" class="font-weight-bold title">메인 |</router-link>
             </b-nav-item>
             <b-nav-item v-if="isLogin">
-              <router-link to="/board" style="color: white" class="font-weight-black title">게시판 |</router-link>
+              <router-link to="/board" style="color: white" class="font-weight-bold title">게시판 |</router-link>
             </b-nav-item>
             <b-nav-item id="login" v-if="!isLogin">
-              <router-link to="/" class="font-weight-black title" style="color: white" @click.native = "loginPopup">로그인 |</router-link>
+              <router-link to="/" class="font-weight-bold title" style="color: white" @click.native = "loginPopup">로그인 |</router-link>
             </b-nav-item>
             <b-nav-item id="signup" v-if="!isLogin">
-              <router-link to="/" class="font-weight-black title" style="color: white" @click.native = "signupPopup" >회원가입</router-link>
+              <router-link to="/" class="font-weight-bold title" style="color: white" @click.native = "signupPopup" >회원가입</router-link>
             </b-nav-item>
             <b-nav-item v-if="isLogin">
-              <router-link to="/" @click.native = "onClickLogout"  class="font-weight-black title" style="color: white">로그아웃 |</router-link>
+              <router-link to="/" @click.native = "onClickLogout"  class="font-weight-bold title" style="color: white">로그아웃 |</router-link>
             </b-nav-item>
           </b-navbar-nav>
 

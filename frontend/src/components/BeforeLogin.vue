@@ -1,6 +1,6 @@
 <template>
 <div>
-  <v-carousel height="850">
+  <v-carousel height="850" hide-controls="true" hide-delimiters="true">
     <v-carousel-item
       v-for="(item,i) in items"
       :key="i"
@@ -8,6 +8,26 @@
       class="carousel"
     ></v-carousel-item>
   </v-carousel>
+  <v-footer
+    dark
+    height="auto"
+  >
+    <v-card
+      class="flex"
+      flat
+      title
+    >
+      <v-card-title class="grey darken-2">
+        <strong class="subheading">Ajou Community site with TEAM6 ! Merry Christmas !!</strong>
+
+        <v-spacer></v-spacer>
+      </v-card-title>
+
+      <v-card-actions class="grey darken-3 justify-center">
+        &copy;2018 김치헌 | 박찬영 | 이소연 | 이아연 — <strong> Ajou Univ.</strong>
+      </v-card-actions>
+    </v-card>
+  </v-footer>
 </div>
 </template>
 
