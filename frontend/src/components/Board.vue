@@ -24,7 +24,7 @@
           <td class="text-xs-center">
             <router-link :to="`/view/${props.item._id}`"
             >{{props.item.title}}
-            </router-link>
+            </router-link>[{{props.item.comments.length}}]
           </td>
             <td class="text-xs-center">{{ props.item.writer }}</td>
             <td class="text-xs-center">{{ $moment(props.item.createAt).format('LLLL') }}</td>

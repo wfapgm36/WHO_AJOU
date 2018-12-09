@@ -40,7 +40,7 @@
       </div>
         <b-container class="curriculum">
             <b-row align-v="start" class="height">
-                <b-col>
+                <b-col class ="curriculum_btn">
                   <b-row align-v="center">
                     <b-col><p class = "majorText"> 1-1 </p></b-col>
                   </b-row>
@@ -49,16 +49,16 @@
                     </div>
                 </b-col>
                 <hr class = "vertical">
-                <b-col>
+                <b-col class ="curriculum_btn">
                     <b-row align-v="center">
                       <b-col><p class = "majorText"> 1-2 </p></b-col>
                     </b-row>
                     <div v-for="item in curriData" v-bind:subject = "item" v-bind:key="item.id" v-if="item.semester == '1-2'">
                        <b-button :pressed.sync = "item.isPre" class = "mainBtn" @click = "Popup(item)" >{{item.lecture}}</b-button>
                     </div>
-                </b-col>
+                </b-col >
                  <hr class = "vertical">
-                 <b-col>
+                 <b-col class ="curriculum_btn">
                     <b-row align-v="center">
                       <b-col><p class = "majorText"> 2-1 </p></b-col>
                     </b-row>
@@ -67,7 +67,7 @@
                     </div>
                 </b-col>
                 <hr class = "vertical">
-                <b-col>
+                <b-col class ="curriculum_btn">
                     <b-row align-v="center">
                       <b-col><p class = "majorText"> 2-2 </p></b-col>
                     </b-row>
@@ -76,7 +76,7 @@
                     </div>
                 </b-col>
                 <hr class = "vertical">
-                <b-col>
+                <b-col class ="curriculum_btn">
                     <b-row align-v="center">
                       <b-col><p class = "majorText"> 3-1 </p></b-col>
                     </b-row>
@@ -85,7 +85,7 @@
                     </div>
                 </b-col>
                  <hr class = "vertical">
-                 <b-col>
+                 <b-col class ="curriculum_btn">
                    <b-row align-v="center">
                       <b-col><p class = "majorText"> 3-2 </p></b-col>
                     </b-row>
@@ -94,7 +94,7 @@
                     </div>
                 </b-col>
                  <hr class = "vertical">
-                <b-col>
+                <b-col class ="curriculum_btn">
                     <b-row align-v="center">
                       <b-col><p class = "majorText"> 4-1 </p></b-col>
                     </b-row>
@@ -103,7 +103,7 @@
                     </div>
                 </b-col>
                 <hr class = "vertical">
-                <b-col>
+                <b-col class ="curriculum_btn">
                     <b-row align-v="center">
                       <b-col><p class = "majorText"> 4-2 </p></b-col>
                     </b-row>
@@ -419,7 +419,9 @@ export default {
 
 <!--**********************css****************************-->
 <style>
-
+.curriculum_btn{
+  padding:inherit;
+}
 #noresult{
   margin-top:120px;
   text-align: center;
