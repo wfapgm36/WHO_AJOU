@@ -13,6 +13,7 @@ import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import '@mdi/font/css/materialdesignicons.css'
+import LetItSnow from 'vue-let-it-snow'
 
 Vue.use(Vuetify)
 Vue.use(VueScrollTo)
@@ -25,6 +26,7 @@ Vue.component('star-rating', StarRating);
 Vue.use(Vuetify, {
   iconfont: 'mdi'
 })
+Vue.use(LetItSnow)
 
 /* eslint-disable no-new */
 new Vue({

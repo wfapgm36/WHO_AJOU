@@ -4,8 +4,7 @@ import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
-import Login from '@/components/Login'
-import SignUp from '@/components/SignUp'
+import BeforeLogin from '@/components/BeforeLogin'
 import Main from '@/components/Main'
 import Profile from '@/components/Profile'
 import UserList from '@/components/UserList'
@@ -19,7 +18,7 @@ import EvalWrite from '@/components/EvalWrite'
 import EvalUpdate from '@/components/EvalUpdate'
 import AddLecture from '@/components/AddLecture'
 import UpdateLecture from '@/components/UpdateLecture'
-import BeforeLogin from '@/components/BeforeLogin'
+import manageMajor from '@/components/manageMajor'
 import store from '../store'
 
 const requireAuth = () => (from, to, next) => {
@@ -40,16 +39,6 @@ export default new Router({
       path: '/',
       name: 'beforeLogin',
       component: BeforeLogin
-    },
-    {
-      path: '/login',
-      name: 'login',
-      component: Login
-    },
-    {
-      path: '/signup',
-      name: 'signup',
-      component: SignUp
     },
     {
       path: '/email-verification/:URL',
@@ -110,7 +99,7 @@ export default new Router({
       name: 'evaluation-write',
       component: EvalWrite,
       beforeEnter: requireAuth()
-    }, 
+    },
     {
       path: '/evaluation/update/:id',
       name: 'evaluation-update',
@@ -127,6 +116,12 @@ export default new Router({
       path: '/curriculum/update/:id',
       name: 'update-lecture',
       component: UpdateLecture,
+      beforeEnter: requireAuth()
+    },
+    {
+      path: '/manageMajor',
+      name: 'manage-major',
+      component: manageMajor,
       beforeEnter: requireAuth()
     }
   ]

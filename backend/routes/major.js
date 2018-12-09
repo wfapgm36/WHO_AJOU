@@ -48,4 +48,35 @@ router.post('/', function (req, res, next) {
     })
 });
 
+router.post('/add', function(req, res){
+    console.log(req.body.name)
+    let newMajor = new major({
+        major: req.body.name
+    });
+    newMajor.save();
+    res.status(200).send(major)
+});
+
+router.post('/professor/add', function(req, res){
+    console.log(req.body.major)
+    console.log(req.body.professor)
+    let professor = {
+        name : ''
+    }
+    professor.name = req.body.professor
+    major.findOne({major:req.body.major}, function(err,data){
+        console.log(data)
+        data.professor.push(professor)
+        res.status(200).send(data)
+        data.save();
+    })    
+});
+
+router.post('/professor', function(req, res){
+    major.findOne({major:req.body.major}, function(err,data){
+        console.log(data.professor)
+        res.json(data.professor)
+    })    
+})
+
 module.exports = router;

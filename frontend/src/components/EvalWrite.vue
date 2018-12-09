@@ -94,7 +94,7 @@
           :max-rows="6"
         ></b-form-textarea>
 
-        <h3>팀플과 시험은 어떤가요?</h3>
+        <h3>팀플과 과제는 어떤가요?</h3>
         <b-form-textarea
           class="evaltext"
           v-model="text2"
@@ -129,131 +129,132 @@
 
 <script>
 export default {
-  name: "evaluation-write",
-  data() {
+  name: 'evaluation-write',
+  data () {
     return {
-      allMajorData:[],
-      
-      majorSelected:null,
-      subjectSelected:null,
-      professorSelected:null,
-      semesterSelected:null,
-      diffiSelected:null,
-      //강의 정보
-      userId:'',
-     // code: "F001", 
-      professor: "",
-      difficult: "",
-      //강의 평점
-      assignRating: "",
-      teamRating: "",
-      lectureRating: "",
-      examRating: "",
-      //강의 메모
-      text1: "",
-      text2: "",
-      text3: "",
-      text4: "",
-      //선택 옵션
+      allMajorData: [],
+
+      majorSelected: null,
+      subjectSelected: null,
+      professorSelected: null,
+      semesterSelected: null,
+      diffiSelected: null,
+      // 강의 정보
+      userId: '',
+      // code: "F001",
+      professor: '',
+      difficult: '',
+      // 강의 평점
+      assignRating: '',
+      teamRating: '',
+      lectureRating: '',
+      examRating: '',
+      // 강의 메모
+      text1: '',
+      text2: '',
+      text3: '',
+      text4: '',
+      // 선택 옵션
       majorOptions: [],
       subjectOptions: [],
       professorOptions: [],
-      semesterOptions:[
+      semesterOptions: [
         {value: '2018-1 학기'},
         {value: '2017-2 학기'},
         {value: '2017-1 학기'}
       ],
       diffiOptions: [
-        { value: "상" },
-        { value: "중" },
-        { value: "하" }
+        { value: '상' },
+        { value: '중' },
+        { value: '하' }
       ]
-    };
+    }
   },
-  created(){
+  created () {
     this.getMajor()
     this.getUserId()
   },
-  //select 시, 학과명이 바뀔때마다 과목명과 교수명을 다시 받기 위함
-  watch: { 'majorSelected': function() {
-     this.getSubject()
-    }
+  // select 시, 학과명이 바뀔때마다 과목명과 교수명을 다시 받기 위함
+  watch: { 'majorSelected': function () {
+    this.getSubject()
+  }
   },
   methods: {
-    setAssignRating(rating) {
-      this.assignRating = rating;
+    setAssignRating (rating) {
+      this.assignRating = rating
     },
-    setTeamRating(rating) {
-      this.teamRating = rating;
+    setTeamRating (rating) {
+      this.teamRating = rating
     },
-    setLectureRating(rating) {
-      this.lectureRating = rating;
+    setLectureRating (rating) {
+      this.lectureRating = rating
     },
-    setExamRating(rating) {
-      this.examRating = rating;
+    setExamRating (rating) {
+      this.examRating = rating
     },
-    //유저아이디 가져오기
-    getUserId(){
-     this.$http.get('/api/profile/user')
-      .then(res => {
-        this.userId = res.data.username
-      })
-    },
-    //majorOption의 데이터에 넣어줄 함수
-    //학과 선택 함수
-    getMajor() {
-      this.$http
-        .get("/api/major/all")
+    // 유저아이디 가져오기
+    getUserId () {
+      this.$http.get('/api/profile/user')
         .then(res => {
-          this.allMajorData = res.data  //미리 저장해 두어, 학과 선택 후 교수명 불러올때 디비에 또 가지 않기 위함.
+          this.userId = res.data.username
+        })
+    },
+    // majorOption의 데이터에 넣어줄 함수
+    // 학과 선택 함수
+    getMajor () {
+      this.$http
+        .get('/api/major/all')
+        .then(res => {
+          this.allMajorData = res.data // 미리 저장해 두어, 학과 선택 후 교수명 불러올때 디비에 또 가지 않기 위함.
           for (var i = 0; i < res.data.length; i++) {
-            this.majorOptions.push({value: res.data[i].major});
+            this.majorOptions.push({value: res.data[i].major})
           }
         })
         .catch(err => {
-          console.log(err);
-        });
+          console.log(err)
+        })
     },
     // subjectOptions
-    //선택한 학과에 따라 강의명 넣기 
-   getSubject() {
+    // 선택한 학과에 따라 강의명 넣기
+    getSubject () {
       this.$http
-        .post("/api/curriculum", {
+        .post('/api/curriculum', {
           major: this.majorSelected
         })
         .then(res => {
-          console.log("커리큘럼 내 모든 과목");
-          console.log(res.data);
+          console.log('커리큘럼 내 모든 과목')
+          console.log(res.data)
           for (var i = 0; i < res.data.length; i++) {
-            this.subjectOptions.push({ value: res.data[i].lecture });
+            this.subjectOptions.push({ value: res.data[i].lecture })
           }
           this.getProfessor(this.majorSelected)
         })
         .catch(err => {
-          console.log(err);
-        });
+          console.log(err)
+        })
     },
-    //professorOptions
-    //선택한 학과에 따라 교수명 데이터 넣기
-    getProfessor(clickedMajor) {
+    // professorOptions
+    // 선택한 학과에 따라 교수명 데이터 넣기
+    getProfessor (clickedMajor) {
       this.professorOptions = []
-      for(var i =0 ; i<this.allMajorData.length; i++){
-       if(this.allMajorData[i].major == clickedMajor){
-        for (var j = 0; j < this.allMajorData[i].professor.length; j++) {
-            this.professorOptions.push({ value: this.allMajorData[i].professor[j].name });
+      for (var i = 0; i < this.allMajorData.length; i++) {
+        if (this.allMajorData[i].major == clickedMajor) {
+          for (var j = 0; j < this.allMajorData[i].professor.length; j++) {
+            this.professorOptions.push({ value: this.allMajorData[i].professor[j].name })
+          }
         }
-       }
       }
     },
-    onSubmit() {
+    onSubmit (evt) {
+      evt.preventDefault()
       this.$http
-        .post("/api/class/evaluation/create", {
+        .post('/api/class/evaluation/create', {
           userId: this.userId,
           major: this.majorSelected,
           lecture: this.subjectSelected,
           professor: this.professorSelected,
           semester: this.semesterSelected,
-          nickname: this.$cookies.get("nickname"),
+          nickname: this.$cookies.get('nickname'),
           teamProject_grade: this.assignRating,
           homework_grade: this.teamRating,
           test_grade: this.lectureRating,
@@ -265,16 +266,16 @@ export default {
           memo4: this.text4
         })
         .then(res => {
-          console.log(res.data);
-         
+          console.log(res.data)
+          this.$router.push('/main')
         })
         .catch(err => {
-          console.log(err);
-        });
-         this.$router.push("/main");
+          console.log(err)
+          alert(err)
+        })
     }
   }
-};
+}
 </script>
 
 <style>

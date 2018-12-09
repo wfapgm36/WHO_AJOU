@@ -44,5 +44,20 @@ router.get("/", auth.ensureAuth(), function (req, res, next) {
         res.json(user);
     });
 });
+// userid 와 email 을 통해 비밀번호 초기화
+router.post("/password",function(req,res,next){
+    User.findOne({username: req.body.username,email: req.body.email}, function(err, user){
+        if(err){
+            res.send(err);
+        }
+        if(!user){
+            res.status(203).send();
+        } else{
+            user.password = '0000';
+            user.save();
+            res.status(200).send();
+        }
+    })
+});
 
 module.exports = router;

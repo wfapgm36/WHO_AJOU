@@ -1,12 +1,12 @@
 <template>
   <div class="login">
-    <b-container>
-      <b-row align-h="center" class="login1">
-        <b-col cols='5'>
-          <b-card class="login2">
+    <b-container >
+      <b-row align-h="center" align-v = "center" >
+        <b-col cols='7'>
             <h3 class="login3">로그인</h3>
             <b-form @submit="login"
-                    @reset="onReset" v-if="show">
+                    @reset="onReset" v-if="show"
+                    class = "input">
               <b-form-group id="ID-InputGroup"
                             label="ID:"
                             label-for="id-input">
@@ -37,7 +37,7 @@
 
               <div class="d-flex justify-content-between">
                 <div>
-                  <b-button type="submit" class = "login_btn">로그인</b-button>&nbsp;
+                  <b-button type="submit" class = "login_btn" @click="$emit('close')">로그인</b-button>&nbsp;
                   <b-button type="reset" class = "login_btn">초기화</b-button>
                 </div>
                 <div>
@@ -45,13 +45,48 @@
                 </div>
               </div>
             </b-form>
-          </b-card>
+   
         </b-col>
       </b-row>
     </b-container>
 
     <b-modal id="modal1" title="Forgot Password">
-      Nothing yet.
+      <b-card id="forget_card" bg-variant="light">
+        <b-form v-if="show">
+          <b-form-group horizontal
+                        breakpoint="lg"
+                        label="비밀번호찾기"
+                        label-size="lg"
+                        label-class="font-weight-bold pt-0"
+                        class="mb-0">
+          </b-form-group>
+          <b-form-group horizontal
+                        label="ID:"
+                        label-class="text-sm-right"
+                        label-for="forget-id-input">
+            <b-form-input id="forget-id-input"
+                          v-model="forget.name"
+                          required
+                          placeholder="아이디"
+            ></b-form-input>
+          </b-form-group>
+          <b-form-group horizontal
+                        label="email:"
+                        label-class="text-sm-right"
+                        label-for="email-input">
+            <b-form-input id="email-input"
+                          v-model="forget.email"
+                          required
+                          placeholder="이메일"
+            ></b-form-input>
+          </b-form-group>
+          <b-row align-h="center">
+            <b-button @click="find_password" v-b-popover.hover="'회원가입시 등록했던 아이디와 이메일 주소를 입력해주세요!'"
+                      title="비밀번호 찾기" type="submit" variant="primary" align-h="center">찾기
+            </b-button>
+          </b-row>
+        </b-form>
+      </b-card>
     </b-modal>
 
   </div>
@@ -66,6 +101,10 @@ export default {
         name: '',
         password: '',
         checked: []
+      },
+      forget: {
+        name: '',
+        email: ''
       },
       show: true
     }
@@ -111,6 +150,22 @@ export default {
       this.$nextTick(() => {
         this.show = true
       })
+    },
+    find_password (evt) {
+      evt.preventDefault()
+      this.$http.post('/api/user/password', {
+        username: this.forget.name,
+        email: this.forget.email
+      }).then(res => {
+        const status = res.status
+        if (status === 200) {
+          alert('비밀번호를 0000 으로 초기화하였습니다.로그인 후 반드시 비밀번호를 변경해주세요')
+        } else if (status === 203){
+          alert('해당 아이디와 이메일에 해당하는 회원이 없습니다')
+        }
+      }).catch(err => {
+        alert(err)
+      })
     }
   }
 }
@@ -120,6 +175,17 @@ export default {
   background-color:#C6D6F7;
   border:transparent;
   font-weight: bold;
+}
+.v--modal-overlay .v--modal-box {
+  border-radius: 50px;
+  background-color: rgba(255, 255, 255, 0.705);
+}
+.input{
+  margin-top:30px;
+}
+.login3{
+  padding-top:30px;
+  text-align:center;
 }
 
 </style>

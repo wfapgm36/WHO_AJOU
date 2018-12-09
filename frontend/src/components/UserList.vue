@@ -1,11 +1,7 @@
 <template>
   <div class="user-list">
     <h1 align-h="center">User List</h1>
-    <ul>
-      <li v-for="item in items" :key="item.id">
-        {{ item.username }}
-        </li>
-        </ul>
+     <b-table striped hover :items="items" :fields="['username']" outlined="true" small="true" ></b-table>
   </div>
 </template>
 
@@ -18,6 +14,7 @@ export default {
 }
 },
   created(){
+    this.$EventBus.$emit('removeTab', true)
     this.fetchData()
   },
   methods:{

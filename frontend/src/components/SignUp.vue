@@ -1,65 +1,69 @@
 <template>
-  <div class="signup">
-    <h1 align-h="center">This is Sign Up Page!</h1>
+  <div class="signup" style = "width:80%; margin:auto; padding-top:30px;">
+    <h2 style = "text-align : center; ">회원가입</h2>
     <b-form @submit="postUser" @reset="onSubmit" v-if="show">
-
         <b-form-group id="ID-InputGroup" label="ID:" label-for="id-input">
-            <b-form-input id="id-input"
-                type="text"
-                v-model="form.name"
-                required
-                placeholder="이름">
-            </b-form-input>
+           <v-text-field
+            v-model="form.name"
+            label="아이디"
+            single-line
+            hide-details
+          ></v-text-field>
         </b-form-group>
 
         <b-form-group id="password-InputGroup" label="Password:" label-for="pwd-input">
-            <b-form-input id="pwd-input"
-                type="password"
-                v-model="form.password"
-                required
-                placeholder="비밀번호">
-            </b-form-input>
+          <v-text-field
+            type="password"
+            v-model="form.password"
+            label="비밀번호"
+            single-line
+            hide-details
+          ></v-text-field>
         </b-form-group>
 
       <b-form-group id="password-InputCheckGroup" label="Password check:" label-for="pwd-input-check">
-        <b-form-input id="pwd-input-check"
-                      type="password"
-                      v-model="form.password_check"
-                      required
-                      placeholder="비밀번호확인">
-        </b-form-input>
+        <v-text-field
+            type="password"
+            v-model="form.password_check"
+            label="비밀번호 확인"
+            single-line
+            hide-details
+          ></v-text-field>
       </b-form-group>
 
         <b-form-group id="nickname-InputGroup" label="Nickname:" label-for="nickname-input">
-            <b-form-input id="nickname-input"
-                type="text"
-                v-model="form.nickname"
-                required
-                placeholder="별명">
-            </b-form-input>
+          <v-text-field
+            v-model="form.nickname"
+            label="별명"
+            single-line
+            hide-details
+          ></v-text-field>
         </b-form-group>
 
         <b-form-group id="email-InputGroup" label="Email:" label-for="email-input">
-            <b-form-input id="email-input"
-                type="email"
-                v-model="form.email"
-                required
-                placeholder="이메일 주소">
-            </b-form-input>
+          <v-text-field
+            v-model="form.email"
+            label="이메일 주소"
+            single-line
+            hide-details
+          ></v-text-field>
         </b-form-group>
-
+  
         <b-form-group id="major-InputGroup" label="Major:" label-for="majour-input">
-        <b-form-select id="majour-input"
+            <b-form-select id="major-input"
                       :options="majors"
                       required
-                      v-model="form.major">
+                      v-model="form.major"
+                      >
         </b-form-select>
         </b-form-group>
+        <b-form-group>
         <b-row align-h="center">
-            <b-button type="submit" variant="primary" align-h="center">회원가입</b-button>
+            <b-button type="submit" @click="$emit('close')" align-h="center" style = "background-color : #C6D6F7; border:#C6D6F7; font-weight: bold; margin-top:20px;">작성 완료</b-button>
         </b-row>
+        </b-form-group>
     </b-form>
-  </div>
+    </div>
 </template>
 
 <script>
@@ -76,13 +80,28 @@ export default {
         major: null
       },
       majors: [
-        { text: '선택', value: null },
-        '경영학과', '디지털미디어학과', '소프트웨어학과', '응용화학생명공학과'
+         { text: '선택', value: null },
       ],
       show: true
     }
   },
+  created () {
+    this.getMajor()
+  },
   methods: {
+     //모든 학과이름과 정보 받아오기
+    getMajor() {
+      this.$http
+        .get("/api/major/all")
+        .then(res => {
+          for (var i = 0; i < res.data.length; i++) {
+            this.majors.push({text: res.data[i].major ,value: res.data[i].major});
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
     onSubmit (evt) {
       evt.preventDefault()
       alert(JSON.stringify(this.form))
@@ -119,3 +138,12 @@ export default {
   }
 }
 </script>
+<style>
+ #major-input{
+   margin-top:20px;
+ }
+ .v--modal-overlay .v--modal-box {
+  border-radius: 50px;
+  background-color: rgba(255, 255, 255, 0.705);
+}
+</style>

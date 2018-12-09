@@ -13,14 +13,19 @@
       <br>
 
       <v-data-table
+      :disable-initial-sort="true"
           :headers="headers"
           :items="filteredItems"
           class="elevation-1"
           hide-actions
-        >
-          <template slot="items" slot-scope="props">
-            <td>{{ props.item._id }}</td>
-            <td class="text-xs-center">{{ props.item.title }}</td>
+      >
+        <template slot="items" slot-scope="props">
+          <td>{{ props.item._id }}</td>
+          <td class="text-xs-center">
+            <router-link :to="`/view/${props.item._id}`"
+            >{{props.item.title}}
+            </router-link>
+          </td>
             <td class="text-xs-center">{{ props.item.writer }}</td>
             <td class="text-xs-center">{{ props.item.createAt.substr(0,10)}} {{props.item.createAt.substr(11,2)}}시{{props.item.createAt.substr(14,2)}}분</td>
             <td class="text-xs-center">{{ props.item.count }}</td>
@@ -28,10 +33,19 @@
       </v-data-table>
 
       <div id = "paging">
-          <b-pagination-nav base-url="#" align = "center" :number-of-pages="this.numberOfPosts" v-model="currentPage"
-          hide-goto-end-buttons/>
+        <b-pagination size="md" hide-goto-end-buttons :total-rows="this.items.length" v-model="currentPage" :per-page="5" align="center">
+    </b-pagination>
           <router-link to = "/write">
-            <b-button id = "write_board" size = "sm" variant="primary">글쓰기</b-button>
+            <!--<b-button id = "write_board" size = "sm" variant="primary">글쓰기</b-button>-->
+            <v-btn
+              dark
+              fab
+              right
+              color="indigo"
+              id = "board_write"
+            >
+              <v-icon>add</v-icon>
+            </v-btn>
           </router-link>
           <br>
       </div>
@@ -69,6 +83,7 @@ export default {
   created () {
     this.$EventBus.$emit('removeTab', true)
     this.getAllPosts()
+    this.fetchData()
   },
   methods: {
     fetchData () {
@@ -105,11 +120,16 @@ export default {
 </script>
 
 <style scoped>
+  #board{
+    background-color: rgba(220,220,220,0.3);
+    height: 850px;
+  }
 #boardSearchFunction{
   margin-top:70px;
   margin-bottom: 30px;
 }
 #board_main {
+  padding-top: 60px;
   margin-left: 400px;
   margin-right: 400px;
 }
@@ -137,6 +157,7 @@ export default {
   margin-top:30px;
 }
 .content_row {
+  background-color: #ffffff;
   width: 70rem;
 }
 #searchBar {
@@ -148,4 +169,7 @@ hr {
 .page-item .active .page-link{
   background-color:#9197B5 !important;
 }
+  #board_write{
+    margin-right: 400px;
+  }
 </style>
