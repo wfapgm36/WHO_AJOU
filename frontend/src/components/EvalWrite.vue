@@ -121,7 +121,7 @@
           :max-rows="6"
         ></b-form-textarea>
 
-        <b-button class="submitBtn" type="submit">제출</b-button>
+        <b-button class="submitBtn" type="submit" variant="primary">작성</b-button>
       </div>
     </form>
   </div>

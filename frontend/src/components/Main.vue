@@ -23,7 +23,7 @@
       </b-row>
 
     </div>
-    <p class = "majorText">{{clickedMajor}}</p>
+    <p class = "majorText"><b-badge variant="dark" size="lg">{{clickedMajor}}</b-badge></p>
       <div class="eval_write">
         <div class = "choice_major">
           <router-link :to ="`/evaluation/write`">

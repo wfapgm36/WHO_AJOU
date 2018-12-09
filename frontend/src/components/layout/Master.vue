@@ -107,6 +107,8 @@ export default {
           this.$cookies.remove('nickname')
           this.nickname = ''
           this.isLogin = false
+          this.$router.push("/")
+          location.reload();
         })
     },
     isAuthenticated () {
