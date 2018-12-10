@@ -248,7 +248,7 @@ export default {
     onSubmit (evt) {
       evt.preventDefault()
       this.$http
-        .post('/api/class/evaluation/create', {
+        .post('/api/class/evaluation', {
           userId: this.userId,
           major: this.majorSelected,
           lecture: this.subjectSelected,

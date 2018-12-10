@@ -66,8 +66,8 @@
           <b-button class="delBtn" v-if="userId === content.userId" @click="update()">수정</b-button>
         </h6>
 
-     
-      
+
+
       </b-card>
     </b-card-group>
   </div>
@@ -84,7 +84,7 @@ export default {
       max: 100,
       values: [],
       content: {},
-      object: {} 
+      object: {}
     };
   },
   created() {
@@ -107,9 +107,9 @@ export default {
     },
     del() {
       this.$http
-        .post("/api/class/evaluation/delete", { id: this.id })
+        .delete("/api/class/evaluation", {data: {id: this.id}})
         .then(res => {
-            console.log(res.data);
+            console.log(res.data)
             this.back()
         })
         .catch(err => {

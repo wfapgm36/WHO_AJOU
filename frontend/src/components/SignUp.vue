@@ -48,7 +48,7 @@
             hide-details
           ></v-text-field>
         </b-form-group>
-  
+
         <b-form-group id="major-InputGroup" label="Major:" label-for="majour-input">
             <b-form-select id="major-input"
                       :options="majors"
@@ -80,7 +80,7 @@ export default {
         major: null
       },
       majors: [
-         { text: '선택', value: null },
+        { text: '선택', value: null }
       ],
       show: true
     }
@@ -89,18 +89,18 @@ export default {
     this.getMajor()
   },
   methods: {
-     //모든 학과이름과 정보 받아오기
-    getMajor() {
+    // 모든 학과이름과 정보 받아오기
+    getMajor () {
       this.$http
-        .get("/api/major/all")
+        .get('/api/major/all')
         .then(res => {
           for (var i = 0; i < res.data.length; i++) {
-            this.majors.push({text: res.data[i].major ,value: res.data[i].major});
+            this.majors.push({text: res.data[i].major, value: res.data[i].major})
           }
         })
         .catch(err => {
-          console.log(err);
-        });
+          console.log(err)
+        })
     },
     onSubmit (evt) {
       evt.preventDefault()
@@ -120,12 +120,12 @@ export default {
             const status = res.status
             console.log(status)
             // redirect logic
-            if (status == '200') {
+            if (status === '200') {
               alert('인증 이메일을 보냈습니다. 이메일 인증 후에 로그인이 가능합니다.')
               this.$router.push('/')
-            } else if (status == '202') {
+            } else if (status === '202') {
               alert('이미 존재하는 ID 입니다.')
-            } else if (status == '204') {
+            } else if (status === '204') {
               alert('이미 인증된 이메일 주소 입니다.')
             }
           }).catch((err) => {

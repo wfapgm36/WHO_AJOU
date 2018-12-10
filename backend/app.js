@@ -10,7 +10,6 @@ const index = require("./routes/index")
 const signup = require("./routes/signup");
 const login = require("./routes/login");
 const user = require("./routes/user");
-
 const board = require("./routes/board");
 const email_verification = require("./routes/email-verification");
 
@@ -36,7 +35,6 @@ app.use('/api/signup', signup);
 app.use('/api/email-verification', email_verification);
 app.use('/api/login', login);
 app.use('/api/user', user);
-
 app.use('/api/board', board);
 app.use('/api/profile', profile);
 app.use('/api/class', lecture);

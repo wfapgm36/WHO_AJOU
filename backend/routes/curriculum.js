@@ -73,15 +73,15 @@ router.put('/update', auth.ensureAuth(), function (req, res, next) {
 
     Curriculum.findOneAndUpdate({
         id: id
-    }, 
+    },
     {
         major: major,
         type: type,
         lecture: lecture,
         prequisite: prequisite,
         semester: semester,
-        description: description    
-    }, 
+        description: description
+    },
     function (err, data) {
         if (err) return res.status(500).send(err);
         var response = {
@@ -97,14 +97,14 @@ router.put('/update', auth.ensureAuth(), function (req, res, next) {
     api: /api/curriculum/delete
     커리큘럼 도큐먼트 id 받아서 삭제
 */
-router.post('/delete', auth.ensureAuth(), function (req, res, next) {
+router.delete('/delete', auth.ensureAuth(), function (req, res, next) {
     console.log('SYSTEM: 커리큘럼 삭제')
     console.log(req.body)
     var id = req.body.id;
     Curriculum.findOneAndDelete({id: id}, function (err, data) {
         if (err) return res.status(500).send(err);
         var response = {
-            message: "document successfully deleted", 
+            message: "document successfully deleted",
             id: data.id
         };
         console.log(data)
@@ -117,7 +117,7 @@ router.post('/delete', auth.ensureAuth(), function (req, res, next) {
     학과이름 받고 해당 학과의 한과목 정보 보내줌.(수정시 필요)
 */
 router.get('/:id', function (req, res, next) {
-    
+
     Curriculum.findOne({id: req.params.id}, (err, data) => {
             if (err) res.status(500).send({
                 error: 'database failure'
