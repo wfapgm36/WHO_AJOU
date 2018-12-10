@@ -4,25 +4,25 @@
       <div class="evalWrite">
        <b-row class="justify-content-md-center" id="choice">
           <b-col col lg="1">
-            <b-form-select required="true" v-model="majorSelected" class="mb-3" size="sm">
+            <b-form-select required v-model="majorSelected" class="mb-3" size="sm">
               <option :value="null">학과</option>
               <option v-for="major in majorOptions" v-bind:key ="major.id">{{major.value}}</option>
             </b-form-select>
           </b-col>
           <b-col cols="10" md="auto">
-            <b-form-select required="true" v-model="subjectSelected" class="mb-3" size="sm">
+            <b-form-select required v-model="subjectSelected" class="mb-3" size="sm">
               <option :value="null">과목명</option>
               <option v-for="subject in subjectOptions" v-bind:key ="subject.id">{{subject.value}}</option>
             </b-form-select>
           </b-col>
           <b-col col lg="1">
-            <b-form-select required="true" v-model="professorSelected" class="mb-3" size="sm">
+            <b-form-select required v-model="professorSelected" class="mb-3" size="sm">
               <option :value="null">교수명</option>
               <option v-for="professor in professorOptions" v-bind:key ="professor.id">{{professor.value}}</option>
             </b-form-select>
           </b-col>
           <b-col col lg="1">
-            <b-form-select required="true" v-model="semesterSelected" class="mb-3" size="sm">
+            <b-form-select required v-model="semesterSelected" class="mb-3" size="sm">
               <option :value="null">수강학기</option>
               <option v-for="semester in semesterOptions" v-bind:key ="semester.id">{{semester.value}}</option>
             </b-form-select>
@@ -78,7 +78,7 @@
       </div>
 
       <div class="diffi">
-        <b-form-select required="true" v-model="diffiSelected" class="mb-3" size="sm">
+        <b-form-select required v-model="diffiSelected" class="mb-3" size="sm">
               <option :value="null">수강신청 난이도</option>
               <option v-for="diffi in diffiOptions" v-bind:key ="diffi.id">{{diffi.value}}</option>
             </b-form-select>

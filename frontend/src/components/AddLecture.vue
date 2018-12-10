@@ -6,21 +6,21 @@
           <h6 slot="header">
             학과
             <div>
-              <b-form-select required="true" v-model="selected.major" class="mb-3" size="sm">
+              <b-form-select required v-model="selected.major" class="mb-3" size="sm">
                 <option v-for="major in majorOptions" v-bind:key ="major.id">{{major.value}}</option>
               </b-form-select>  
             </div>
             
             강의타입
             <div>
-              <b-form-select required="true"  v-model="selected.type" class="mb-3" size="sm">
+              <b-form-select required  v-model="selected.type" class="mb-3" size="sm">
                 <option v-for="type in typeOptions" v-bind:key ="type.id">{{type.value}}</option>
               </b-form-select>  
             </div>
             
             강의명
             <div>
-              <b-form-input required="true" v-model="selected.lecture"
+              <b-form-input required v-model="selected.lecture"
                           type="text"
                           size = "sm"
                           id="lectureBar" >
@@ -29,7 +29,7 @@
 
             학기
             <div>
-              <b-form-select required="true" v-model="selected.semester" class="mb-3" size="sm">
+              <b-form-select required v-model="selected.semester" class="mb-3" size="sm">
                 <option v-for="semester in semesterOptions" v-bind:key ="semester.id">{{semester.value}}</option>
               </b-form-select> 
             </div>
@@ -70,7 +70,7 @@
           <div>
             <b-form-group id="contentInput">
               <b-form-textarea
-              required="true"
+              required
                 id="contentInput"
                 v-model="selected.description"
                 placeholder="상세정보"
@@ -106,7 +106,6 @@ export default {
         {value: '4-1'},
         {value: '4-2'},
       ],
-
       selected: {
         major: null,
         type: null,
