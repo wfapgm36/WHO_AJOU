@@ -44,34 +44,34 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       form: {
-        title: "",
-        contents: "",
+        title: '',
+        contents: '',
         nickname: this.$cookies.get('nickname')
       },
       show: true,
       gradient: 'to top right, rgba(255,255,255, .7), rgba(200,200,200, .7)'
-    };
-  },
-  methods: {
-    onSubmit(evt) {
-      evt.preventDefault();
-      this.$http
-        .post("/api/board", this.form)
-        .then((res) => {
-          this.$router.push("/board");
-        })
-        .catch((err) => {
-          alert(err);
-        });
     }
   },
-  created(){
-    this.$EventBus.$emit('removeTab', true);
+  methods: {
+    onSubmit (evt) {
+      evt.preventDefault()
+      this.$http
+        .post('/api/board', this.form)
+        .then((res) => {
+          this.$router.push('/board')
+        })
+        .catch((err) => {
+          alert(err)
+        })
+    }
+  },
+  created () {
+    this.$EventBus.$emit('removeTab', true)
   }
-};
+}
 </script>
 <style>
   div.out_boardwrite{

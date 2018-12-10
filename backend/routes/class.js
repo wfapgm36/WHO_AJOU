@@ -67,7 +67,7 @@ router.post('/evaluation', auth.ensureAuth(), function (req, res, next) {
     // run when there is an error (username exists)
     const onError = (error) => {
         console.log('SYSTEM: ' + error)
-        res.status(409).json({
+        res.status(203).json({ // username exists
             message: error.message
         })
     }

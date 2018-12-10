@@ -70,7 +70,7 @@ export default {
       },
       memo: '',
       userId: '',
-      admin:'',
+      admin: '',
       date: new Date()
     }
   },
@@ -80,7 +80,7 @@ export default {
     this.getUserId()
   },
   methods: {
-    getUserId(){
+    getUserId () {
       this.$http.get('/api/profile/user')
         .then(res => {
           this.userId = res.data.username
@@ -91,8 +91,8 @@ export default {
       this.$http.get(`/api/board/view/${this.$route.params.id}`)
         .then(res => {
           this.form = res.data
-          this.form.createAt =  this.$moment(this.form.createAt).format('LLLL')
-          for(var i = 0; i < this.form.comments.length; i++){
+          this.form.createAt = this.$moment(this.form.createAt).format('LLLL')
+          for (var i = 0; i < this.form.comments.length; i++) {
             this.form.comments[i].createAt = this.$moment(this.form.comments[i].createAt).format('LLLL')
           }
         })
@@ -101,10 +101,10 @@ export default {
       this.$http.delete(`/api/board/posts/${this.$route.params.id}`)
         .then(res => {
           const status = res.status
-          if (status == 200) {
+          if (status === 200) {
             alert('정상적으로 삭제되었습니다.')
             this.$router.push('/board')
-          } else if (status == 203) {
+          } else if (status === 203) {
             alert('해당 권한이 존재하지 않습니다.')
             this.$router.push('/board')
           }
@@ -119,7 +119,7 @@ export default {
       this.$http.get(`/api/board/posts/${this.$route.params.id}`)
         .then((res) => {
           const status = res.status
-          if (status == 200) {
+          if (status === 200) {
             this.$router.push({
               path: '/update/:id',
               name: 'board-update',
@@ -127,7 +127,7 @@ export default {
                 id: this.$route.params.id
               }
             })
-          } else if (status == 203) {
+          } else if (status === 203) {
             alert('해당 권한이 존재하지 않습니다.')
             this.$router.push('/board')
           }
@@ -150,10 +150,10 @@ export default {
       this.$http.delete(`/api/board/comment`, {data: {boardId: this.$route.params.id, commentId: _id}})
         .then((res) => {
           const status = res.status
-          if (status == 200) {
+          if (status === 200) {
             alert('댓글이 삭제되었습니다.')
             this.getBoardDetail()
-          } else if (status == 203) {
+          } else if (status === 203) {
             alert('해당 권한이 존재하지 않습니다.')
             this.$router.push('/board')
           }

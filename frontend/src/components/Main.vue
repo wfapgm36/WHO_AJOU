@@ -302,18 +302,18 @@ export default {
     searchPost () {
       this.isExist = true
       this.filteredItems = []
-      if (this.searchKind == '강의명') {
+      if (this.searchKind === '강의명') {
         for (let i = 0; i < this.eval_subject.length; i++) {
-          if (this.eval_subject[i].lecture.indexOf(this.searchText) == -1) {
+          if (this.eval_subject[i].lecture.indexOf(this.searchText) === -1) {
           } else {
             this.filteredItems.push(this.eval_subject[i])
           }
           this.filteredItems = this.filteredItems.slice(0, 10)
         }
         this.totalRows = this.filteredItems.length
-      } else if (this.searchKind == '교수명') {
+      } else if (this.searchKind === '교수명') {
         for (let i = 0; i < this.eval_subject.length; i++) {
-          if (this.eval_subject[i].professor.indexOf(this.searchText) == -1) {
+          if (this.eval_subject[i].professor.indexOf(this.searchText) === -1) {
           } else {
             this.filteredItems.push(this.eval_subject[i])
           }
@@ -322,7 +322,7 @@ export default {
         this.totalRows = this.filteredItems.length
       } else {
         for (let i = 0; i < this.eval_subject.length; i++) {
-          if (this.eval_subject[i].lecture.indexOf(this.searchText) == -1 && this.eval_subject[i].professor.indexOf(this.searchText) == -1) {
+          if (this.eval_subject[i].lecture.indexOf(this.searchText) === -1 && this.eval_subject[i].professor.indexOf(this.searchText) === -1) {
           } else {
             this.filteredItems.push(this.eval_subject[i])
           }
@@ -343,7 +343,6 @@ export default {
     },
     // 드롭다운버튼에서 클릭한 학과의 커리큘럼 가져오기
     setMajor (item) {
-      console.log(item.major)
       this.clickedMajor = item.major
       this.GetCurriculum()
     },
@@ -355,8 +354,6 @@ export default {
     },
     // 커리큘럼 가져오기
     GetCurriculum () {
-      console.log('GetCurriculum 들어옴')
-      console.log('this.clickedMajor:' + this.clickedMajor)
       this.$http.post('/api/curriculum', {major: this.clickedMajor})
         .then((res) => {
           this.curriData = res.data
@@ -395,7 +392,7 @@ export default {
       for (var i = 0; i < this.curriData.length; i++) {
         try {
           for (var j = 0; j < item.prerequisite.length; j++) {
-            if (item.prerequisite[j].name == this.curriData[i].lecture) {
+            if (item.prerequisite[j].name === this.curriData[i].lecture) {
               this.curriData[i].isPre = isPre
               this.showPreRequisite(this.curriData[i], isPre)
             }
@@ -408,8 +405,6 @@ export default {
       this.$http.get('/api/class/evaluation')
         .then((res) => {
           this.eval_subject = res.data
-          console.log('강의평가모든정보')
-          console.log(res.data)
         })
     }
   }
