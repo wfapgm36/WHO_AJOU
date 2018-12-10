@@ -53,7 +53,6 @@ curriculumSchema.statics.create = function (major, type, lecture, prerequisite, 
         description,
         isPre: false
     });
-    console.log('생성 받았다')
     console.log(major, type, lecture, prerequisite, semester)
 
     for (var i = 0; i < 1; i++) {

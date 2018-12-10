@@ -120,12 +120,12 @@ export default {
             const status = res.status
             console.log(status)
             // redirect logic
-            if (status === '200') {
+            if (status === 200) {
               alert('인증 이메일을 보냈습니다. 이메일 인증 후에 로그인이 가능합니다.')
               this.$router.push('/')
-            } else if (status === '202') {
+            } else if (status === 202) {
               alert('이미 존재하는 ID 입니다.')
-            } else if (status === '204') {
+            } else if (status === 204) {
               alert('이미 인증된 이메일 주소 입니다.')
             }
           }).catch((err) => {

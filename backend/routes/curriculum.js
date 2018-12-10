@@ -63,7 +63,7 @@ router.put('/update', auth.ensureAuth(), function (req, res, next) {
         major,
         type,
         lecture,
-        prequisite,
+        prerequisite,
         semester,
         description
     } = req.body
@@ -74,7 +74,7 @@ router.put('/update', auth.ensureAuth(), function (req, res, next) {
         major: major,
         type: type,
         lecture: lecture,
-        prequisite: prequisite,
+        prerequisite: prerequisite,
         semester: semester,
         description: description    
     }, 
