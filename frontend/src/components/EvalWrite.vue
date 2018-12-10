@@ -1,6 +1,6 @@
 <template>
   <div class="evalwrite">
-    <form @submit="onSubmit">
+    <b-form @submit="onSubmit">
       <div class="evalWrite">
        <b-row class="justify-content-md-center" id="choice">
           <b-col col lg="1">
@@ -123,7 +123,7 @@
 
         <b-button class="submitBtn" type="submit" variant="primary">작성</b-button>
       </div>
-    </form>
+    </b-form>
   </div>
 </template>
 
@@ -171,6 +171,7 @@ export default {
     }
   },
   created () {
+    this.$EventBus.$emit('removeTab', true)
     this.getMajor()
     this.getUserId()
   },
@@ -236,7 +237,7 @@ export default {
     getProfessor (clickedMajor) {
       this.professorOptions = []
       for (var i = 0; i < this.allMajorData.length; i++) {
-        if (this.allMajorData[i].major === clickedMajor) {
+        if (this.allMajorData[i].major == clickedMajor) {
           for (var j = 0; j < this.allMajorData[i].professor.length; j++) {
             this.professorOptions.push({ value: this.allMajorData[i].professor[j].name })
           }

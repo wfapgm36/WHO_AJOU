@@ -1,6 +1,6 @@
 <template>
   <div class="evalwrite">
-    <form @submit="onSubmit">
+    <b-form @submit="onSubmit">
       <div class="evalWrite">
        <b-row class="justify-content-md-center" id="choice">
           <b-col col lg="1">
@@ -33,7 +33,7 @@
           <b-col col lg="2" class="star">
             <h5>과제평가</h5>
             <star-rating
-                v-model="assignRating"
+              v-model="assignRating"
               :inline="true"
               border-color="transparent"
               :show-rating="false"
@@ -128,7 +128,7 @@
 
         <b-button class="submitBtn" type="submit" variant="primary">수정</b-button>
       </div>
-    </form>
+    </b-form>
   </div>
 </template>
 
@@ -175,6 +175,7 @@ export default {
     }
   },
   created () {
+    this.$EventBus.$emit('removeTab', true)
     this.getMajor()
     this.getUserId()
     this.getContent()
@@ -241,7 +242,7 @@ export default {
     getProfessor () {
       this.professorOptions = []
       for (var i = 0; i < this.allMajorData.length; i++) {
-        if (this.allMajorData[i].major === this.majorSelected) {
+        if (this.allMajorData[i].major == this.majorSelected) {
           for (var j = 0; j < this.allMajorData[i].professor.length; j++) {
             this.professorOptions.push({ value: this.allMajorData[i].professor[j].name })
           }
@@ -252,7 +253,6 @@ export default {
       this.$http
         .get(`/api/class/evaluation/update/${this.$route.params.id}`)
         .then(res => {
-          console.log(res.data)
           this.majorSelected = res.data.major
           this.subjectSelected = res.data.lecture
           this.professorSelected = res.data.professor
@@ -271,7 +271,9 @@ export default {
           console.log(err)
         })
     },
-    onSubmit () {
+    onSubmit (evt) {
+      evt.preventDefault();
+      
       this.$http
         .put('/api/class/evaluation', {
           evalId: this.$route.params.id,
@@ -292,6 +294,10 @@ export default {
           memo4: this.text4
         })
         .then(res => {
+          const status = res.status
+          if(status === 200){
+          this.$router.push(`/evalview/${this.$route.params.id}`)
+        }
         })
         .catch(err => {
           console.log(err)
