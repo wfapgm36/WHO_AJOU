@@ -37,10 +37,10 @@
             <b-dropdown-item href="/profile">
               프로필
             </b-dropdown-item>
-              <b-dropdown-item href="managemajor" v-if="admin === 1">
+              <b-dropdown-item href="/managemajor" v-if="admin === 1">
               전공 관리
             </b-dropdown-item>
-            <b-dropdown-item href="userlist" v-if="admin === 1">
+            <b-dropdown-item href="/userlist" v-if="admin === 1">
               유저 리스트
             </b-dropdown-item>
           </b-nav-item-dropdown>
