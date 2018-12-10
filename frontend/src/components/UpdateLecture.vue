@@ -66,8 +66,8 @@
 
 <script>
 export default {
-  name: "update-lecture",
-  data() {
+  name: 'update-lecture',
+  data () {
     return {
       id: this.$route.params.id,
 
@@ -75,80 +75,78 @@ export default {
 
       majorOptions: [],
       typeOptions: [
-        { value: "전공필수" },
-        { value: "전공선택" },
-        { value: "교양필수" },
-        { value: "교양선택" }
+        { value: '전공필수' },
+        { value: '전공선택' },
+        { value: '교양필수' },
+        { value: '교양선택' }
       ],
       lectureOptions: [],
       semesterOptions: [
-        { value: "1-1" },
-        { value: "1-2" },
-        { value: "2-1" },
-        { value: "2-2" },
-        { value: "3-1" },
-        { value: "3-2" },
-        { value: "4-1" },
-        { value: "4-2" }
+        { value: '1-1' },
+        { value: '1-2' },
+        { value: '2-1' },
+        { value: '2-2' },
+        { value: '3-1' },
+        { value: '3-2' },
+        { value: '4-1' },
+        { value: '4-2' }
       ],
 
       selected: {
         id: this.$route.params.id,
         major: null,
         type: null,
-        lecture: "",
+        lecture: '',
         prerequisite: [],
         semester: null,
-        description: ""
+        description: ''
       }
-    };
+    }
   },
-  created() {
-    this.getMajor();
-    this.getContent();
+  created () {
+    this.getMajor()
+    this.getContent()
   },
   methods: {
-    getMajor() {
+    getMajor () {
       this.$http
-        .get("/api/major/all")
+        .get('/api/major/all')
         .then(res => {
           for (var i = 0; i < res.data.length; i++) {
-            this.majorOptions.push({value: res.data[i].major});
+            this.majorOptions.push({value: res.data[i].major})
           }
         })
         .catch(err => {
-          console.log(err);
-        });
+          console.log(err)
+        })
     },
-    getContent() {
+    getContent () {
       this.$http
         .get(`/api/curriculum/${this.selected.id}`)
         .then(res => {
-          console.log(res.data);
-          this.selected.major = res.data.major;
-          this.selected.type = res.data.type;
-          this.selected.lecture = res.data.lecture;
-          for(var i = 0; i < res.data.prerequisite.length; i++){
-            this.selected.prerequisite[i] = res.data.prerequisite[i].name;
+          this.selected.major = res.data.major
+          this.selected.type = res.data.type
+          this.selected.lecture = res.data.lecture
+          for (var i = 0; i < res.data.prerequisite.length; i++) {
+            this.selected.prerequisite[i] = res.data.prerequisite[i].name
           }
-          this.selected.semester = res.data.semester;
-          this.selected.description = res.data.description;
+          this.selected.semester = res.data.semester
+          this.selected.description = res.data.description
         })
         .catch(err => {
-          console.log(err);
-        });
+          console.log(err)
+        })
     },
-    onSubmit() {
+    onSubmit () {
       this.$http
-        .put("/api/curriculum/update", this.selected)
+        .put('/api/curriculum/update', this.selected)
         .then(res => {
-          console.log(res.data);
         })
         .catch(err => {
-          console.log(err);
-        });
-      this.$router.push("/main");
+          console.log(err)
+        })
+      this.$router.push('/main')
     }
   }
-};
+}
 </script>

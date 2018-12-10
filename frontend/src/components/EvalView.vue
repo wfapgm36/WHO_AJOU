@@ -66,8 +66,6 @@
           <b-button class="delBtn" v-if="userId === content.userId" @click="update()">수정</b-button>
         </h6>
 
-
-
       </b-card>
     </b-card-group>
   </div>
@@ -75,8 +73,8 @@
 
 <script>
 export default {
-  name: "EvalView",
-  data() {
+  name: 'EvalView',
+  data () {
     return {
       id: this.$route.params.id,
       userId: '',
@@ -85,66 +83,63 @@ export default {
       values: [],
       content: {},
       object: {}
-    };
+    }
   },
-  created() {
-    this.$EventBus.$emit("removeTab", true);
-    this.getUserId();
-    this.getContent();
+  created () {
+    this.$EventBus.$emit('removeTab', true)
+    this.getUserId()
+    this.getContent()
   },
   methods: {
-    getUserId(){
-     this.$http.get('/api/profile/user')
-      .then(res => {
-        this.userId = res.data.username
-      })
-    },
-    back() {
-      this.$router.go(-1);
-    },
-    update() {
-      this.$router.push(`/evaluation/update/${this.id}`);
-    },
-    del() {
-      this.$http
-        .delete("/api/class/evaluation", {data: {id: this.id}})
+    getUserId () {
+      this.$http.get('/api/profile/user')
         .then(res => {
-            console.log(res.data)
-            this.back()
+          this.userId = res.data.username
+        })
+    },
+    back () {
+      this.$router.go(-1)
+    },
+    update () {
+      this.$router.push(`/evaluation/update/${this.id}`)
+    },
+    del () {
+      this.$http
+        .delete('/api/class/evaluation', {data: {id: this.id}})
+        .then(res => {
+          this.back()
         })
         .catch(err => {
-          console.log(err);
-        });
+          console.log(err)
+        })
     },
-    count() {
+    count () {
       for (var i = 0; i < this.values.length; i++) {
-        console.log(i);
-        this.counter += this.values[i];
+        this.counter += this.values[i]
       }
     },
-    getContent() {
+    getContent () {
       this.$http
         .get(`/api/class/evaluation/${this.id}`)
         .then(res => {
-          this.content = res.data;
-          this.object = res.data.evaluation;
-          console.log(res.data);
-          this.makeScore();
+          this.content = res.data
+          this.object = res.data.evaluation
+          this.makeScore()
         })
         .catch(err => {
-          console.log(err);
-        });
+          console.log(err)
+        })
     },
-    //100점 만점 // 항목당 별5점이 최대이기 때문에 5 곱해줌
-    makeScore() {
-      this.values.push(this.content.evaluation.teamProject_grade);
-      this.values.push(this.content.evaluation.homework_grade);
-      this.values.push(this.content.evaluation.test_grade);
-      this.values.push(this.content.evaluation.skill_grade);
-      this.count();
+    // 100점 만점 // 항목당 별5점이 최대이기 때문에 5 곱해줌
+    makeScore () {
+      this.values.push(this.content.evaluation.teamProject_grade)
+      this.values.push(this.content.evaluation.homework_grade)
+      this.values.push(this.content.evaluation.test_grade)
+      this.values.push(this.content.evaluation.skill_grade)
+      this.count()
     }
   }
-};
+}
 </script>
 <style>
 .view_text{
@@ -152,4 +147,3 @@ export default {
 }
 
 </style>
-

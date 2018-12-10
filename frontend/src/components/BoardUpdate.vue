@@ -44,49 +44,48 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        form: {
-          title: "",
-          contents: ""
-        },
-        show: true,
-        gradient: 'to top right, rgba(255,255,255, .7), rgba(200,200,200, .7)'
-      };
-    },
-    created() {
-      this.$EventBus.$emit('removeTab', true);
-      this.fetchData()
-    },
-    methods: {
-      onSubmit(evt) {
-        evt.preventDefault();
-        this.$http.put(`/api/board/posts/${this.$route.params.id}`, this.form)
-          .then((res) => {
-            const status = res.status
-            if (status == 200) {
-              this.$router.push('/board')
-              alert('수정이 완료되었습니다.')
-            }
-          })
-          .catch((err) => {
-            alert(err);
-          });
+export default {
+  data () {
+    return {
+      form: {
+        title: '',
+        contents: ''
       },
-      fetchData() {
-        this.$http.get(`/api/board/posts/${this.$route.params.id}`)
-          .then((res) => {
-            const status = res.status;
-            if (status == 200) {
-              console.log(res.data)
-              this.form.title = res.data.title
-              this.form.contents = res.data.contents
-            }
-          })
-      }
+      show: true,
+      gradient: 'to top right, rgba(255,255,255, .7), rgba(200,200,200, .7)'
     }
-  };
+  },
+  created () {
+    this.$EventBus.$emit('removeTab', true)
+    this.fetchData()
+  },
+  methods: {
+    onSubmit (evt) {
+      evt.preventDefault()
+      this.$http.put(`/api/board/posts/${this.$route.params.id}`, this.form)
+        .then((res) => {
+          const status = res.status
+          if (status === 200) {
+            this.$router.push('/board')
+            alert('수정이 완료되었습니다.')
+          }
+        })
+        .catch((err) => {
+          alert(err)
+        })
+    },
+    fetchData () {
+      this.$http.get(`/api/board/posts/${this.$route.params.id}`)
+        .then((res) => {
+          const status = res.status
+          if (status === 200) {
+            this.form.title = res.data.title
+            this.form.contents = res.data.contents
+          }
+        })
+    }
+  }
+}
 </script>
 <style>
   div.out_boardupdate{

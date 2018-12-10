@@ -4,25 +4,25 @@
       <div class="evalWrite">
        <b-row class="justify-content-md-center" id="choice">
           <b-col col lg="1">
-            <b-form-select required="true" v-model="majorSelected" class="mb-3" size="sm">
+            <b-form-select required v-model="majorSelected" class="mb-3" size="sm">
               <option :value="null">학과</option>
               <option v-for="major in majorOptions" v-bind:key ="major.id">{{major.value}}</option>
             </b-form-select>
           </b-col>
           <b-col cols="10" md="auto">
-            <b-form-select required="true" v-model="subjectSelected" class="mb-3" size="sm">
+            <b-form-select required v-model="subjectSelected" class="mb-3" size="sm">
               <option :value="null">과목명</option>
               <option v-for="subject in subjectOptions" v-bind:key ="subject.id">{{subject.value}}</option>
             </b-form-select>
           </b-col>
           <b-col col lg="1">
-            <b-form-select required="true" v-model="professorSelected" class="mb-3" size="sm">
+            <b-form-select required v-model="professorSelected" class="mb-3" size="sm">
               <option :value="null">교수명</option>
               <option v-for="professor in professorOptions" v-bind:key ="professor.id">{{professor.value}}</option>
             </b-form-select>
           </b-col>
           <b-col col lg="1">
-            <b-form-select required="true" v-model="semesterSelected" class="mb-3" size="sm">
+            <b-form-select required v-model="semesterSelected" class="mb-3" size="sm">
               <option :value="null">수강학기</option>
               <option v-for="semester in semesterOptions" v-bind:key ="semester.id">{{semester.value}}</option>
             </b-form-select>
@@ -78,7 +78,7 @@
       </div>
 
       <div class="diffi">
-        <b-form-select required="true" v-model="diffiSelected" class="mb-3" size="sm">
+        <b-form-select required v-model="diffiSelected" class="mb-3" size="sm">
               <option :value="null">수강신청 난이도</option>
               <option v-for="diffi in diffiOptions" v-bind:key ="diffi.id">{{diffi.value}}</option>
             </b-form-select>
@@ -222,8 +222,6 @@ export default {
           major: this.majorSelected
         })
         .then(res => {
-          console.log('커리큘럼 내 모든 과목')
-          console.log(res.data)
           for (var i = 0; i < res.data.length; i++) {
             this.subjectOptions.push({ value: res.data[i].lecture })
           }
@@ -238,7 +236,7 @@ export default {
     getProfessor (clickedMajor) {
       this.professorOptions = []
       for (var i = 0; i < this.allMajorData.length; i++) {
-        if (this.allMajorData[i].major == clickedMajor) {
+        if (this.allMajorData[i].major === clickedMajor) {
           for (var j = 0; j < this.allMajorData[i].professor.length; j++) {
             this.professorOptions.push({ value: this.allMajorData[i].professor[j].name })
           }
@@ -266,8 +264,12 @@ export default {
           memo4: this.text4
         })
         .then(res => {
-          console.log(res.data)
-          this.$router.push('/main')
+          const status = res.status
+          if (status === 200) {
+            this.$router.push('/main')
+          } else if (status === 203) {
+            alert('중복된 강의평가입니다. 학기 및 과목명을 확인해주세요.')
+          }
         })
         .catch(err => {
           console.log(err)

@@ -27,71 +27,65 @@
 </b-container>
   </div>
 
-
-  
-
-  
 </template>
 
 <script>
 export default {
   name: 'major-name',
-  data(){
-    return{
-    items: [],
-    professors: [],
-    major: {
-        name: ""
-    },
-    professor:{
-        name:""
-    },
-    form :{
-        major:"",
-        professor:""
-    },
-    clickedMajor: ''
-}
-},
-  created(){
+  data () {
+    return {
+      items: [],
+      professors: [],
+      major: {
+        name: ''
+      },
+      professor: {
+        name: ''
+      },
+      form: {
+        major: '',
+        professor: ''
+      },
+      clickedMajor: ''
+    }
+  },
+  created () {
     this.$EventBus.$emit('removeTab', true)
     this.fetchData()
   },
-  methods:{
-    fetchData(){
-      this.$http.get("/api/major/all")
-      .then(res => {
-        this.items = res.data
-      })
-    },
-    addMajor(){
-        this.$http.post("/api/major/add", this.major)
+  methods: {
+    fetchData () {
+      this.$http.get('/api/major/all')
         .then(res => {
-            this.fetchData()
-            this.major.name = ""
-            console.log("추가완료");
+          this.items = res.data
+        })
+    },
+    addMajor () {
+      this.$http.post('/api/major/add', this.major)
+        .then(res => {
+          this.fetchData()
+          this.major.name = ''
+          alert('추가완료')
         })
     },
     setMajor (item) {
       this.clickedMajor = item
       this.getProfessor()
-      console.log(this.clickedMajor)
     },
-    addProfessor(){
-        this.form.professor = this.professor.name
-        this.form.major = this.clickedMajor
-        this.$http.post("/api/major/professor/add", this.form)
-        .then(res=>{
-            this.professor.name = ''
-            this.getProfessor()
+    addProfessor () {
+      this.form.professor = this.professor.name
+      this.form.major = this.clickedMajor
+      this.$http.post('/api/major/professor/add', this.form)
+        .then(res => {
+          this.professor.name = ''
+          this.getProfessor()
         })
     },
-    getProfessor(){
-        this.form.major = this.clickedMajor
-        this.$http.post("/api/major/professor", this.form)
-        .then((res) =>{
-            this.professors = res.data
-            console.log(res.data)
+    getProfessor () {
+      this.form.major = this.clickedMajor
+      this.$http.post('/api/major/professor', this.form)
+        .then((res) => {
+          this.professors = res.data
         })
     }
   }

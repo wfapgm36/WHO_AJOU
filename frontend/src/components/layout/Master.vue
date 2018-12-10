@@ -82,8 +82,6 @@ export default {
   },
   methods: {
     loginPopup () {
-      console.log('누름')
-      console.log(this.$modal)
       this.$modal.show(DelPopup, {
         modal: this.$modal }, {
         name: 'dynamic-modal',
