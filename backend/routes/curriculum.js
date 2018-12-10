@@ -63,28 +63,34 @@ router.put('/update', auth.ensureAuth(), function (req, res, next) {
         major,
         type,
         lecture,
-        prequisite,
+        prerequisite,
         semester,
         description
     } = req.body
     Curriculum.findOneAndUpdate({
         id: id
-    }, 
+    },
     {
         major: major,
         type: type,
         lecture: lecture,
-        prequisite: prequisite,
         semester: semester,
-        description: description    
-    }, 
+        description: description
+    },
     function (err, data) {
         if (err) return res.status(500).send(err);
+        for (let i = 0; i < prerequisite.length; i++) {
+            if (i+1 <= data.prerequisite.length){
+                data.prerequisite[i].name = prerequisite[i]
+            } else {
+                data.prerequisite.push({name:prerequisite[i]})
+            }
+        }
+        data.save();
         var response = {
             message: "document successfully updated",
             id: data.id
         };
-        console.log(data)
         return res.status(200).send(response);
     })
 });
@@ -99,7 +105,7 @@ router.delete('/delete', auth.ensureAuth(), function (req, res, next) {
     Curriculum.findOneAndDelete({id: id}, function (err, data) {
         if (err) return res.status(500).send(err);
         var response = {
-            message: "document successfully deleted", 
+            message: "document successfully deleted",
             id: data.id
         };
         return res.status(200).send(response);
