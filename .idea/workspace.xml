@@ -3,32 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9fa6aa8a-d421-4f4a-b7c8-2755fec36a2b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/routes/class.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/class.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/assets/A+.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/assets/close.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/assets/rate.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/assets/다운로드.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/AddLecture.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/AddLecture.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Board.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Board.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/BoardUpdate.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/BoardUpdate.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/BoardView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/BoardView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/BoardWrite.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/BoardWrite.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/EmailVerification.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/EmailVerification.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/EvalUpdate.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/EvalUpdate.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/EvalView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/EvalView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/EvalWrite.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/EvalWrite.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Evaluation.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Main.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Main.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Popup.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Popup.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Profile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Profile.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/UpdateLecture.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UpdateLecture.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/UserList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/layout/Master.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/layout/Master.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/manageMajor.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/manageMajor.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/main.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -128,7 +103,7 @@
           <entry key="html" value="1" />
           <entry key="jpeg" value="1" />
           <entry key="jpg" value="2" />
-          <entry key="js" value="84" />
+          <entry key="js" value="85" />
           <entry key="png" value="6" />
           <entry key="ts" value="1" />
           <entry key="vue" value="104" />
@@ -138,7 +113,7 @@
         <counts>
           <entry key="HTML" value="1" />
           <entry key="Image" value="9" />
-          <entry key="JavaScript" value="84" />
+          <entry key="JavaScript" value="85" />
           <entry key="PLAIN_TEXT" value="2" />
           <entry key="TypeScript" value="1" />
           <entry key="Vue.js" value="104" />
@@ -202,11 +177,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/src/components/EvalWrite.vue">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="128">
               <caret line="76" column="16" lean-forward="true" selection-start-line="76" selection-start-column="16" selection-end-line="76" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/frontend/src/main.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="380">
+              <caret line="42" column="13" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
+              <folding>
+                <element signature="e#140#161#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -225,15 +212,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="143">
               <caret line="68" column="5" lean-forward="true" selection-start-line="68" selection-start-column="5" selection-end-line="68" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/src/App.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="11" selection-start-line="11" selection-end-line="11" />
             </state>
           </provider>
         </entry>
@@ -512,12 +490,12 @@
       <workItem from="1544286776008" duration="296000" />
       <workItem from="1544287955777" duration="40000" />
       <workItem from="1544339172040" duration="354000" />
-      <workItem from="1544346675212" duration="12475000" />
+      <workItem from="1544346675212" duration="12769000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="178049000" />
+    <option name="totallyTimeSpent" value="178343000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="0" width="781" height="830" extended-state="0" />
@@ -828,13 +806,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="15" column="10" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/App.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
@@ -905,6 +876,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
           <caret line="76" column="16" lean-forward="true" selection-start-line="76" selection-start-column="16" selection-end-line="76" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="42" column="13" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
+          <folding>
+            <element signature="e#140#161#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
