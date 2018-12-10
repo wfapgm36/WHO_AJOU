@@ -7,13 +7,12 @@ router.use(function (req, res, next) {
     next();
 });
 
-
 /*
-    api: /api/class/evaluation/create
+    api: /api/class/evaluation
 */
 //강의 평가 작성
 //모든 평가 데이터 받아서 document형태로 create
-router.post('/evaluation/create', auth.ensureAuth(), function (req, res, next) {
+router.post('/evaluation', auth.ensureAuth(), function (req, res, next) {
     console.log('SYSTEM: 강의평가생성')
     console.log(req.body)
 
@@ -84,20 +83,20 @@ router.post('/evaluation/create', auth.ensureAuth(), function (req, res, next) {
 });
 
 /*
-    api: /api/class/evaluation/update
+    api: /api/class/evaluation
     강의평가 수정
 */
-router.put('/evaluation/update', auth.ensureAuth(), function (req, res, next) {
+router.put('/evaluation', auth.ensureAuth(), function (req, res, next) {
     console.log('SYSTEM: 강의평가 업데이트')
     console.log(req.body)
-    
+
     const evalId = req.body.evalId
     const userId = req.body.userId
     const major = req.body.major //강의 해당학과
     const lecture = req.body.lecture //강의명
     const professor = req.body.professor //강의 교수님
     const semester = req.body.semester //강의 수강학기
-    
+
     let eval = {
         writer: req.user.nickname, // username
 
@@ -125,7 +124,7 @@ router.put('/evaluation/update', auth.ensureAuth(), function (req, res, next) {
             professor: professor,
             semester: semester,
             evaluation: eval
-        }, 
+        },
         function (err, data) {
             if (err) return res.status(500).send(err);
             var response = {
@@ -139,11 +138,11 @@ router.put('/evaluation/update', auth.ensureAuth(), function (req, res, next) {
 
 
 /*
-    api: /api/class/evaluation/delete
+    api: /api/class/evaluation
 */
 //강의 평가 삭제
 //강의 평가 도큐먼트 id 받아서 삭제
-router.post('/evaluation/delete', auth.ensureAuth(), function (req, res, next) {
+router.delete('/evaluation', auth.ensureAuth(), function (req, res, next) {
     console.log('SYSTEM: 강의평가삭제')
     console.log(req.body)
     var id = req.body.id;
@@ -166,7 +165,7 @@ router.post('/evaluation/delete', auth.ensureAuth(), function (req, res, next) {
     api: /api/class/evaluation/
 */
 //강의평가카드 보기
-//모든 강의평가내용 프론트로 보내주기 
+//모든 강의평가내용 프론트로 보내주기
 
 router.get('/evaluation', auth.ensureAuth(), function (req, res, next) {
     Class.find()
@@ -197,7 +196,6 @@ router.get('/evaluation/:id', auth.ensureAuth(), function (req, res, next) {
     강의평가 수정시
 */
 router.get('/evaluation/update/:id', function (req, res, next) {
-    console.log('들어왔땅')
     Class.findOne({id: req.params.id}, (err, data) => {
         if (err) res.status(500).send({
             error: 'database failure'
