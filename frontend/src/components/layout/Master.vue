@@ -126,7 +126,9 @@ export default {
     }
   },
   beforeRouteUpdate (to, from, next) {
-    this.isAuthenticated()
+    this.$EventBus.$on('removeTab', (message) => {
+      this.isAuthenticated()
+    })
     next()
   },
   created () {
