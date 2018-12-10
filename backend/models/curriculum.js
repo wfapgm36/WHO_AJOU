@@ -41,10 +41,6 @@ var curriculumSchema = mongoose.Schema({
 // 강의 평가 도큐먼트 생성
 curriculumSchema.statics.create = function (major, type, lecture, prerequisite, semester, description) {
 
-    var lenght =0 ; 
-
-
-    console.log("pre lenth: "+prerequisite.length)
     const curriculum = new this({
         major,
         type,
@@ -53,15 +49,12 @@ curriculumSchema.statics.create = function (major, type, lecture, prerequisite, 
         description,
         isPre: false
     });
-    console.log(major, type, lecture, prerequisite, semester)
-
-    for (var i = 0; i < 1; i++) {
+    for (var i = 0; i < prerequisite.length; i++) {
         curriculum.prerequisite.push({name: prerequisite[i]});
     }
 
     // return the Promise
     return curriculum.save(err => {
-        console.log('하이' + err);
         if (err) return handledError(err);
     });
 };
