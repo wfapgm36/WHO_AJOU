@@ -2,7 +2,7 @@
   <div id="app">
              <let-it-snow
       v-bind="snowConf"
-      :show="show"    
+      :show="show"
     ></let-it-snow>
     <b-navbar toggleable="md" type="dark" class="nav-background">
     <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
@@ -64,22 +64,22 @@ export default {
       nickname: '',
       admin: '',
       snowConf: {
-            windPower : 1,  
-            speed : 3,
-            count : 15,
-            size : 10,
-            opacity : 1,
-            images: ['https://raw.githubusercontent.com/bob-chen/let_it_snow/master/demo/snow.png']
-        },
-        show: false      
+        windPower: 1,
+        speed: 3,
+        count: 15,
+        size: 10,
+        opacity: 1,
+        images: ['https://raw.githubusercontent.com/bob-chen/let_it_snow/master/demo/snow.png']
+      },
+      show: false
     }
   },
-   mounted () {
-      this.show = true
-      setTimeout( () => {
-          this.show = false
-      }, 30000) 
-  } ,
+  mounted () {
+    this.show = true
+    setTimeout(() => {
+      this.show = false
+    }, 30000)
+  },
   methods: {
     loginPopup () {
       console.log('누름')
@@ -107,8 +107,8 @@ export default {
           this.$cookies.remove('nickname')
           this.nickname = ''
           this.isLogin = false
-          this.$router.push("/")
-          location.reload();
+          this.$router.push('/')
+          location.reload()
         })
     },
     isAuthenticated () {
@@ -162,6 +162,6 @@ export default {
   }
   .nav-background {
     background: linear-gradient(to top, rgb(188, 238, 201) 1%, #4CAF50 20%,#1B5E20 65%);
-    
+
   }
 </style>

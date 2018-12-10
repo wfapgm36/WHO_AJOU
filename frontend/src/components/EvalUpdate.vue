@@ -69,7 +69,7 @@
           </b-col>
           <b-col col lg="2" class="star" md="auto">
             <h5>시험평가</h5>
-           
+
             <star-rating
               v-model="examRating"
               :inline="true"
@@ -138,7 +138,7 @@ export default {
   data() {
     return {
       allMajorData:[],
-      
+
       majorSelected:null,
       subjectSelected:null,
       professorSelected:null,
@@ -221,7 +221,7 @@ export default {
         });
     },
     // subjectOptions
-    //선택한 학과에 따라 강의명 넣기 
+    //선택한 학과에 따라 강의명 넣기
    getSubject() {
       this.$http
         .post("/api/curriculum", {
@@ -259,7 +259,7 @@ export default {
           this.subjectSelected = res.data.lecture
           this.professorSelected = res.data.professor
           this.semesterSelected = res.data.semester
-          this.assignRating = res.data.evaluation.homework_grade 
+          this.assignRating = res.data.evaluation.homework_grade
           this.teamRating = res.data.evaluation.teamProject_grade
           this.lectureRating = res.data.evaluation.skill_grade
           this.examRating = res.data.evaluation.test_grade
@@ -276,7 +276,7 @@ export default {
     },
     onSubmit() {
       this.$http
-        .put("/api/class/evaluation/update", {
+        .put("/api/class/evaluation", {
           evalId: this.$route.params.id,
           userId: this.userId,
           major: this.majorSelected,
@@ -296,7 +296,7 @@ export default {
         })
         .then(res => {
           console.log(res.data);
-         
+
         })
         .catch(err => {
           console.log(err);
