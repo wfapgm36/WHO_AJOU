@@ -79,6 +79,7 @@ export default {
     setTimeout(() => {
       this.show = false
     }, 30000)
+    this.isAuthenticated()
   },
   methods: {
     loginPopup () {
@@ -125,7 +126,9 @@ export default {
     }
   },
   beforeRouteUpdate (to, from, next) {
-    this.isAuthenticated()
+    this.$EventBus.$on('removeTab', (message) => {
+      this.isAuthenticated()
+    })
     next()
   },
   created () {
