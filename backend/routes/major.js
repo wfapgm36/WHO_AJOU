@@ -58,14 +58,11 @@ router.post('/add', function(req, res){
 });
 
 router.post('/professor/add', function(req, res){
-    console.log(req.body.major)
-    console.log(req.body.professor)
     let professor = {
         name : ''
     }
     professor.name = req.body.professor
     major.findOne({major:req.body.major}, function(err,data){
-        console.log(data)
         data.professor.push(professor)
         res.status(200).send(data)
         data.save();
@@ -74,7 +71,6 @@ router.post('/professor/add', function(req, res){
 
 router.post('/professor', function(req, res){
     major.findOne({major:req.body.major}, function(err,data){
-        console.log(data.professor)
         res.json(data.professor)
     })    
 })

@@ -10,7 +10,7 @@ const index = require("./routes/index")
 const signup = require("./routes/signup");
 const login = require("./routes/login");
 const user = require("./routes/user");
-const main = require("./routes/main");
+
 const board = require("./routes/board");
 const email_verification = require("./routes/email-verification");
 
@@ -36,13 +36,12 @@ app.use('/api/signup', signup);
 app.use('/api/email-verification', email_verification);
 app.use('/api/login', login);
 app.use('/api/user', user);
-app.use('/api/main', main);
+
 app.use('/api/board', board);
 app.use('/api/profile', profile);
 app.use('/api/class', lecture);
 app.use('/api/major', major)
 app.use('/api/curriculum', curriculum);
-app.use('/api/major', major);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

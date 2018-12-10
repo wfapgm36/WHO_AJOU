@@ -14,7 +14,6 @@ router.use(function (req, res, next) {
 router.post('/create',  function (req, res, next) {
     console.log('SYSTEM: 커리큘럼 생성')
     console.log(req.body)
-
     const {
         major,
         type,

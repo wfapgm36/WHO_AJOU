@@ -3,7 +3,6 @@ var router = express.Router();
 var mongoose = require("mongoose");
 var nev = require('email-verification')(mongoose);
 
-//템플릿용 변수 설정
 router.use(function (req, res, next) {
     next();
 });
