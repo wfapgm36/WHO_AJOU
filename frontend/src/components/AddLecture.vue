@@ -69,11 +69,7 @@
           <div>
             <b-form-group id="contentInput">
               <b-form-textarea
-<<<<<<< HEAD
-              required
-=======
                 required
->>>>>>> d18b874300ca7a9ff11aac0cc17438dbe4e79a11
                 id="contentInput"
                 v-model="selected.description"
                 placeholder="상세정보"

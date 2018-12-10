@@ -79,6 +79,7 @@ export default {
     setTimeout(() => {
       this.show = false
     }, 30000)
+    this.isAuthenticated()
   },
   methods: {
     loginPopup () {

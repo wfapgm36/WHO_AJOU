@@ -24,7 +24,7 @@ Vue.prototype.$EventBus = new Vue()
 Vue.config.productionTip = false
 Vue.prototype.$http = axios
 Vue.prototype.$cookies = VueCookies
-Vue.component('star-rating', StarRating);
+Vue.component('star-rating', StarRating)
 Vue.use(Vuetify, {
   iconfont: 'mdi'
 })
@@ -40,9 +40,9 @@ new Vue({
 })
 
 Vue.use(VueScrollTo, {
-  container: "body",
+  container: 'body',
   duration: 500,
-  easing: "ease",
+  easing: 'ease',
   offset: 0,
   force: true,
   cancelable: true,

@@ -32,12 +32,12 @@ export default new Vuex.Store({
       return axios.post(`/api/login`, {username: username, password: password})
         .then((res) => {
           let data = res.data
-          if (res.status === '200') {
+          if (res.status === 200) {
             commit('LOGIN', data)
             axios.defaults.headers.common['Authorization'] = `Bearer ${data.accessToken}`
-          } else if (res.status === '203') {
+          } else if (res.status === 203) {
             alert('올바르지 않은 비밀번호 입니다.')
-          } else if (res.status === '204') {
+          } else if (res.status === 204) {
             alert('올바르지 않은 아이디 입니다.')
           }
         })
