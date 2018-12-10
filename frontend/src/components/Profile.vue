@@ -187,8 +187,6 @@ export default {
       this.$http.get('/api/class/evaluation')
         .then((res) => {
           this.my_eval_subject = res.data
-          console.log('강의평가모든정보')
-          console.log(res.data)
         })
     },
     onSubmit (evt) {

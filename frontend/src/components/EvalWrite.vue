@@ -222,8 +222,6 @@ export default {
           major: this.majorSelected
         })
         .then(res => {
-          console.log('커리큘럼 내 모든 과목')
-          console.log(res.data)
           for (var i = 0; i < res.data.length; i++) {
             this.subjectOptions.push({ value: res.data[i].lecture })
           }
@@ -238,7 +236,7 @@ export default {
     getProfessor (clickedMajor) {
       this.professorOptions = []
       for (var i = 0; i < this.allMajorData.length; i++) {
-        if (this.allMajorData[i].major == clickedMajor) {
+        if (this.allMajorData[i].major === clickedMajor) {
           for (var j = 0; j < this.allMajorData[i].professor.length; j++) {
             this.professorOptions.push({ value: this.allMajorData[i].professor[j].name })
           }
@@ -266,8 +264,12 @@ export default {
           memo4: this.text4
         })
         .then(res => {
-          console.log(res.data)
-          this.$router.push('/main')
+          const status = res.status
+          if (status === 200) {
+            this.$router.push('/main')
+          } else if (status === 203) {
+            alert('중복된 강의평가입니다. 학기 및 과목명을 확인해주세요.')
+          }
         })
         .catch(err => {
           console.log(err)

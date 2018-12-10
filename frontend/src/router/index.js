@@ -45,7 +45,7 @@ export default new Router({
       name: 'email-verification',
       component: EmailVerification
     },
-    
+
     {
       path: '/main',
       name: 'main',

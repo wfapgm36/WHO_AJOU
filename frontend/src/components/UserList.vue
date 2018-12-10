@@ -8,24 +8,24 @@
 <script>
 export default {
   name: 'user-list',
-  data(){
-    return{
-    items: []
-}
-},
-  created(){
+  data () {
+    return {
+      items: []
+    }
+  },
+  created () {
     this.$EventBus.$emit('removeTab', true)
     this.fetchData()
   },
-  methods:{
-    fetchData(){
-      this.$http.get("/api/user/list")
-      .then(res => {
-        this.items = res.data
-        for(var i = 0; i < this.items.length; i++){
-          this.items[i].createAt = this.$moment(this.items[i].createAt).format('LLLL')
+  methods: {
+    fetchData () {
+      this.$http.get('/api/user/list')
+        .then(res => {
+          this.items = res.data
+          for (var i = 0; i < this.items.length; i++) {
+            this.items[i].createAt = this.$moment(this.items[i].createAt).format('LLLL')
           }
-      })
+        })
     }
   }
 }

@@ -59,7 +59,7 @@ export default {
   name: 'board',
   data () {
     return {
-      //테이블 디자인 부분임
+      // 테이블 디자인 부분임
       headers: [
         {
           text: '번호',
@@ -67,10 +67,10 @@ export default {
           sortable: false,
           value: '_id'
         },
-        { text: '제목',align: 'center', value: 'title' ,sortable: false,},
-        { text: '작성자',align: 'center', value: 'writer' ,sortable: false,},
-        { text: '등록일',align: 'center', value: 'createAt' },
-        { text: '조회수',align: 'center', value: 'count' }
+        {text: '제목', align: 'center', value: 'title', sortable: false},
+        {text: '작성자', align: 'center', value: 'writer', sortable: false},
+        { text: '등록일', align: 'center', value: 'createAt' },
+        { text: '조회수', align: 'center', value: 'count' }
       ],
       filteredItems: [],
       currentPage: 1,
@@ -91,7 +91,7 @@ export default {
     },
     getAllPosts () {
       this.$http.get('/api/board').then((res) => {
-        this.filteredItems = res.data;
+        this.filteredItems = res.data
         this.items = res.data
         this.numberOfPosts = Math.ceil(res.data.length / 5)
         this.filteredItems = this.items.slice((this.currentPage - 1) * 5, (this.currentPage) * 5)
@@ -100,7 +100,7 @@ export default {
     searchPost () {
       this.filteredItems = []
       for (let i = 0; i < this.items.length; i++) {
-        if (this.items[i].title.indexOf(this.searchText) == -1 && this.items[i].contents.indexOf(this.searchText) == -1) {
+        if (this.items[i].title.indexOf(this.searchText) === -1 && this.items[i].contents.indexOf(this.searchText) === -1) {
         } else {
           this.filteredItems.push(this.items[i])
         }
