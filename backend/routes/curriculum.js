@@ -13,7 +13,6 @@ router.use(function (req, res, next) {
 */
 router.post('/create',  function (req, res, next) {
     console.log('SYSTEM: 커리큘럼 생성')
-    console.log(req.body)
     const {
         major,
         type,
@@ -59,7 +58,6 @@ router.post('/create',  function (req, res, next) {
 */
 router.put('/update', auth.ensureAuth(), function (req, res, next) {
     console.log('SYSTEM: 커리큘럼 업데이트')
-    console.log(req.body)
     const {
         id,
         major,
@@ -69,8 +67,6 @@ router.put('/update', auth.ensureAuth(), function (req, res, next) {
         semester,
         description
     } = req.body
-    console.log('id ' + id)
-
     Curriculum.findOneAndUpdate({
         id: id
     }, 
@@ -115,7 +111,6 @@ router.delete('/delete', auth.ensureAuth(), function (req, res, next) {
     학과이름 받고 해당 학과의 한과목 정보 보내줌.(수정시 필요)
 */
 router.get('/:id', function (req, res, next) {
-    
     Curriculum.findOne({id: req.params.id}, (err, data) => {
             if (err) res.status(500).send({
                 error: 'database failure'
@@ -136,7 +131,6 @@ router.get('/:id', function (req, res, next) {
 */
 router.post('/', function (req, res, next) {
     var major = req.body.major //학과 이름
-
     Curriculum.find({
             major: major
         },
@@ -152,6 +146,5 @@ router.post('/', function (req, res, next) {
             res.json(data);
         })
 });
-
 
 module.exports = router;
