@@ -63,7 +63,7 @@
         api_key: this.$route.params.URL}).then((res) => {
         const status = res.status
         // redirect logic
-        if (status == '200') {
+        if (status === 200) {
           alert('이메일 인증에 성공하였습니다. 로그인을 해주세요.')
           this.$router.push('/')
         }

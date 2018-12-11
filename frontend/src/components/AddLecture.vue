@@ -6,21 +6,21 @@
           <h6 slot="header">
             학과
             <div>
-              <b-form-select  v-model="selected.major" class="mb-3" size="sm">
+              <b-form-select required v-model="selected.major" class="mb-3" size="sm">
                 <option v-for="major in majorOptions" v-bind:key ="major.id">{{major.value}}</option>
-              </b-form-select>  
+              </b-form-select>
             </div>
-            
+
             강의타입
             <div>
-              <b-form-select  v-model="selected.type" class="mb-3" size="sm">
+              <b-form-select required  v-model="selected.type" class="mb-3" size="sm">
                 <option v-for="type in typeOptions" v-bind:key ="type.id">{{type.value}}</option>
-              </b-form-select>  
+              </b-form-select>
             </div>
-            
+
             강의명
             <div>
-              <b-form-input v-model="selected.lecture"
+              <b-form-input required v-model="selected.lecture"
                           type="text"
                           size = "sm"
                           id="lectureBar" >
@@ -29,9 +29,9 @@
 
             학기
             <div>
-              <b-form-select  v-model="selected.semester" class="mb-3" size="sm">
+              <b-form-select required v-model="selected.semester" class="mb-3" size="sm">
                 <option v-for="semester in semesterOptions" v-bind:key ="semester.id">{{semester.value}}</option>
-              </b-form-select> 
+              </b-form-select>
             </div>
 
             선수과목
@@ -62,14 +62,14 @@
 
           </h6>
 
-        
           <h6 slot="footer">
-            <b-button type="submit" variant="primary">제출</b-button>
+            <b-button type="submit" variant="primary">추가</b-button>
           </h6>
 
           <div>
             <b-form-group id="contentInput">
               <b-form-textarea
+                required
                 id="contentInput"
                 v-model="selected.description"
                 placeholder="상세정보"
@@ -86,14 +86,13 @@
 
 <script>
 export default {
-  name: "add-lecture",
-  data() {
+  name: 'add-lecture',
+  data () {
     return {
-      allMajorData:[],
+      allMajorData: [],
 
-     
       majorOptions: [],
-      typeOptions: [{value: '전공필수'},{value: '전공선택'},{value:'교양필수'},{value:'교양선택'}],
+      typeOptions: [{value: '전공필수'}, {value: '전공선택'}, {value: '교양필수'}, {value: '교양선택'}],
       lectureOptions: [],
       semesterOptions: [
         {value: '1-1'},
@@ -103,57 +102,47 @@ export default {
         {value: '3-1'},
         {value: '3-2'},
         {value: '4-1'},
-        {value: '4-2'},
+        {value: '4-2'}
       ],
-
       selected: {
-        //테스트용
-        //major: '미디어',
-        //type: '전공',
-        //lecture: '객프',
-        //prequisite: ['컴설','자구'],
-        //semester: '1-1',
-        //description: "안녕",
-        
         major: null,
         type: null,
-        lecture:'',
-        prerequisite:[],
-        semester:null,
-        description: ""
+        lecture: '',
+        prerequisite: [],
+        semester: null,
+        description: ''
       }
-    };
-  },created(){
+    }
+  },
+  created () {
     this.$EventBus.$emit('removeTab', true)
     this.getMajor()
   },
   methods: {
-    //학과 선택 함수
-    getMajor() {
+    // 학과 선택 함수
+    getMajor () {
       this.$http
-        .get("/api/major/all")
+        .get('/api/major/all')
         .then(res => {
           this.allMajorData = res.data
           for (var i = 0; i < res.data.length; i++) {
-            this.majorOptions.push({value: res.data[i].major});
+            this.majorOptions.push({value: res.data[i].major})
           }
         })
         .catch(err => {
-          console.log(err);
-        });
+          console.log(err)
+        })
     },
-    onSubmit() {
-   
+    onSubmit () {
       this.$http
-        .post("/api/curriculum/create", this.selected)
+        .post('/api/curriculum/create', this.selected)
         .then(res => {
-          console.log(res.data);
         })
         .catch(err => {
-          console.log(err);
-        });
-         this.$router.push("/main");
+          console.log(err)
+        })
+      this.$router.push('/main')
     }
   }
-};
+}
 </script>

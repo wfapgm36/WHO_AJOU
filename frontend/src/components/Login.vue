@@ -45,7 +45,7 @@
                 </div>
               </div>
             </b-form>
-   
+
         </b-col>
       </b-row>
     </b-container>
@@ -125,7 +125,6 @@ export default {
     },
     redirect () {
       const {search} = window.location
-      console.log(search)
       const tokens = search.replace(/^\?/, '').split('&')
       let {returnPath} = tokens.reduce((qs, tkn) => {
         const pair = tkn.split('=')
@@ -135,7 +134,6 @@ export default {
       if (!returnPath) {
         returnPath = '/main'
       }
-      console.log(returnPath)
       // 리다이렉트 처리
       this.$router.push(returnPath)
     },
@@ -161,7 +159,7 @@ export default {
         const status = res.status
         if (status === 200) {
           alert('비밀번호를 0000 으로 초기화하였습니다.로그인 후 반드시 비밀번호를 변경해주세요')
-        } else if (status === 203){
+        } else if (status === 203) {
           alert('해당 아이디와 이메일에 해당하는 회원이 없습니다')
         }
       }).catch(err => {

@@ -33,7 +33,6 @@ var classSchema = mongoose.Schema({
 
 // 강의 평가 도큐먼트 생성
 classSchema.statics.create = function (userId, major, lecture, professor, semester, evaluation) {
-
     const classeval = new this({
         userId,
         major,

@@ -41,14 +41,11 @@ export default {
   },
   methods: {
     updateCurriculum (item) {
-      console.log(item)
       this.$router.push(`/curriculum/update/${item.id}`)
     },
     deleteCurriculum (item) {
-      console.log(item)
-      this.$http.post('/api/curriculum/delete', {id: item.id})
+      this.$http.delete('/api/curriculum/delete', { data: { id: item.id } })
         .then(res => {
-          console.log(res.data)
           this.$emit('close')
           this.$EventBus.$emit('del')
         })

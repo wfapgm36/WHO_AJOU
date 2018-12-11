@@ -1,6 +1,6 @@
 <template>
   <div class="evalwrite">
-    <form @submit="onSubmit">
+    <b-form @submit="onSubmit">
       <div class="evalWrite">
        <b-row class="justify-content-md-center" id="choice">
           <b-col col lg="1">
@@ -33,7 +33,7 @@
           <b-col col lg="2" class="star">
             <h5>과제평가</h5>
             <star-rating
-                v-model="assignRating"
+              v-model="assignRating"
               :inline="true"
               border-color="transparent"
               :show-rating="false"
@@ -69,7 +69,7 @@
           </b-col>
           <b-col col lg="2" class="star" md="auto">
             <h5>시험평가</h5>
-           
+
             <star-rating
               v-model="examRating"
               :inline="true"
@@ -126,140 +126,138 @@
           :max-rows="6"
         ></b-form-textarea>
 
-        <b-button class="submitBtn" type="submit">수정</b-button>
+        <b-button class="submitBtn" type="submit" variant="primary">수정</b-button>
       </div>
-    </form>
+    </b-form>
   </div>
 </template>
 
 <script>
 export default {
-  name: "evaluation-update",
-  data() {
+  name: 'evaluation-update',
+  data () {
     return {
-      allMajorData:[],
-      
-      majorSelected:null,
-      subjectSelected:null,
-      professorSelected:null,
-      semesterSelected:null,
-      diffiSelected:null,
-      //강의 정보
-      userId:'',
-      professor: "",
-      difficult: "",
-      //강의 평점
-      assignRating: "",
-      teamRating: "",
-      lectureRating: "",
-      examRating: "",
-      //강의 메모
-      text1: "",
-      text2: "",
-      text3: "",
-      text4: "",
-      //선택 옵션
+      allMajorData: [],
+
+      majorSelected: null,
+      subjectSelected: null,
+      professorSelected: null,
+      semesterSelected: null,
+      diffiSelected: null,
+      // 강의 정보
+      userId: '',
+      professor: '',
+      difficult: '',
+      // 강의 평점
+      assignRating: '',
+      teamRating: '',
+      lectureRating: '',
+      examRating: '',
+      // 강의 메모
+      text1: '',
+      text2: '',
+      text3: '',
+      text4: '',
+      // 선택 옵션
       majorOptions: [],
       subjectOptions: [],
       professorOptions: [],
-      semesterOptions:[
+      semesterOptions: [
         {value: '2018-1 학기'},
         {value: '2017-2 학기'},
         {value: '2017-1 학기'}
       ],
       diffiOptions: [
-        { value: "상" },
-        { value: "중" },
-        { value: "하" }
+        { value: '상' },
+        { value: '중' },
+        { value: '하' }
       ]
-    };
+    }
   },
-  created(){
+  created () {
+    this.$EventBus.$emit('removeTab', true)
     this.getMajor()
     this.getUserId()
     this.getContent()
   },
-  //select 시, 학과명이 바뀔때마다 과목명과 교수명을 다시 받기 위함
-  watch: { 'majorSelected': function() {
-      this.getSubject()
-      this.getProfessor()
-    }
+  // select 시, 학과명이 바뀔때마다 과목명과 교수명을 다시 받기 위함
+  watch: { 'majorSelected': function () {
+    this.getSubject()
+    this.getProfessor()
+  }
   },
   methods: {
-    setAssignRating(rating) {
-      this.assignRating = rating;
+    setAssignRating (rating) {
+      this.assignRating = rating
     },
-    setTeamRating(rating) {
-      this.teamRating = rating;
+    setTeamRating (rating) {
+      this.teamRating = rating
     },
-    setLectureRating(rating) {
-      this.lectureRating = rating;
+    setLectureRating (rating) {
+      this.lectureRating = rating
     },
-    setExamRating(rating) {
-      this.examRating = rating;
+    setExamRating (rating) {
+      this.examRating = rating
     },
-    //유저아이디 가져오기
-    getUserId(){
-     this.$http.get('/api/profile/user')
-      .then(res => {
-        this.userId = res.data.username
-      })
-    },
-    //majorOption의 데이터에 넣어줄 함수
-    //학과 선택 함수
-    getMajor() {
-      this.$http
-        .get("/api/major/all")
+    // 유저아이디 가져오기
+    getUserId () {
+      this.$http.get('/api/profile/user')
         .then(res => {
-          this.allMajorData = res.data  //미리 저장해 두어, 학과 선택 후 교수명 불러올때 디비에 또 가지 않기 위함.
+          this.userId = res.data.username
+        })
+    },
+    // majorOption의 데이터에 넣어줄 함수
+    // 학과 선택 함수
+    getMajor () {
+      this.$http
+        .get('/api/major/all')
+        .then(res => {
+          this.allMajorData = res.data // 미리 저장해 두어, 학과 선택 후 교수명 불러올때 디비에 또 가지 않기 위함.
           for (var i = 0; i < res.data.length; i++) {
-            this.majorOptions.push({value: res.data[i].major});
+            this.majorOptions.push({value: res.data[i].major})
           }
         })
         .catch(err => {
-          console.log(err);
-        });
+          console.log(err)
+        })
     },
     // subjectOptions
-    //선택한 학과에 따라 강의명 넣기 
-   getSubject() {
+    // 선택한 학과에 따라 강의명 넣기
+    getSubject () {
       this.$http
-        .post("/api/curriculum", {
+        .post('/api/curriculum', {
           major: this.majorSelected
         })
         .then(res => {
-          console.log("커리큘럼 내 모든 과목");
-          console.log(res.data);
           for (var i = 0; i < res.data.length; i++) {
-            this.subjectOptions.push({ value: res.data[i].lecture });
+            this.subjectOptions.push({ value: res.data[i].lecture })
           }
         })
         .catch(err => {
-          console.log(err);
-        });
+          console.log(err)
+        })
     },
-    //professorOptions
-    //선택한 학과에 따라 교수명 데이터 넣기
-    getProfessor() {
+    // professorOptions
+    // 선택한 학과에 따라 교수명 데이터 넣기
+    getProfessor () {
       this.professorOptions = []
-      for(var i =0 ; i<this.allMajorData.length; i++){
-       if(this.allMajorData[i].major == this.majorSelected){
-        for (var j = 0; j < this.allMajorData[i].professor.length; j++) {
-            this.professorOptions.push({ value: this.allMajorData[i].professor[j].name });
+      for (var i = 0; i < this.allMajorData.length; i++) {
+        if (this.allMajorData[i].major == this.majorSelected) {
+          for (var j = 0; j < this.allMajorData[i].professor.length; j++) {
+            this.professorOptions.push({ value: this.allMajorData[i].professor[j].name })
+          }
         }
-       }
       }
     },
-    getContent() {
+    getContent () {
       this.$http
         .get(`/api/class/evaluation/update/${this.$route.params.id}`)
         .then(res => {
-          console.log(res.data);
           this.majorSelected = res.data.major
           this.subjectSelected = res.data.lecture
           this.professorSelected = res.data.professor
           this.semesterSelected = res.data.semester
-          this.assignRating = res.data.evaluation.homework_grade 
+          this.assignRating = res.data.evaluation.homework_grade
           this.teamRating = res.data.evaluation.teamProject_grade
           this.lectureRating = res.data.evaluation.skill_grade
           this.examRating = res.data.evaluation.test_grade
@@ -268,22 +266,23 @@ export default {
           this.text2 = res.data.evaluation.memo2
           this.text3 = res.data.evaluation.memo3
           this.text4 = res.data.evaluation.memo4
-          console.log(this.assignRating, this.teamRating, this.lectureRating, this.examRating)
         })
         .catch(err => {
-          console.log(err);
-        });
+          console.log(err)
+        })
     },
-    onSubmit() {
+    onSubmit (evt) {
+      evt.preventDefault();
+      
       this.$http
-        .put("/api/class/evaluation/update", {
+        .put('/api/class/evaluation', {
           evalId: this.$route.params.id,
           userId: this.userId,
           major: this.majorSelected,
           lecture: this.subjectSelected,
           professor: this.professorSelected,
           semester: this.semesterSelected,
-          nickname: this.$cookies.get("nickname"),
+          nickname: this.$cookies.get('nickname'),
           homework_grade: this.assignRating,
           teamProject_grade: this.teamRating,
           skill_grade: this.lectureRating,
@@ -295,17 +294,19 @@ export default {
           memo4: this.text4
         })
         .then(res => {
-          console.log(res.data);
-         
+          const status = res.status
+          if(status === 200){
+          this.$router.push(`/evalview/${this.$route.params.id}`)
+        }
         })
         .catch(err => {
-          console.log(err);
-        });
-        //this.$router.push("/main");
-        this.$router.push(`/evalview/${this.$route.params.id}`);
+          console.log(err)
+        })
+      // this.$router.push("/main");
+      this.$router.push(`/evalview/${this.$route.params.id}`)
     }
   }
-};
+}
 </script>
 
 <style>

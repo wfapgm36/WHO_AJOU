@@ -23,14 +23,14 @@
       </b-row>
 
     </div>
-    <p class = "majorText">{{clickedMajor}}</p>
+    <p class = "majorText"><b-badge variant="dark" size="lg">{{clickedMajor}}</b-badge></p>
       <div class="eval_write">
         <div class = "choice_major">
           <router-link :to ="`/evaluation/write`">
             <b-button class="eval_write_btn">강의평가작성</b-button>
           </router-link>
           <router-link :to ="`/curriculum/create`">
-            <b-button v-if="admin === 1" class="eval_write_btn"> 강의추가 </b-button>
+            <b-button v-if="admin == 1" class="eval_write_btn"> 강의추가 </b-button>
           </router-link>
           <b-dropdown  id="ddown-buttons" text="학과를 선택하세요" class="m-2">
            <b-dropdown-item-button v-model="clickedMajor" v-for="item in majors" v-bind:key="item.id" @click = "setMajor(item)">{{item.major}}</b-dropdown-item-button>
@@ -40,72 +40,72 @@
       </div>
         <b-container class="curriculum">
             <b-row align-v="start" class="height">
-                <b-col>
+                <b-col class ="curriculum_btn">
                   <b-row align-v="center">
-                    <b-col><p class = "majorText"> 1-1 </p></b-col>
+                    <b-col><p class = "majorText"> <b-badge variant="dark">1-1</b-badge> </p></b-col>
                   </b-row>
                     <div v-for="item in curriData" v-bind:subject = "item" v-bind:key="item.id" v-if="item.semester == '1-1'">
                             <b-button :pressed.sync = "item.isPre" class = "mainBtn" @click = "Popup(item)" >{{item.lecture}}</b-button>
                     </div>
                 </b-col>
                 <hr class = "vertical">
-                <b-col>
+                <b-col class ="curriculum_btn">
                     <b-row align-v="center">
-                      <b-col><p class = "majorText"> 1-2 </p></b-col>
+                      <b-col><p class = "majorText"><b-badge variant="dark">1-2</b-badge></p></b-col>
                     </b-row>
                     <div v-for="item in curriData" v-bind:subject = "item" v-bind:key="item.id" v-if="item.semester == '1-2'">
                        <b-button :pressed.sync = "item.isPre" class = "mainBtn" @click = "Popup(item)" >{{item.lecture}}</b-button>
                     </div>
-                </b-col>
+                </b-col >
                  <hr class = "vertical">
-                 <b-col>
+                 <b-col class ="curriculum_btn">
                     <b-row align-v="center">
-                      <b-col><p class = "majorText"> 2-1 </p></b-col>
+                      <b-col><p class = "majorText"> <b-badge variant="dark">2-1</b-badge> </p></b-col>
                     </b-row>
                     <div v-for="item in curriData" v-bind:subject = "item" v-bind:key="item.id" v-if="item.semester == '2-1'">
                        <b-button :pressed.sync = "item.isPre" class = "mainBtn" @click = "Popup(item)" >{{item.lecture}}</b-button>
                     </div>
                 </b-col>
                 <hr class = "vertical">
-                <b-col>
+                <b-col class ="curriculum_btn">
                     <b-row align-v="center">
-                      <b-col><p class = "majorText"> 2-2 </p></b-col>
+                      <b-col><p class = "majorText"> <b-badge variant="dark">2-2</b-badge> </p></b-col>
                     </b-row>
                     <div v-for="item in curriData" v-bind:subject = "item" v-bind:key="item.id" v-if="item.semester == '2-2'">
                         <b-button :pressed.sync = "item.isPre" class = "mainBtn" @click = "Popup(item)" >{{item.lecture}}</b-button>
                     </div>
                 </b-col>
                 <hr class = "vertical">
-                <b-col>
+                <b-col class ="curriculum_btn">
                     <b-row align-v="center">
-                      <b-col><p class = "majorText"> 3-1 </p></b-col>
+                      <b-col><p class = "majorText"> <b-badge variant="dark">3-1</b-badge> </p></b-col>
                     </b-row>
                     <div v-for="item in curriData" v-bind:subject = "item" v-bind:key="item.id" v-if="item.semester == '3-1'">
                         <b-button :pressed.sync = "item.isPre" class = "mainBtn" @click = "Popup(item)" >{{item.lecture}}</b-button>
                     </div>
                 </b-col>
                  <hr class = "vertical">
-                 <b-col>
+                 <b-col class ="curriculum_btn">
                    <b-row align-v="center">
-                      <b-col><p class = "majorText"> 3-2 </p></b-col>
+                      <b-col><p class = "majorText"> <b-badge variant="dark">3-2</b-badge> </p></b-col>
                     </b-row>
                     <div v-for="item in curriData" v-bind:subject = "item" v-bind:key="item.id" v-if="item.semester == '3-2'">
                         <b-button :pressed.sync = "item.isPre" class = "mainBtn" @click = "Popup(item)" >{{item.lecture}}</b-button>
                     </div>
                 </b-col>
                  <hr class = "vertical">
-                <b-col>
+                <b-col class ="curriculum_btn">
                     <b-row align-v="center">
-                      <b-col><p class = "majorText"> 4-1 </p></b-col>
+                      <b-col><p class = "majorText"> <b-badge variant="dark">4-1</b-badge> </p></b-col>
                     </b-row>
                     <div v-for="item in curriData" v-bind:subject = "item" v-bind:key="item.id" v-if="item.semester == '4-1'">
                         <b-button :pressed.sync = "item.isPre" class = "mainBtn" @click = "Popup(item)" >{{item.lecture}}</b-button>
                     </div>
                 </b-col>
                 <hr class = "vertical">
-                <b-col>
+                <b-col class ="curriculum_btn">
                     <b-row align-v="center">
-                      <b-col><p class = "majorText"> 4-2 </p></b-col>
+                      <b-col><p class = "majorText"> <b-badge variant="dark">4-2</b-badge> </p></b-col>
                     </b-row>
                     <div v-for="item in curriData" v-bind:subject = "item" v-bind:key="item.id" v-if="item.semester == '4-2'">
                         <b-button :pressed.sync = "item.isPre" class = "mainBtn" @click = "Popup(item)" >{{item.lecture}}</b-button>
@@ -136,48 +136,6 @@
                   </router-link>
               </v-toolbar>
               <h5 id= "noresult" v-if="filteredItems.length == 0 && isExist==true">등록된 강의평가가 없습니다. </h5>
-              <v-flex xs12 >
-                 <v-container fluid >
-                   <v-layout row wrap>
-
-                     <v-flex
-                        v-if="filteredItems.length == 0 && isExist==false"
-                       id = "evaluate" v-for="item in eval_subject" v-bind:key="item.id"
-                        :current-page="currentPage"
-                        :per-page="perPage"
-                       xs3>
-                     <v-hover>
-                       <v-card
-                           slot-scope="{ hover }"
-                           :class="`elevation-${hover ? 12 : 2}`"
-                           class="mx-auto"
-                           width="345"
-                           flat tile>
-
-                          <div class ="evalContainer" >
-                             <h3 style="padding-top:20px">Course</h3>
-                             <h5>{{item.lecture}}</h5>
-                             <h3>Professor</h3>
-                             <h5>{{item.professor}}</h5>
-                             <v-rating v-model="item.evaluation.totalGrade"
-                                        color="yellow darken-3"
-                                        background-color="grey darken-1"
-                                        readonly>
-                            </v-rating>
-                            <h5 class = "circle">{{parseFloat(item.evaluation.totalGrade).toFixed(1)}}</h5>
-                            <h5>{{item.semester}}</h5><br>
-                              <router-link :to ="{name:'eval-view',params:{id: item.id}}">
-                              <button type="submit" class = "plusView">Read More</button>
-                           </router-link>
-                          </div>
-                       </v-card>
-                     </v-hover>
-                     </v-flex>
-
-                   </v-layout>
-                 </v-container>
-              </v-flex>
-
               <v-flex xs12 >
                  <v-container fluid >
                    <v-layout row wrap>
@@ -255,7 +213,7 @@ export default {
     return {
       totalRows: 0,
       currentPage: 1,
-      perPage: 16,
+      perPage: 8,
       isExist: false,
 
       searchKind: null, // 검색할 종류 전체/강의명/교수명
@@ -293,7 +251,12 @@ export default {
       return (this.startOffset + this.perPage)
     },
     calData () {
-      return this.filteredItems.slice(this.startOffset, this.endOffset)
+      if (this.filteredItems.length !== 0) {
+        return this.filteredItems.slice(this.startOffset, this.endOffset)
+      } else {
+        this.totalRows = this.eval_subject.length
+        return this.eval_subject.slice(this.startOffset, this.endOffset)
+      }
     }
   },
 
@@ -302,18 +265,18 @@ export default {
     searchPost () {
       this.isExist = true
       this.filteredItems = []
-      if (this.searchKind == '강의명') {
+      if (this.searchKind === '강의명') {
         for (let i = 0; i < this.eval_subject.length; i++) {
-          if (this.eval_subject[i].lecture.indexOf(this.searchText) == -1) {
+          if (this.eval_subject[i].lecture.indexOf(this.searchText) === -1) {
           } else {
             this.filteredItems.push(this.eval_subject[i])
           }
           this.filteredItems = this.filteredItems.slice(0, 10)
         }
         this.totalRows = this.filteredItems.length
-      } else if (this.searchKind == '교수명') {
+      } else if (this.searchKind === '교수명') {
         for (let i = 0; i < this.eval_subject.length; i++) {
-          if (this.eval_subject[i].professor.indexOf(this.searchText) == -1) {
+          if (this.eval_subject[i].professor.indexOf(this.searchText) === -1) {
           } else {
             this.filteredItems.push(this.eval_subject[i])
           }
@@ -322,7 +285,7 @@ export default {
         this.totalRows = this.filteredItems.length
       } else {
         for (let i = 0; i < this.eval_subject.length; i++) {
-          if (this.eval_subject[i].lecture.indexOf(this.searchText) == -1 && this.eval_subject[i].professor.indexOf(this.searchText) == -1) {
+          if (this.eval_subject[i].lecture.indexOf(this.searchText) === -1 && this.eval_subject[i].professor.indexOf(this.searchText) === -1) {
           } else {
             this.filteredItems.push(this.eval_subject[i])
           }
@@ -343,7 +306,6 @@ export default {
     },
     // 드롭다운버튼에서 클릭한 학과의 커리큘럼 가져오기
     setMajor (item) {
-      console.log(item.major)
       this.clickedMajor = item.major
       this.GetCurriculum()
     },
@@ -355,8 +317,6 @@ export default {
     },
     // 커리큘럼 가져오기
     GetCurriculum () {
-      console.log('GetCurriculum 들어옴')
-      console.log('this.clickedMajor:' + this.clickedMajor)
       this.$http.post('/api/curriculum', {major: this.clickedMajor})
         .then((res) => {
           this.curriData = res.data
@@ -395,7 +355,7 @@ export default {
       for (var i = 0; i < this.curriData.length; i++) {
         try {
           for (var j = 0; j < item.prerequisite.length; j++) {
-            if (item.prerequisite[j].name == this.curriData[i].lecture) {
+            if (item.prerequisite[j].name === this.curriData[i].lecture) {
               this.curriData[i].isPre = isPre
               this.showPreRequisite(this.curriData[i], isPre)
             }
@@ -408,8 +368,6 @@ export default {
       this.$http.get('/api/class/evaluation')
         .then((res) => {
           this.eval_subject = res.data
-          console.log('강의평가모든정보')
-          console.log(res.data)
         })
     }
   }
@@ -419,7 +377,9 @@ export default {
 
 <!--**********************css****************************-->
 <style>
-
+.curriculum_btn{
+  padding:inherit;
+}
 #noresult{
   margin-top:120px;
   text-align: center;

@@ -2,7 +2,7 @@
   <div id="app">
              <let-it-snow
       v-bind="snowConf"
-      :show="show"    
+      :show="show"
     ></let-it-snow>
     <b-navbar toggleable="md" type="dark" class="nav-background">
     <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
@@ -37,10 +37,10 @@
             <b-dropdown-item href="/profile">
               프로필
             </b-dropdown-item>
-              <b-dropdown-item href="managemajor" v-if="admin === 1">
+              <b-dropdown-item href="/managemajor" v-if="admin === 1">
               전공 관리
             </b-dropdown-item>
-            <b-dropdown-item href="userlist" v-if="admin === 1">
+            <b-dropdown-item href="/userlist" v-if="admin === 1">
               유저 리스트
             </b-dropdown-item>
           </b-nav-item-dropdown>
@@ -64,26 +64,25 @@ export default {
       nickname: '',
       admin: '',
       snowConf: {
-            windPower : 1,  
-            speed : 3,
-            count : 15,
-            size : 10,
-            opacity : 1,
-            images: ['https://raw.githubusercontent.com/bob-chen/let_it_snow/master/demo/snow.png']
-        },
-        show: false      
+        windPower: 1,
+        speed: 3,
+        count: 15,
+        size: 10,
+        opacity: 1,
+        images: ['https://raw.githubusercontent.com/bob-chen/let_it_snow/master/demo/snow.png']
+      },
+      show: false
     }
   },
-   mounted () {
-      this.show = true
-      setTimeout( () => {
-          this.show = false
-      }, 30000) 
-  } ,
+  mounted () {
+    this.show = true
+    setTimeout(() => {
+      this.show = false
+    }, 30000)
+    this.isAuthenticated()
+  },
   methods: {
     loginPopup () {
-      console.log('누름')
-      console.log(this.$modal)
       this.$modal.show(DelPopup, {
         modal: this.$modal }, {
         name: 'dynamic-modal',
@@ -107,6 +106,8 @@ export default {
           this.$cookies.remove('nickname')
           this.nickname = ''
           this.isLogin = false
+          this.$router.push('/')
+          location.reload()
         })
     },
     isAuthenticated () {
@@ -125,7 +126,9 @@ export default {
     }
   },
   beforeRouteUpdate (to, from, next) {
-    this.isAuthenticated()
+    this.$EventBus.$on('removeTab', (message) => {
+      this.isAuthenticated()
+    })
     next()
   },
   created () {
@@ -160,6 +163,6 @@ export default {
   }
   .nav-background {
     background: linear-gradient(to top, rgb(188, 238, 201) 1%, #4CAF50 20%,#1B5E20 65%);
-    
+
   }
 </style>

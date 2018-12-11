@@ -21,8 +21,6 @@ router.get("/user",auth.ensureAuth(),function (req, res, next) {
 });
 
 router.put("/user",auth.ensureAuth(),function (req, res, next) {
-    console.log("들어옴");
-    console.log(req.body);
     User.findOne({username: req.user.username}, function (err, user) {
         if (err) {
             res.send(err);
