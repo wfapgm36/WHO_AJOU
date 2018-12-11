@@ -21,7 +21,6 @@ router.get('/all', function (req, res, next) {
         if (!data) return res.status(404).json({
             error: 'data not found'
         });
-        console.log('All Major Documents: ' + data);
         res.json(data);
     })
 });
@@ -43,13 +42,11 @@ router.post('/', function (req, res, next) {
         if (!data) return res.status(404).json({
             error: 'data not found'
         });
-        console.log('A Major Document: ' + data);
         res.json(data);
     })
 });
 
 router.post('/add', function(req, res){
-    console.log(req.body.name)
     let newMajor = new major({
         major: req.body.name
     });

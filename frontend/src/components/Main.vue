@@ -1,206 +1,245 @@
 <template>
-  <div id="main" >
+  <div id="main">
     <div id="in_main">
-    <div id = "mainSearchFunction">
-      <b-row class="justify-content-md-center">
-          <b-col cols = "0.8">
-                <b-form-select  v-model="searchKind" class="mb-3" size="sm">
-                  <option :value="null">전체</option>
-                  <option v-for="item in options" v-bind:key ="item.id">{{item.value}}</option>
-                </b-form-select>
+      <div id="mainSearchFunction">
+        <b-row class="justify-content-md-center">
+          <b-col cols="0.8">
+            <b-form-select v-model="searchKind" class="mb-3" size="sm">
+              <option :value="null">전체</option>
+              <option v-for="item in options" v-bind:key="item.id">{{item.value}}</option>
+            </b-form-select>
           </b-col>
-          <b-col cols = "12" md = "3">
-                <b-form-input v-model="searchText"
+          <b-col cols="12" md="3">
+            <b-form-input v-model="searchText"
                           type="text"
                           placeholder="강의평가를 검색합니다."
-                          size = "sm"
-                          id="searchBar" >
-                </b-form-input>
+                          size="sm"
+                          id="searchBar">
+            </b-form-input>
           </b-col>
-          <b-col cols = "0">
-           <b-button id="searchButton" @click = "searchPost()" v-scroll-to="'#eval_container'" size = "sm" >검색</b-button>
+          <b-col cols="0">
+            <b-button id="searchButton" @click="searchPost()" v-scroll-to="'#eval_container'" size="sm">검색</b-button>
           </b-col>
-      </b-row>
+        </b-row>
 
-    </div>
-    <p class = "majorText"><b-badge variant="dark" size="lg">{{clickedMajor}}</b-badge></p>
+      </div>
+      <p class="majorText">
+        <b-badge variant="dark" size="lg">{{clickedMajor}}</b-badge>
+      </p>
       <div class="eval_write">
-        <div class = "choice_major">
-          <router-link :to ="`/evaluation/write`">
+        <div class="choice_major">
+          <router-link :to="`/evaluation/write`">
             <b-button class="eval_write_btn">강의평가작성</b-button>
           </router-link>
-          <router-link :to ="`/curriculum/create`">
-            <b-button v-if="admin == 1" class="eval_write_btn"> 강의추가 </b-button>
+          <router-link :to="`/curriculum/create`">
+            <b-button v-if="admin == 1" class="eval_write_btn"> 강의추가</b-button>
           </router-link>
-          <b-dropdown  id="ddown-buttons" text="학과를 선택하세요" class="m-2">
-           <b-dropdown-item-button v-model="clickedMajor" v-for="item in majors" v-bind:key="item.id" @click = "setMajor(item)">{{item.major}}</b-dropdown-item-button>
+          <b-dropdown id="ddown-buttons" text="학과를 선택하세요" class="m-2">
+            <b-dropdown-item-button v-model="clickedMajor" v-for="item in majors" v-bind:key="item.id"
+                                    @click="setMajor(item)">{{item.major}}
+            </b-dropdown-item-button>
           </b-dropdown>
         </div>
 
       </div>
-        <b-container class="curriculum">
-            <b-row align-v="start" class="height">
-                <b-col class ="curriculum_btn">
-                  <b-row align-v="center">
-                    <b-col><p class = "majorText"> <b-badge variant="dark">1-1</b-badge> </p></b-col>
-                  </b-row>
-                    <div v-for="item in curriData" v-bind:subject = "item" v-bind:key="item.id" v-if="item.semester == '1-1'">
-                            <b-button :pressed.sync = "item.isPre" class = "mainBtn" @click = "Popup(item)" >{{item.lecture}}</b-button>
-                    </div>
-                </b-col>
-                <hr class = "vertical">
-                <b-col class ="curriculum_btn">
-                    <b-row align-v="center">
-                      <b-col><p class = "majorText"><b-badge variant="dark">1-2</b-badge></p></b-col>
-                    </b-row>
-                    <div v-for="item in curriData" v-bind:subject = "item" v-bind:key="item.id" v-if="item.semester == '1-2'">
-                       <b-button :pressed.sync = "item.isPre" class = "mainBtn" @click = "Popup(item)" >{{item.lecture}}</b-button>
-                    </div>
-                </b-col >
-                 <hr class = "vertical">
-                 <b-col class ="curriculum_btn">
-                    <b-row align-v="center">
-                      <b-col><p class = "majorText"> <b-badge variant="dark">2-1</b-badge> </p></b-col>
-                    </b-row>
-                    <div v-for="item in curriData" v-bind:subject = "item" v-bind:key="item.id" v-if="item.semester == '2-1'">
-                       <b-button :pressed.sync = "item.isPre" class = "mainBtn" @click = "Popup(item)" >{{item.lecture}}</b-button>
-                    </div>
-                </b-col>
-                <hr class = "vertical">
-                <b-col class ="curriculum_btn">
-                    <b-row align-v="center">
-                      <b-col><p class = "majorText"> <b-badge variant="dark">2-2</b-badge> </p></b-col>
-                    </b-row>
-                    <div v-for="item in curriData" v-bind:subject = "item" v-bind:key="item.id" v-if="item.semester == '2-2'">
-                        <b-button :pressed.sync = "item.isPre" class = "mainBtn" @click = "Popup(item)" >{{item.lecture}}</b-button>
-                    </div>
-                </b-col>
-                <hr class = "vertical">
-                <b-col class ="curriculum_btn">
-                    <b-row align-v="center">
-                      <b-col><p class = "majorText"> <b-badge variant="dark">3-1</b-badge> </p></b-col>
-                    </b-row>
-                    <div v-for="item in curriData" v-bind:subject = "item" v-bind:key="item.id" v-if="item.semester == '3-1'">
-                        <b-button :pressed.sync = "item.isPre" class = "mainBtn" @click = "Popup(item)" >{{item.lecture}}</b-button>
-                    </div>
-                </b-col>
-                 <hr class = "vertical">
-                 <b-col class ="curriculum_btn">
-                   <b-row align-v="center">
-                      <b-col><p class = "majorText"> <b-badge variant="dark">3-2</b-badge> </p></b-col>
-                    </b-row>
-                    <div v-for="item in curriData" v-bind:subject = "item" v-bind:key="item.id" v-if="item.semester == '3-2'">
-                        <b-button :pressed.sync = "item.isPre" class = "mainBtn" @click = "Popup(item)" >{{item.lecture}}</b-button>
-                    </div>
-                </b-col>
-                 <hr class = "vertical">
-                <b-col class ="curriculum_btn">
-                    <b-row align-v="center">
-                      <b-col><p class = "majorText"> <b-badge variant="dark">4-1</b-badge> </p></b-col>
-                    </b-row>
-                    <div v-for="item in curriData" v-bind:subject = "item" v-bind:key="item.id" v-if="item.semester == '4-1'">
-                        <b-button :pressed.sync = "item.isPre" class = "mainBtn" @click = "Popup(item)" >{{item.lecture}}</b-button>
-                    </div>
-                </b-col>
-                <hr class = "vertical">
-                <b-col class ="curriculum_btn">
-                    <b-row align-v="center">
-                      <b-col><p class = "majorText"> <b-badge variant="dark">4-2</b-badge> </p></b-col>
-                    </b-row>
-                    <div v-for="item in curriData" v-bind:subject = "item" v-bind:key="item.id" v-if="item.semester == '4-2'">
-                        <b-button :pressed.sync = "item.isPre" class = "mainBtn" @click = "Popup(item)" >{{item.lecture}}</b-button>
-                    </div>
-                </b-col>
+      <b-container class="curriculum">
+        <b-row align-v="start" class="height">
+          <b-col class="curriculum_btn">
+            <b-row align-v="center">
+              <b-col>
+                <p class="majorText">
+                  <b-badge variant="dark">1-1</b-badge>
+                </p>
+              </b-col>
             </b-row>
-        </b-container>
-        <v-btn id = "upBtn" v-scroll-to="'#app'"
-              fixed
-              dark
-              fab
-              bottom
-              right
-              color="#BB252B"
-            > <i class="material-icons">keyboard_arrow_up</i>
-            </v-btn>
+            <div v-for="item in curriData" v-bind:subject="item" v-bind:key="item.id" v-if="item.semester == '1-1'">
+              <b-button :pressed.sync="item.isPre" class="mainBtn" @click="Popup(item)">{{item.lecture}}</b-button>
+            </div>
+          </b-col>
+          <hr class="vertical">
+          <b-col class="curriculum_btn">
+            <b-row align-v="center">
+              <b-col>
+                <p class="majorText">
+                  <b-badge variant="dark">1-2</b-badge>
+                </p>
+              </b-col>
+            </b-row>
+            <div v-for="item in curriData" v-bind:subject="item" v-bind:key="item.id" v-if="item.semester == '1-2'">
+              <b-button :pressed.sync="item.isPre" class="mainBtn" @click="Popup(item)">{{item.lecture}}</b-button>
+            </div>
+          </b-col>
+          <hr class="vertical">
+          <b-col class="curriculum_btn">
+            <b-row align-v="center">
+              <b-col>
+                <p class="majorText">
+                  <b-badge variant="dark">2-1</b-badge>
+                </p>
+              </b-col>
+            </b-row>
+            <div v-for="item in curriData" v-bind:subject="item" v-bind:key="item.id" v-if="item.semester == '2-1'">
+              <b-button :pressed.sync="item.isPre" class="mainBtn" @click="Popup(item)">{{item.lecture}}</b-button>
+            </div>
+          </b-col>
+          <hr class="vertical">
+          <b-col class="curriculum_btn">
+            <b-row align-v="center">
+              <b-col>
+                <p class="majorText">
+                  <b-badge variant="dark">2-2</b-badge>
+                </p>
+              </b-col>
+            </b-row>
+            <div v-for="item in curriData" v-bind:subject="item" v-bind:key="item.id" v-if="item.semester == '2-2'">
+              <b-button :pressed.sync="item.isPre" class="mainBtn" @click="Popup(item)">{{item.lecture}}</b-button>
+            </div>
+          </b-col>
+          <hr class="vertical">
+          <b-col class="curriculum_btn">
+            <b-row align-v="center">
+              <b-col>
+                <p class="majorText">
+                  <b-badge variant="dark">3-1</b-badge>
+                </p>
+              </b-col>
+            </b-row>
+            <div v-for="item in curriData" v-bind:subject="item" v-bind:key="item.id" v-if="item.semester == '3-1'">
+              <b-button :pressed.sync="item.isPre" class="mainBtn" @click="Popup(item)">{{item.lecture}}</b-button>
+            </div>
+          </b-col>
+          <hr class="vertical">
+          <b-col class="curriculum_btn">
+            <b-row align-v="center">
+              <b-col>
+                <p class="majorText">
+                  <b-badge variant="dark">3-2</b-badge>
+                </p>
+              </b-col>
+            </b-row>
+            <div v-for="item in curriData" v-bind:subject="item" v-bind:key="item.id" v-if="item.semester == '3-2'">
+              <b-button :pressed.sync="item.isPre" class="mainBtn" @click="Popup(item)">{{item.lecture}}</b-button>
+            </div>
+          </b-col>
+          <hr class="vertical">
+          <b-col class="curriculum_btn">
+            <b-row align-v="center">
+              <b-col>
+                <p class="majorText">
+                  <b-badge variant="dark">4-1</b-badge>
+                </p>
+              </b-col>
+            </b-row>
+            <div v-for="item in curriData" v-bind:subject="item" v-bind:key="item.id" v-if="item.semester == '4-1'">
+              <b-button :pressed.sync="item.isPre" class="mainBtn" @click="Popup(item)">{{item.lecture}}</b-button>
+            </div>
+          </b-col>
+          <hr class="vertical">
+          <b-col class="curriculum_btn">
+            <b-row align-v="center">
+              <b-col>
+                <p class="majorText">
+                  <b-badge variant="dark">4-2</b-badge>
+                </p>
+              </b-col>
+            </b-row>
+            <div v-for="item in curriData" v-bind:subject="item" v-bind:key="item.id" v-if="item.semester == '4-2'">
+              <b-button :pressed.sync="item.isPre" class="mainBtn" @click="Popup(item)">{{item.lecture}}</b-button>
+            </div>
+          </b-col>
+        </b-row>
+      </b-container>
+      <v-btn id="upBtn" v-scroll-to="'#app'"
+             fixed
+             dark
+             fab
+             bottom
+             right
+             color="#BB252B"
+      ><i class="material-icons">keyboard_arrow_up</i>
+      </v-btn>
 
-        <div class = "evaluation" >
-          <div id = "eval_container">
-               <v-toolbar color="#165833" dark >
-                  <v-toolbar-title >강의평가</v-toolbar-title>
-                  <v-spacer></v-spacer>
-                   <router-link :to ="`/evaluation/write`"  v-scroll-to="'#app'">
-                   <v-btn  style="margin-left : 50px; background:#BB252B; border-radius:10px ">
-                     강의평가작성
-                    <i class="material-icons" >add_circle</i>
-                  </v-btn>
-                  </router-link>
-              </v-toolbar>
-              <h5 id= "noresult" v-if="filteredItems.length == 0 && isExist==true">등록된 강의평가가 없습니다. </h5>
-              <v-flex xs12 >
-                 <v-container fluid >
-                   <v-layout row wrap>
+      <div class="evaluation">
+        <div id="eval_container">
+          <v-toolbar color="#165833" dark>
+            <v-toolbar-title>강의평가</v-toolbar-title>
+            <v-spacer></v-spacer>
+            <router-link :to="`/evaluation/write`" v-scroll-to="'#app'">
+              <v-btn style="margin-left : 50px; background:#BB252B; border-radius:10px ">
+                강의평가작성
+                <i class="material-icons">add_circle</i>
+              </v-btn>
+            </router-link>
+          </v-toolbar>
+          <h5 id="noresult" v-if="filteredItems.length == 0 && isExist==true">등록된 강의평가가 없습니다. </h5>
+          <div v-if="filteredItems.length != 0 || isExist==false">
+            <v-flex xs12>
+              <v-container fluid>
+                <v-layout row wrap>
 
-                     <v-flex
-                       id = "evaluate" v-for="item in calData" v-bind:key="item.id"
-                        :current-page="currentPage"
-                        :per-page="perPage"
-                       xs3>
-                     <v-hover>
-                       <v-card
-                           slot-scope="{ hover }"
-                           :class="`elevation-${hover ? 12 : 2}`"
-                           class="mx-auto"
-                           width="345"
-                           flat tile>
+                  <v-flex
+                    id="evaluate" v-for="item in calData" v-bind:key="item.id"
+                    :current-page="currentPage"
+                    :per-page="perPage"
+                    xs3>
+                    <v-hover>
+                      <v-card
+                        slot-scope="{ hover }"
+                        :class="`elevation-${hover ? 12 : 2}`"
+                        class="mx-auto"
+                        width="345"
+                        flat tile>
 
-                          <div class ="evalContainer" >
-                             <h3 style="padding-top:20px">Course</h3>
-                             <h5>{{item.lecture}}</h5>
-                             <h3>Professor</h3>
-                             <h5>{{item.professor}}</h5>
-                             <v-rating v-model="item.evaluation.totalGrade"
-                                        color="yellow darken-3"
-                                        background-color="grey darken-1"
-                                        readonly>
-                            </v-rating>
-                            <h5 class = "circle">{{parseFloat(item.evaluation.totalGrade).toFixed(1)}}</h5>
-                            <h5>{{item.semester}}</h5><br>
-                              <router-link :to ="{name:'eval-view',params:{id: item.id}}">
-                              <button type="submit" class = "plusView">Read More</button>
-                           </router-link>
-                          </div>
-                       </v-card>
-                     </v-hover>
-                     </v-flex>
+                        <div class="evalContainer">
+                          <h3 style="padding-top:20px">Course</h3>
+                          <h5>{{item.lecture}}</h5>
+                          <h3>Professor</h3>
+                          <h5>{{item.professor}}</h5>
+                          <v-rating v-model="item.evaluation.totalGrade"
+                                    color="yellow darken-3"
+                                    background-color="grey darken-1"
+                                    readonly>
+                          </v-rating>
+                          <h5 class="circle">{{parseFloat(item.evaluation.totalGrade).toFixed(1)}}</h5>
+                          <h5>{{item.semester}}</h5><br>
+                          <router-link :to="{name:'eval-view',params:{id: item.id}}">
+                            <button type="submit" class="plusView">Read More</button>
+                          </router-link>
+                        </div>
+                      </v-card>
+                    </v-hover>
+                  </v-flex>
 
-                   </v-layout>
-                 </v-container>
-              </v-flex>
+                </v-layout>
+              </v-container>
+            </v-flex>
 
-              <b-pagination align="center" size="md"
-                :per-page="perPage"
-                :total-rows="totalRows"
-                v-model="currentPage">
-              </b-pagination>
-
+            <b-pagination align="center" size="md"
+             hide-goto-end-buttons 
+                          :per-page="perPage"
+                          :total-rows="totalRows"
+                          v-model="currentPage">
+            </b-pagination>
           </div>
+
         </div>
-        <modals-container/>
+      </div>
+      <modals-container/>
     </div>
-      <v-footer
-    dark
-    height="auto"
-  >
-    <v-card
-      class="flex"
-      flat
-      title
+    <v-footer
+      dark
+      height="auto"
     >
-      <v-card-actions class="grey darken-3 justify-center">
-        &copy;2018 김치헌 | 박찬영 | 이소연 | 이아연 — <strong> Ajou Univ.</strong>
-      </v-card-actions>
-    </v-card>
-  </v-footer>
+      <v-card
+        class="flex"
+        flat
+        title
+      >
+        <v-card-actions class="grey darken-3 justify-center">
+          &copy;2018 김치헌 | 박찬영 | 이소연 | 이아연 — <strong> Ajou Univ.</strong>
+        </v-card-actions>
+      </v-card>
+    </v-footer>
   </div>
 </template>
 
@@ -254,8 +293,14 @@ export default {
       if (this.filteredItems.length !== 0) {
         return this.filteredItems.slice(this.startOffset, this.endOffset)
       } else {
-        this.totalRows = this.eval_subject.length
-        return this.eval_subject.slice(this.startOffset, this.endOffset)
+        let temp = []
+        for (let i = 0; i < this.eval_subject.length; i++) {
+          if (this.eval_subject[i].major === this.clickedMajor) {
+            temp.push(this.eval_subject[i])
+          }
+        }
+        this.totalRows = temp.length
+        return temp.slice(this.startOffset, this.endOffset)
       }
     }
   },
@@ -308,6 +353,7 @@ export default {
     setMajor (item) {
       this.clickedMajor = item.major
       this.GetCurriculum()
+      this.isExist = false
     },
     // 모든 학과이름과 정보 받아오기
     GetMajor () {

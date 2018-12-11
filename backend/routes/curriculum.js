@@ -26,7 +26,6 @@ router.post('/create',  function (req, res, next) {
         if (curriculum) {
             throw new Error('curriculum exists')
         } else {
-            console.log('생성 넘긴다')
             return Curriculum.create(major, type, lecture, prerequisite, semester, description)
         }
     }
@@ -125,7 +124,6 @@ router.get('/:id', function (req, res, next) {
             if (!data) return res.status(404).json({
                 error: 'data not found'
             });
-            console.log('A lecture datum of Curriculum:' + data);
             res.json(data);
         })
 });
@@ -148,7 +146,6 @@ router.post('/', function (req, res, next) {
             if (!data) return res.status(404).json({
                 error: 'data not found'
             });
-            console.log('All lecture data of Curriculum:' + data);
             res.json(data);
         })
 });

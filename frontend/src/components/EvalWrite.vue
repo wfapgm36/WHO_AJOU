@@ -223,6 +223,7 @@ export default {
           major: this.majorSelected
         })
         .then(res => {
+          this.subjectOptions = []
           for (var i = 0; i < res.data.length; i++) {
             this.subjectOptions.push({ value: res.data[i].lecture })
           }
@@ -232,7 +233,6 @@ export default {
           console.log(err)
         })
     },
-    // professorOptions
     // 선택한 학과에 따라 교수명 데이터 넣기
     getProfessor (clickedMajor) {
       this.professorOptions = []
