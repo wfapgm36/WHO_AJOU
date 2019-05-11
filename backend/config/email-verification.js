@@ -12,8 +12,8 @@ module.exports = function(nev){
         transportOptions: {
             service:"Gmail",
             auth: {
-                user: 'qwaserdf@ajou.ac.kr',
-                pass: 'eksldpf4106*'
+                user: 'email',
+                pass: 'password'
             }
         },
         verifyMailOptions: {
